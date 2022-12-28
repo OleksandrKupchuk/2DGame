@@ -4,16 +4,6 @@ using UnityEngine;
 
 public class PlayerRunState : IState<Player> {
     private Player _player;
-    private static PlayerRunState _instance;
-    public static PlayerRunState Instance {
-        get {
-            if (_instance == null) {
-                _instance = new PlayerRunState();
-            }
-
-            return _instance;
-        }
-    }
 
     public void Enter(Player owner) {
         Debug.Log($"<color=blue>enter run state</color>");

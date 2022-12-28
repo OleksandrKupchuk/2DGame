@@ -5,28 +5,22 @@ using UnityEngine.InputSystem;
 
 public class PlayerIdleState : IState<Player> {
     private Player _player;
-    private static PlayerIdleState _instance;
-    public static PlayerIdleState Instance {
-        get {
-            if(_instance == null) {
-                _instance = new PlayerIdleState();
-            }
-
-            return _instance;
-        }
-    }
 
     public void Enter(Player owner) {
         Debug.Log($"<color=yellow>enter idle state</color>");
 
         _player = owner;
         _player.ShotInputAction.action.performed += _player.SetAttackBoolTrue;
+        _player.JumpInputAction.action.performed += _player.SetJumpBoolTrue;
         _player.Animator.Play(PlayerAnimationName.Idle);
     }
 
     public void ExecuteUpdate() {
         Debug.Log($"<color=yellow>idle execute</color>");
 
+        if (_player.isJump) {
+            _player.StateMachine.ChangeState(_player.JumpUpState);
+        }
         if (_player.isAttack) {
             _player.StateMachine.ChangeState(_player.AttackState);
         }
@@ -43,6 +37,7 @@ public class PlayerIdleState : IState<Player> {
         Debug.Log($"<color=yellow>exit idle state</color>");
 
         _player.ShotInputAction.action.performed -= _player.SetAttackBoolTrue;
+        _player.JumpInputAction.action.performed -= _player.SetJumpBoolTrue;
         _player.Animator.StopPlayback();
     }
 }
