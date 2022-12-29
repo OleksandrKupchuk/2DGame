@@ -23,14 +23,26 @@ public class Player : MonoBehaviour {
     public bool isAttack = false;
     public bool isJump = false;
 
-    public Rigidbody2D Rigidbody { get; private set; }
-    public StateMachine<Player> StateMachine { get; private set; }
-    public Vector2 MovementInput { get; }
-    public Animator Animator { get; private set; }
+    public bool IsFalling {
+        get {
+            if(Rigidbody.velocity.y < 0.001){
+                return true;
+            }
+
+            return false;
+        }
+    }
+
     public PlayerIdleState IdleState { get; private set; }
     public PlayerRunState RunState { get; private set; }
     public PlayerAttackState AttackState { get; private set; }
     public PlayerJumpUpState JumpUpState { get; private set; }
+    public PlayerJumpDownState JumpDownState { get; private set; }
+
+    public Rigidbody2D Rigidbody { get; private set; }
+    public StateMachine<Player> StateMachine { get; private set; }
+    public Vector2 MovementInput { get; }
+    public Animator Animator { get; private set; }
     public InputActionReference ShotInputAction { get => _shotInputAction; }
     public InputActionReference JumpInputAction { get => _jumpInputAction; }
     public CheckGround CheckGround { get => _checkGround; }
@@ -42,6 +54,7 @@ public class Player : MonoBehaviour {
         RunState = new PlayerRunState();
         AttackState = new PlayerAttackState();
         JumpUpState = new PlayerJumpUpState();
+        JumpDownState = new PlayerJumpDownState();
         StateMachine = new StateMachine<Player>(this);
         CheckComponentOnNull();
     }

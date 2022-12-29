@@ -2,20 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerJumpUpState : IState<Player> {
+public class PlayerJumpDownState : IState<Player> {
     private Player _player;
 
     public void Enter(Player owner) {
         _player = owner;
-        _player.isJump = false;
-        _player.Jump();
-        _player.Animator.Play(PlayerAnimationName.JumpUp);
+        _player.Animator.Play(PlayerAnimationName.JumpDown);
     }
 
     public void ExecuteUpdate() {
-        if (_player.IsFalling) {
-            _player.StateMachine.ChangeState(_player.JumpDownState);
-        }
         if (_player.CheckGround.IsGround) {
             Debug.Log(_player.Animator.GetCurrentAnimatorStateInfo(AnimatorLayers.BaseLayer).normalizedTime);
             _player.StateMachine.ChangeState(_player.IdleState);
@@ -27,6 +22,6 @@ public class PlayerJumpUpState : IState<Player> {
     }
 
     public void Exit() {
-       
+        
     }
 }
