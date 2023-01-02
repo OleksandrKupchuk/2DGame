@@ -12,7 +12,7 @@ public class PlayerIdleState : IState<Player> {
         _player = owner;
         _player.ShotInputAction.action.performed += _player.SetAttackBoolTrue;
         _player.JumpInputAction.action.performed += _player.SetJumpBoolTrue;
-        _player.ResetRigidbodyVelocity();
+        //_player.ResetRigidbodyVelocity();
         _player.Animator.Play(PlayerAnimationName.Idle);
         //Debug.Log("velocity idle = " + _player.Rigidbody.velocity);
     }

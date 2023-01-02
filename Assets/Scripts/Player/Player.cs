@@ -138,15 +138,6 @@ public class Player : MonoBehaviour {
 
     public void Jump() {
         Rigidbody.velocity = Vector2.up * _jumpVelocity;
-        //Vector2 _direction;
-        //if (transform.localScale.x == -1) {
-        //    _direction = new Vector2(0.5f, 1);
-        //}
-        //else {
-        //    _direction = new Vector2(-0.5f, 1);
-        //}
-        //Rigidbody.AddForce(_direction * _jumpVelocity, ForceMode2D.Force);
-        //print("velocity jump = " + Rigidbody.velocity);
     }
 
     public void TakeDamage(float damage) {
