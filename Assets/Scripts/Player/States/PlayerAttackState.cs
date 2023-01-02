@@ -12,9 +12,11 @@ public class PlayerAttackState : IState<Player> {
     }
 
     public void ExecuteUpdate() {
-        if (_player.IsEndCurrentAnimation(AnimatorLayers.BaseLayer)) {
+        if (_player.isHit) {
+            _player.StateMachine.ChangeState(_player.HitState);
+        }
+        else if (_player.IsEndCurrentAnimation(AnimatorLayers.BaseLayer)) {
             _player.StateMachine.ChangeState(_player.IdleState);
-            Debug.Log(_player.Animator.GetCurrentAnimatorStateInfo(AnimatorLayers.BaseLayer).normalizedTime);
         }
     }
 

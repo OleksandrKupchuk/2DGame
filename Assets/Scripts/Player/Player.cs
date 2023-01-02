@@ -6,7 +6,10 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour {
     private Vector2 _movementInput;
+    private float _health;
 
+    [SerializeField]
+    private float _maxHealth;
     [SerializeField]
     private float _speed;
     [SerializeField]
@@ -22,22 +25,18 @@ public class Player : MonoBehaviour {
 
     public bool isAttack = false;
     public bool isJump = false;
+    public bool isHit = false;
 
-    public bool IsFalling {
-        get {
-            if(Rigidbody.velocity.y < 0.001){
-                return true;
-            }
-
-            return false;
-        }
-    }
+    public bool IsFalling { get => Rigidbody.velocity.y < 0.001; }
+    public bool IsDead { get => _health <= 0; }
 
     public PlayerIdleState IdleState { get; private set; }
     public PlayerRunState RunState { get; private set; }
     public PlayerAttackState AttackState { get; private set; }
     public PlayerJumpUpState JumpUpState { get; private set; }
     public PlayerJumpDownState JumpDownState { get; private set; }
+    public PlayerHitState HitState { get; private set; }
+    public PlayerDeadState DeadState { get; private set; }
 
     public Rigidbody2D Rigidbody { get; private set; }
     public StateMachine<Player> StateMachine { get; private set; }
@@ -55,8 +54,11 @@ public class Player : MonoBehaviour {
         AttackState = new PlayerAttackState();
         JumpUpState = new PlayerJumpUpState();
         JumpDownState = new PlayerJumpDownState();
+        HitState = new PlayerHitState();
+        DeadState = new PlayerDeadState();
         StateMachine = new StateMachine<Player>(this);
         CheckComponentOnNull();
+        _health = _maxHealth;
     }
 
     private void CheckComponentOnNull() {
@@ -88,7 +90,7 @@ public class Player : MonoBehaviour {
 
     public void Move() {
         Rigidbody.velocity = new Vector2(_movementInput.x * _speed, Rigidbody.velocity.y);
-        print("velocity " + Rigidbody.velocity);
+        //print("velocity " + Rigidbody.velocity);
     }
 
     public Vector2 GetMovementInput() {
@@ -107,6 +109,7 @@ public class Player : MonoBehaviour {
     private void OnDisable() {
         ShotInputAction.action.performed -= SetAttackBoolTrue;
         ShotInputAction.action.performed -= SetJumpBoolTrue;
+        ShotInputAction.action.performed -= SetHitBoolTrue;
     }
 
     public void SetAttackBoolTrue(InputAction.CallbackContext obj) {
@@ -115,6 +118,10 @@ public class Player : MonoBehaviour {
 
     public void SetJumpBoolTrue(InputAction.CallbackContext obj) {
         isJump = true;
+    }
+
+    public void SetHitBoolTrue(InputAction.CallbackContext obj) {
+        isHit = true;
     }
 
     public void ResetRigidbodyVelocity() {
@@ -131,5 +138,20 @@ public class Player : MonoBehaviour {
 
     public void Jump() {
         Rigidbody.velocity = Vector2.up * _jumpVelocity;
+        //Vector2 _direction;
+        //if (transform.localScale.x == -1) {
+        //    _direction = new Vector2(0.5f, 1);
+        //}
+        //else {
+        //    _direction = new Vector2(-0.5f, 1);
+        //}
+        //Rigidbody.AddForce(_direction * _jumpVelocity, ForceMode2D.Force);
+        //print("velocity jump = " + Rigidbody.velocity);
+    }
+
+    public void TakeDamage(float damage) {
+        print("take damage");
+        _health -= damage;
+        isHit = true;
     }
 }

@@ -12,29 +12,33 @@ public class PlayerIdleState : IState<Player> {
         _player = owner;
         _player.ShotInputAction.action.performed += _player.SetAttackBoolTrue;
         _player.JumpInputAction.action.performed += _player.SetJumpBoolTrue;
+        _player.ResetRigidbodyVelocity();
         _player.Animator.Play(PlayerAnimationName.Idle);
+        //Debug.Log("velocity idle = " + _player.Rigidbody.velocity);
     }
 
     public void ExecuteUpdate() {
-        Debug.Log($"<color=yellow>idle execute</color>");
-
-        if (_player.isJump) {
+        //Debug.Log($"<color=yellow>idle execute</color>");
+        if (_player.isHit) {
+            _player.StateMachine.ChangeState(_player.HitState);
+        }
+        else if (_player.isJump) {
             _player.StateMachine.ChangeState(_player.JumpUpState);
         }
-        if (_player.isAttack) {
+        else if (_player.isAttack) {
             _player.StateMachine.ChangeState(_player.AttackState);
         }
-        if (Mathf.Abs(_player.GetMovementInput().x) > 0) {
+        else if (Mathf.Abs(_player.GetMovementInput().x) > 0) {
             _player.StateMachine.ChangeState(_player.RunState);
         }
     }
 
     public void ExecuteFixedUpdate() {
-        Debug.Log($"<color=yellow>idle fixed execute</color>");
+        //Debug.Log($"<color=yellow>idle fixed execute</color>");
     }
 
     public void Exit() {
-        Debug.Log($"<color=yellow>exit idle state</color>");
+        Debug.Log($"<color=red>exit </color><color=yellow>idle state</color>");
 
         _player.ShotInputAction.action.performed -= _player.SetAttackBoolTrue;
         _player.JumpInputAction.action.performed -= _player.SetJumpBoolTrue;

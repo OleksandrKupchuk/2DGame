@@ -11,15 +11,23 @@ public class PlayerRunState : IState<Player> {
         _player = owner;
         _player.Animator.Play(PlayerAnimationName.Run);
         _player.ShotInputAction.action.performed += _player.SetAttackBoolTrue;
+        _player.JumpInputAction.action.performed += _player.SetJumpBoolTrue;
     }
 
     public void ExecuteUpdate() {
-        Debug.Log($"<color=blue>run execute</color>");
+        //Debug.Log($"<color=blue>run execute</color>");
 
-        if (_player.isAttack) {
+        if (_player.isHit) {
+            _player.StateMachine.ChangeState(_player.HitState);
+        }
+        else if (_player.isJump) {
+            Debug.Log("jump");
+            _player.StateMachine.ChangeState(_player.JumpUpState);
+        }
+        else if (_player.isAttack) {
             _player.StateMachine.ChangeState(_player.AttackState);
         }
-        if (Mathf.Abs(_player.GetMovementInput().x) == 0) {
+        else if (Mathf.Abs(_player.GetMovementInput().x) == 0) {
             _player.StateMachine.ChangeState(_player.IdleState);
         }
 
@@ -27,7 +35,7 @@ public class PlayerRunState : IState<Player> {
     }
 
     public void ExecuteFixedUpdate() {
-        Debug.Log($"<color=blue>run fixed execute</color>");
+        //Debug.Log($"<color=blue>run fixed execute</color>");
 
         if (_player.isAttack) {
             return;
@@ -37,11 +45,12 @@ public class PlayerRunState : IState<Player> {
     }
 
     public void Exit() {
-        Debug.Log($"<color=blue>exit run state</color>");
-        Debug.Log("exit run = " + _player.Rigidbody.velocity);
+        Debug.Log($"<color=red>exit</color> <color=blue>run state</color>");
+        //Debug.Log("exit run = " + _player.Rigidbody.velocity);
 
         _player.ResetRigidbodyVelocity();
-        _player.ShotInputAction.action.performed -= _player.SetAttackBoolTrue;
         _player.Animator.StopPlayback();
+        _player.ShotInputAction.action.performed -= _player.SetAttackBoolTrue;
+        _player.JumpInputAction.action.performed -= _player.SetJumpBoolTrue;
     }
 }

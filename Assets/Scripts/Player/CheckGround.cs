@@ -9,14 +9,14 @@ public class CheckGround : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("Ground")) {
             IsGround = true;
-            print("on ground");
+            //print("on ground");
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("Ground")) {
             IsGround = false;
-            print("in air");
+            //print("in air");
         }
     }
 }
