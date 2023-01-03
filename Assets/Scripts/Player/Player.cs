@@ -138,7 +138,7 @@ public class Player : MonoBehaviour {
     }
 
     public void TakeDamage(float damage) {
-        //print("take damage");
+        print("take damage");
         _health -= damage;
         if (IsDead) {
             StateMachine.ChangeState(DeadState);
