@@ -9,8 +9,8 @@ public class PlayerRunState : IState<Player> {
         Debug.Log($"<color=blue>enter run state</color>");
 
         _player = owner;
-        _player.Animator.Play(PlayerAnimationName.Run);
-        _player.ShotInputAction.action.performed += _player.SetAttackBoolTrue;
+        _player.Animator.SetBool(AnimatorParameters.Run, true);
+        _player.ShotInputAction.action.performed += _player.PlayerAttack;
         _player.JumpInputAction.action.performed += _player.SetJumpBoolTrue;
     }
 
@@ -23,9 +23,9 @@ public class PlayerRunState : IState<Player> {
         else if (_player.isJump) {
             _player.StateMachine.ChangeState(_player.JumpUpState);
         }
-        else if (_player.isAttack) {
-            _player.StateMachine.ChangeState(_player.AttackState);
-        }
+        //else if (_player.isAttack) {
+        //    _player.StateMachine.ChangeState(_player.AttackState);
+        //}
         else if (Mathf.Abs(_player.GetMovementInput().x) == 0) {
             _player.StateMachine.ChangeState(_player.IdleState);
         }
@@ -35,6 +35,7 @@ public class PlayerRunState : IState<Player> {
 
     public void ExecuteFixedUpdate() {
         //Debug.Log($"<color=blue>run fixed execute</color>");
+
 
         if (_player.isAttack) {
             return;
@@ -46,10 +47,10 @@ public class PlayerRunState : IState<Player> {
     public void Exit() {
         Debug.Log($"<color=red>exit</color> <color=blue>run state</color>");
         //Debug.Log("exit run = " + _player.Rigidbody.velocity);
+        _player.Animator.SetBool(AnimatorParameters.Run, false);
 
         _player.ResetRigidbodyVelocity();
-        _player.Animator.StopPlayback();
-        _player.ShotInputAction.action.performed -= _player.SetAttackBoolTrue;
+        _player.ShotInputAction.action.performed -= _player.PlayerAttack;
         _player.JumpInputAction.action.performed -= _player.SetJumpBoolTrue;
     }
 }

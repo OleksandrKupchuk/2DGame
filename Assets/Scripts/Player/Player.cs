@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[ExecuteInEditMode]
 public class Player : MonoBehaviour {
     private Vector2 _movementInput;
     private float _health;
@@ -51,11 +52,7 @@ public class Player : MonoBehaviour {
     }
 
     private void OnDisable() {
-        //ShotInputAction.action.performed -= PlayerAttack;
-
-        //ShotInputAction.action.performed -= SetAttackBoolTrue;
-        //ShotInputAction.action.performed -= SetJumpBoolTrue;
-        //ShotInputAction.action.performed -= SetHitBoolTrue;
+        ShotInputAction.action.performed -= PlayerAttack;
     }
 
     private void Awake() {
@@ -93,16 +90,19 @@ public class Player : MonoBehaviour {
     }
 
     private void Update() {
-        StateMachine.Update();
+        if (StateMachine != null) {
+            StateMachine.Update();
+        }
     }
 
     private void FixedUpdate() {
-        StateMachine.FixedUpdate();
+        if (StateMachine != null) {
+            StateMachine.FixedUpdate();
+        }
     }
 
     public void Move() {
         Rigidbody.velocity = new Vector2(_movementInput.x * _speed, Rigidbody.velocity.y);
-        //print("velocity " + Rigidbody.velocity);
     }
 
     public Vector2 GetMovementInput() {
@@ -118,11 +118,8 @@ public class Player : MonoBehaviour {
         }
     }
 
-    public void SetAttackBoolTrue(InputAction.CallbackContext obj) {
-        isAttack = true;
-    }
-
     public void PlayerAttack(InputAction.CallbackContext obj) {
+        print("click attack");
         StateMachine.ChangeState(AttackState);
     }
 

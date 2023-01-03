@@ -6,9 +6,11 @@ public class PlayerAttackState : IState<Player> {
     private Player _player;
 
     public void Enter(Player owner) {
+        Debug.Log($"<color=green>enter attack state</color>");
         _player = owner;
-        _player.isAttack = false;
-        _player.Animator.Play(PlayerAnimationName.Attack);
+        _player.ResetRigidbodyVelocity();
+        _player.Animator.SetTrigger(AnimatorParameters.Attack);
+        //_player.Animator.Play(PlayerAnimationName.Attack);
     }
 
     public void ExecuteUpdate() {
@@ -19,6 +21,7 @@ public class PlayerAttackState : IState<Player> {
             Debug.Log("next IdleState");
             _player.StateMachine.ChangeState(_player.IdleState);
         }
+        Debug.Log("velocity attack = " + _player.Rigidbody.velocity);
     }
 
     public void ExecuteFixedUpdate() {
@@ -26,5 +29,7 @@ public class PlayerAttackState : IState<Player> {
     }
 
     public void Exit() {
+        _player.isAttack = false;
+        Debug.Log($"<color=red>exit </color><color=green>attack state</color>");
     }
 }

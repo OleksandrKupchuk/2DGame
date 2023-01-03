@@ -6,4 +6,5 @@ public class AnimatorParameters : MonoBehaviour
 {
     public readonly static string Run = "run";
     public readonly static string Attack = "attack";
+    public readonly static string Jump = "jump";
 }
