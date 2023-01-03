@@ -16,6 +16,7 @@ public class PlayerAttackState : IState<Player> {
             _player.StateMachine.ChangeState(_player.HitState);
         }
         else if (_player.IsEndCurrentAnimation(AnimatorLayers.BaseLayer)) {
+            Debug.Log("next IdleState");
             _player.StateMachine.ChangeState(_player.IdleState);
         }
     }
@@ -25,6 +26,5 @@ public class PlayerAttackState : IState<Player> {
     }
 
     public void Exit() {
-        
     }
 }

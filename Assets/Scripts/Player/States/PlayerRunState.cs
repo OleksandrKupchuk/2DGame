@@ -21,7 +21,6 @@ public class PlayerRunState : IState<Player> {
             _player.StateMachine.ChangeState(_player.HitState);
         }
         else if (_player.isJump) {
-            Debug.Log("jump");
             _player.StateMachine.ChangeState(_player.JumpUpState);
         }
         else if (_player.isAttack) {

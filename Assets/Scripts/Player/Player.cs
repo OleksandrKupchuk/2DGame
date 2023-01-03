@@ -46,6 +46,18 @@ public class Player : MonoBehaviour {
     public InputActionReference JumpInputAction { get => _jumpInputAction; }
     public CheckGround CheckGround { get => _checkGround; }
 
+    private void OnEnable() {
+        //ShotInputAction.action.performed += PlayerAttack;
+    }
+
+    private void OnDisable() {
+        //ShotInputAction.action.performed -= PlayerAttack;
+
+        //ShotInputAction.action.performed -= SetAttackBoolTrue;
+        //ShotInputAction.action.performed -= SetJumpBoolTrue;
+        //ShotInputAction.action.performed -= SetHitBoolTrue;
+    }
+
     private void Awake() {
         Rigidbody = gameObject.GetComponent<Rigidbody2D>();
         Animator = gameObject.GetComponent<Animator>();
@@ -106,14 +118,12 @@ public class Player : MonoBehaviour {
         }
     }
 
-    private void OnDisable() {
-        ShotInputAction.action.performed -= SetAttackBoolTrue;
-        ShotInputAction.action.performed -= SetJumpBoolTrue;
-        ShotInputAction.action.performed -= SetHitBoolTrue;
-    }
-
     public void SetAttackBoolTrue(InputAction.CallbackContext obj) {
         isAttack = true;
+    }
+
+    public void PlayerAttack(InputAction.CallbackContext obj) {
+        StateMachine.ChangeState(AttackState);
     }
 
     public void SetJumpBoolTrue(InputAction.CallbackContext obj) {
@@ -141,8 +151,13 @@ public class Player : MonoBehaviour {
     }
 
     public void TakeDamage(float damage) {
-        print("take damage");
+        //print("take damage");
         _health -= damage;
-        isHit = true;
+        if (IsDead) {
+            StateMachine.ChangeState(DeadState);
+        }
+        else {
+            isHit = true;
+        }
     }
 }

@@ -14,6 +14,8 @@ public class PlayerHitState : IState<Player> {
 
     public void ExecuteUpdate() {
         if (_player.IsEndCurrentAnimation(AnimatorLayers.BaseLayer)) {
+            Debug.Log("change on Idle");
+            Debug.Log("hit = " + _player.Animator.GetCurrentAnimatorStateInfo(AnimatorLayers.BaseLayer).normalizedTime);
             _player.StateMachine.ChangeState(_player.IdleState);
         }
     }
@@ -23,6 +25,6 @@ public class PlayerHitState : IState<Player> {
 
     public void Exit() {
         Debug.Log($"<color=red>exit </color><color=white>hit state</color>");
-        //_player.Animator.StopPlayback();
+        _player.Animator.StopPlayback();
     }
 }

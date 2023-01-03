@@ -27,6 +27,7 @@ public class PlayerJumpUpState : IState<Player> {
     }
 
     public void ExecuteFixedUpdate() {
+        
         if(_player.GetMovementInput() == Vector2.zero) {
             return;
         }

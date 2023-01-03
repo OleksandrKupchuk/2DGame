@@ -29,7 +29,6 @@ public class PlayerJumpDownState : IState<Player> {
 
     public void Exit() {
         Debug.Log($"<color=red>exit</color> <color=black>jumpDown state</color>");
-        //_player.Animator.StopPlayback();
         _player.ResetRigidbodyVelocity();
     }
 }
