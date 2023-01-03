@@ -346,18 +346,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Sword_Man_Prefab
       objectReference: {fileID: 0}
-    - target: {fileID: 7139910950940667720, guid: 2e6fe925291ef6b4c8112f412e4d8147, type: 3}
-      propertyPath: _maxHealth
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7139910950940667720, guid: 2e6fe925291ef6b4c8112f412e4d8147, type: 3}
-      propertyPath: _attackAnimation
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7144920049929401659, guid: 2e6fe925291ef6b4c8112f412e4d8147, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e6fe925291ef6b4c8112f412e4d8147, type: 3}

@@ -47,15 +47,11 @@ public class Player : MonoBehaviour {
     public CheckGround CheckGround { get => _checkGround; }
 
     private void OnEnable() {
-        //ShotInputAction.action.performed += PlayerAttack;
+
     }
 
     private void OnDisable() {
-        //ShotInputAction.action.performed -= PlayerAttack;
-
-        //ShotInputAction.action.performed -= SetAttackBoolTrue;
-        //ShotInputAction.action.performed -= SetJumpBoolTrue;
-        //ShotInputAction.action.performed -= SetHitBoolTrue;
+        
     }
 
     private void Awake() {
@@ -102,7 +98,6 @@ public class Player : MonoBehaviour {
 
     public void Move() {
         Rigidbody.velocity = new Vector2(_movementInput.x * _speed, Rigidbody.velocity.y);
-        //print("velocity " + Rigidbody.velocity);
     }
 
     public Vector2 GetMovementInput() {
@@ -122,16 +117,8 @@ public class Player : MonoBehaviour {
         isAttack = true;
     }
 
-    public void PlayerAttack(InputAction.CallbackContext obj) {
-        StateMachine.ChangeState(AttackState);
-    }
-
     public void SetJumpBoolTrue(InputAction.CallbackContext obj) {
         isJump = true;
-    }
-
-    public void SetHitBoolTrue(InputAction.CallbackContext obj) {
-        isHit = true;
     }
 
     public void ResetRigidbodyVelocity() {
