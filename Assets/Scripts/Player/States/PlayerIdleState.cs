@@ -7,12 +7,13 @@ public class PlayerIdleState : IState<Player> {
     private Player _player;
 
     public void Enter(Player owner) {
-        Debug.Log($"<color=yellow>enter idle state</color>");
+        // Debug.Log($"<color=yellow>enter idle state</color>");
 
         _player = owner;
         _player.ShotInputAction.action.performed += _player.SetAttackBoolTrue;
         _player.JumpInputAction.action.performed += _player.SetJumpBoolTrue;
         _player.Animator.Play(PlayerAnimationName.Idle);
+        //_player.Animator.Play(PlayerAnimationName.Run);
     }
 
     public void ExecuteUpdate() {
@@ -37,7 +38,7 @@ public class PlayerIdleState : IState<Player> {
     }
 
     public void Exit() {
-        Debug.Log($"<color=red>exit </color><color=yellow>idle state</color>");
+        // Debug.Log($"<color=red>exit </color><color=yellow>idle state</color>");
 
         _player.ShotInputAction.action.performed -= _player.SetAttackBoolTrue;
         _player.JumpInputAction.action.performed -= _player.SetJumpBoolTrue;

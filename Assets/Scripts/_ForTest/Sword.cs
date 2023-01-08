@@ -2,24 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerHit : MonoBehaviour
+public class Sword : Damage
 {
-    [SerializeField]
-    private float _damage;
     [SerializeField]
     private bool _isMove = false;
     [SerializeField]
-    private float _spped;
+    private float _speed;
+
+    public float Damage { get => damage; }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.TryGetComponent(out Player player)) {
-            player.TakeDamage(_damage);
+        if(collision.TryGetComponent(out PlayerBodyPart playerBodyPart)) {
+           playerBodyPart.TakeDamage(damage, this);
         }
     }
 
     private void Update() {
         if (_isMove) {
-            transform.Translate(Vector2.right * _spped * Time.deltaTime);
+            transform.Translate(Vector2.right * _speed * Time.deltaTime);
         }
     }
 }
