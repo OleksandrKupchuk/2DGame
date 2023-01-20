@@ -52,12 +52,12 @@
                 },
                 {
                     "name": "Jump",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "c91ae1ae-9847-4e47-9c24-697548f1e0fb",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -351,7 +351,7 @@
                     "name": "",
                     "id": "6c529dec-e53d-4d8c-bc5d-865e7f7f4f59",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Shot",

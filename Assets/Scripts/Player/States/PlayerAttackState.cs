@@ -7,7 +7,6 @@ public class PlayerAttackState : IState<Player> {
 
     public void Enter(Player owner) {
         _player = owner;
-        _player.isAttack = false;
         _player.Animator.Play(PlayerAnimationName.Attack);
     }
 

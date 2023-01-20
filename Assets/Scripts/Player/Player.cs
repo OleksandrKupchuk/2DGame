@@ -9,6 +9,8 @@ public class Player : MonoBehaviour {
     private float _health;
     private Damage _damageHit = null;
     private List<Damage> _objectsAttck = new List<Damage>();
+    private RaycastHit2D _raycastHit;
+    private float _deafaultGravityScale;
 
     [SerializeField]
     private float _maxHealth;
@@ -23,16 +25,36 @@ public class Player : MonoBehaviour {
     [SerializeField]
     private InputActionReference _jumpInputAction;
     [SerializeField]
-    private CheckGround _checkGround;
-    [SerializeField]
     private InvulnerabilityAnimation _invulnerableStatus;
+    [SerializeField]
+    private BoxCollider2D _boxCollider;
+    [SerializeField]
+    private float _distanceRaycastHit;
+    [SerializeField]
+    private LayerMask _groundLayer;
 
-    public bool isAttack = false;
-    public bool isJump = false;
     public bool isHit = false;
 
-    public bool IsFalling { get => Rigidbody.velocity.y < 0.001; }
+    public bool IsAttack {
+        get {
+            if (ShotInputAction.action.IsPressed()) {
+                return true;
+            }
+            return false;
+        }
+    }
+    public bool IsFalling { get => Rigidbody.velocity.y < 0; }
     public bool IsDead { get => _health <= 0; }
+    public bool CanJump {
+        get {
+            if (JumpInputAction.action.triggered && IsGround()) {
+                print("can jump");
+                return true;
+            }
+
+            return false;
+        }
+    }
 
     public PlayerIdleState IdleState { get; private set; }
     public PlayerRunState RunState { get; private set; }
@@ -48,8 +70,7 @@ public class Player : MonoBehaviour {
     public Animator Animator { get; private set; }
     public InputActionReference ShotInputAction { get => _shotInputAction; }
     public InputActionReference JumpInputAction { get => _jumpInputAction; }
-    public CheckGround CheckGround { get => _checkGround; }
-    public InvulnerabilityAnimation InvulnerableStatus { get =>_invulnerableStatus; }
+    public InvulnerabilityAnimation InvulnerableStatus { get => _invulnerableStatus; }
 
     private void OnEnable() {
 
@@ -72,6 +93,7 @@ public class Player : MonoBehaviour {
         StateMachine = new StateMachine<Player>(this);
         CheckComponentOnNull();
         _health = _maxHealth;
+        _deafaultGravityScale = Rigidbody.gravityScale;
     }
 
     private void CheckComponentOnNull() {
@@ -84,11 +106,11 @@ public class Player : MonoBehaviour {
         if (_jumpInputAction == null) {
             Debug.LogError("Component JumpInputAction is null");
         }
-        if (_checkGround == null) {
-            Debug.LogError("Component CheckGround is null");
-        }
         if (_invulnerableStatus == null) {
             Debug.LogError("Component InvulnerableStatus is null");
+        }
+        if (_boxCollider == null) {
+            Debug.LogError("Component BoxCollider2D is null");
         }
     }
 
@@ -97,6 +119,7 @@ public class Player : MonoBehaviour {
     }
 
     private void Update() {
+        IsGround();
         StateMachine.Update();
     }
 
@@ -121,14 +144,6 @@ public class Player : MonoBehaviour {
         }
     }
 
-    public void SetAttackBoolTrue(InputAction.CallbackContext obj) {
-        isAttack = true;
-    }
-
-    public void SetJumpBoolTrue(InputAction.CallbackContext obj) {
-        isJump = true;
-    }
-
     public void ResetRigidbodyVelocity() {
         Rigidbody.velocity = Vector2.zero;
     }
@@ -142,6 +157,7 @@ public class Player : MonoBehaviour {
     }
 
     public void Jump() {
+        print("Add Force for Jump");
         Rigidbody.velocity = Vector2.up * _jumpVelocity;
     }
 
@@ -163,12 +179,12 @@ public class Player : MonoBehaviour {
     }
 
     private bool IsThisAlreadyAttacked(Damage damageObject) {
-        if(_objectsAttck.Count == 0) {
+        if (_objectsAttck.Count == 0) {
             return false;
         }
 
         foreach (var attack in _objectsAttck) {
-            if(attack == damageObject) {
+            if (attack == damageObject) {
                 //print("this object already attacked");
                 return true;
             }
@@ -196,5 +212,28 @@ public class Player : MonoBehaviour {
     private IEnumerator ResetCurrentDamage(Damage damageObject) {
         yield return new WaitForSeconds(1);
         _objectsAttck.Remove(damageObject);
+    }
+
+    public bool IsGround() {
+        Color _color;
+        _raycastHit = Physics2D.BoxCast(_boxCollider.bounds.center, _boxCollider.bounds.size, 0f, Vector2.down, _distanceRaycastHit, _groundLayer);
+        if (_raycastHit.transform != null) {
+            _color = Color.green;
+        }
+        else {
+            _color = Color.red;
+        }
+        Debug.DrawRay(_boxCollider.bounds.center + new Vector3(_boxCollider.bounds.extents.x, 0), Vector3.down * (_boxCollider.bounds.extents.y + _distanceRaycastHit), _color);
+        Debug.DrawRay(_boxCollider.bounds.center - new Vector3(_boxCollider.bounds.extents.x, 0), Vector3.down * (_boxCollider.bounds.extents.y + _distanceRaycastHit), _color);
+        Debug.DrawRay(_boxCollider.bounds.center - new Vector3(_boxCollider.bounds.extents.x, _boxCollider.bounds.extents.y + _distanceRaycastHit), Vector3.right * _boxCollider.bounds.size.x, _color);
+        return _raycastHit.transform != null;
+    }
+
+    public void SetGravityScale(float value) {
+        Rigidbody.gravityScale = value;
+    }
+
+    public void ResetGravityScaleToDefault() {
+        Rigidbody.gravityScale = _deafaultGravityScale;
     }
 }
