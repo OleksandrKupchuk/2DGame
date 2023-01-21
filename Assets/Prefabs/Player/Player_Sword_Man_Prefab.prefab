@@ -153,13 +153,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 15
-  _speed: 5
-  _jumpVelocity: 7
+  _speed: 7
+  _jumpVelocity: 14
   _movementInputAction: {fileID: 9055752030835066355, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
   _shotInputAction: {fileID: 8132335576314495632, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
   _jumpInputAction: {fileID: 6671280106201752741, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
   _invulnerableStatus: {fileID: 9206641031412101052}
   _boxCollider: {fileID: 2724809069109994693}
+  _rigidbody2D: {fileID: 2123502423263786045}
   _distanceRaycastHit: 0.1
   _groundLayer:
     serializedVersion: 2
@@ -221,6 +222,7 @@ MonoBehaviour:
   - {fileID: 5605465995350154475}
   - {fileID: 3338266636805901169}
   - {fileID: 3475492740032022011}
+  - {fileID: 8185496335760780153}
   _delayBllinkAnimationInSeconds: 0.1
   _timeAnimation: 3
 --- !u!50 &2123502423263786045
@@ -238,7 +240,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

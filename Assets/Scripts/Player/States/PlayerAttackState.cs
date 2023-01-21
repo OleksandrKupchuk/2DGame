@@ -11,6 +11,7 @@ public class PlayerAttackState : IState<Player> {
     }
 
     public void ExecuteUpdate() {
+
         if (_player.isHit) {
             _player.StateMachine.ChangeState(_player.HitState);
         }

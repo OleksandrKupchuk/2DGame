@@ -9,8 +9,7 @@ public class PlayerHitState : IState<Player> {
         // Debug.Log($"<color=white>enter hit state</color>");
         _player = owner;
         _player.Animator.Play(PlayerAnimationName.Hit);
-        //_player.InvulnerableStatus.StartBlinkAnimation(_player.Animator.GetCurrentAnimatorStateInfo(AnimatorLayers.BaseLayer).length);
-        _player.InvulnerableStatus.StartBlinkGameObhectsAnimation();
+        _player.InvulnerableStatus.PlayBlinkAnimation();
     }
 
     public void ExecuteUpdate() {

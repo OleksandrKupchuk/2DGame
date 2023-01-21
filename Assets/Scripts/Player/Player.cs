@@ -6,9 +6,9 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour {
     private Vector2 _movementInput;
+    [SerializeField]
     private float _health;
-    private Damage _damageHit = null;
-    private List<Damage> _objectsAttck = new List<Damage>();
+    private List<Damage> _objectsAttack = new List<Damage>();
     private RaycastHit2D _raycastHit;
     private float _deafaultGravityScale;
 
@@ -66,7 +66,6 @@ public class Player : MonoBehaviour {
 
     public Rigidbody2D Rigidbody { get; private set; }
     public StateMachine<Player> StateMachine { get; private set; }
-    public Vector2 MovementInput { get; }
     public Animator Animator { get; private set; }
     public InputActionReference ShotInputAction { get => _shotInputAction; }
     public InputActionReference JumpInputAction { get => _jumpInputAction; }
@@ -91,9 +90,9 @@ public class Player : MonoBehaviour {
         HitState = new PlayerHitState();
         DeadState = new PlayerDeadState();
         StateMachine = new StateMachine<Player>(this);
-        CheckComponentOnNull();
         _health = _maxHealth;
         _deafaultGravityScale = Rigidbody.gravityScale;
+        CheckComponentOnNull();
     }
 
     private void CheckComponentOnNull() {
@@ -162,28 +161,25 @@ public class Player : MonoBehaviour {
     }
 
     public void CheckTakeDamage(float damage, Damage damageObject) {
-
-        //if (damageObject == _damageHit) {
-        //    StartCoroutine(ResetAllHit());
-        //    return;
-        //}
-
         if (IsThisAlreadyAttacked(damageObject)) {
-            ResetCurrentDamage(damageObject);
-            return;
+            StartCoroutine(ResetCurrentDamage(damageObject));
+        }
+        else if (_invulnerableStatus.IsInvulnerability) {
+            print("player is invulnerable");
+        }
+        else {
+            RegisterDamageObject(damageObject);
+            TakeDamage(damage);
         }
 
-        _objectsAttck.Add(damageObject);
-        //_damageHit = damageObject;
-        TakeDamage(damage);
     }
 
     private bool IsThisAlreadyAttacked(Damage damageObject) {
-        if (_objectsAttck.Count == 0) {
+        if (_objectsAttack.Count == 0) {
             return false;
         }
 
-        foreach (var attack in _objectsAttck) {
+        foreach (var attack in _objectsAttack) {
             if (attack == damageObject) {
                 //print("this object already attacked");
                 return true;
@@ -193,25 +189,24 @@ public class Player : MonoBehaviour {
         return false;
     }
 
+    private IEnumerator ResetCurrentDamage(Damage damageObject) {
+        yield return new WaitForSeconds(2);
+        _objectsAttack.Remove(damageObject);
+    }
+
+    private void RegisterDamageObject(Damage damageObject) {
+        _objectsAttack.Add(damageObject);
+    }
+
     private void TakeDamage(float damage) {
         _health -= damage;
-        //print("health = " + _health);
+        print("health = " + _health);
         if (IsDead) {
             StateMachine.ChangeState(DeadState);
         }
         else {
             isHit = true;
         }
-    }
-
-    private IEnumerator ResetAllHit() {
-        yield return new WaitForSeconds(1);
-        _damageHit = null;
-    }
-
-    private IEnumerator ResetCurrentDamage(Damage damageObject) {
-        yield return new WaitForSeconds(1);
-        _objectsAttck.Remove(damageObject);
     }
 
     public bool IsGround() {

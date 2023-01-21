@@ -9,7 +9,7 @@ public class PlayerSpawner : MonoBehaviour
     [SerializeField]
     private Vector3 _spawnPosition;
 
-    private void Awake() {
+    private void OnEnable() {
         Instantiate(_player.gameObject, _spawnPosition, Quaternion.identity);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerJumpDownState : IState<Player> {
     private Player _player;
-    private float _gravityScale = 2.5f;
+    private float _gravityScale = 3.8f;
 
     public void Enter(Player owner) {
         Debug.Log($"<color=black>enter jumpDown state</color>");
@@ -14,6 +14,10 @@ public class PlayerJumpDownState : IState<Player> {
     }
 
     public void ExecuteUpdate() {
+        if (_player.isHit) {
+            _player.isHit = false;
+            _player.InvulnerableStatus.PlayBlinkAnimation();
+        }
         if (_player.IsGround()) {
             _player.StateMachine.ChangeState(_player.IdleState);
         }
