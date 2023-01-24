@@ -1,15 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour
 {
+    private Vector3 _spawnPosition;
+
     [SerializeField]
     private Player _player;
     [SerializeField]
-    private Vector3 _spawnPosition;
+    private CameraMovement _cameraMovement;
 
     private void OnEnable() {
-        Instantiate(_player.gameObject, _spawnPosition, Quaternion.identity);
+        _spawnPosition = gameObject.transform.position;
+        GameObject _playerObject =  Instantiate(_player.gameObject, _spawnPosition, Quaternion.identity);
+        _cameraMovement.Init(_playerObject.GetComponent<Player>());
     }
 }

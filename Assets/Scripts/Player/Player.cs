@@ -35,6 +35,7 @@ public class Player : MonoBehaviour {
 
     public bool isHit = false;
 
+    public bool IsLookingLeft { get => transform.localScale.x > 0; }
     public bool IsAttack {
         get {
             if (ShotInputAction.action.IsPressed()) {
