@@ -10,7 +10,7 @@ public class PlayerIdleState : IState<Player> {
         Debug.Log($"<color=yellow>enter idle state</color>");
 
         _player = owner;
-        _player.Animator.Play(PlayerAnimationName.Idle);
+        _player.Animator.Play(AnimationName.Idle);
         //_player.Animator.Play(PlayerAnimationName.Run);
     }
 

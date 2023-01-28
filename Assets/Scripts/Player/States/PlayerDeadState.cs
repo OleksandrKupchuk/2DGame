@@ -7,7 +7,7 @@ public class PlayerDeadState : IState<Player> {
 
     public void Enter(Player owner) {
         _player = owner;
-        _player.Animator.Play(PlayerAnimationName.Dead);
+        _player.Animator.Play(AnimationName.Dead);
     }
 
     public void ExecuteUpdate() {

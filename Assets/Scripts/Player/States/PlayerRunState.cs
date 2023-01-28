@@ -9,7 +9,7 @@ public class PlayerRunState : IState<Player> {
         //Debug.Log($"<color=blue>enter run state</color>");
 
         _player = owner;
-        _player.Animator.Play(PlayerAnimationName.Run);
+        _player.Animator.Play(AnimationName.Run);
     }
 
     public void ExecuteUpdate() {

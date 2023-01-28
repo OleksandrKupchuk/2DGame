@@ -4,20 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour {
+public class Player : BaseCharacteristic {
     private Vector2 _movementInput;
-    [SerializeField]
-    private float _health;
     private List<Damage> _objectsAttack = new List<Damage>();
     private RaycastHit2D _raycastHit;
     private float _deafaultGravityScale;
 
-    [SerializeField]
-    private float _maxHealth;
-    [SerializeField]
-    private float _speed;
-    [SerializeField]
-    private float _jumpVelocity;
     [SerializeField]
     private InputActionReference _movementInputAction;
     [SerializeField]
@@ -65,9 +57,7 @@ public class Player : MonoBehaviour {
     public PlayerHitState HitState { get; private set; }
     public PlayerDeadState DeadState { get; private set; }
 
-    public Rigidbody2D Rigidbody { get; private set; }
     public StateMachine<Player> StateMachine { get; private set; }
-    public Animator Animator { get; private set; }
     public InputActionReference ShotInputAction { get => _shotInputAction; }
     public InputActionReference JumpInputAction { get => _jumpInputAction; }
     public InvulnerabilityAnimation InvulnerableStatus { get => _invulnerableStatus; }
@@ -80,9 +70,8 @@ public class Player : MonoBehaviour {
 
     }
 
-    private void Awake() {
-        Rigidbody = gameObject.GetComponent<Rigidbody2D>();
-        Animator = gameObject.GetComponent<Animator>();
+    private new void Awake() {
+        base.Awake();
         IdleState = new PlayerIdleState();
         RunState = new PlayerRunState();
         AttackState = new PlayerAttackState();
@@ -142,18 +131,6 @@ public class Player : MonoBehaviour {
         else if (_movementInput.x < 0) {
             gameObject.transform.localScale = new Vector3(1, 1, 1);
         }
-    }
-
-    public void ResetRigidbodyVelocity() {
-        Rigidbody.velocity = Vector2.zero;
-    }
-
-    public bool IsEndCurrentAnimation(int layer) {
-        if (Animator.GetCurrentAnimatorStateInfo(layer).normalizedTime >= 1) {
-            return true;
-        }
-
-        return false;
     }
 
     public void Jump() {

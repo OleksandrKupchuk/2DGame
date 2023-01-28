@@ -7,7 +7,7 @@ public class PlayerAttackState : IState<Player> {
 
     public void Enter(Player owner) {
         _player = owner;
-        _player.Animator.Play(PlayerAnimationName.Attack);
+        _player.Animator.Play(AnimationName.Attack);
     }
 
     public void ExecuteUpdate() {
@@ -15,7 +15,7 @@ public class PlayerAttackState : IState<Player> {
         if (_player.isHit) {
             _player.StateMachine.ChangeState(_player.HitState);
         }
-        else if (_player.IsEndCurrentAnimation(AnimatorLayers.BaseLayer)) {
+        else if (_player.IsEndCurrentAnimation(_player.Animator, AnimatorLayers.BaseLayer)) {
             Debug.Log("next IdleState");
             _player.StateMachine.ChangeState(_player.IdleState);
         }
