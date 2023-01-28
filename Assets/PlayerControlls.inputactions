@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Value",
+                    "id": "c91ae1ae-9847-4e47-9c24-697548f1e0fb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -340,9 +349,9 @@
                 },
                 {
                     "name": "",
-                    "id": "5c076c1c-6817-4447-a126-b306b3e0915f",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
+                    "id": "6c529dec-e53d-4d8c-bc5d-865e7f7f4f59",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Shot",
@@ -351,12 +360,12 @@
                 },
                 {
                     "name": "",
-                    "id": "6c529dec-e53d-4d8c-bc5d-865e7f7f4f59",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "id": "a9dd7ba3-18a4-43de-ba78-f596e66ef889",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Shot",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

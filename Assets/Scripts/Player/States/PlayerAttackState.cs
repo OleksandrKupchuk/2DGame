@@ -4,27 +4,20 @@ using UnityEngine;
 
 public class PlayerAttackState : IState<Player> {
     private Player _player;
-    private int _baseLayer = 0;
-    private bool IsEndAttackAnimation {
-        get {
-            if (_player.Animator.GetCurrentAnimatorStateInfo(_baseLayer).normalizedTime >= 1) {
-                return true;
-            }
-
-            return false;
-        }
-    }
 
     public void Enter(Player owner) {
         _player = owner;
-        _player.isAttack = false;
-        _player.Animator.Play(PlayerAnimationName.Attack);
+        _player.Animator.Play(AnimationName.Attack);
     }
 
     public void ExecuteUpdate() {
-        if (IsEndAttackAnimation) {
+
+        if (_player.isHit) {
+            _player.StateMachine.ChangeState(_player.HitState);
+        }
+        else if (_player.IsEndCurrentAnimation(_player.Animator, AnimatorLayers.BaseLayer)) {
+            Debug.Log("next IdleState");
             _player.StateMachine.ChangeState(_player.IdleState);
-            Debug.Log(_player.Animator.GetCurrentAnimatorStateInfo(_baseLayer).normalizedTime);
         }
     }
 
@@ -33,6 +26,5 @@ public class PlayerAttackState : IState<Player> {
     }
 
     public void Exit() {
-        
     }
 }
