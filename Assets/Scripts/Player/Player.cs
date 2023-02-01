@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : BaseCharacteristic {
-    private Vector2 _movementInput;
+public class Player : BaseCharacteristics {
     private List<Damage> _objectsAttack = new List<Damage>();
     private RaycastHit2D _raycastHit;
     private float _deafaultGravityScale;
@@ -48,6 +47,7 @@ public class Player : BaseCharacteristic {
             return false;
         }
     }
+    public Vector2 MovementInput { get; private set; }
 
     public PlayerIdleState IdleState { get; private set; }
     public PlayerRunState RunState { get; private set; }
@@ -116,19 +116,15 @@ public class Player : BaseCharacteristic {
         StateMachine.FixedUpdate();
     }
 
-    public void Move() {
-        Rigidbody.velocity = new Vector2(_movementInput.x * _speed, Rigidbody.velocity.y);
-    }
-
     public Vector2 GetMovementInput() {
-        return _movementInput = _movementInputAction.action.ReadValue<Vector2>();
+        return MovementInput = _movementInputAction.action.ReadValue<Vector2>();
     }
 
     public void Flip() {
-        if (_movementInput.x > 0) {
+        if (MovementInput.x > 0) {
             gameObject.transform.localScale = new Vector3(-1, 1, 1);
         }
-        else if (_movementInput.x < 0) {
+        else if (MovementInput.x < 0) {
             gameObject.transform.localScale = new Vector3(1, 1, 1);
         }
     }

@@ -2,16 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : BaseCharacteristic {
+public class BasicOfLogicEnemy : BaseCharacteristics
+{
     protected float _xScale;
+
+    [SerializeField]
+    protected GameObject _fireBallPrefab;
+    [SerializeField]
+    protected Transform _parentFireBalls;
+    [SerializeField]
+    protected Transform _shotPoint;
+    
+    public float GetLocalScaleX { get => transform.localScale.x; }
+    public List<GameObject> FireBallsPrefabs { get; protected set; } = new List<GameObject>();
+    public List<FireBall> FireBalls { get; protected set; } = new List<FireBall>();
+    public Transform ShotPoint { get => _shotPoint; }
 
     protected new void Awake() {
         base.Awake();
         _xScale = transform.localScale.x;
-    }
-
-    public void Move() {
-        Rigidbody.velocity = new Vector2(gameObject.transform.localScale.x * _speed, Rigidbody.velocity.y);
     }
 
     public void Flip() {

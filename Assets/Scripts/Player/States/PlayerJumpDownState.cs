@@ -30,7 +30,7 @@ public class PlayerJumpDownState : IState<Player> {
         if(_player.GetMovementInput() == Vector2.zero) {
             return;
         }
-        _player.Move();
+        _player.Move(_player.GetMovementInput().x);
     }
 
     public void Exit() {

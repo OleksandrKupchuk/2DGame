@@ -42,7 +42,7 @@ public class PlayerRunState : IState<Player> {
             return;
         }
 
-        _player.Move();
+        _player.Move(_player.MovementInput.x);
     }
 
     public void Exit() {

@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     private Vector3 _spawnPosition;
 
     [SerializeField]
-    private Enemy _enemy;
+    private GameObject _enemy;
 
     private void OnEnable() {
         _spawnPosition = gameObject.transform.position;

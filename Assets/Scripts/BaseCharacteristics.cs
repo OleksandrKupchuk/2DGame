@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseCharacteristic : MonoBehaviour
+public class BaseCharacteristics : MonoBehaviour
 {
     [SerializeField]
     protected float _health;
@@ -32,5 +32,9 @@ public class BaseCharacteristic : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void Move(float inputDirection) {
+        Rigidbody.velocity = new Vector2(inputDirection * _speed, Rigidbody.velocity.y);
     }
 }
