@@ -7,7 +7,7 @@ public class PlayerJumpUpState : IState<Player> {
     private float _timer;
 
     public void Enter(Player owner) {
-        Debug.Log($"<color=green>enter jumpUp state</color>");
+        //Debug.Log($"<color=green>enter jumpUp state</color>");
         _player = owner;
         _player.Animator.Play(AnimationName.JumpUp);
         _player.Jump();
@@ -44,7 +44,6 @@ public class PlayerJumpUpState : IState<Player> {
     }
 
     public void Exit() {
-        Debug.Log($"<color=red>exit</color> <color=green>jumpUp state</color>");
-        //_player.Animator.StopPlayback();
+        //Debug.Log($"<color=red>exit</color> <color=green>jumpUp state</color>");
     }
 }

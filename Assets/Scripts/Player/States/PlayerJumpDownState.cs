@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerJumpDownState : IState<Player> {
     private Player _player;
-    private float _gravityScale = 3.8f;
+    //private float _gravityScale = 3.8f;
 
     public void Enter(Player owner) {
-        Debug.Log($"<color=black>enter jumpDown state</color>");
+        //Debug.Log($"<color=black>enter jumpDown state</color>");
         _player = owner;
         _player.Animator.Play(AnimationName.JumpDown);
-        _player.SetGravityScale(_gravityScale);
+        //_player.SetGravityScale(_gravityScale);
     }
 
     public void ExecuteUpdate() {
@@ -34,7 +34,7 @@ public class PlayerJumpDownState : IState<Player> {
     }
 
     public void Exit() {
-        Debug.Log($"<color=red>exit</color> <color=black>jumpDown state</color>");
+        //Debug.Log($"<color=red>exit</color> <color=black>jumpDown state</color>");
         _player.ResetRigidbodyVelocity();
         _player.ResetGravityScaleToDefault();
     }

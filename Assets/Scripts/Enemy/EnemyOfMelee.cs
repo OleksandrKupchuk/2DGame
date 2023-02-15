@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyOfMelee : BasicOfLogicEnemy {
@@ -12,6 +10,8 @@ public class EnemyOfMelee : BasicOfLogicEnemy {
     public virtual EnemyDeadState DeadState { get; protected set; } = new EnemyDeadState();
 
     protected new void Awake() {
+        GameObject _fieldOfViewPrefab = Resources.Load(ResourcesPath.FieldOfViewPrefab) as GameObject;
+        FieldOfView = Instantiate(_fieldOfViewPrefab.GetComponent<FieldOfView>());
         base.Awake();
         StateMachine = new StateMachine<EnemyOfMelee>(this);
     }
@@ -22,6 +22,7 @@ public class EnemyOfMelee : BasicOfLogicEnemy {
 
     protected void Update() {
         StateMachine.Update();
+        FieldOfView.SetStartPoint(transform.position);
     }
 
     protected void FixedUpdate() {

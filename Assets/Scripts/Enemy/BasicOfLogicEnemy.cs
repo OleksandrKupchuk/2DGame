@@ -1,9 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicOfLogicEnemy : BaseCharacteristics
-{
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CapsuleCollider2D))]
+public class BasicOfLogicEnemy : BaseCharacteristics {
     protected float _xScale;
 
     [SerializeField]
@@ -12,11 +12,17 @@ public class BasicOfLogicEnemy : BaseCharacteristics
     protected Transform _parentFireBalls;
     [SerializeField]
     protected Transform _shotPoint;
-    
+
     public float GetLocalScaleX { get => transform.localScale.x; }
     public List<GameObject> FireBallsPrefabs { get; protected set; } = new List<GameObject>();
     public List<FireBall> FireBalls { get; protected set; } = new List<FireBall>();
     public Transform ShotPoint { get => _shotPoint; }
+    public FieldOfView FieldOfView { get; protected set; }
+    public bool CanAttack { get; protected set; }
+    public Player Target { get; protected set; }
+
+    [HideInInspector]
+    public float delayAttack = 0;
 
     protected new void Awake() {
         base.Awake();
@@ -50,6 +56,18 @@ public class BasicOfLogicEnemy : BaseCharacteristics
                 fireBall.SetActive(true);
                 return;
             }
+        }
+    }
+
+    public bool IsNeedLookOnPlayer() {
+        if ((transform.position.x - FieldOfView.Target.transform.position.x) < 0 && transform.localScale.x == -1) {
+            return true;
+        }
+        else if ((transform.position.x - FieldOfView.Target.transform.position.x) > 0 && transform.localScale.x == 1) {
+            return true;
+        }
+        else {
+            return false;
         }
     }
 }

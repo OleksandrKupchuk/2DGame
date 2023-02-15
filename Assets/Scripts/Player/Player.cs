@@ -130,7 +130,7 @@ public class Player : BaseCharacteristics {
     }
 
     public void Jump() {
-        print("Add Force for Jump");
+        //print("Add Force for Jump");
         Rigidbody.velocity = Vector2.up * _jumpVelocity;
     }
 

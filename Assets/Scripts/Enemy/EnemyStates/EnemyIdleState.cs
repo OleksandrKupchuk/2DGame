@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyIdleState : IState<EnemyOfMelee> {
@@ -10,14 +8,23 @@ public class EnemyIdleState : IState<EnemyOfMelee> {
         _enemy = owner;
         _enemy.Animator.Play(AnimationName.Idle);
         _timer = 3f;
-        Debug.Log("EnemyIdle state enter");
-        _enemy.Flip();
+        _enemy.delayAttack = 1.5f;
+        //Debug.Log("EnemyIdle state enter");
     }
 
     public virtual void ExecuteUpdate() {
         _timer -= Time.deltaTime;
-        if(_timer <= 0) {
-            _enemy.StateMachine.ChangeState(_enemy.RunState);
+        //if(_timer <= 0) {
+        //    _enemy.StateMachine.ChangeState(_enemy.RunState);
+        //}
+        if (_enemy.FieldOfView.Target != null) {
+            if (_enemy.IsNeedLookOnPlayer()) {
+                _enemy.Flip();
+            }
+            _enemy.delayAttack -= Time.deltaTime;
+        }
+        if (_enemy.delayAttack <= 0) {
+            _enemy.StateMachine.ChangeState(_enemy.AttckState);
         }
     }
 

@@ -7,7 +7,7 @@ public class PlayerIdleState : IState<Player> {
     private Player _player;
 
     public void Enter(Player owner) {
-        Debug.Log($"<color=yellow>enter idle state</color>");
+        //Debug.Log($"<color=yellow>enter idle state</color>");
 
         _player = owner;
         _player.Animator.Play(AnimationName.Idle);
@@ -40,7 +40,7 @@ public class PlayerIdleState : IState<Player> {
     }
 
     public void Exit() {
-        Debug.Log($"<color=red>exit </color><color=yellow>idle state</color>");
+        //Debug.Log($"<color=red>exit </color><color=yellow>idle state</color>");
 
         _player.Animator.StopPlayback();
     }
