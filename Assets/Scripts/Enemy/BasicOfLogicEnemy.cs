@@ -19,10 +19,8 @@ public class BasicOfLogicEnemy : BaseCharacteristics {
     public Transform ShotPoint { get => _shotPoint; }
     public FieldOfView FieldOfView { get; protected set; }
     public bool CanAttack { get; protected set; }
-    public Player Target { get; protected set; }
 
-    [HideInInspector]
-    public float delayAttack = 0;
+    public float delayAttack;
 
     protected new void Awake() {
         base.Awake();

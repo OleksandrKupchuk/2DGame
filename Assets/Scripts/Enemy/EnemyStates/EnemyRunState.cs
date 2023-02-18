@@ -7,7 +7,7 @@ public class EnemyRunState : IState<EnemyOfMelee> {
     public virtual void Enter(EnemyOfMelee owner) {
         _enemy = owner;
         _enemy.Animator.Play(AnimationName.Run);
-        _timer = 14f;
+        _timer = 4;
         _enemy.Flip();
         //Debug.Log("EnemyRunState enter");
     }
@@ -18,7 +18,7 @@ public class EnemyRunState : IState<EnemyOfMelee> {
             _enemy.StateMachine.ChangeState(_enemy.IdleState);
         }
         if (_enemy.FieldOfView.Target != null) {
-            _enemy.StateMachine.ChangeState(_enemy.AttckState);
+            _enemy.StateMachine.ChangeState(_enemy.DetectTarget);
         }
     }
 

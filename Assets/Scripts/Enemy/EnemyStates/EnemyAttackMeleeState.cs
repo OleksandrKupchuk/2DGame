@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMeleeAttackState : IState<EnemyOfMelee> {
+public class EnemyAttackMeleeState : IState<EnemyOfMelee> {
 
     private EnemyOfMelee _enemy;
     public virtual void Enter(EnemyOfMelee owner) {
         _enemy = owner;
+        _enemy.ResetRigidbodyVelocity();
+        _enemy.delayAttack = 1f;
+        _enemy.Animator.Play(AnimationName.AttackMelee);
+        Debug.Log("delay attack = " + _enemy.delayAttack);
     }
 
     public virtual void ExecuteUpdate() {

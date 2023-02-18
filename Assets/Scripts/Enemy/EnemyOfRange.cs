@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyOfRange : EnemyOfMelee
 {
     private Player _player;
-    public override EnemyMeleeAttackState AttckState { get; protected set; } = new EnemyRangeAttckState();
+    public virtual EnemyAttackRangeState AttckRangeState { get; protected set; } = new EnemyAttackRangeState();
 
     protected new void Awake() {
         base.Awake();
