@@ -8524,8 +8524,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917d77cbeddac8d4083e83ae35ddbeea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy:
+  _enemyMelee:
   - {fileID: 9032465796065382867, guid: d1a019e71faa8db49874e36d11f723d8, type: 3}
+  _enemyRange:
+  - {fileID: 1811951716477787881, guid: 48babae3131708c4f9fff4e4c2e02593, type: 3}
 --- !u!1001 &915939682
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8552,7 +8554,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5260723846908671660, guid: 038b24d45841ae047a5a47bd4e020a0e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.8
+      value: -10.47
       objectReference: {fileID: 0}
     - target: {fileID: 5260723846908671660, guid: 038b24d45841ae047a5a47bd4e020a0e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8945,7 +8947,7 @@ PrefabInstance:
     - target: {fileID: 8528680245333609998, guid: aa3ae672733ade74ca5d7df3d174c1e0, type: 3}
       propertyPath: _enemy
       value: 
-      objectReference: {fileID: 9032465796065382889, guid: d1a019e71faa8db49874e36d11f723d8, type: 3}
+      objectReference: {fileID: 3413726013779498184, guid: 48babae3131708c4f9fff4e4c2e02593, type: 3}
     - target: {fileID: 8528680245333609999, guid: aa3ae672733ade74ca5d7df3d174c1e0, type: 3}
       propertyPath: m_Name
       value: EnemySpawner

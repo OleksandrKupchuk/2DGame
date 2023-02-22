@@ -4,16 +4,25 @@ using UnityEngine;
 public class InitEvents : MonoBehaviour
 {
     [SerializeField]
-    private List<EnemyOfMelee> _enemy = new List<EnemyOfMelee>();
+    private List<EnemyOfMelee> _enemyMelee = new List<EnemyOfMelee>();
+    [SerializeField]
+    private List<EnemyOfRange> _enemyRange = new List<EnemyOfRange>();
 
     private void Awake() {
-        InitEnemyEvents();
+        InitEnemyOfMeleeEvents();
+        InitEnemyOfRangeEvents();
     }
 
-    private void InitEnemyEvents() {
-        for (int i = 0; i < _enemy.Count; i++) {
-            _enemy[i].AddEnableAttackCoolliderEventForAttackAnimation();
-            _enemy[i].AddDisableAttackCoolliderEventForAttackAnimation();
+    private void InitEnemyOfMeleeEvents() {
+        for (int i = 0; i < _enemyMelee.Count; i++) {
+            //_enemyMelee[i].AddEnableAttackCoolliderEventForAttackAnimation();
+            //_enemyMelee[i].AddDisableAttackCoolliderEventForAttackAnimation();
+        }
+    }
+
+    private void InitEnemyOfRangeEvents() {
+        for (int i = 0; i < _enemyRange.Count; i++) {
+            _enemyRange[i].AddEnableFireBallEventForAttackAnimation();
         }
     }
 }

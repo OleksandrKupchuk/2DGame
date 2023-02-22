@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttackMeleeState : IState<EnemyOfMelee> {
+public class EnemyAttackMeleeState : IState<BasicEnemy> {
 
-    private EnemyOfMelee _enemy;
-    public virtual void Enter(EnemyOfMelee owner) {
+    private BasicEnemy _enemy;
+    public virtual void Enter(BasicEnemy owner) {
         _enemy = owner;
         _enemy.ResetRigidbodyVelocity();
         _enemy.delayAttack = 1f;

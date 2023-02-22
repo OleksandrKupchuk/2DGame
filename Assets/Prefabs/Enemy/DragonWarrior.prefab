@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1048312250024411932}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3, y: -1.3, z: 0}
+  m_LocalPosition: {x: 1.3, y: 1.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -137,10 +137,13 @@ MonoBehaviour:
   _maxHealth: 0
   _speed: 4
   _jumpVelocity: 0
+  distanceToTarget: 0
+  delayAttack: 0
   _fireBallPrefab: {fileID: 8470635757450520221, guid: 2d1912e07c9065a40b1035cea62249cd, type: 3}
   _parentFireBalls: {fileID: 6610564320894056617}
   _shotPoint: {fileID: 4915452303269061937}
-  delayAttack: 0
+  _frameRateInAttackAnimationForEnableFireBall: 2
+  _attackAnimation: {fileID: 7400000, guid: d28955777e207a1469bdc74f9ef73417, type: 2}
 --- !u!95 &3413726013779498187
 Animator:
   serializedVersion: 4

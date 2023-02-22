@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public class EnemyRunState : IState<EnemyOfMelee> {
-    protected EnemyOfMelee _enemy;
+public class EnemyRunState : IState<BasicEnemy> {
+
+    protected BasicEnemy _enemy;
     private float _timer;
 
-    public virtual void Enter(EnemyOfMelee owner) {
+    public virtual void Enter(BasicEnemy owner) {
         _enemy = owner;
         _enemy.Animator.Play(AnimationName.Run);
         _timer = 4;

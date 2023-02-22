@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FireBall : MonoBehaviour
+public class FireBall : Damage
 {
     private Rigidbody2D _rigidbody2D;
 
@@ -18,5 +18,11 @@ public class FireBall : MonoBehaviour
 
     public void Move() {
         _rigidbody2D.velocity = new Vector2(transform.localScale.x * _speed, _rigidbody2D.velocity.y);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.TryGetComponent(out PlayerBodyPart playerBodyPart)) {
+            playerBodyPart.TakeDamage(damage, this);
+        }
     }
 }

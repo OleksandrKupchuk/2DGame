@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+public class EnemyHitState : IState<BasicEnemy> {
 
-public class EnemyHitState : IState<EnemyOfMelee> {
-    protected EnemyOfMelee _enemy;
+    protected BasicEnemy _enemy;
 
-    public virtual void Enter(EnemyOfMelee owner) {
+    public virtual void Enter(BasicEnemy owner) {
         _enemy = owner;
     }
 

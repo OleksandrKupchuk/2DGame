@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseCharacteristics : MonoBehaviour
 {
     [SerializeField]
     protected float _health;
-
     [SerializeField]
     protected float _maxHealth;
     [SerializeField]

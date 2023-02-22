@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public class EnemyIdleState : IState<EnemyOfMelee> {
-    protected EnemyOfMelee _enemy;
+public class EnemyIdleState : IState<BasicEnemy> {
+
+    protected BasicEnemy _enemy;
     private float _timer;
 
-    public virtual void Enter(EnemyOfMelee owner) {
+    public virtual void Enter(BasicEnemy owner) {
         _enemy = owner;
         _enemy.ResetRigidbodyVelocity();
         _enemy.Animator.Play(AnimationName.Idle);

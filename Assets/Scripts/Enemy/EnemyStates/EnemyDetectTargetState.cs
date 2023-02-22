@@ -1,12 +1,10 @@
 using UnityEngine;
 
-public class EnemyDetectTargetState : IState<EnemyOfMelee> {
-    private EnemyOfMelee _enemy;
-    protected float _distanceToTarget;
+public class EnemyDetectTargetState : IState<BasicEnemy> {
 
-    private bool IsCloseToTagret { get => _distanceToTarget <= _enemy.DistanceToMeleeAttack; }
+    private BasicEnemy _enemy;
 
-    public void Enter(EnemyOfMelee owner) {
+    public virtual void Enter(BasicEnemy owner) {
         _enemy = owner;
     }
 
@@ -21,15 +19,15 @@ public class EnemyDetectTargetState : IState<EnemyOfMelee> {
             _enemy.Flip();
         }
 
-        _distanceToTarget = Mathf.Abs(_enemy.transform.position.x - _enemy.FieldOfView.Target.transform.position.x);
+        _enemy.distanceToTarget = Mathf.Abs(_enemy.transform.position.x - _enemy.FieldOfView.Target.transform.position.x);
         //Debug.Log(_distanceToTarget);
-        if (IsCloseToTagret) {
+        if (_enemy.IsThereTargetInRangeOfAttack) {
             _enemy.ResetRigidbodyVelocity();
             _enemy.Animator.Play(AnimationName.Idle);
             _enemy.delayAttack -= Time.deltaTime;
 
             if (_enemy.delayAttack <= 0) {
-                _enemy.StateMachine.ChangeState(_enemy.AttackMeleeState);
+                _enemy.StateMachine.ChangeState(_enemy.AttackState);
             }
         }
         else {
@@ -37,12 +35,12 @@ public class EnemyDetectTargetState : IState<EnemyOfMelee> {
         }
     }
 
-    public void ExecuteFixedUpdate() {
-        if (!IsCloseToTagret) {
+    public virtual void ExecuteFixedUpdate() {
+        if (!_enemy.IsThereTargetInRangeOfAttack) {
             _enemy.Move(_enemy.GetLocalScaleX);
         }
     }
 
-    public void Exit() {
+    public virtual void Exit() {
     }
 }

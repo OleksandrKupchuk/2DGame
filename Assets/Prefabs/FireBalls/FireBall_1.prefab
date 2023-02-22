@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8610895188966872510}
   - component: {fileID: 2684365129111213494}
   - component: {fileID: 2825217510847119718}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FireBall_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b38b3e8318ef6c0479e83071ab3d521a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
   _speed: 7
 --- !u!95 &8610895188966872510
 Animator:
@@ -134,9 +135,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.27897912, y: 0}
+  m_Offset: {x: 0.20961417, y: 0}
   serializedVersion: 2
-  m_Radius: 0.17602092
+  m_Radius: 0.20662312
 --- !u!50 &2825217510847119718
 Rigidbody2D:
   serializedVersion: 4

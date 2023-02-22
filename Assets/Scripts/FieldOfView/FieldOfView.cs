@@ -47,7 +47,7 @@ public class FieldOfView : MonoBehaviour {
     private void CalculationVertices(float angleInDegree) {
         _vertices[0] = _startPoint;
 
-        for (int i = 1; i <= _vertices.Length; i++) {
+        for (int i = 1; i < _vertices.Length; i++) {
             Vector3 _vertex;
             RaycastHit2D _raycastHit2D = Physics2D.Raycast(_startPoint, CalculationAngle.GetVector3FromAngle(angleInDegree), _viewDistance, _layer);
 
