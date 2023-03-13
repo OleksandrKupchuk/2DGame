@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class EnemyRangeDetectTargetState : EnemyDetectTargetState {
 
     private EnemyOfRange _enemy;
@@ -20,7 +18,7 @@ public class EnemyRangeDetectTargetState : EnemyDetectTargetState {
     }
 
     public override void FixedUpdate() {
-        _enemyDetectLogic.CheckIsThereTargetInRangeOfAttackAndAttackOrRun(_enemy.AttackRangeDistance, _enemy, _enemy.AttackState);
+        _enemyDetectLogic.MoveIfPlayRunAnimation(_enemy);
     }
 
     public override void Exit() {

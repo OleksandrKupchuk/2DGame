@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class EnemyDetectTargetLogic {
+
     public void CheckHasTargetAndChangeToIdleState(BasicEnemy enemy) {
         if (!enemy.HasTarget) {
             enemy.StateMachine.ChangeState(enemy.IdleState);

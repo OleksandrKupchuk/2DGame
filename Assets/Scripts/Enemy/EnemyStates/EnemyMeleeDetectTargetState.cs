@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class EnemyMeleeDetectTargetState : EnemyDetectTargetState {
 
     private EnemyOfMelee _enemy;
@@ -20,7 +18,7 @@ public class EnemyMeleeDetectTargetState : EnemyDetectTargetState {
     }
 
     public override void FixedUpdate() {
-        _enemyDetectLogic.CheckIsThereTargetInRangeOfAttackAndAttackOrRun(_enemy.AttackMeleeDistance, _enemy, _enemy.AttackState);
+        _enemyDetectLogic.MoveIfPlayRunAnimation(_enemy);
     }
 
     public override void Exit() {
