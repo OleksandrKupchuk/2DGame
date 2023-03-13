@@ -9,11 +9,10 @@ public class EnemyIdleState : IState<BasicEnemy> {
         _enemy = owner;
         _enemy.ResetRigidbodyVelocity();
         _enemy.Animator.Play(AnimationName.Idle);
-        _timer = 3f;
-        //Debug.Log("EnemyIdle state enter");
+        _timer = Random.Range(_enemy.Config.timerMinIdle, _enemy.Config.timerMaxIdle);
     }
 
-    public virtual void ExecuteUpdate() {
+    public virtual void Update() {
         _timer -= Time.deltaTime;
         if (_timer <= 0) {
             _enemy.StateMachine.ChangeState(_enemy.RunState);
@@ -23,7 +22,7 @@ public class EnemyIdleState : IState<BasicEnemy> {
         }
     }
 
-    public virtual void ExecuteFixedUpdate() {
+    public virtual void FixedUpdate() {
     }
 
     public virtual void Exit() {

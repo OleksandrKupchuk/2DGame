@@ -8,12 +8,11 @@ public class EnemyRunState : IState<BasicEnemy> {
     public virtual void Enter(BasicEnemy owner) {
         _enemy = owner;
         _enemy.Animator.Play(AnimationName.Run);
-        _timer = 4;
+        _timer = Random.Range(_enemy.Config.timerMinRun, _enemy.Config.timerMaxRun);
         _enemy.Flip();
-        //Debug.Log("EnemyRunState enter");
     }
 
-    public virtual void ExecuteUpdate() {
+    public virtual void Update() {
         _timer -= Time.deltaTime;
         if (_timer <= 0) {
             _enemy.StateMachine.ChangeState(_enemy.IdleState);
@@ -23,8 +22,8 @@ public class EnemyRunState : IState<BasicEnemy> {
         }
     }
 
-    public virtual void ExecuteFixedUpdate() {
-        _enemy.Move(_enemy.GetLocalScaleX);
+    public virtual void FixedUpdate() {
+        _enemy.Move(_enemy.GetDirectionX);
     }
 
     public virtual void Exit() {

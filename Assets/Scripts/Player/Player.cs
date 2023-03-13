@@ -23,6 +23,8 @@ public class Player : BaseCharacteristics {
     private float _distanceRaycastHit;
     [SerializeField]
     private LayerMask _groundLayer;
+    [SerializeField]
+    private List<Collider2D> _collidersForIgnored = new List<Collider2D>();
 
     public bool isHit = false;
 
@@ -40,7 +42,7 @@ public class Player : BaseCharacteristics {
     public bool CanJump {
         get {
             if (JumpInputAction.action.triggered && IsGround()) {
-                print("can jump");
+                //print("can jump");
                 return true;
             }
 
@@ -48,6 +50,7 @@ public class Player : BaseCharacteristics {
         }
     }
     public Vector2 MovementInput { get; private set; }
+    public List<Collider2D> CollidersForIgnored { get => _collidersForIgnored; }
 
     public PlayerIdleState IdleState { get; private set; }
     public PlayerRunState RunState { get; private set; }
@@ -80,7 +83,6 @@ public class Player : BaseCharacteristics {
         HitState = new PlayerHitState();
         DeadState = new PlayerDeadState();
         StateMachine = new StateMachine<Player>(this);
-        _health = _maxHealth;
         _deafaultGravityScale = Rigidbody.gravityScale;
         CheckComponentOnNull();
     }
@@ -139,7 +141,7 @@ public class Player : BaseCharacteristics {
             StartCoroutine(ResetCurrentDamage(damageObject));
         }
         else if (_invulnerableStatus.IsInvulnerability) {
-            print("player is invulnerable");
+            //print("player is invulnerable");
         }
         else {
             RegisterDamageObject(damageObject);
@@ -174,7 +176,7 @@ public class Player : BaseCharacteristics {
 
     private void TakeDamage(float damage) {
         _health -= damage;
-        print("health = " + _health);
+        //print("health = " + _health);
         if (IsDead) {
             StateMachine.ChangeState(DeadState);
         }

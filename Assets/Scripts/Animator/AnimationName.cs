@@ -8,4 +8,5 @@ public class AnimationName
     public static readonly string JumpDown = "Jump_Down";
     public static readonly string Hit = "Hit";
     public static readonly string Dead = "Dead";
+    public static readonly string Strike = "Strike";
 }

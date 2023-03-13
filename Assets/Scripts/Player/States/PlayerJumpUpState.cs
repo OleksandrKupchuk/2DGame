@@ -14,9 +14,8 @@ public class PlayerJumpUpState : IState<Player> {
         _timer = 0.5f;
     }
 
-    public void ExecuteUpdate() {
+    public void Update() {
         //Debug.Log("is falling = " + _player.IsFalling);
-        Debug.Log("is ground = " + _player.IsGround());
         //Debug.Log("jump button press = " + _player.JumpInputAction.action.triggered);
         _timer -= Time.deltaTime;
 
@@ -35,7 +34,7 @@ public class PlayerJumpUpState : IState<Player> {
         _player.Flip();
     }
 
-    public void ExecuteFixedUpdate() {
+    public void FixedUpdate() {
 
         if (_player.GetMovementInput() == Vector2.zero) {
             return;

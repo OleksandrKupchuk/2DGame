@@ -10,7 +10,7 @@ public class PlayerAttackState : IState<Player> {
         _player.Animator.Play(AnimationName.AttackMelee);
     }
 
-    public void ExecuteUpdate() {
+    public void Update() {
 
         if (_player.isHit) {
             _player.StateMachine.ChangeState(_player.HitState);
@@ -21,7 +21,7 @@ public class PlayerAttackState : IState<Player> {
         }
     }
 
-    public void ExecuteFixedUpdate() {
+    public void FixedUpdate() {
 
     }
 

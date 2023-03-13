@@ -63,6 +63,19 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  _collidersForIgnored:
+  - {fileID: 2724809069109994693}
+  - {fileID: 550353306}
+  - {fileID: 73855411}
+  - {fileID: 1600008225}
+  - {fileID: 1923368385}
+  - {fileID: 73855411}
+  - {fileID: 112553050}
+  - {fileID: 1086410644}
+  - {fileID: 519255371}
+  - {fileID: 1686243371}
+  - {fileID: 2059703570}
+  - {fileID: 247315288}
   isHit: 0
 --- !u!114 &9206641031412101052
 MonoBehaviour:

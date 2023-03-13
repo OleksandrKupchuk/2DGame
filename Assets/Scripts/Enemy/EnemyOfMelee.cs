@@ -11,10 +11,14 @@ public class EnemyOfMelee : BasicEnemy {
     [SerializeField]
     protected AnimationClip _attackAnimation;
 
+    public float AttackMeleeDistance { get; protected set; }
+
+    public override EnemyAttackState AttackState { get; protected set; } = new EnemyAttackMeleeState();
+    public override EnemyDetectTargetState DetectTarget { get; protected set; } = new EnemyMeleeDetectTargetState();
+
     private new void Awake() {
         base.Awake();
-        AttackDistance = 3.2f;
-        delayAttack = 0f;
+        AttackMeleeDistance = 3.2f;
         DisableAttackCollider();
     }
 

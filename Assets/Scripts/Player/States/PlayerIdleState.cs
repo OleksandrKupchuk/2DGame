@@ -14,7 +14,7 @@ public class PlayerIdleState : IState<Player> {
         //_player.Animator.Play(PlayerAnimationName.Run);
     }
 
-    public void ExecuteUpdate() {
+    public void Update() {
         //Debug.Log("info = " + _player.Animator.GetCurrentAnimatorStateInfo(0).IsName(PlayerAnimationName.Attack));
         //Debug.Log($"<color=yellow>idle execute</color>");
         //Debug.Log("jump button press = " + _player.JumpInputAction.action.triggered);
@@ -35,7 +35,7 @@ public class PlayerIdleState : IState<Player> {
         }
     }
 
-    public void ExecuteFixedUpdate() {
+    public void FixedUpdate() {
         //Debug.Log($"<color=yellow>idle fixed execute</color>");
     }
 

@@ -12,7 +12,7 @@ public class PlayerRunState : IState<Player> {
         _player.Animator.Play(AnimationName.Run);
     }
 
-    public void ExecuteUpdate() {
+    public void Update() {
         //Debug.Log($"<color=blue>run execute</color>");
         //Debug.Log("jump button = " + _player.JumpInputAction.action.ReadValue<bool>());
 
@@ -35,7 +35,7 @@ public class PlayerRunState : IState<Player> {
         _player.Flip();
     }
 
-    public void ExecuteFixedUpdate() {
+    public void FixedUpdate() {
         //Debug.Log($"<color=blue>run fixed execute</color>");
 
         if (_player.IsAttack) {

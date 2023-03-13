@@ -1,20 +1,19 @@
-public class EnemyAttackRangeState : EnemyAttackMeleeState {
+public class EnemyAttackRangeState : EnemyAttackState {
 
-    private EnemyOfRange _enemyRange;
+    private BasicEnemy _enemyRange;
 
     public override void Enter(BasicEnemy owner) {
-        _enemyRange = (EnemyOfRange)owner;
-        _enemyRange.delayAttack = 1.4f;
+        _enemyRange = owner;
         _enemyRange.Animator.Play(AnimationName.AttackRange);
     }
 
-    public override void ExecuteUpdate() {
+    public override void Update() {
         if (_enemyRange.IsEndCurrentAnimation(_enemyRange.Animator, AnimatorLayers.BaseLayer)) {
             _enemyRange.StateMachine.ChangeState(_enemyRange.IdleState);
         }
     }
 
-    public override void ExecuteFixedUpdate() {
+    public override void FixedUpdate() {
     }
 
     public override void Exit() {

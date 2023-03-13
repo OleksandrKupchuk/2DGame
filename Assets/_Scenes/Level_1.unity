@@ -8528,6 +8528,8 @@ MonoBehaviour:
   - {fileID: 9032465796065382867, guid: d1a019e71faa8db49874e36d11f723d8, type: 3}
   _enemyRange:
   - {fileID: 1811951716477787881, guid: 48babae3131708c4f9fff4e4c2e02593, type: 3}
+  _enemyDragon: {fileID: 2520592524519590777, guid: 48babae3131708c4f9fff4e4c2e02593, type: 3}
+  _enemyKnight: {fileID: 2084266895115381202, guid: d1a019e71faa8db49874e36d11f723d8, type: 3}
 --- !u!1001 &915939682
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8947,7 +8949,7 @@ PrefabInstance:
     - target: {fileID: 8528680245333609998, guid: aa3ae672733ade74ca5d7df3d174c1e0, type: 3}
       propertyPath: _enemy
       value: 
-      objectReference: {fileID: 3413726013779498184, guid: 48babae3131708c4f9fff4e4c2e02593, type: 3}
+      objectReference: {fileID: 9032465796065382889, guid: d1a019e71faa8db49874e36d11f723d8, type: 3}
     - target: {fileID: 8528680245333609999, guid: aa3ae672733ade74ca5d7df3d174c1e0, type: 3}
       propertyPath: m_Name
       value: EnemySpawner

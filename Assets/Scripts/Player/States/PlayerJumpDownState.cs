@@ -13,7 +13,7 @@ public class PlayerJumpDownState : IState<Player> {
         //_player.SetGravityScale(_gravityScale);
     }
 
-    public void ExecuteUpdate() {
+    public void Update() {
         if (_player.isHit) {
             _player.isHit = false;
             _player.InvulnerableStatus.PlayBlinkAnimation();
@@ -26,7 +26,7 @@ public class PlayerJumpDownState : IState<Player> {
         _player.Flip();
     }
 
-    public void ExecuteFixedUpdate() {
+    public void FixedUpdate() {
         if(_player.GetMovementInput() == Vector2.zero) {
             return;
         }

@@ -59,10 +59,9 @@ public class FieldOfView : MonoBehaviour {
             }
             else {
                 _vertex = _raycastHit2D.point;
-                if (_raysDetected.Length < i) {
-                    return;
-                }
-                if (_raycastHit2D.collider.gameObject.CompareTag(Tags.Player)) {
+                Debug.DrawRay(_startPoint, CalculationAngle.GetVector3FromAngle(angleInDegree) * _viewDistance, Color.yellow);
+
+                if (_raycastHit2D.collider.gameObject.CompareTag(Tags.Player) && !_player.IsDead) {
                     Debug.DrawRay(_startPoint, CalculationAngle.GetVector3FromAngle(angleInDegree) * _viewDistance, Color.red);
                     _raysDetected[i - 1] = true;
                 }

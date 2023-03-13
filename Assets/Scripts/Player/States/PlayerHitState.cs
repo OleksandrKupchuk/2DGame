@@ -12,7 +12,7 @@ public class PlayerHitState : IState<Player> {
         _player.InvulnerableStatus.PlayBlinkAnimation();
     }
 
-    public void ExecuteUpdate() {
+    public void Update() {
         if (_player.IsEndCurrentAnimation(_player.Animator, AnimatorLayers.BaseLayer)) {
             // Debug.Log("change on Idle");
             // Debug.Log("hit = " + _player.Animator.GetCurrentAnimatorStateInfo(AnimatorLayers.BaseLayer).normalizedTime);
@@ -20,7 +20,7 @@ public class PlayerHitState : IState<Player> {
         }
     }
 
-    public void ExecuteFixedUpdate() {
+    public void FixedUpdate() {
     }
 
     public void Exit() {

@@ -6,10 +6,10 @@ public class EnemyDeadState : IState<BasicEnemy> {
         _enemy = owner;
     }
 
-    public virtual void ExecuteUpdate() {
+    public virtual void Update() {
     }
 
-    public virtual void ExecuteFixedUpdate() {
+    public virtual void FixedUpdate() {
     }
 
     public virtual void Exit() {
