@@ -13,11 +13,11 @@ public class EnemyKnightDetectTargetState : EnemyDetectTargetState {
 
     public override void Update() {
 
-        CheckHasTargetAndChangeToIdleState(_enemy);
+        _enemyDetectLogic.CheckHasTargetAndChangeToIdleState(_enemy);
 
-        CheckNeedFlipAndFlip(_enemy);
+        _enemyDetectLogic.CheckNeedFlipAndFlip(_enemy);
 
-        CalculationDistanceToTarget(_enemy);
+        _enemyDetectLogic.CalculationDistanceToTarget(_enemy);
 
         if (_enemy.IsThereTargetInRangeOfDistance(_enemy.AttackMeleeDistance)) {
             CalculationAttackStateOrStrikeAttackState();
@@ -30,19 +30,19 @@ public class EnemyKnightDetectTargetState : EnemyDetectTargetState {
     private void CalculationAttackStateOrStrikeAttackState() {
         if(_randomChance <= _chanceStrikeAttack && _enemy.IsLeftHalfOfHealth) {
             _enemy.ConfigBuffer.delayStrikeAttack -= Time.deltaTime;
-            ChangeToStateAttackAfterDelay(_enemy, _enemy.StrikeState, _enemy.ConfigBuffer.delayStrikeAttack);
+            _enemyDetectLogic.ChangeToStateAttackAfterDelay(_enemy, _enemy.StrikeState, _enemy.ConfigBuffer.delayStrikeAttack);
         }
         else {
             _enemy.ConfigBuffer.delayAttack -= Time.deltaTime;
-            ChangeToStateAttackAfterDelay(_enemy, _enemy.AttackState, _enemy.ConfigBuffer.delayAttack);
+            _enemyDetectLogic.ChangeToStateAttackAfterDelay(_enemy, _enemy.AttackState, _enemy.ConfigBuffer.delayAttack);
         }
     }
 
     public override void FixedUpdate() {
-        MoveIfPlayRunAnimation(_enemy);
+        _enemyDetectLogic.MoveIfPlayRunAnimation(_enemy);
     }
 
     public override void Exit() {
-        RefreshDelayForDifferentAttacks(_enemy);
+        _enemyDetectLogic.RefreshDelayForDifferentAttacks(_enemy);
     }
 }

@@ -10,21 +10,21 @@ public class EnemyDragonWarriorDetectTargetState : EnemyDetectTargetState {
 
     public override void Update() {
 
-        CheckHasTargetAndChangeToIdleState(_enemy);
+        _enemyDetectLogic.CheckHasTargetAndChangeToIdleState(_enemy);
 
-        CheckNeedFlipAndFlip(_enemy);
+        _enemyDetectLogic.CheckNeedFlipAndFlip(_enemy);
 
         _enemy.distanceToTarget = Mathf.Abs(_enemy.transform.position.x - _enemy.FieldOfView.Target.transform.position.x);
 
         if (_enemy.IsThereTargetInRangeOfDistance(_enemy.StrikeAttackDistance)) {
 
             _enemy.delayStrikeAttack -= Time.deltaTime;
-            ChangeToStateAttackAfterDelay(_enemy, _enemy.StrikeState, _enemy.delayStrikeAttack);
+            _enemyDetectLogic.ChangeToStateAttackAfterDelay(_enemy, _enemy.StrikeState, _enemy.delayStrikeAttack);
         }
         else if (_enemy.IsThereTargetInRangeOfDistance(_enemy.AttackRangeDistance)) {
 
             _enemy.Config.delayAttack -= Time.deltaTime;
-            ChangeToStateAttackAfterDelay(_enemy, _enemy.AttackState, _enemy.Config.delayAttack);
+            _enemyDetectLogic.ChangeToStateAttackAfterDelay(_enemy, _enemy.AttackState, _enemy.Config.delayAttack);
         }
         else {
             _enemy.Animator.Play(AnimationName.Run);
@@ -32,10 +32,10 @@ public class EnemyDragonWarriorDetectTargetState : EnemyDetectTargetState {
     }
 
     public override void FixedUpdate() {
-        MoveIfPlayRunAnimation(_enemy);
+        _enemyDetectLogic.MoveIfPlayRunAnimation(_enemy);
     }
 
     public override void Exit() {
-        RefreshDelayForDifferentAttacks(_enemy);
+        _enemyDetectLogic.RefreshDelayForDifferentAttacks(_enemy);
     }
 }

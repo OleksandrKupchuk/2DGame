@@ -10,20 +10,20 @@ public class EnemyMeleeDetectTargetState : EnemyDetectTargetState {
 
     public override void Update() {
 
-        CheckHasTargetAndChangeToIdleState(_enemy);
+        _enemyDetectLogic.CheckHasTargetAndChangeToIdleState(_enemy);
 
-        CheckNeedFlipAndFlip(_enemy);
+        _enemyDetectLogic.CheckNeedFlipAndFlip(_enemy);
 
-        CalculationDistanceToTarget(_enemy);
+        _enemyDetectLogic.CalculationDistanceToTarget(_enemy);
 
-        CheckIsThereTargetInRangeOfAttackAndAttackOrRun(_enemy.AttackMeleeDistance, _enemy, _enemy.AttackState);
+        _enemyDetectLogic.CheckIsThereTargetInRangeOfAttackAndAttackOrRun(_enemy.AttackMeleeDistance, _enemy, _enemy.AttackState);
     }
 
     public override void FixedUpdate() {
-        CheckIsThereTargetInRangeOfAttackAndAttackOrRun(_enemy.AttackMeleeDistance, _enemy, _enemy.AttackState);
+        _enemyDetectLogic.CheckIsThereTargetInRangeOfAttackAndAttackOrRun(_enemy.AttackMeleeDistance, _enemy, _enemy.AttackState);
     }
 
     public override void Exit() {
-        RefreshDelayForDifferentAttacks(_enemy);
+        _enemyDetectLogic.RefreshDelayForDifferentAttacks(_enemy);
     }
 }
