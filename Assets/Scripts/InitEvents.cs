@@ -38,6 +38,7 @@ public class InitEvents : MonoBehaviour
         }
         _enemyDragon.AddEnableFireBallEventForAttackAnimation();
         _enemyDragon.AddEnableStrikeColliderForStrikeAnimation();
+        _enemyDragon.AddCanMoveStrikeTrue();
     }
 
     private void InitEnemyKnight() {

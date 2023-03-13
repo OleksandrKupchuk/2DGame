@@ -335,6 +335,8 @@ MonoBehaviour:
   _speed: 6
   _jumpVelocity: 0
   _config: {fileID: 5749465301668786589, guid: f27e17789583623408e09163afab31ad, type: 3}
+  delayAttack: 0
+  delayStrikeAttack: 0
   distanceToTarget: 0
   _attackCollider: {fileID: 7075063144719820962}
   _frameRateInAttackAnimationForEnableAttackCollider: 4
@@ -348,7 +350,6 @@ MonoBehaviour:
   _strikeAnimation: {fileID: 7400000, guid: 810305e8d3f495f4e85317d17bae2e75, type: 2}
   _strikeCollider: {fileID: 7188085279693909762}
   _bodyCollider: {fileID: 9032465796065382893}
-  delayStrikeAttack: 0
 --- !u!50 &9032465796065382892
 Rigidbody2D:
   serializedVersion: 4
@@ -383,8 +384,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.14322592, y: 1.2325764}
-  m_Size: {x: 1.2580676, y: 2.4949675}
+  m_Offset: {x: 0.14322591, y: 1.2388824}
+  m_Size: {x: 1.2580676, y: 2.4823554}
   m_Direction: 0
 --- !u!114 &3180148550609307235
 MonoBehaviour:

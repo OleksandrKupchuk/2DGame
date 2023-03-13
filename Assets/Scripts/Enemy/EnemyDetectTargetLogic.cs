@@ -22,7 +22,6 @@ public class EnemyDetectTargetLogic {
     }
 
     public void CheckIsThereTargetInRangeOfAttackAndAttackOrRun(float distance, BasicEnemy enemy, EnemyAttackState attackState) {
-
         if (enemy.IsThereTargetInRangeOfDistance(distance)) {
             enemy.ResetRigidbodyVelocity();
             enemy.Animator.Play(AnimationName.Idle);
@@ -35,7 +34,6 @@ public class EnemyDetectTargetLogic {
     }
 
     private void HandleAttackDelay(BasicEnemy enemy, EnemyAttackState attackState) {
-
         enemy.Config.delayAttack -= Time.deltaTime;
 
         if (enemy.Config.delayAttack <= 0) {
@@ -44,7 +42,6 @@ public class EnemyDetectTargetLogic {
     }
 
     public void ChangeToStateAttackAfterDelay(BasicEnemy enemy, IState<BasicEnemy> attackState, float delayAttack) {
-
         enemy.ResetRigidbodyVelocity();
         enemy.Animator.Play(AnimationName.Idle);
 

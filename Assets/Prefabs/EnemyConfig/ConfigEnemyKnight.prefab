@@ -50,3 +50,6 @@ MonoBehaviour:
   timerMaxRun: 6
   delayAttack: 1
   delayStrikeAttack: 1.6
+  distanceStrikeAttack: 0
+  distanceMeleeAttack: 3
+  distanceRangeAttack: 0

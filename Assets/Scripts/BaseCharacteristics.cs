@@ -40,6 +40,6 @@ public class BaseCharacteristics : MonoBehaviour {
     }
 
     public void MoveEaseInQuint(float inputDirection, float speed, float time) {
-        Rigidbody.velocity = new Vector2(inputDirection * speed * time * time * time, Rigidbody.velocity.y);
+        Rigidbody.velocity = new Vector2(inputDirection * speed * time * time, Rigidbody.velocity.y);
     }
 }

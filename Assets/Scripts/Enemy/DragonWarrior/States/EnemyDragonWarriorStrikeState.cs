@@ -17,6 +17,9 @@ public class EnemyDragonWarriorStrikeState : IState<BasicEnemy> {
     }
 
     public void FixedUpdate() {
+        if (!_enemy.canMoveStrike) {
+            return;
+        }
 
         _time -= Time.deltaTime;
         _enemy.MoveEaseInQuint(_enemy.GetDirectionX, _speed, _time);
@@ -29,5 +32,6 @@ public class EnemyDragonWarriorStrikeState : IState<BasicEnemy> {
 
     public void Exit() {
         _enemy.DisableStrikeCollider();
+        _enemy.canMoveStrike = false;
     }
 }

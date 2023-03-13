@@ -36,8 +36,6 @@ public class EnemyKnight : BasicEnemy {
     [SerializeField]
     private Collider2D _bodyCollider;
 
-    public bool StrikeCollider { get => _strikeCollider.enabled; }
-    public float AttackMeleeDistance { get; protected set; }
     public virtual bool IsLeftHalfOfHealth { get => _health <= _maxHealth / 2; }
     public List<FireBall> FireBalls { get; protected set; } = new List<FireBall>();
     public Transform CastPoint { get => _castPoint; }
@@ -50,7 +48,6 @@ public class EnemyKnight : BasicEnemy {
         _health = 4f;
         _logicEnemyOfRange = GetComponent<LogicEnemyOfRange>();
         _ignoreCollision = GetComponent<IgnoreCollision>();
-        AttackMeleeDistance = 3f;
         DisableStrikeCollider();
         FireBalls = _logicEnemyOfRange.CreateAndGetListPrefabs(_fireBallPrefab, _parentFireBalls);
         DisableAttackCollider();

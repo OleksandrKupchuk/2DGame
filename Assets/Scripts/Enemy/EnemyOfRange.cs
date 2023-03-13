@@ -18,7 +18,6 @@ public class EnemyOfRange : BasicEnemy {
     [SerializeField]
     protected AnimationClip _attackAnimation;
 
-    public float AttackRangeDistance { get; protected set; }
     public List<GameObject> FireBallsPrefabs { get; protected set; } = new List<GameObject>();
     public List<FireBall> FireBalls { get; protected set; } = new List<FireBall>();
     public Transform ShotPoint { get => _shotPoint; }
@@ -28,7 +27,6 @@ public class EnemyOfRange : BasicEnemy {
     protected new void Awake() {
         base.Awake();
         _logicEnemyOfRange = GetComponent<LogicEnemyOfRange>();
-        AttackRangeDistance = 12f;
         FireBallsPrefabs = _logicEnemyOfRange.CreateAndGetListPrefabs(_fireBallPrefab, _parentFireBalls);
     }
 

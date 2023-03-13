@@ -9,4 +9,7 @@ public class Config : MonoBehaviour {
     public float timerMaxRun;
     public float delayAttack;
     public float delayStrikeAttack;
+    public float distanceStrikeAttack;
+    public float distanceMeleeAttack;
+    public float distanceRangeAttack;
 }

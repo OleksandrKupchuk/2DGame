@@ -14,7 +14,7 @@ public class EnemyMeleeDetectTargetState : EnemyDetectTargetState {
 
         _enemyDetectLogic.CalculationDistanceToTarget(_enemy);
 
-        _enemyDetectLogic.CheckIsThereTargetInRangeOfAttackAndAttackOrRun(_enemy.AttackMeleeDistance, _enemy, _enemy.AttackState);
+        _enemyDetectLogic.CheckIsThereTargetInRangeOfAttackAndAttackOrRun(_enemy.Config.distanceMeleeAttack, _enemy, _enemy.AttackState);
     }
 
     public override void FixedUpdate() {

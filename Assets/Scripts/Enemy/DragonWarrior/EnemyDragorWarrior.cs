@@ -7,6 +7,7 @@ public class EnemyDragorWarrior : BasicEnemy {
 
     protected AnimationEvent _shotFireBallEvent = new AnimationEvent();
     protected AnimationEvent _enableStrikeColliderEvent = new AnimationEvent();
+    protected AnimationEvent _moveStrikeEvent = new AnimationEvent();
     protected LogicEnemyOfRange _logicEnemyOfRange;
     private IgnoreCollision _ignoreCollision;
 
@@ -29,9 +30,9 @@ public class EnemyDragorWarrior : BasicEnemy {
     [SerializeField]
     private Collider2D _bodyCollider;
 
-    public float AttackRangeDistance { get; protected set; }
-    public float StrikeAttackDistance { get; private set; }
-    public virtual bool IsCloseTargetToStrikeAttack { get => distanceToTarget <= StrikeAttackDistance; }
+    [HideInInspector]
+    public bool canMoveStrike;
+
     public List<FireBall> FireBalls { get; protected set; } = new List<FireBall>();
     public Transform ShotPoint { get => _shotPoint; }
     public override EnemyAttackState AttackState { get; protected set; } = new EnemyAttackRangeState();
@@ -42,8 +43,6 @@ public class EnemyDragorWarrior : BasicEnemy {
         base.Awake();
         _logicEnemyOfRange = GetComponent<LogicEnemyOfRange>();
         _ignoreCollision = GetComponent<IgnoreCollision>();
-        AttackRangeDistance = 12f;
-        StrikeAttackDistance = 9f;
         DisableStrikeCollider();
         FireBalls = _logicEnemyOfRange.CreateAndGetListPrefabs(_fireBallPrefab, _parentFireBalls);
     }
@@ -80,5 +79,13 @@ public class EnemyDragorWarrior : BasicEnemy {
 
     public void DisableStrikeCollider() {
         LogicEnemy.DisableCollider(_strikeCollider);
+    }
+
+    public void AddCanMoveStrikeTrue() {
+        LogicEnemy.AddEventForFrameOfAnimation(_strikeAnimation, _moveStrikeEvent, _frameRateInStrikeAnimationForEnableCollider, nameof(CanMoveStrikeTrue));
+    }
+
+    private void CanMoveStrikeTrue() {
+        canMoveStrike = true;
     }
 }

@@ -14,7 +14,7 @@ public class EnemyRangeDetectTargetState : EnemyDetectTargetState {
 
         _enemyDetectLogic.CalculationDistanceToTarget(_enemy);
 
-        _enemyDetectLogic.CheckIsThereTargetInRangeOfAttackAndAttackOrRun(_enemy.AttackRangeDistance, _enemy, _enemy.AttackState);
+        _enemyDetectLogic.CheckIsThereTargetInRangeOfAttackAndAttackOrRun(_enemy.Config.distanceRangeAttack, _enemy, _enemy.AttackState);
     }
 
     public override void FixedUpdate() {

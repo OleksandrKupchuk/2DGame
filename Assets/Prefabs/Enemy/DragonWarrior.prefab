@@ -141,6 +141,8 @@ MonoBehaviour:
   _speed: 4
   _jumpVelocity: 0
   _config: {fileID: 1519733354638920169, guid: 0729d02e54e267e4aadcf98db393fd2a, type: 3}
+  delayAttack: 0
+  delayStrikeAttack: 0
   distanceToTarget: 0
   _fireBallPrefab: {fileID: 8597538923067676192, guid: 2d1912e07c9065a40b1035cea62249cd, type: 3}
   _parentFireBalls: {fileID: 6610564320894056617}
@@ -151,7 +153,7 @@ MonoBehaviour:
   _strikeAnimation: {fileID: 7400000, guid: 5f710564f22f5ef428f951624fbe560f, type: 2}
   _strikeCollider: {fileID: 5272888556165835020}
   _bodyCollider: {fileID: 3413726013779498189}
-  delayStrikeAttack: 0
+  canMoveStrike: 0
 --- !u!95 &3413726013779498187
 Animator:
   serializedVersion: 4
@@ -185,8 +187,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.14889681, y: 1.23}
-  m_Size: {x: 1.034909, y: 2.4969018}
+  m_Offset: {x: 0.14889681, y: 1.2411846}
+  m_Size: {x: 1.034909, y: 2.4745324}
   m_Direction: 0
 --- !u!50 &3413726013779498188
 Rigidbody2D:

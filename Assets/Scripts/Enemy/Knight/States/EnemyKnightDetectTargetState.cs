@@ -6,6 +6,8 @@ public class EnemyKnightDetectTargetState : EnemyDetectTargetState {
     private int _chanceStrikeAttack = 40;
     private int _randomChance;
 
+    private bool CanStrikeAttack { get => _randomChance <= _chanceStrikeAttack && _enemy.IsLeftHalfOfHealth; }
+
     public override void Enter(BasicEnemy owner) {
         _enemy = (EnemyKnight)owner;
         _randomChance = Random.Range(0, 100);
@@ -19,7 +21,7 @@ public class EnemyKnightDetectTargetState : EnemyDetectTargetState {
 
         _enemyDetectLogic.CalculationDistanceToTarget(_enemy);
 
-        if (_enemy.IsThereTargetInRangeOfDistance(_enemy.AttackMeleeDistance)) {
+        if (_enemy.IsThereTargetInRangeOfDistance(_enemy.Config.distanceMeleeAttack)) {
             CalculationAttackStateOrStrikeAttackState();
         }
         else {
@@ -28,7 +30,7 @@ public class EnemyKnightDetectTargetState : EnemyDetectTargetState {
     }
 
     private void CalculationAttackStateOrStrikeAttackState() {
-        if(_randomChance <= _chanceStrikeAttack && _enemy.IsLeftHalfOfHealth) {
+        if(CanStrikeAttack) {
             _enemy.delayStrikeAttack -= Time.deltaTime;
             _enemyDetectLogic.ChangeToStateAttackAfterDelay(_enemy, _enemy.StrikeState, _enemy.delayStrikeAttack);
         }
