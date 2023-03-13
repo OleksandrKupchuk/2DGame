@@ -1,6 +1,6 @@
 public class EnemyDetectTargetState : IState<BasicEnemy> {
 
-    protected EnemyDetectTargetLogic _enemyDetectLogic;
+    protected EnemyDetectTargetLogic _enemyDetectLogic = new EnemyDetectTargetLogic();
 
     public virtual void Enter(BasicEnemy owner) {
     }

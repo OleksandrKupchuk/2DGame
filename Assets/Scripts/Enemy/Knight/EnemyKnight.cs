@@ -45,9 +45,6 @@ public class EnemyKnight : BasicEnemy {
     public override EnemyDetectTargetState DetectTarget { get; protected set; } = new EnemyKnightDetectTargetState();
     public EnemyKnightStrikeState StrikeState { get; protected set; } = new EnemyKnightStrikeState();
 
-    [HideInInspector]
-    public float delayStrikeAttack;
-
     protected new void Awake() {
         base.Awake();
         _health = 4f;

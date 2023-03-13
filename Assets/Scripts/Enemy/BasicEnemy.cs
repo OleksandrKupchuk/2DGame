@@ -15,7 +15,6 @@ public class BasicEnemy : BaseCharacteristics {
     public bool HasTarget { get => FieldOfView.Target != null; }
 
     public Config Config { get => _config; }
-    public Config ConfigBuffer { get; protected set; }
     public StateMachine<BasicEnemy> StateMachine { get; protected set; }
     public virtual EnemyIdleState IdleState { get; protected set; } = new EnemyIdleState();
     public virtual EnemyRunState RunState { get; protected set; } = new EnemyRunState();
@@ -25,12 +24,14 @@ public class BasicEnemy : BaseCharacteristics {
     public virtual EnemyDeadState DeadState { get; protected set; } = new EnemyDeadState();
 
     [HideInInspector]
+    public float delayAttack;
+    [HideInInspector]
+    public float delayStrikeAttack;
+    [HideInInspector]
     public float distanceToTarget;
 
     protected new void Awake() {
         base.Awake();
-        ConfigBuffer = gameObject.AddComponent<Config>();
-        ConfigBuffer.SetParameters(Config);
         _xScale = transform.localScale.x;
         GameObject _fieldOfViewPrefab = Resources.Load(ResourcesPath.FieldOfViewPrefab) as GameObject;
         FieldOfView = Instantiate(_fieldOfViewPrefab.GetComponent<FieldOfView>());

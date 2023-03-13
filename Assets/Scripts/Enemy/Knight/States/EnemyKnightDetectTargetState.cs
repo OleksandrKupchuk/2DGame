@@ -29,12 +29,12 @@ public class EnemyKnightDetectTargetState : EnemyDetectTargetState {
 
     private void CalculationAttackStateOrStrikeAttackState() {
         if(_randomChance <= _chanceStrikeAttack && _enemy.IsLeftHalfOfHealth) {
-            _enemy.ConfigBuffer.delayStrikeAttack -= Time.deltaTime;
-            _enemyDetectLogic.ChangeToStateAttackAfterDelay(_enemy, _enemy.StrikeState, _enemy.ConfigBuffer.delayStrikeAttack);
+            _enemy.delayStrikeAttack -= Time.deltaTime;
+            _enemyDetectLogic.ChangeToStateAttackAfterDelay(_enemy, _enemy.StrikeState, _enemy.delayStrikeAttack);
         }
         else {
-            _enemy.ConfigBuffer.delayAttack -= Time.deltaTime;
-            _enemyDetectLogic.ChangeToStateAttackAfterDelay(_enemy, _enemy.AttackState, _enemy.ConfigBuffer.delayAttack);
+            _enemy.delayAttack -= Time.deltaTime;
+            _enemyDetectLogic.ChangeToStateAttackAfterDelay(_enemy, _enemy.AttackState, _enemy.delayAttack);
         }
     }
 

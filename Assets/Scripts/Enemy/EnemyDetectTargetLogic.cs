@@ -60,7 +60,7 @@ public class EnemyDetectTargetLogic {
     }
 
     public void RefreshDelayForDifferentAttacks(BasicEnemy enemy) {
-        enemy.ConfigBuffer.delayAttack = enemy.Config.delayAttack;
-        enemy.ConfigBuffer.delayStrikeAttack = enemy.Config.delayStrikeAttack;
+        enemy.delayAttack = enemy.Config.delayAttack;
+        enemy.delayStrikeAttack = enemy.Config.delayStrikeAttack;
     }
 }

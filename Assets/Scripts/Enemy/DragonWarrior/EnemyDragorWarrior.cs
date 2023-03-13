@@ -38,9 +38,6 @@ public class EnemyDragorWarrior : BasicEnemy {
     public override EnemyDetectTargetState DetectTarget { get; protected set; } = new EnemyDragonWarriorDetectTargetState();
     public EnemyDragonWarriorStrikeState StrikeState { get; protected set; } = new EnemyDragonWarriorStrikeState();
 
-    [HideInInspector]
-    public float delayStrikeAttack;
-
     protected new void Awake() {
         base.Awake();
         _logicEnemyOfRange = GetComponent<LogicEnemyOfRange>();
