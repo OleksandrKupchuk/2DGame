@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -51,6 +50,7 @@ public class Player : BaseCharacteristics {
     }
     public Vector2 MovementInput { get; private set; }
     public List<Collider2D> CollidersForIgnored { get => _collidersForIgnored; }
+    public PlayerConfig Config { get => (PlayerConfig)_config; }
 
     public PlayerIdleState IdleState { get; private set; }
     public PlayerRunState RunState { get; private set; }
@@ -133,7 +133,7 @@ public class Player : BaseCharacteristics {
 
     public void Jump() {
         //print("Add Force for Jump");
-        Rigidbody.velocity = Vector2.up * _jumpVelocity;
+        Rigidbody.velocity = Vector2.up * Config.jumpVelocity;
     }
 
     public void CheckTakeDamage(float damage, Damage damageObject) {

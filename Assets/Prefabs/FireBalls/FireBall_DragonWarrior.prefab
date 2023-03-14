@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  _speed: 9
+  _speed: 10
   _timeToDisable: 4
 --- !u!95 &8610895188966872510
 Animator:

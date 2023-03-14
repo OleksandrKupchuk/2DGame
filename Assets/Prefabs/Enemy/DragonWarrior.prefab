@@ -140,7 +140,7 @@ MonoBehaviour:
   _maxHealth: 0
   _speed: 4
   _jumpVelocity: 0
-  _config: {fileID: 1519733354638920169, guid: 0729d02e54e267e4aadcf98db393fd2a, type: 3}
+  _config: {fileID: 11400000, guid: cc5a875545926f64b975841e0583567d, type: 2}
   delayAttack: 0
   delayStrikeAttack: 0
   distanceToTarget: 0

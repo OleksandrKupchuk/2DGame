@@ -6,15 +6,12 @@ public class BasicEnemy : BaseCharacteristics {
 
     protected float _xScale;
 
-    [SerializeField]
-    protected Config _config;
-
     public float GetDirectionX { get => transform.localScale.x; }
     public FieldOfView FieldOfView { get; protected set; }
     public LogicEnemy LogicEnemy { get; private set; } = new LogicEnemy();
     public bool HasTarget { get => FieldOfView.Target != null; }
 
-    public Config Config { get => _config; }
+    public EnemyConfig Config { get => (EnemyConfig)_config; }
     public StateMachine<BasicEnemy> StateMachine { get; protected set; }
     public virtual EnemyIdleState IdleState { get; protected set; } = new EnemyIdleState();
     public virtual EnemyRunState RunState { get; protected set; } = new EnemyRunState();

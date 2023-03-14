@@ -4,11 +4,7 @@ public class BaseCharacteristics : MonoBehaviour {
     [SerializeField]
     protected float _health;
     [SerializeField]
-    protected float _maxHealth;
-    [SerializeField]
-    protected float _speed;
-    [SerializeField]
-    protected float _jumpVelocity;
+    protected Config _config;
 
     public Rigidbody2D Rigidbody { get; private set; }
     public Animator Animator { get; private set; }
@@ -16,7 +12,7 @@ public class BaseCharacteristics : MonoBehaviour {
     protected void Awake() {
         Rigidbody = gameObject.GetComponent<Rigidbody2D>();
         Animator = gameObject.GetComponent<Animator>();
-        _health = _maxHealth;
+        _health = _config.health;
     }
 
     public void ResetRigidbodyVelocity() {
@@ -32,7 +28,7 @@ public class BaseCharacteristics : MonoBehaviour {
     }
 
     public void Move(float inputDirection) {
-        Rigidbody.velocity = new Vector2(inputDirection * _speed, Rigidbody.velocity.y);
+        Rigidbody.velocity = new Vector2(inputDirection * _config.speed, Rigidbody.velocity.y);
     }
 
     public void Move(float inputDirection, float speed) {

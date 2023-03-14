@@ -331,10 +331,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 0
-  _maxHealth: 10
-  _speed: 6
   _jumpVelocity: 0
-  _config: {fileID: 5749465301668786589, guid: f27e17789583623408e09163afab31ad, type: 3}
+  _config: {fileID: 11400000, guid: 2cda35b590c08354aab25deada9c4c72, type: 2}
   delayAttack: 0
   delayStrikeAttack: 0
   distanceToTarget: 0
