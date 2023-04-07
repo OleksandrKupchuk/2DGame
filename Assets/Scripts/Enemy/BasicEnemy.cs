@@ -1,11 +1,14 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(CapsuleCollider2D))]
 public class BasicEnemy : BaseCharacteristics {
 
     protected float _xScale;
 
+    public bool IsLookRight { get => transform.localScale.x > 0; }
+    public bool IsLookLeft { get => transform.localScale.x < 0; }
+    public bool IsTargetBehindYouWhenLookRight { get => (transform.position.x - FieldOfView.Target.transform.position.x) >= 0 && IsLookRight; }
+    public bool IsTargetBehindYouWhenLookLeft { get => (transform.position.x - FieldOfView.Target.transform.position.x) < 0 && IsLookLeft; }
     public float GetDirectionX { get => transform.localScale.x; }
     public FieldOfView FieldOfView { get; protected set; }
     public LogicEnemy LogicEnemy { get; private set; } = new LogicEnemy();
@@ -45,10 +48,10 @@ public class BasicEnemy : BaseCharacteristics {
             //print("Target is NULL");
             return false;
         }
-        if ((transform.position.x - FieldOfView.Target.transform.position.x) < 0 && transform.localScale.x == -1) {
+        if (IsTargetBehindYouWhenLookRight) {
             return true;
         }
-        else if ((transform.position.x - FieldOfView.Target.transform.position.x) > 0 && transform.localScale.x == 1) {
+        else if (IsTargetBehindYouWhenLookLeft) {
             return true;
         }
         else {

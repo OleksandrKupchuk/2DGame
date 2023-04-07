@@ -6,8 +6,8 @@ public class BaseCharacteristics : MonoBehaviour {
     [SerializeField]
     protected Config _config;
 
-    public Rigidbody2D Rigidbody { get; private set; }
-    public Animator Animator { get; private set; }
+    public Rigidbody2D Rigidbody { get; protected set; }
+    public Animator Animator { get; protected set; }
 
     protected void Awake() {
         Rigidbody = gameObject.GetComponent<Rigidbody2D>();

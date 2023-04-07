@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000011730387604}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_shoulder_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010648492716}
   - component: {fileID: 212000012496812036}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_wrist_l_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,8 +127,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010141028922}
   - component: {fileID: 95000012403032898}
-  m_Layer: 0
-  m_Name: Rogue_01
+  - component: {fileID: 1525327993080314713}
+  - component: {fileID: 2345015853051294881}
+  - component: {fileID: 4926260825350098026}
+  - component: {fileID: 4342419411296983399}
+  m_Layer: 10
+  m_Name: Rogue_Brown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 1000010208881502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -4.8, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4000011226073324}
@@ -170,6 +174,77 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1525327993080314713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010208881502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae5094d45b7cd3409f24f071e1ec119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 0
+  _config: {fileID: 11400000, guid: d9f8c402f477fa44897d2b7912e7a74f, type: 2}
+  delayAttack: 0
+  delayStrikeAttack: 0
+  distanceToTarget: 0
+  _colliderRightKnife: {fileID: 4901665230595517994}
+  _colliderLeftKnife: {fileID: 5939101202409683572}
+  _frameRateInAttackLeftHandUpAnimationForEnableAttackCollider: 15
+  _frameRateInAttackRightHandUpAnimationForEnableAttackCollider: 12
+  _frameRateInAttackJumpUpAnimationForEnableAttackCollider: 25
+  _attackLeftHandUpAnimation: {fileID: 7400000, guid: 64a73d86c86da4e47acf1b4bbe74fb16, type: 2}
+  _attackRightHandUpAnimation: {fileID: 7400000, guid: 8c1e88648e47cbf4b92f6cb1b7b7c8fd, type: 2}
+  _attackJumpUpAnimation: {fileID: 7400000, guid: 1005dfb1994dd4d4c9407b61173a0890, type: 2}
+  _bodyCollider: {fileID: 4878541346403530629}
+--- !u!114 &2345015853051294881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010208881502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b5d343976633ae4287b1b7bf19813da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4926260825350098026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010208881502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 030b95b9bdae52a418d057879c4c3002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &4342419411296983399
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010208881502}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &1000010251440012
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000012268047970}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_head_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013900822866}
   - component: {fileID: 212000012642032246}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_boot_r_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +372,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000010921337980}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_boot_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,7 +405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010265782240}
   - component: {fileID: 212000012141359392}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_weapon_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +423,8 @@ Transform:
   m_LocalPosition: {x: -2.01, y: 2.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5009460568472662097}
   m_Father: {fileID: 4000011583205324}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -414,7 +490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010393293788}
   - component: {fileID: 212000010222169336}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_torso_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -498,7 +574,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000012501242752}
   - component: {fileID: 212000010938263010}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_face_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -582,7 +658,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011449368476}
   - component: {fileID: 212000013693168778}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_wrist_r_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -666,7 +742,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010729741450}
   - component: {fileID: 212000011487683862}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_pelvis_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -750,7 +826,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013402820070}
   - component: {fileID: 212000013754991090}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_shoulder_l_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -834,7 +910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013478400498}
   - component: {fileID: 212000010151629462}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_head_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -918,7 +994,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011279975636}
   - component: {fileID: 212000012109687088}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_elbow_r_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1002,7 +1078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013444494666}
   - component: {fileID: 212000013804914738}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_leg_r_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1086,7 +1162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011540260948}
   - component: {fileID: 212000013352628812}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_hood_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1169,7 +1245,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000012591394062}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_wrist_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1202,7 +1278,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000010458615476}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_leg_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1235,7 +1311,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000011583205324}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_wrist_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1269,7 +1345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000012572229308}
   - component: {fileID: 212000013957669324}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_leg_l_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1353,7 +1429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013221526974}
   - component: {fileID: 212000011640928544}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_weapon_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1371,7 +1447,8 @@ Transform:
   m_LocalPosition: {x: -1.2099997, y: 3.8199997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3727025877011830028}
   m_Father: {fileID: 4000010038592030}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -14.135}
@@ -1436,7 +1513,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000013715340142}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_leg_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1469,7 +1546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000010038592030}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_weapon_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1502,7 +1579,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011471009366}
   - component: {fileID: 212000012742084602}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_boot_l_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1585,7 +1662,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000012155193224}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_elbow_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1618,7 +1695,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000011558881466}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_shoulder_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1651,7 +1728,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000014070935474}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_boot_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1684,7 +1761,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000014131515616}
   - component: {fileID: 212000013478837910}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_elbow_l_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1767,7 +1844,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000010861114970}
-  m_Layer: 0
+  - component: {fileID: 4878541346403530629}
+  m_Layer: 10
   m_Name: Rogue_torso_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1793,6 +1871,22 @@ Transform:
   m_Father: {fileID: 4000011226073324}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &4878541346403530629
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013578444236}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.14974698, y: 1.9009042}
+  m_Size: {x: 3.4917867, y: 7.97693}
+  m_Direction: 0
 --- !u!1 &1000013617770644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1802,7 +1896,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000011226073324}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_pelvis_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1837,7 +1931,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000012859616082}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_elbow_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1871,7 +1965,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013795274064}
   - component: {fileID: 212000013658186568}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_shoulder_r_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1945,3 +2039,113 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &4552236763686339165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5009460568472662097}
+  - component: {fileID: 4901665230595517994}
+  - component: {fileID: 6891476318394398415}
+  m_Layer: 10
+  m_Name: KnifeRightCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5009460568472662097
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4552236763686339165}
+  m_LocalRotation: {x: -0, y: -0, z: 0.14254251, w: 0.9897887}
+  m_LocalPosition: {x: 0, y: -4.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4000010265782240}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 16.39}
+--- !u!70 &4901665230595517994
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4552236763686339165}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.1150563, y: 0.7135075}
+  m_Size: {x: 1.4764038, y: 0.28867948}
+  m_Direction: 1
+--- !u!114 &6891476318394398415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4552236763686339165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36475e85fe5906f42802ade164a8360a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+--- !u!1 &5986075123570058828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3727025877011830028}
+  - component: {fileID: 5939101202409683572}
+  m_Layer: 10
+  m_Name: KnifeLeftCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3727025877011830028
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5986075123570058828}
+  m_LocalRotation: {x: 0, y: 0, z: -0.59412104, w: 0.8043757}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4000013221526974}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -72.9}
+--- !u!70 &5939101202409683572
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5986075123570058828}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 3.8968863, y: -1.0040241}
+  m_Size: {x: 0.28309223, y: 2.8280318}
+  m_Direction: 0

@@ -11,12 +11,15 @@ public class InitEvents : MonoBehaviour
     private EnemyDragorWarrior _enemyDragon;
     [SerializeField]
     private EnemyKnight _enemyKnight;
+    [SerializeField]
+    private EnemyRogue _enemyRogue;
 
     private void Awake() {
         InitEnemyOfMeleeEvents();
         InitEnemyOfRangeEvents();
         InitEnemyDragonWarrior();
         InitEnemyKnight();
+        InitEnemyRogue();
     }
 
     private void InitEnemyOfMeleeEvents() {
@@ -34,7 +37,7 @@ public class InitEvents : MonoBehaviour
 
     private void InitEnemyDragonWarrior() {
         if(_enemyDragon == null) {
-            Debug.LogError($"Object {_enemyDragon.name} is null");
+            Debug.LogError("Object EnemyDragon.name is null");
         }
         _enemyDragon.AddEnableFireBallEventForAttackAnimation();
         _enemyDragon.AddEnableStrikeColliderForStrikeAnimation();
@@ -43,11 +46,19 @@ public class InitEvents : MonoBehaviour
 
     private void InitEnemyKnight() {
         if (_enemyKnight == null) {
-            Debug.LogError($"Object {_enemyKnight.name} is null");
+            Debug.LogError("Object EnemyKnight is null");
         }
         _enemyKnight.AddEnableAttackColliderForAttackAnimation();
         _enemyKnight.AddDisableAttackCoolliderEventForAttackAnimation();
         _enemyKnight.AddEnableFireBallEventForCastAnimation();
         _enemyKnight.AddEnableStrikeColliderForStrikeAnimation();
+    }
+
+    private void InitEnemyRogue() {
+        if (_enemyRogue == null) {
+            Debug.LogError("Object EnemyRogue is null");
+        }
+        _enemyRogue.AddEnableAttackLeftHandUpColliderForAttackLeftHandUpAnimation();
+        _enemyRogue.AddEnableAttackRightHandUpColliderForAttackLeftHandUpAnimation();
     }
 }
