@@ -8,10 +8,26 @@ public class PickUp : MonoBehaviour {
 
     private void Awake() {
         _inventory = FindObjectOfType<Inventory>();
+        CellContent.DropItem += SpawnItem;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if(collision.TryGetComponent(out Item item)) {
+    private void OnDestroy() {
+        CellContent.DropItem -= SpawnItem;
+    }
+
+    //private void OnTriggerEnter2D(Collider2D collision) {
+    //    if(collision.TryGetComponent(out Item item)) {
+    //        if (IsAlredyPickUpThisItem(item)) {
+    //            return;
+    //        }
+
+    //        RegisterPickUpItem(item);
+    //        PickUpItem(item);
+    //    }
+    //}
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.transform.TryGetComponent(out Item item)) {
             if (IsAlredyPickUpThisItem(item)) {
                 return;
             }
@@ -40,7 +56,22 @@ public class PickUp : MonoBehaviour {
         _items.Add(item);
     }
 
+    private void UnregisterPickUpItem(Item item) {
+        _items.Remove(item);
+    }
+
     private void PickUpItem(Item item) {
         _inventory.PutItemInEmptyCell(item);
+    }
+
+    private void SpawnItem(Item registeredItem) {
+        foreach (var item in _items) {
+            if(registeredItem == item) {
+                UnregisterPickUpItem(item);
+                item.transform.position = new Vector3(transform.position.x - (transform.localScale.x * 5f), transform.position.y + 4, item.transform.position.z);
+                item.gameObject.SetActive(true);
+                return;
+            }
+        }
     }
 }

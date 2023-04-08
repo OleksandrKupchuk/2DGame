@@ -61,6 +61,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _icon: {fileID: 2536988503500678438}
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 32
 --- !u!225 &2750271169130666021
 CanvasGroup:
   m_ObjectHideFlags: 0
