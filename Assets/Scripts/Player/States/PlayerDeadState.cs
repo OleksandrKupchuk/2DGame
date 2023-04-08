@@ -10,10 +10,10 @@ public class PlayerDeadState : IState<Player> {
         _player.Animator.Play(AnimationName.Dead);
     }
 
-    public void ExecuteUpdate() {
+    public void Update() {
     }
 
-    public void ExecuteFixedUpdate() {
+    public void FixedUpdate() {
     }
 
     public void Exit() {

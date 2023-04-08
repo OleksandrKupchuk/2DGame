@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class StateMachine<T> {
     public IState<T> CurrentState { get; private set; }
     public T owner;
@@ -14,14 +10,14 @@ public class StateMachine<T> {
     public void Update() {
         if(CurrentState != null) {
             //Debug.Log("update state machine");
-            CurrentState.ExecuteUpdate();
+            CurrentState.Update();
         }
     }
 
     public void FixedUpdate() {
         if (CurrentState != null) {
             //Debug.Log("update state machine");
-            CurrentState.ExecuteFixedUpdate();
+            CurrentState.FixedUpdate();
         }
     }
 

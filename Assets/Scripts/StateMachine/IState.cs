@@ -1,7 +1,7 @@
 public interface IState<T>
 {
     public void Enter(T owner);
-    public void ExecuteUpdate();
-    public void ExecuteFixedUpdate();
+    public void Update();
+    public void FixedUpdate();
     public void Exit();
 }

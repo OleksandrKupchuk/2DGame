@@ -1,25 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseCharacteristic : MonoBehaviour
-{
+public class BaseCharacteristics : MonoBehaviour {
     [SerializeField]
     protected float _health;
+    [SerializeField]
+    protected Config _config;
 
-    [SerializeField]
-    protected float _maxHealth;
-    [SerializeField]
-    protected float _speed;
-    [SerializeField]
-    protected float _jumpVelocity;
-
-    public Rigidbody2D Rigidbody { get; private set; }
-    public Animator Animator { get; private set; }
+    public Rigidbody2D Rigidbody { get; protected set; }
+    public Animator Animator { get; protected set; }
 
     protected void Awake() {
         Rigidbody = gameObject.GetComponent<Rigidbody2D>();
         Animator = gameObject.GetComponent<Animator>();
+        _health = _config.health;
     }
 
     public void ResetRigidbodyVelocity() {
@@ -32,5 +25,17 @@ public class BaseCharacteristic : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void Move(float inputDirection) {
+        Rigidbody.velocity = new Vector2(inputDirection * _config.speed, Rigidbody.velocity.y);
+    }
+
+    public void Move(float inputDirection, float speed) {
+        Rigidbody.velocity = new Vector2(inputDirection * speed, Rigidbody.velocity.y);
+    }
+
+    public void MoveEaseInQuint(float inputDirection, float speed, float time) {
+        Rigidbody.velocity = new Vector2(inputDirection * speed * time * time, Rigidbody.velocity.y);
     }
 }

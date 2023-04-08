@@ -1,11 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : BaseCharacteristic {
-    private Vector2 _movementInput;
+public class Player : BaseCharacteristics {
     private List<Damage> _objectsAttack = new List<Damage>();
     private RaycastHit2D _raycastHit;
     private float _deafaultGravityScale;
@@ -24,6 +22,8 @@ public class Player : BaseCharacteristic {
     private float _distanceRaycastHit;
     [SerializeField]
     private LayerMask _groundLayer;
+    [SerializeField]
+    private List<Collider2D> _collidersForIgnored = new List<Collider2D>();
 
     public bool isHit = false;
 
@@ -41,13 +41,16 @@ public class Player : BaseCharacteristic {
     public bool CanJump {
         get {
             if (JumpInputAction.action.triggered && IsGround()) {
-                print("can jump");
+                //print("can jump");
                 return true;
             }
 
             return false;
         }
     }
+    public Vector2 MovementInput { get; private set; }
+    public List<Collider2D> CollidersForIgnored { get => _collidersForIgnored; }
+    public PlayerConfig Config { get => (PlayerConfig)_config; }
 
     public PlayerIdleState IdleState { get; private set; }
     public PlayerRunState RunState { get; private set; }
@@ -80,7 +83,6 @@ public class Player : BaseCharacteristic {
         HitState = new PlayerHitState();
         DeadState = new PlayerDeadState();
         StateMachine = new StateMachine<Player>(this);
-        _health = _maxHealth;
         _deafaultGravityScale = Rigidbody.gravityScale;
         CheckComponentOnNull();
     }
@@ -116,26 +118,22 @@ public class Player : BaseCharacteristic {
         StateMachine.FixedUpdate();
     }
 
-    public void Move() {
-        Rigidbody.velocity = new Vector2(_movementInput.x * _speed, Rigidbody.velocity.y);
-    }
-
     public Vector2 GetMovementInput() {
-        return _movementInput = _movementInputAction.action.ReadValue<Vector2>();
+        return MovementInput = _movementInputAction.action.ReadValue<Vector2>();
     }
 
     public void Flip() {
-        if (_movementInput.x > 0) {
+        if (MovementInput.x > 0) {
             gameObject.transform.localScale = new Vector3(-1, 1, 1);
         }
-        else if (_movementInput.x < 0) {
+        else if (MovementInput.x < 0) {
             gameObject.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 
     public void Jump() {
-        print("Add Force for Jump");
-        Rigidbody.velocity = Vector2.up * _jumpVelocity;
+        //print("Add Force for Jump");
+        Rigidbody.velocity = Vector2.up * Config.jumpVelocity;
     }
 
     public void CheckTakeDamage(float damage, Damage damageObject) {
@@ -143,7 +141,7 @@ public class Player : BaseCharacteristic {
             StartCoroutine(ResetCurrentDamage(damageObject));
         }
         else if (_invulnerableStatus.IsInvulnerability) {
-            print("player is invulnerable");
+            //print("player is invulnerable");
         }
         else {
             RegisterDamageObject(damageObject);
@@ -178,7 +176,7 @@ public class Player : BaseCharacteristic {
 
     private void TakeDamage(float damage) {
         _health -= damage;
-        print("health = " + _health);
+        //print("health = " + _health);
         if (IsDead) {
             StateMachine.ChangeState(DeadState);
         }
