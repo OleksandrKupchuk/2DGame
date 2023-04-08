@@ -50,7 +50,7 @@ public class Inventory : MonoBehaviour {
     public void PutItemInEmptyCell(Item item) {
         foreach (Cell cell in _cells) {
             if (cell.IsEmptyCell) {
-                cell.SetContentIcon(item.Icon);
+                cell.CreateCellContentAndSetIcon(item.Icon);
                 item.gameObject.SetActive(false);
                 return;
             }

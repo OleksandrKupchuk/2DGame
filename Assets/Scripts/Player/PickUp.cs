@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PickUp : MonoBehaviour {
     [SerializeField]
     private Inventory _inventory;
+    private List<Item> _items = new List<Item>();
 
     private void Awake() {
         _inventory = FindObjectOfType<Inventory>();
@@ -10,8 +12,32 @@ public class PickUp : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.TryGetComponent(out Item item)) {
+            if (IsAlredyPickUpThisItem(item)) {
+                return;
+            }
+
+            RegisterPickUpItem(item);
             PickUpItem(item);
         }
+    }
+
+    private bool IsAlredyPickUpThisItem(Item item) {
+        if (_items.Count == 0) {
+            return false;
+        }
+
+        foreach (var _item in _items) {
+            if (_item == item) {
+                print("item was pick up");
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void RegisterPickUpItem(Item item) {
+        _items.Add(item);
     }
 
     private void PickUpItem(Item item) {
