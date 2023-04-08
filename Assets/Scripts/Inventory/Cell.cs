@@ -9,11 +9,12 @@ public class Cell : MonoBehaviour {
 
     public bool IsEmptyCell { get => _cellContentParent.transform.childCount == 0; }
 
-    public void CreateCellContentAndSetIcon(Sprite icon) {
+    public void CreateCellContentAndSetIcon(Sprite icon, Transform dragParent) {
         CellContent _cellContentObject = Instantiate(_cellContentPrefab);
         _cellContentObject.transform.SetParent(_cellContentParent);
         _cellContentObject.transform.localScale = new Vector3(1f, 1f, 1f);
         _cellContentObject.transform.position = _cellContentParent.transform.position;
         _cellContentObject.SetIcon(icon);
+        _cellContentObject.SetDragParent(dragParent);
     }
 }
