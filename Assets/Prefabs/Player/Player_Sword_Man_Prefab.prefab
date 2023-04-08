@@ -51,7 +51,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 0
-  _jumpVelocity: 16
   _config: {fileID: 11400000, guid: a54ace36f66f2cb4dbac2f323babad9b, type: 2}
   _movementInputAction: {fileID: 9055752030835066355, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
   _shotInputAction: {fileID: 8132335576314495632, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
