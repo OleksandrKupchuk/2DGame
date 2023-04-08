@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Cell : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class Cell : MonoBehaviour {
+    [SerializeField]
+    private Image _content;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public bool IsEmptyCell { get => _content.sprite == null; }
+
+    public void SetContentIcon(Sprite icon) {
+        _content.sprite = icon;
     }
 }
