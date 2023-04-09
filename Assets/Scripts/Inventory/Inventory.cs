@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour {
+    private Cursor _cursor;
     [SerializeField]
     private Cell _cellPrefab;
     [SerializeField]
@@ -10,6 +11,8 @@ public class Inventory : MonoBehaviour {
     private Transform _bag;
     [SerializeField]
     private GameObject _inventoryBackground;
+    [SerializeField]
+    private Transform _canvas;
 
     private List<Cell> _cells = new List<Cell>();
 
@@ -28,8 +31,9 @@ public class Inventory : MonoBehaviour {
         }
     }
 
-    private void Start() {
+    private void OnEnable() {
         GameManager.OpenCloseInventory += EnableDisableInventory;
+        _cursor = FindObjectOfType<Cursor>();
         GenerateCellsOfPlayerBag();
     }
 
@@ -43,14 +47,16 @@ public class Inventory : MonoBehaviour {
     }
 
     public void EnableDisableInventory() {
-        print("active");
+        //print("active");
         _inventoryBackground.SetActive(!_inventoryBackground.activeSelf);
     }
 
     public void PutItemInEmptyCell(Item item) {
         foreach (Cell cell in _cells) {
             if (cell.IsEmptyCell) {
-                cell.CreateCellContentAndSetIcon(item, _inventoryBackground.transform);
+                cell.SetItem(item);
+                cell.SetAndEnableIcon(item.Icon);
+                cell.EnableIcon();
                 item.gameObject.SetActive(false);
                 return;
             }

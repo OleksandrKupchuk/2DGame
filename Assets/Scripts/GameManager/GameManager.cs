@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
 
     private void CheckOpenCloseInventory() {
         if (_openCloseInventoryInputAction.action.triggered) {
-            print("click I");
+            //print("click I");
             OpenCloseInventory.Invoke();
         }
     }

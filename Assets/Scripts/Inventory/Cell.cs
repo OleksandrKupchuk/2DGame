@@ -1,27 +1,32 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class Cell : MonoBehaviour, IDropHandler {
+public class Cell : MonoBehaviour {
     [SerializeField]
-    private CellContent _cellContentPrefab;
+    private Image _icon;
 
-    public bool IsEmptyCell { get => transform.GetChild(0).childCount == 0; }
+    public bool IsEmptyCell { get => Item == null; }
+    public Item Item { get; private set; }
 
-    public void CreateCellContentAndSetIcon(Item item, Transform dragParent) {
-        CellContent _cellContentObject = Instantiate(_cellContentPrefab);
-        _cellContentObject.transform.SetParent(transform);
-        _cellContentObject.transform.localScale = new Vector3(1f, 1f, 1f);
-        _cellContentObject.transform.position = transform.position;
-        _cellContentObject.SetIcon(item.Icon);
-        _cellContentObject.SetRegisteredItem(item);
-        _cellContentObject.SetDragParent(dragParent);
+    private void Awake() {
+        DisableIcon();
     }
 
-    public void OnDrop(PointerEventData eventData) {
-        Debug.Log("OnDrop");
-        if(eventData.pointerDrag != null) {
-            eventData.pointerDrag.transform.position = transform.position;
-            eventData.pointerDrag.transform.SetParent(transform);
-        }
+    public void SetItem(Item item) {
+        Item = item;
+    }
+
+    public void SetAndEnableIcon(Sprite icon) {
+        _icon.sprite = icon;
+        EnableIcon();
+    }
+
+    public void DisableIcon() {
+        _icon.gameObject.SetActive(false);
+    }
+
+    public void EnableIcon() {
+        _icon.gameObject.SetActive(true);
     }
 }

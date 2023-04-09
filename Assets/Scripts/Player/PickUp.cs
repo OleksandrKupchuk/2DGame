@@ -8,23 +8,7 @@ public class PickUp : MonoBehaviour {
 
     private void Awake() {
         _inventory = FindObjectOfType<Inventory>();
-        CellContent.DropItem += SpawnItem;
     }
-
-    private void OnDestroy() {
-        CellContent.DropItem -= SpawnItem;
-    }
-
-    //private void OnTriggerEnter2D(Collider2D collision) {
-    //    if(collision.TryGetComponent(out Item item)) {
-    //        if (IsAlredyPickUpThisItem(item)) {
-    //            return;
-    //        }
-
-    //        RegisterPickUpItem(item);
-    //        PickUpItem(item);
-    //    }
-    //}
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.transform.TryGetComponent(out Item item)) {
@@ -44,7 +28,7 @@ public class PickUp : MonoBehaviour {
 
         foreach (var _item in _items) {
             if (_item == item) {
-                print("item was pick up");
+                //print("item was pick up");
                 return true;
             }
         }
