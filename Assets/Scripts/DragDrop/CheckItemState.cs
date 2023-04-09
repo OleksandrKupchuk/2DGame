@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CheckItem : IDragDrop {
+public class CheckItemState : IDragDropState {
     private Cursor _cursor;
 
     public void Enter(Cursor cursor) {
@@ -34,7 +32,7 @@ public class CheckItem : IDragDrop {
 
             _cell.DisableIcon();
             _cell.SetItem(null);
-            _cursor.ChangeState(new RaisedItem());
+            _cursor.ChangeState(new RaisedItemState());
         }
     }
 }

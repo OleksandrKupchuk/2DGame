@@ -13,10 +13,12 @@ public class Cursor : MonoBehaviour {
     private Canvas _canvas;
 
     public Item Item { get; private set; }
-    public IDragDrop CurrentState { get; private set; }
+    public IDragDropState CurrentState { get; private set; }
     public RaycastHit2D RaycastHit2D { get; private set; }
     public LayerMask LayerMask { get; }
-    public void ChangeState(IDragDrop newState) {
+    public Player Player { get; private set; }
+
+    public void ChangeState(IDragDropState newState) {
         if (CurrentState != null) {
             CurrentState.Exit();
         }
@@ -30,7 +32,8 @@ public class Cursor : MonoBehaviour {
     }
 
     private void Start() {
-        ChangeState(new CheckItem());
+        Player = FindObjectOfType<Player>();
+        ChangeState(new CheckItemState());
     }
 
     private void Update() {
@@ -64,6 +67,6 @@ public class Cursor : MonoBehaviour {
     public void FollowTheMouse() {
         Vector2 _mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         transform.position = new Vector3(_mousePosition.x, _mousePosition.y, 0);
-        RaycastHit2D = Physics2D.Raycast(_mousePosition, Vector3.forward, 100);
+        RaycastHit2D = Physics2D.Raycast(_mousePosition, Vector3.forward, 100f, _layerMask);
     }
 }

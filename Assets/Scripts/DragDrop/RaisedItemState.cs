@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class RaisedItem : IDragDrop {
+public class RaisedItemState : IDragDropState {
     private Cursor _cursor;
 
     public void Enter(Cursor cursor) {
@@ -19,6 +17,7 @@ public class RaisedItem : IDragDrop {
         if (Mouse.current.leftButton.wasPressedThisFrame) {
 
             if (_cursor.RaycastHit2D.transform == null) {
+                _cursor.ChangeState(new DropItemState());
                 return;
             }
 
@@ -40,7 +39,7 @@ public class RaisedItem : IDragDrop {
 
             _cursor.DisableIcon();
             _cursor.SetItem(null);
-            _cursor.ChangeState(new CheckItem());
+            _cursor.ChangeState(new CheckItemState());
         }
     }
 }
