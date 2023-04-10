@@ -2,44 +2,45 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class RaisedItemState : IDragDropState {
-    private Cursor _cursor;
+    private DragDropController _controller;
 
-    public void Enter(Cursor cursor) {
-        _cursor = cursor;
+    public void Enter(DragDropController controller) {
+        _controller = controller;
     }
 
     public void Exit() {
     }
 
     public void Update() {
-        _cursor.FollowTheMouse();
+        _controller.Cursor.FollowTheMouse();
 
         if (Mouse.current.leftButton.wasPressedThisFrame) {
 
-            if (_cursor.RaycastHit2D.transform == null) {
-                _cursor.ChangeState(new DropItemState());
+            if (_controller.Cursor.RaycastHit2D.transform == null) {
+                _controller.ChangeState(_controller.DropItemState);
                 return;
             }
 
-            Debug.Log("name obj = " + _cursor.RaycastHit2D.transform);
-            Cell _cell = _cursor.RaycastHit2D.transform.GetComponent<Cell>();
+            Debug.Log("name obj = " + _controller.Cursor.RaycastHit2D.transform);
+             _controller.cell = _controller.Cursor.RaycastHit2D.transform.GetComponent<Cell>();
 
-            if (_cell == null) {
+            if (_controller.cell == null) {
                 Debug.Log("cell is null");
                 return;
             }
 
-            if (!_cell.IsEmptyCell) {
+            if (!_controller.cell.IsEmptyCell) {
                 Debug.Log("cell not empty");
+                _controller.ChangeState(_controller.SwapItemState);
                 return;
             }
 
-            _cell.SetItem(_cursor.Item);
-            _cell.SetAndEnableIcon(_cursor.Item.Icon);
+            _controller.cell.SetItem(_controller.Cursor.Item);
+            _controller.cell.SetAndEnableIcon(_controller.Cursor.Item.Icon);
 
-            _cursor.DisableIcon();
-            _cursor.SetItem(null);
-            _cursor.ChangeState(new CheckItemState());
+            _controller.Cursor.DisableIcon();
+            _controller.Cursor.SetItem(null);
+            _controller.ChangeState(_controller.CheckItemState);
         }
     }
 }

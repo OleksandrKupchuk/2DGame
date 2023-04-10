@@ -2,16 +2,16 @@ using System;
 using UnityEngine;
 
 public class DropItemState : IDragDropState {
-    private Cursor _cursor;
+    private DragDropController _controller;
     public static event Action<Item> DropItem;
 
-    public void Enter(Cursor cursor) {
-        _cursor = cursor;
-        DropItem(_cursor.Item);
+    public void Enter(DragDropController controller) {
+        _controller = controller;
+        DropItem(_controller.Cursor.Item);
         SpawnItem();
-        _cursor.DisableIcon();
-        _cursor.SetItem(null);
-        _cursor.ChangeState(new CheckItemState());
+        _controller.Cursor.DisableIcon();
+        _controller.Cursor.SetItem(null);
+        _controller.ChangeState(_controller.CheckItemState);
     }
 
     public void Update() {
@@ -21,7 +21,7 @@ public class DropItemState : IDragDropState {
     }
 
     private void SpawnItem() {
-        _cursor.Item.transform.position = new Vector3(_cursor.Player.transform.position.x - (5 * _cursor.Player.transform.localScale.x), _cursor.Player.transform.position.y + 2);
-        _cursor.Item.gameObject.SetActive(true);
+        _controller.Cursor.Item.transform.position = new Vector3(_controller.Player.transform.position.x - (5 * _controller.Player.transform.localScale.x), _controller.Player.transform.position.y + 2);
+        _controller.Cursor.Item.gameObject.SetActive(true);
     }
 }
