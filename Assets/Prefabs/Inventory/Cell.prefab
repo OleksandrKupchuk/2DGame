@@ -131,6 +131,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _icon: {fileID: 8316748425723140591}
+  _border: {fileID: 6005483516765098619}
+  _boxCollider2D: {fileID: 5466367393776372007}
 --- !u!222 &5679871036819035745
 CanvasRenderer:
   m_ObjectHideFlags: 0

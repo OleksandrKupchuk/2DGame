@@ -1,13 +1,16 @@
 using UnityEngine;
 
 public class BaseCharacteristics : MonoBehaviour {
-    [SerializeField]
+    protected float _blockedDamagePerOneArmor = 0.2f;
     protected float _health;
+
     [SerializeField]
     protected Config _config;
 
     public Rigidbody2D Rigidbody { get; protected set; }
     public Animator Animator { get; protected set; }
+
+    public float GetBlockedDamage { get => _config.armor * _blockedDamagePerOneArmor; }
 
     protected void Awake() {
         Rigidbody = gameObject.GetComponent<Rigidbody2D>();

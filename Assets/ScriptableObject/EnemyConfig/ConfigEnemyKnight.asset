@@ -15,6 +15,9 @@ MonoBehaviour:
   health: 10
   speed: 7
   jumpVelocity: 0
+  armor: 4
+  damageMin: 0
+  damageMax: 0
   timerMinIdle: 2
   timerMaxIdle: 3
   timerMinRun: 4

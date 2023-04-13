@@ -1,12 +1,16 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Cell : MonoBehaviour {
     [SerializeField]
     private Image _icon;
+    [SerializeField]
+    private Image _border;
+    [SerializeField]
+    private BoxCollider2D _boxCollider2D;
 
-    public bool IsEmptyCell { get => Item == null; }
+    public bool IsAvailableForInteraction { get; private set; } = false;
+    public bool HasItem { get => Item != null; }
     public Item Item { get; private set; }
 
     private void Awake() {
@@ -28,5 +32,29 @@ public class Cell : MonoBehaviour {
 
     public void EnableIcon() {
         _icon.gameObject.SetActive(true);
+    }
+
+    public void SetGreenBorder() {
+        _border.color = Color.green;
+    }
+
+    public void SetWhiteBorder() {
+        _border.color = Color.white;
+    }
+
+    public void SetRedBorder() {
+        _border.color = Color.red;
+    }
+
+    public void EnableBoxCollider() {
+        _boxCollider2D.enabled = true;
+    }
+
+    public void DisableBoxCollider() {
+        _boxCollider2D.enabled = false;
+    }
+
+    public void SetAvailableForInteraction(bool isAvailable) {
+        IsAvailableForInteraction = isAvailable;
     }
 }

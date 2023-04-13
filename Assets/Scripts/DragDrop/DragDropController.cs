@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class DragDropController : MonoBehaviour {
@@ -16,6 +17,17 @@ public class DragDropController : MonoBehaviour {
     public IDragDropState CurrentState { get; private set; }
     public Cursor Cursor { get => _cursor; }
     public Player Player { get; private set; }
+
+    public static event Action<Item> RaisedItemTrigger;
+    public static event Action DropPutItemTrigger;
+
+    public void RaiseItem(Item item) {
+        RaisedItemTrigger?.Invoke(item);
+    }
+
+    public void DropPutItem() {
+        DropPutItemTrigger?.Invoke();
+    }
 
     public void ChangeState(IDragDropState newState) {
         if (CurrentState != null) {

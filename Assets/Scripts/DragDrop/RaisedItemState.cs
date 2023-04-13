@@ -6,9 +6,11 @@ public class RaisedItemState : IDragDropState {
 
     public void Enter(DragDropController controller) {
         _controller = controller;
+        _controller.RaiseItem(_controller.Cursor.Item);
     }
 
     public void Exit() {
+        _controller.DropPutItem();
     }
 
     public void Update() {
@@ -29,13 +31,19 @@ public class RaisedItemState : IDragDropState {
                 return;
             }
 
-            if (!_controller.cell.IsEmptyCell) {
+            if (!_controller.cell.IsAvailableForInteraction) {
+                Debug.Log("cell not avaible for iteraction");
+                return;
+            }
+
+            if (_controller.cell.HasItem) {
                 Debug.Log("cell not empty");
                 _controller.ChangeState(_controller.SwapItemState);
                 return;
             }
 
             _controller.cell.SetItem(_controller.Cursor.Item);
+            _controller.cell.SetAvailableForInteraction(true);
             _controller.cell.SetAndEnableIcon(_controller.Cursor.Item.Icon);
 
             _controller.Cursor.DisableIcon();

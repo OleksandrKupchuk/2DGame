@@ -70,7 +70,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36475e85fe5906f42802ade164a8360a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  minDamage: 2
+  maxDamage: 3
 --- !u!1 &5427487527745984845
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36475e85fe5906f42802ade164a8360a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 4
+  minDamage: 2
+  maxDamage: 4
 --- !u!1 &9032465796065382889
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +333,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 0
-  _jumpVelocity: 0
   _config: {fileID: 11400000, guid: 2cda35b590c08354aab25deada9c4c72, type: 2}
   delayAttack: 0
   delayStrikeAttack: 0

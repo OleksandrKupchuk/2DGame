@@ -22,8 +22,12 @@ public class CheckItemState : IDragDropState {
         if (Mouse.current.leftButton.wasPressedThisFrame) {
             Debug.Log("name obj = " + _controller.Cursor.RaycastHit2D.transform);
             Cell _cell = _controller.Cursor.RaycastHit2D.transform.GetComponent<Cell>();
-            if (_cell == null || _cell.IsEmptyCell) {
-                Debug.Log("cell is null or empty");
+            if (_cell == null) {
+                Debug.Log("cell component is null");
+                return;
+            }
+            if (!_cell.HasItem) {
+                Debug.Log("cell not have item");
                 return;
             }
 

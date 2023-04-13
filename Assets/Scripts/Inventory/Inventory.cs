@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour {
-    private Cursor _cursor;
     [SerializeField]
     private Cell _cellPrefab;
     [SerializeField]
@@ -12,9 +12,26 @@ public class Inventory : MonoBehaviour {
     [SerializeField]
     private GameObject _inventoryBackground;
     [SerializeField]
-    private Transform _canvas;
+    private PlayerStats _playerStats;
+    [SerializeField]
+    private PlayerConfig _playerConfig;
+    [SerializeField]
+    private Button _closeButton;
 
     private List<Cell> _cells = new List<Cell>();
+
+    private void OnEnable() {
+        GameManager.OpenCloseInventory += EnableDisableInventory;
+        GenerateCellsOfPlayerBag();
+        _playerStats.SetHealth(_playerConfig.health);
+        _playerStats.SetArmor(_playerConfig.armor);
+        _playerStats.SetSpeed(_playerConfig.speed);
+        _playerStats.SetDamage(_playerConfig.damageMin, _playerConfig.damageMax);
+    }
+
+    private void OnDestroy() {
+        GameManager.OpenCloseInventory -= EnableDisableInventory;
+    }
 
     private void Awake() {
         if(_cellPrefab == null) {
@@ -29,12 +46,18 @@ public class Inventory : MonoBehaviour {
             Debug.LogError("object is null");
             return;
         }
+        if(_closeButton == null) {
+            Debug.LogError("object is null");
+            return;
+        }
+
+        AddListenerForCloseButton();
     }
 
-    private void OnEnable() {
-        GameManager.OpenCloseInventory += EnableDisableInventory;
-        _cursor = FindObjectOfType<Cursor>();
-        GenerateCellsOfPlayerBag();
+    private void AddListenerForCloseButton() {
+        _closeButton.onClick.AddListener(() => {
+            _inventoryBackground.SetActive(false);
+        });
     }
 
     private void GenerateCellsOfPlayerBag() {
@@ -53,7 +76,8 @@ public class Inventory : MonoBehaviour {
 
     public void PutItemInEmptyCell(Item item) {
         foreach (Cell cell in _cells) {
-            if (cell.IsEmptyCell) {
+            if (!cell.HasItem) {
+                cell.SetAvailableForInteraction(true);
                 cell.SetItem(item);
                 cell.SetAndEnableIcon(item.Icon);
                 cell.EnableIcon();
@@ -61,9 +85,5 @@ public class Inventory : MonoBehaviour {
                 return;
             }
         }
-    }
-
-    private void OnDestroy() {
-        GameManager.OpenCloseInventory -= EnableDisableInventory;
     }
 }

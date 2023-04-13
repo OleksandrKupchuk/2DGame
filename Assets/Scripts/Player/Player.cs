@@ -25,6 +25,7 @@ public class Player : BaseCharacteristics {
     [SerializeField]
     private List<Collider2D> _collidersForIgnored = new List<Collider2D>();
 
+    [HideInInspector]
     public bool isHit = false;
 
     public bool IsLookingLeft { get => transform.localScale.x > 0; }
@@ -51,7 +52,6 @@ public class Player : BaseCharacteristics {
     public Vector2 MovementInput { get; private set; }
     public List<Collider2D> CollidersForIgnored { get => _collidersForIgnored; }
     public PlayerConfig Config { get => (PlayerConfig)_config; }
-
     public PlayerIdleState IdleState { get; private set; }
     public PlayerRunState RunState { get; private set; }
     public PlayerAttackState AttackState { get; private set; }
@@ -64,14 +64,6 @@ public class Player : BaseCharacteristics {
     public InputActionReference ShotInputAction { get => _shotInputAction; }
     public InputActionReference JumpInputAction { get => _jumpInputAction; }
     public InvulnerabilityAnimation InvulnerableStatus { get => _invulnerableStatus; }
-
-    private void OnEnable() {
-
-    }
-
-    private void OnDisable() {
-
-    }
 
     private new void Awake() {
         base.Awake();
@@ -147,7 +139,6 @@ public class Player : BaseCharacteristics {
             RegisterDamageObject(damageObject);
             TakeDamage(damage);
         }
-
     }
 
     private bool IsThisAlreadyAttacked(Damage damageObject) {
@@ -175,6 +166,11 @@ public class Player : BaseCharacteristics {
     }
 
     private void TakeDamage(float damage) {
+        float _clearDamage = damage - GetBlockedDamage;
+        if(_clearDamage <= 0) {
+            return;
+        }
+
         _health -= damage;
         //print("health = " + _health);
         if (IsDead) {
