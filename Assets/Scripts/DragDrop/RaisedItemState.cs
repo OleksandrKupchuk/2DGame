@@ -15,6 +15,7 @@ public class RaisedItemState : IDragDropState {
 
     public void Update() {
         _controller.Cursor.FollowTheMouse();
+        _controller.Cursor.StartRaycast();
 
         if (Mouse.current.leftButton.wasPressedThisFrame) {
 
@@ -42,13 +43,7 @@ public class RaisedItemState : IDragDropState {
                 return;
             }
 
-            _controller.cell.SetItem(_controller.Cursor.Item);
-            _controller.cell.SetAvailableForInteraction(true);
-            _controller.cell.SetAndEnableIcon(_controller.Cursor.Item.Icon);
-
-            _controller.Cursor.DisableIcon();
-            _controller.Cursor.SetItem(null);
-            _controller.ChangeState(_controller.CheckItemState);
+            _controller.ChangeState(_controller.PutItemState);
         }
     }
 }

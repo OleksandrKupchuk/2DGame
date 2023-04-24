@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour {
+    private Player _player;
     [SerializeField]
     private Cell _cellPrefab;
     [SerializeField]
@@ -11,8 +12,6 @@ public class Inventory : MonoBehaviour {
     private Transform _bag;
     [SerializeField]
     private GameObject _inventoryBackground;
-    [SerializeField]
-    private PlayerStats _playerStats;
     [SerializeField]
     private PlayerConfig _playerConfig;
     [SerializeField]
@@ -23,10 +22,6 @@ public class Inventory : MonoBehaviour {
     private void OnEnable() {
         GameManager.OpenCloseInventory += EnableDisableInventory;
         GenerateCellsOfPlayerBag();
-        _playerStats.SetHealth(_playerConfig.health);
-        _playerStats.SetArmor(_playerConfig.armor);
-        _playerStats.SetSpeed(_playerConfig.speed);
-        _playerStats.SetDamage(_playerConfig.damageMin, _playerConfig.damageMax);
     }
 
     private void OnDestroy() {

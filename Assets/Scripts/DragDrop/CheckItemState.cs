@@ -14,6 +14,7 @@ public class CheckItemState : IDragDropState {
 
     public void Update() {
         _controller.Cursor.FollowTheMouse();
+        _controller.Cursor.StartRaycast();
 
         if (_controller.Cursor.RaycastHit2D.transform == null) {
             return;
@@ -37,6 +38,11 @@ public class CheckItemState : IDragDropState {
             _cell.DisableIcon();
             _cell.SetItem(null);
             _controller.ChangeState(_controller.RaisedItemState);
+
+            PlayerSlot _playerSlot = _controller.Cursor.RaycastHit2D.transform.GetComponent<PlayerSlot>();
+            if(_playerSlot != null) {
+                EventManager.PutOrTakeAwayItemInPlayerSlot();
+            }
         }
     }
 }

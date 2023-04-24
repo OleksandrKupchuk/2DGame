@@ -1,14 +1,17 @@
 using UnityEngine;
 
-public class SlotOfPlayer : MonoBehaviour {
+public class PlayerSlot : MonoBehaviour {
     private Cell _cell;
     [SerializeField]
     private ItemType _itemType = new ItemType();
+
+    public Cell Cell { get => _cell; }
 
     private void Awake() {
         _cell = GetComponent<Cell>();
         DragDropController.RaisedItemTrigger += ChageColorBorderCell;
         DragDropController.DropPutItemTrigger += ResetColorBorderCell;
+        _cell.SetAvailableForInteraction(true);
     }
 
     private void OnDestroy() {

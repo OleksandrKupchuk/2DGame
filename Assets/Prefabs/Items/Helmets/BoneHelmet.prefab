@@ -101,13 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 1c728f7cc6548f24cadceb6478fa25cc, type: 3}
   <ItemType>k__BackingField: 0
-  <Characteristics>k__BackingField:
-  - indicator: 0
-    valueType: 1
-    value: 5
-  - indicator: 1
-    valueType: 1
-    value: 10
+  <Attributes>k__BackingField:
+  - {fileID: 11400000, guid: b650ca7798b88bf41b3319aa9cd36d4a, type: 2}
+  - {fileID: 11400000, guid: a78548c33399f1c4d8869eedfd77655c, type: 2}
 --- !u!61 &297317540149347952
 BoxCollider2D:
   m_ObjectHideFlags: 0

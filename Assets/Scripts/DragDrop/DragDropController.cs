@@ -11,6 +11,7 @@ public class DragDropController : MonoBehaviour {
 
     public CheckItemState CheckItemState { get; private set; }
     public RaisedItemState RaisedItemState { get; private set; }
+    public PutItemState PutItemState { get; private set; }
     public DropItemState DropItemState { get; private set; }
     public SwapItemState SwapItemState { get; private set; }
 
@@ -41,6 +42,7 @@ public class DragDropController : MonoBehaviour {
         _inventory = FindObjectOfType<Inventory>();
         CheckItemState = new CheckItemState();
         RaisedItemState = new RaisedItemState();
+        PutItemState = new PutItemState();
         DropItemState = new DropItemState();
         SwapItemState = new SwapItemState();
     }

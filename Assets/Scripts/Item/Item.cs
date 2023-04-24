@@ -17,15 +17,8 @@ public class Item : MonoBehaviour {
     [field: SerializeField]
     public ItemType ItemType { get; private set; } = new ItemType();
     [field: SerializeField]
-    public List<Characteristic> Characteristics { get; private set; } = new List<Characteristic>();
+    public List<Attribute> Attributes { get; private set; } = new List<Attribute>();
     public Sprite Icon { get => _icon; }
-}
-
-[System.Serializable]
-public class Characteristic {
-    public Indicator indicator = new Indicator();
-    public ValueType valueType = new ValueType();
-    public float value;
 }
 
 public enum ValueType {
@@ -33,7 +26,7 @@ public enum ValueType {
     Percent
 }
 
-public enum Indicator {
+public enum AttributeType {
     Armor,
     Damage,
     Health,
