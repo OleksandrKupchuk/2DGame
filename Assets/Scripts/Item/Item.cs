@@ -11,6 +11,7 @@ public enum ItemType {
     Boots
 }
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Item : MonoBehaviour {
     [SerializeField]
     private Sprite _icon;

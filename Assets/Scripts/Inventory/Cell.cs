@@ -9,7 +9,7 @@ public class Cell : MonoBehaviour {
     [SerializeField]
     private BoxCollider2D _boxCollider2D;
 
-    public bool IsAvailableForInteraction { get; private set; } = false;
+    public bool IsAvailableForInteraction { get; private set; } = true;
     public bool HasItem { get => Item != null; }
     public Item Item { get; private set; }
 

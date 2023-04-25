@@ -72,7 +72,6 @@ public class Inventory : MonoBehaviour {
     public void PutItemInEmptyCell(Item item) {
         foreach (Cell cell in _cells) {
             if (!cell.HasItem) {
-                cell.SetAvailableForInteraction(true);
                 cell.SetItem(item);
                 cell.SetAndEnableIcon(item.Icon);
                 cell.EnableIcon();

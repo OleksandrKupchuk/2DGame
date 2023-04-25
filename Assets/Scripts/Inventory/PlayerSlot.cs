@@ -11,7 +11,6 @@ public class PlayerSlot : MonoBehaviour {
         _cell = GetComponent<Cell>();
         DragDropController.RaisedItemTrigger += ChageColorBorderCell;
         DragDropController.DropPutItemTrigger += ResetColorBorderCell;
-        _cell.SetAvailableForInteraction(true);
     }
 
     private void OnDestroy() {

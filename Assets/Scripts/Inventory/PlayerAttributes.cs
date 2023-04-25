@@ -27,22 +27,22 @@ public class PlayerAttributes : MonoBehaviour {
     private List<PlayerSlot> _playerSlots = new List<PlayerSlot>();
 
     private void OnEnable() {
-        EventManager.PutOrTakeAwakeItem += CalculationAttributesForAllPlayerSlots;
+        EventManager.PutOrTakeAwakeItem += CalculationAttributesOfPlayer;
     }
 
     private void OnDestroy() {
-        EventManager.PutOrTakeAwakeItem -= CalculationAttributesForAllPlayerSlots;
+        EventManager.PutOrTakeAwakeItem -= CalculationAttributesOfPlayer;
     }
 
     private void Awake() {
         if(_playerSlots.Count == 0) {
             Debug.LogError("Player slots is 0");
         }
-        SetConfigAttributes();
-        UpdateTextAttributes();
+        SetValueAttributesTakenFromPlayerConfig();
+        UpdateTextOfAttributes();
     }
 
-    private void SetConfigAttributes() {
+    private void SetValueAttributesTakenFromPlayerConfig() {
         _baseHealth = _playerConfig.health;
         _baseArmor = _playerConfig.armor;
         _baseSpeed = _playerConfig.speed;
@@ -50,69 +50,77 @@ public class PlayerAttributes : MonoBehaviour {
         _baseDamageMax = _playerConfig.damageMax;
     }
 
-    private void UpdateTextAttributes() {
+    private void UpdateTextOfAttributes() {
         float _resultArmor = _baseArmor + _armorPercent;
-        _armorValueTextComponent.text = "" + _resultArmor;
+        _armorValueTextComponent.text = "" + (int)Mathf.Floor(_resultArmor);
 
         float _resultHealth = _baseHealth + _healthPercent;
-        _healthValueTextComponent.text = "" + _resultHealth;
+        _healthValueTextComponent.text = "" + (int)Mathf.Floor(_resultHealth);
 
         float _resultSpeed = _baseSpeed + _speedPercent;
-        _speedValueTextComponent.text = "" + _resultSpeed;
+        _speedValueTextComponent.text = "" + (int)Mathf.Floor(_resultSpeed);
 
-        _damageValueTextComponent.text = _baseDamageMin + "-" + _baseDamageMax;
+        int _resultDamageMin = (int)(_baseDamageMin + _damageMinPercent);
+        int _resultDamageMax = (int)(_baseDamageMax + _damageMaxPercent);
+        _damageValueTextComponent.text = _resultDamageMin + "-" + _resultDamageMax;
+        print("damage min = " + _resultDamageMin);
+        print("damage max = " + _resultDamageMax);
     }
 
-    private void CalculationAttributesForAllPlayerSlots() {
-        SetConfigAttributes();
+    private void CalculationAttributesOfPlayer() {
+        SetValueAttributesTakenFromPlayerConfig();
         ResetPercentValues();
 
         for (int i = 0; i < _playerSlots.Count; i++) {
             if(_playerSlots[i].Cell.Item == null) {
                 continue;
             }
-            CalculationIntegerAttributes(_playerSlots[i].Cell.Item);
+            CalculationIntegerAttributesForItem(_playerSlots[i].Cell.Item);
         }
 
         for (int i = 0; i < _playerSlots.Count; i++) {
             if (_playerSlots[i].Cell.Item == null) {
                 continue;
             }
-            CalculationPercentAttributes(_playerSlots[i].Cell.Item);
+            CalculationPercentAttributesForItem(_playerSlots[i].Cell.Item);
         }
 
-        UpdateTextAttributes();
+        UpdateTextOfAttributes();
     }
 
     private void ResetPercentValues() {
         _armorPercent = 0;
         _healthPercent = 0;
         _speedPercent = 0;
+        _damageMinPercent = 0;
+        _damageMaxPercent = 0;
     }
 
-    private void CalculationIntegerAttributes(Item item) {
+    private void CalculationIntegerAttributesForItem(Item item) {
         for (int i = 0; i < item.Attributes.Count; i++) {
-            if (item.Attributes[i].type == AttributeType.Damage) {
-
-            }
-            else if(item.Attributes[i].valueType == ValueType.Integer) {
-                CalculationAttributesInteger(item.Attributes[i]);
+            if(item.Attributes[i].valueType == ValueType.Integer) {
+                CalculationBaseIntegerAttributes(item.Attributes[i]);
             }
         }
     }
 
-    private void CalculationPercentAttributes(Item item) {
+    private void CalculationPercentAttributesForItem(Item item) {
         for (int i = 0; i < item.Attributes.Count; i++) {
             if (item.Attributes[i].valueType == ValueType.Percent) {
-                CalculationAttributesPercent(item.Attributes[i]);
+                CalculationPercentAttributes(item.Attributes[i]);
             }
         }
     }
 
-    private void CalculationAttributesInteger(Attribute attribute) {
+    private void CalculationBaseIntegerAttributes(Attribute attribute) {
         switch (attribute.type) {
             case AttributeType.Armor:
                 _baseArmor += attribute.value;
+                break;
+
+            case AttributeType.Damage:
+                _baseDamageMin += attribute.damageMin;
+                _baseDamageMax += attribute.damageMax;
                 break;
 
             case AttributeType.Health:
@@ -125,11 +133,18 @@ public class PlayerAttributes : MonoBehaviour {
         }
     }
 
-    private void CalculationAttributesPercent(Attribute attribute) {
+    private void CalculationPercentAttributes(Attribute attribute) {
         switch (attribute.type) {
             case AttributeType.Armor:
                 float resultArmorPercent = attribute.value * _baseArmor / 100;
                 _armorPercent += resultArmorPercent;
+                break;
+
+            case AttributeType.Damage:
+                float resultDamageMinPercent = attribute.value * _baseDamageMin / 100;
+                _damageMinPercent += resultDamageMinPercent;
+                float resultDamageMaxPercent = attribute.value * _baseDamageMax / 100;
+                _damageMaxPercent += resultDamageMaxPercent;
                 break;
 
             case AttributeType.Health:
