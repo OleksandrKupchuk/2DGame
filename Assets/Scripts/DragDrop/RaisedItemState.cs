@@ -21,9 +21,10 @@ public class RaisedItemState : IDragDropState {
 
             if (_controller.Cursor.RaycastHit2D.transform == null) {
                 _controller.ChangeState(_controller.DropItemState);
+                Debug.Log("object null");
                 return;
             }
-
+            
             Debug.Log("name obj = " + _controller.Cursor.RaycastHit2D.transform);
              _controller.cell = _controller.Cursor.RaycastHit2D.transform.GetComponent<Cell>();
 
