@@ -4,8 +4,6 @@ public class PutItemState : IDragDropState {
     public void Enter(DragDropController controller) {
         _controller = controller;
 
-        PlayerSlot _playerSlot = _controller.Cursor.RaycastHit2D.transform.GetComponent<PlayerSlot>();
-
         _controller.cell.SetItem(_controller.Cursor.Item);
         _controller.cell.SetAvailableForInteraction(true);
         _controller.cell.SetAndEnableIcon(_controller.Cursor.Item.Icon);
@@ -14,9 +12,7 @@ public class PutItemState : IDragDropState {
         _controller.Cursor.SetItem(null);
         _controller.ChangeState(_controller.CheckItemState);
 
-        if (_playerSlot != null) {
-            EventManager.PutOrTakeAwayItemInPlayerSlot();
-        }
+        _controller.Cursor.TryGetPlayerSlotComponentAndCallEvent();
     }
 
     public void Exit() {

@@ -10,10 +10,6 @@ public class GameManager : MonoBehaviour {
 
     public static event Action OpenCloseInventory;
 
-    //private void OnEnable() {
-    //    OpenCloseInventory += _inventory.EnableDisableInventory;
-    //}
-
     private void Update() {
         CheckOpenCloseInventory();
     }
@@ -24,8 +20,4 @@ public class GameManager : MonoBehaviour {
             OpenCloseInventory.Invoke();
         }
     }
-
-    //private void OnDestroy() {
-    //    OpenCloseInventory -= _inventory.EnableDisableInventory;
-    //}
 }

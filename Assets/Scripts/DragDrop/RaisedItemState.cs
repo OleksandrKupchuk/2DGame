@@ -15,9 +15,9 @@ public class RaisedItemState : IDragDropState {
 
     public void Update() {
         _controller.Cursor.FollowTheMouse();
-        _controller.Cursor.StartRaycast();
 
         if (Mouse.current.leftButton.wasPressedThisFrame) {
+            _controller.Cursor.StartRaycast();
 
             if (_controller.Cursor.RaycastHit2D.transform == null) {
                 _controller.ChangeState(_controller.DropItemState);
@@ -31,10 +31,6 @@ public class RaisedItemState : IDragDropState {
             else {
                 return;
             }
-            //if (_controller.cell == null) {
-            //    Debug.Log("cell is null");
-            //    return;
-            //}
 
             if (!_controller.cell.IsAvailableForInteraction) {
                 Debug.Log("cell not avaible for iteraction");

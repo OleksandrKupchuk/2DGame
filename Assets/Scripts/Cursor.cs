@@ -50,4 +50,11 @@ public class Cursor : MonoBehaviour {
             Debug.Log("name transform = " + RaycastHit2D.transform.name);
         }
     }
+
+    public void TryGetPlayerSlotComponentAndCallEvent() {
+        PlayerSlot _playerSlot = RaycastHit2D.transform.GetComponent<PlayerSlot>();
+        if (_playerSlot != null) {
+            EventManager.PutOrTakeAwayItemInPlayerSlot();
+        }
+    }
 }

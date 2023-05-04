@@ -14,10 +14,7 @@ public class SwapItemState : IDragDropState {
 
         _controller.ChangeState(_controller.RaisedItemState);
 
-        PlayerSlot _playerSlot = _controller.Cursor.RaycastHit2D.transform.GetComponent<PlayerSlot>();
-        if (_playerSlot != null) {
-            EventManager.PutOrTakeAwayItemInPlayerSlot();
-        }
+        _controller.Cursor.TryGetPlayerSlotComponentAndCallEvent();
     }
 
     public void Exit() {
