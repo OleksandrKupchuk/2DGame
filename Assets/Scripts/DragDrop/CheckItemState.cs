@@ -6,7 +6,7 @@ public class CheckItemState : IDragDropState {
 
     public void Enter(DragDropController controller) {
         _controller = controller;
-        Debug.Log("check item");
+        //Debug.Log("check item");
     }
 
     public void Exit() {
@@ -16,12 +16,10 @@ public class CheckItemState : IDragDropState {
         _controller.Cursor.FollowTheMouse();
         _controller.Cursor.StartRaycast();
 
-        if (_controller.Cursor.RaycastHit2D.transform == null) {
-            return;
-        }
-
         if (Mouse.current.leftButton.wasPressedThisFrame) {
-            Debug.Log("name obj = " + _controller.Cursor.RaycastHit2D.transform);
+            if(_controller.Cursor.RaycastHit2D.transform == null) {
+                return;
+            }
             Cell _cell = _controller.Cursor.RaycastHit2D.transform.GetComponent<Cell>();
             if (_cell == null) {
                 Debug.Log("cell component is null");
@@ -40,7 +38,7 @@ public class CheckItemState : IDragDropState {
             _controller.ChangeState(_controller.RaisedItemState);
 
             PlayerSlot _playerSlot = _controller.Cursor.RaycastHit2D.transform.GetComponent<PlayerSlot>();
-            if(_playerSlot != null) {
+            if (_playerSlot != null) {
                 EventManager.PutOrTakeAwayItemInPlayerSlot();
             }
         }

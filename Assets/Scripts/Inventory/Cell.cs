@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Cell : MonoBehaviour {
+    private RectTransform _rectTransform;
     [SerializeField]
     private Image _icon;
     [SerializeField]
@@ -15,6 +16,7 @@ public class Cell : MonoBehaviour {
 
     private void Awake() {
         DisableIcon();
+        _rectTransform = GetComponent<RectTransform>();
     }
 
     public void SetItem(Item item) {
@@ -56,5 +58,10 @@ public class Cell : MonoBehaviour {
 
     public void SetAvailableForInteraction(bool isAvailable) {
         IsAvailableForInteraction = isAvailable;
+    }
+
+    public void SetRectTransformPosition(Vector3 newPosition) {
+        //_rectTransform.anchoredPosition = newPosition;
+        _rectTransform.localPosition = newPosition;
     }
 }

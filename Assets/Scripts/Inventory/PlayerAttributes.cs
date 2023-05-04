@@ -63,8 +63,8 @@ public class PlayerAttributes : MonoBehaviour {
         int _resultDamageMin = (int)(_baseDamageMin + _damageMinPercent);
         int _resultDamageMax = (int)(_baseDamageMax + _damageMaxPercent);
         _damageValueTextComponent.text = _resultDamageMin + "-" + _resultDamageMax;
-        print("damage min = " + _resultDamageMin);
-        print("damage max = " + _resultDamageMax);
+        //print("damage min = " + _resultDamageMin);
+        //print("damage max = " + _resultDamageMax);
     }
 
     private void CalculationAttributesOfPlayer() {

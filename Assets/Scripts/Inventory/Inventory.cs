@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour {
-    private Player _player;
     [SerializeField]
     private Cell _cellPrefab;
     [SerializeField]
@@ -60,6 +59,7 @@ public class Inventory : MonoBehaviour {
             Cell _cellObject = Instantiate(_cellPrefab);
             _cellObject.transform.SetParent(_bag);
             _cellObject.transform.localScale = new Vector3(1, 1, 1);
+            _cellObject.SetRectTransformPosition(new Vector3(_bag.transform.position.x, _bag.transform.position.y, _bag.transform.position.z));
             _cells.Add(_cellObject);
         }
     }

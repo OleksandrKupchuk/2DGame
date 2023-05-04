@@ -7,7 +7,9 @@ public class Cursor : MonoBehaviour {
     [SerializeField]
     private Image _icon;
     [SerializeField]
-    private LayerMask _layerMask;
+    private LayerMask _layerMaskUI;
+    [SerializeField]
+    private LayerMask _layerMaskBackgroundInventory;
     [SerializeField]
     private Canvas _canvas;
 
@@ -43,6 +45,9 @@ public class Cursor : MonoBehaviour {
     }
 
     public void StartRaycast() {
-        RaycastHit2D = Physics2D.Raycast(_mousePosition, Vector3.forward, 100f, _layerMask);
+        RaycastHit2D = Physics2D.Raycast(_mousePosition, Vector3.forward, 100f, _layerMaskUI, -100);
+        if(RaycastHit2D.transform != null) {
+            Debug.Log("name transform = " + RaycastHit2D.transform.name);
+        }
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gold_Ring_Health_Persent
   m_EditorClassIdentifier: 
   type: 2
-  valueType: 0
-  value: 15
+  valueType: 1
+  value: 50
   damageMin: 0
   damageMax: 0

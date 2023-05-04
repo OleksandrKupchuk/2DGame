@@ -13,6 +13,11 @@ public class SwapItemState : IDragDropState {
         _controller.Cursor.SetAndEnableIcon(_bufferItem.Icon);
 
         _controller.ChangeState(_controller.RaisedItemState);
+
+        PlayerSlot _playerSlot = _controller.Cursor.RaycastHit2D.transform.GetComponent<PlayerSlot>();
+        if (_playerSlot != null) {
+            EventManager.PutOrTakeAwayItemInPlayerSlot();
+        }
     }
 
     public void Exit() {

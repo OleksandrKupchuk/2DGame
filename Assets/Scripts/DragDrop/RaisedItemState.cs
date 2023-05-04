@@ -24,14 +24,17 @@ public class RaisedItemState : IDragDropState {
                 Debug.Log("object null");
                 return;
             }
-            
-            Debug.Log("name obj = " + _controller.Cursor.RaycastHit2D.transform);
-             _controller.cell = _controller.Cursor.RaycastHit2D.transform.GetComponent<Cell>();
 
-            if (_controller.cell == null) {
-                Debug.Log("cell is null");
+            if (_controller.Cursor.RaycastHit2D.transform.TryGetComponent(out Cell cell)) {
+                _controller.cell = cell;
+            }
+            else {
                 return;
             }
+            //if (_controller.cell == null) {
+            //    Debug.Log("cell is null");
+            //    return;
+            //}
 
             if (!_controller.cell.IsAvailableForInteraction) {
                 Debug.Log("cell not avaible for iteraction");

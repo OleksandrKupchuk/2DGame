@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8977c4f42e963a428e0c5084c2ad4ec, type: 3}
-  m_Name: Gold_Ring_Health_Integer
+  m_Name: Blue_Sword_Damage_Percent
   m_EditorClassIdentifier: 
-  type: 2
-  valueType: 0
-  value: 15
+  type: 1
+  valueType: 1
+  value: 50
   damageMin: 0
   damageMax: 0
