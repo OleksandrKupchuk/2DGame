@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d20e3fa24b18cc49842ff3c8783e0b5, type: 3}
   m_Name: ConfigEnemyRouge
   m_EditorClassIdentifier: 
-  health: 0
+  health: 5
   speed: 6
   jumpVelocity: 0
+  armor: 2
+  damageMin: 2
+  damageMax: 3
   timerMinIdle: 2
   timerMaxIdle: 4
   timerMinRun: 4

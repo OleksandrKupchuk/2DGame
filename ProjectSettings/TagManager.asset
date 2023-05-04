@@ -14,10 +14,10 @@ TagManager:
   - UI
   - Player
   - Ground
-  - 
+  - UITest
   - PlayerArm
   - Enemy
-  - 
+  - Item
   - 
   - 
   - 
@@ -41,4 +41,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 492673777
+    locked: 0
+  - name: UITest
+    uniqueID: 885710289
     locked: 0

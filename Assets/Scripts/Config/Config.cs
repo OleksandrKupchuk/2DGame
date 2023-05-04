@@ -5,4 +5,7 @@ public class Config : ScriptableObject {
     public float health;
     public float speed;
     public float jumpVelocity;
+    public float armor;
+    public float damageMin;
+    public float damageMax;
 }

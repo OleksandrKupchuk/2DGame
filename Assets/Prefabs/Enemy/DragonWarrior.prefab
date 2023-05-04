@@ -137,9 +137,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 0
-  _maxHealth: 0
-  _speed: 4
-  _jumpVelocity: 0
   _config: {fileID: 11400000, guid: cc5a875545926f64b975841e0583567d, type: 2}
   delayAttack: 0
   delayStrikeAttack: 0
@@ -303,7 +300,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36475e85fe5906f42802ade164a8360a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
+  minDamage: 3
+  maxDamage: 5
 --- !u!1 &6022452012535355179
 GameObject:
   m_ObjectHideFlags: 0
