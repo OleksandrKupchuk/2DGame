@@ -62,7 +62,7 @@ public class EnemyDragorWarrior : Enemy {
     }
 
     public void AddEnableFireBallEventForAttackAnimation() {
-        LogicEnemy.AddEventForFrameOfAnimation(_attackAnimation, _shotFireBallEvent, _frameRateInAttackAnimationForEnableFireBall, nameof(EnbaleFireBallForEvent));
+        AttachingEventToAnimation.AddEventForFrameOfAnimation(_attackAnimation, _shotFireBallEvent, _frameRateInAttackAnimationForEnableFireBall, nameof(EnbaleFireBallForEvent));
     }
 
     private void EnbaleFireBallForEvent() {
@@ -70,19 +70,19 @@ public class EnemyDragorWarrior : Enemy {
     }
 
     public void AddEnableStrikeColliderForStrikeAnimation() {
-        LogicEnemy.AddEventForFrameOfAnimation(_strikeAnimation, _enableStrikeColliderEvent, _frameRateInStrikeAnimationForEnableCollider, nameof(EnableStrikeCollider));
+        AttachingEventToAnimation.AddEventForFrameOfAnimation(_strikeAnimation, _enableStrikeColliderEvent, _frameRateInStrikeAnimationForEnableCollider, nameof(EnableStrikeCollider));
     }
 
     private void EnableStrikeCollider() {
-        LogicEnemy.EnableCollider(_strikeCollider);
+        EnableCollider(_strikeCollider);
     }
 
     public void DisableStrikeCollider() {
-        LogicEnemy.DisableCollider(_strikeCollider);
+        DisableCollider(_strikeCollider);
     }
 
     public void AddCanMoveStrikeTrue() {
-        LogicEnemy.AddEventForFrameOfAnimation(_strikeAnimation, _moveStrikeEvent, _frameRateInStrikeAnimationForEnableCollider, nameof(CanMoveStrikeTrue));
+        AttachingEventToAnimation.AddEventForFrameOfAnimation(_strikeAnimation, _moveStrikeEvent, _frameRateInStrikeAnimationForEnableCollider, nameof(CanMoveStrikeTrue));
     }
 
     private void CanMoveStrikeTrue() {

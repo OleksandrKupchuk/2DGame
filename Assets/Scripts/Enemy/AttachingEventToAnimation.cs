@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public class LogicEnemy {
-
+public class AttachingEventToAnimation {
     public void AddEventForFrameOfAnimation(AnimationClip animation, AnimationEvent animationEvent, int frameRateAnimation, string nameMethod) {
         float _playingAnimationTime = frameRateAnimation / animation.frameRate;
         animationEvent.time = _playingAnimationTime;
@@ -16,13 +15,5 @@ public class LogicEnemy {
         animationEvent.functionName = nameMethod;
 
         animation.AddEvent(animationEvent);
-    }
-
-    public void EnableCollider(Collider2D collider2D) {
-        collider2D.enabled = true;
-    }
-
-    public void DisableCollider(Collider2D collider2D) {
-        collider2D.enabled = false;
     }
 }

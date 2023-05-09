@@ -68,23 +68,23 @@ public class EnemyKnight : Enemy {
     }
 
     public void AddEnableAttackColliderForAttackAnimation() {
-        LogicEnemy.AddEventForFrameOfAnimation(_attackAnimation, _enableAttackColliderEvent, _frameRateInAttackAnimationForEnableAttackCollider, nameof(EnableAttackCollider));
+        AttachingEventToAnimation.AddEventForFrameOfAnimation(_attackAnimation, _enableAttackColliderEvent, _frameRateInAttackAnimationForEnableAttackCollider, nameof(EnableAttackCollider));
     }
 
     private void EnableAttackCollider() {
-        LogicEnemy.EnableCollider(_attackCollider);
+        EnableCollider(_attackCollider);
     }
 
     public void AddDisableAttackCoolliderEventForAttackAnimation() {
-        LogicEnemy.AddEventToEndOfAnimation(_attackAnimation, _enableAttackColliderEvent, nameof(DisableAttackCollider));
+        AttachingEventToAnimation.AddEventToEndOfAnimation(_attackAnimation, _enableAttackColliderEvent, nameof(DisableAttackCollider));
     }
 
     public void DisableAttackCollider() {
-        LogicEnemy.DisableCollider(_attackCollider);
+        DisableCollider(_attackCollider);
     }
 
     public void AddEnableFireBallEventForCastAnimation() {
-        LogicEnemy.AddEventForFrameOfAnimation(_castAnimation, _shotFireBallEvent, _frameRateInCastAnimationForEnableFireBall, nameof(EnbaleFireBallForEvent));
+        AttachingEventToAnimation.AddEventForFrameOfAnimation(_castAnimation, _shotFireBallEvent, _frameRateInCastAnimationForEnableFireBall, nameof(EnbaleFireBallForEvent));
     }
 
     private void EnbaleFireBallForEvent() {
@@ -92,14 +92,14 @@ public class EnemyKnight : Enemy {
     }
 
     public void AddEnableStrikeColliderForStrikeAnimation() {
-        LogicEnemy.AddEventForFrameOfAnimation(_strikeAnimation, _enableStrikeColliderEvent, _frameRateInStrikeAnimationForEnableCollider, nameof(EnableStrikeCollider));
+        AttachingEventToAnimation.AddEventForFrameOfAnimation(_strikeAnimation, _enableStrikeColliderEvent, _frameRateInStrikeAnimationForEnableCollider, nameof(EnableStrikeCollider));
     }
 
     private void EnableStrikeCollider() {
-        LogicEnemy.EnableCollider(_strikeCollider);
+        EnableCollider(_strikeCollider);
     }
 
     public void DisableStrikeCollider() {
-        LogicEnemy.DisableCollider(_strikeCollider);
+        DisableCollider(_strikeCollider);
     }
 }

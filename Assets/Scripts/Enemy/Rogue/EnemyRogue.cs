@@ -56,26 +56,26 @@ public class EnemyRogue : Enemy {
     }
 
     public void AddEnableAttackLeftHandUpColliderForAttackLeftHandUpAnimation() {
-        LogicEnemy.AddEventForFrameOfAnimation(_attackLeftHandUpAnimation, _enableAttackLeftHandUpColliderEvent, _frameRateInAttackLeftHandUpAnimationForEnableAttackCollider, nameof(EnableColliderLeftKnife));
+        AttachingEventToAnimation.AddEventForFrameOfAnimation(_attackLeftHandUpAnimation, _enableAttackLeftHandUpColliderEvent, _frameRateInAttackLeftHandUpAnimationForEnableAttackCollider, nameof(EnableColliderLeftKnife));
     }
 
     public void AddEnableAttackRightHandUpColliderForAttackLeftHandUpAnimation() {
-        LogicEnemy.AddEventForFrameOfAnimation(_attackRightHandUpAnimation, _enableAttackRightUpColliderEvent, _frameRateInAttackRightHandUpAnimationForEnableAttackCollider, nameof(EnableColliderRightKnife));
+        AttachingEventToAnimation.AddEventForFrameOfAnimation(_attackRightHandUpAnimation, _enableAttackRightUpColliderEvent, _frameRateInAttackRightHandUpAnimationForEnableAttackCollider, nameof(EnableColliderRightKnife));
     }
 
     private void EnableColliderRightKnife() {
-        LogicEnemy.EnableCollider(_colliderRightKnife);
+        EnableCollider(_colliderRightKnife);
     }
 
     private void EnableColliderLeftKnife() {
-        LogicEnemy.EnableCollider(_colliderLeftKnife);
+        EnableCollider(_colliderLeftKnife);
     }
 
     public void DisableColliderRightKnife() {
-        LogicEnemy.DisableCollider(_colliderRightKnife);
+        DisableCollider(_colliderRightKnife);
     }
 
     public void DisableColliderLeftKnife() {
-        LogicEnemy.DisableCollider(_colliderLeftKnife);
+        DisableCollider(_colliderLeftKnife);
     }
 }
