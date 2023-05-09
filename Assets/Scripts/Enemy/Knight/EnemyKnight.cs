@@ -3,7 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(LogicEnemyOfRange))]
 [RequireComponent(typeof(IgnoreCollision))]
-public class EnemyKnight : BasicEnemy {
+public class EnemyKnight : Enemy {
 
     protected AnimationEvent _enableAttackColliderEvent = new AnimationEvent();
     protected AnimationEvent _enableStrikeColliderEvent = new AnimationEvent();
@@ -36,7 +36,7 @@ public class EnemyKnight : BasicEnemy {
     [SerializeField]
     private Collider2D _bodyCollider;
 
-    public virtual bool IsLeftHalfOfHealth { get => _health <= _config.health / 2; }
+    public virtual bool IsLeftHalfOfHealth { get => _currentHealth <= _config.health / 2; }
     public List<FireBall> FireBalls { get; protected set; } = new List<FireBall>();
     public Transform CastPoint { get => _castPoint; }
     public override EnemyAttackState AttackState { get; protected set; } = new EnemyAttackMeleeState();
@@ -45,7 +45,7 @@ public class EnemyKnight : BasicEnemy {
 
     protected new void Awake() {
         base.Awake();
-        _health = 4f;
+        _currentHealth = 4f;
         _logicEnemyOfRange = GetComponent<LogicEnemyOfRange>();
         _ignoreCollision = GetComponent<IgnoreCollision>();
         DisableStrikeCollider();

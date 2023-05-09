@@ -1,8 +1,8 @@
-public class EnemyDeadState : IState<BasicEnemy> {
+public class EnemyDeadState : IState<Enemy> {
 
-    protected BasicEnemy _enemy;
+    protected Enemy _enemy;
 
-    public virtual void Enter(BasicEnemy owner) {
+    public virtual void Enter(Enemy owner) {
         _enemy = owner;
     }
 

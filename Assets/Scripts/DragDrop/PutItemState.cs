@@ -12,7 +12,7 @@ public class PutItemState : IDragDropState {
         _controller.Cursor.SetItem(null);
         _controller.ChangeState(_controller.CheckItemState);
 
-        _controller.Cursor.TryGetPlayerSlotComponentAndCallEvent();
+        _controller.Cursor.TryGetPlayerSlotComponentAndCallEvent(EventManager.PutOnOrTakenAwakeItemEventHandler);
     }
 
     public void Exit() {

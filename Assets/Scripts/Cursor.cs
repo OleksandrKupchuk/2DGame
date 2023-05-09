@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Cursor : MonoBehaviour {
     private Vector2 _mousePosition;
+
     [SerializeField]
     private Image _icon;
     [SerializeField]
@@ -13,6 +14,7 @@ public class Cursor : MonoBehaviour {
     [SerializeField]
     private Canvas _canvas;
 
+    public delegate void DelegateEvent();
     public Item Item { get; private set; }
     public RaycastHit2D RaycastHit2D { get; private set; }
 
@@ -51,10 +53,10 @@ public class Cursor : MonoBehaviour {
         }
     }
 
-    public void TryGetPlayerSlotComponentAndCallEvent() {
+    public void TryGetPlayerSlotComponentAndCallEvent(DelegateEvent delegateEvent) {
         PlayerSlot _playerSlot = RaycastHit2D.transform.GetComponent<PlayerSlot>();
         if (_playerSlot != null) {
-            EventManager.PutOrTakeAwayItemInPlayerSlot();
+            delegateEvent.Invoke();
         }
     }
 }

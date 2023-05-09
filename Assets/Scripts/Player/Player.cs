@@ -38,7 +38,7 @@ public class Player : BaseCharacteristics {
         }
     }
     public bool IsFalling { get => Rigidbody.velocity.y < 0; }
-    public bool IsDead { get => _health <= 0; }
+    public bool IsDead { get => _currentHealth <= 0; }
     public bool CanJump {
         get {
             if (JumpInputAction.action.triggered && IsGround()) {
@@ -64,6 +64,7 @@ public class Player : BaseCharacteristics {
     public InputActionReference ShotInputAction { get => _shotInputAction; }
     public InputActionReference JumpInputAction { get => _jumpInputAction; }
     public InvulnerabilityAnimation InvulnerableStatus { get => _invulnerableStatus; }
+    public PlayerAttributes Attributes { get; private set; }
 
     private new void Awake() {
         base.Awake();
@@ -76,7 +77,14 @@ public class Player : BaseCharacteristics {
         DeadState = new PlayerDeadState();
         StateMachine = new StateMachine<Player>(this);
         _deafaultGravityScale = Rigidbody.gravityScale;
+        Attributes = FindObjectOfType<PlayerAttributes>();
         CheckComponentOnNull();
+        EventManager.TookOffItem += CalculationCurrentHealth;
+    }
+
+    private void CalculationCurrentHealth() {
+        _currentHealth = _currentHealth > Attributes.ResultHealth ? Attributes.ResultHealth : _currentHealth;
+        EventManager.UpdatingHealthBarEventHandler();
     }
 
     private void CheckComponentOnNull() {
@@ -90,10 +98,13 @@ public class Player : BaseCharacteristics {
             Debug.LogError("Component JumpInputAction is null");
         }
         if (_invulnerableStatus == null) {
-            Debug.LogError("Component InvulnerableStatus is null");
+            Debug.LogError($"Component {typeof(InvulnerabilityAnimation).Name} is null");
         }
         if (_boxCollider == null) {
             Debug.LogError("Component BoxCollider2D is null");
+        }
+        if(Attributes == null) {
+            Debug.LogError($"Component {typeof(PlayerAttributes).Name} is null");
         }
     }
 
@@ -165,13 +176,14 @@ public class Player : BaseCharacteristics {
         _objectsAttack.Add(damageObject);
     }
 
-    private void TakeDamage(float damage) {
+    public void TakeDamage(float damage) {
         float _clearDamage = damage - GetBlockedDamage;
         if(_clearDamage <= 0) {
             return;
         }
 
-        _health -= damage;
+        _currentHealth -= damage;
+        EventManager.UpdatingHealthBarEventHandler();
         //print("health = " + _health);
         if (IsDead) {
             StateMachine.ChangeState(DeadState);
@@ -202,5 +214,11 @@ public class Player : BaseCharacteristics {
 
     public void ResetGravityScaleToDefault() {
         Rigidbody.gravityScale = _deafaultGravityScale;
+    }
+
+    public void AddHealth(float health) {
+        _currentHealth += health;
+        _currentHealth = _currentHealth > Attributes.ResultHealth ? Attributes.ResultHealth : _currentHealth;
+        EventManager.UpdatingHealthBarEventHandler();
     }
 }

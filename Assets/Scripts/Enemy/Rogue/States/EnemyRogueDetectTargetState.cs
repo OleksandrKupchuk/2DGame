@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyRogueDetectTargetState : EnemyDetectTargetState {
     private EnemyRogue _enemy;
 
-    public override void Enter(BasicEnemy owner) {
+    public override void Enter(Enemy owner) {
         _enemy = (EnemyRogue)owner;
     }
 

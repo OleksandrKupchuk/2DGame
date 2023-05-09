@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(LogicEnemyOfRange))]
-public class EnemyOfRange : BasicEnemy {
+public class EnemyOfRange : Enemy {
 
     protected AnimationEvent _enableAttackColliderEvent = new AnimationEvent();
     protected LogicEnemyOfRange _logicEnemyOfRange;

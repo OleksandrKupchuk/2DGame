@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BaseCharacteristics : MonoBehaviour {
     protected float _blockedDamagePerOneArmor = 0.2f;
-    protected float _health;
+    protected float _currentHealth;
 
     [SerializeField]
     protected Config _config;
@@ -11,11 +11,12 @@ public class BaseCharacteristics : MonoBehaviour {
     public Animator Animator { get; protected set; }
 
     public float GetBlockedDamage { get => _config.armor * _blockedDamagePerOneArmor; }
+    public float CurrentHealth { get => _currentHealth; }
 
     protected void Awake() {
         Rigidbody = gameObject.GetComponent<Rigidbody2D>();
         Animator = gameObject.GetComponent<Animator>();
-        _health = _config.health;
+        _currentHealth = _config.health;
     }
 
     public void ResetRigidbodyVelocity() {
@@ -32,10 +33,6 @@ public class BaseCharacteristics : MonoBehaviour {
 
     public void Move(float inputDirection) {
         Rigidbody.velocity = new Vector2(inputDirection * _config.speed, Rigidbody.velocity.y);
-    }
-
-    public void Move(float inputDirection, float speed) {
-        Rigidbody.velocity = new Vector2(inputDirection * speed, Rigidbody.velocity.y);
     }
 
     public void MoveEaseInQuint(float inputDirection, float speed, float time) {

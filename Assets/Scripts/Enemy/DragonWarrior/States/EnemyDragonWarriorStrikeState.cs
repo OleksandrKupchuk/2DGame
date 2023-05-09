@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class EnemyDragonWarriorStrikeState : IState<BasicEnemy> {
+public class EnemyDragonWarriorStrikeState : IState<Enemy> {
 
     private EnemyDragorWarrior _enemy;
     private float _speed = 7;
     private float _time;
 
-    public void Enter(BasicEnemy owner) {
+    public void Enter(Enemy owner) {
         _enemy = (EnemyDragorWarrior)owner;
         _enemy.Animator.Play(AnimationName.Strike);
         _enemy.Rigidbody.gravityScale = 0;

@@ -1,6 +1,6 @@
-public class EnemyAttackState : IState<BasicEnemy> {
+public class EnemyAttackState : IState<Enemy> {
 
-    public virtual void Enter(BasicEnemy owner) {
+    public virtual void Enter(Enemy owner) {
     }
 
     public virtual void Update() {

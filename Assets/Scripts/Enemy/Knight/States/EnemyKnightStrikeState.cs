@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class EnemyKnightStrikeState : IState<BasicEnemy> {
+public class EnemyKnightStrikeState : IState<Enemy> {
 
     private EnemyKnight _enemy;
 
-    public void Enter(BasicEnemy owner) {
+    public void Enter(Enemy owner) {
         _enemy = (EnemyKnight)owner;
         _enemy.Animator.Play(AnimationName.Strike);
         _enemy.Rigidbody.gravityScale = 0;

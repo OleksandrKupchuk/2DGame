@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class BasicEnemy : BaseCharacteristics {
+public class Enemy : BaseCharacteristics {
 
     protected float _xScale;
 
@@ -15,7 +15,7 @@ public class BasicEnemy : BaseCharacteristics {
     public bool HasTarget { get => FieldOfView.Target != null; }
 
     public EnemyConfig Config { get => (EnemyConfig)_config; }
-    public StateMachine<BasicEnemy> StateMachine { get; protected set; }
+    public StateMachine<Enemy> StateMachine { get; protected set; }
     public virtual EnemyIdleState IdleState { get; protected set; } = new EnemyIdleState();
     public virtual EnemyRunState RunState { get; protected set; } = new EnemyRunState();
     public virtual EnemyDetectTargetState DetectTarget { get; protected set; } = new EnemyDetectTargetState();
@@ -35,7 +35,7 @@ public class BasicEnemy : BaseCharacteristics {
         _xScale = transform.localScale.x;
         GameObject _fieldOfViewPrefab = Resources.Load(ResourcesPath.FieldOfViewPrefab) as GameObject;
         FieldOfView = Instantiate(_fieldOfViewPrefab.GetComponent<FieldOfView>());
-        StateMachine = new StateMachine<BasicEnemy>(this);
+        StateMachine = new StateMachine<Enemy>(this);
     }
 
     public void Flip() {

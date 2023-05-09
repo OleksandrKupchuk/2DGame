@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class EnemyAttackMeleeState : EnemyAttackState {
 
-    private BasicEnemy _enemy;
-    public override void Enter(BasicEnemy owner) {
+    private Enemy _enemy;
+    public override void Enter(Enemy owner) {
         _enemy = owner;
         _enemy.ResetRigidbodyVelocity();
-        _enemy.Animator.Play(AnimationName.AttackMelee);
+        _enemy.Animator.Play(EnemyAnimationName.AttackMelee);
     }
 
     public override void Update() {

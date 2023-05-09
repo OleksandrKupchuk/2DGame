@@ -5,7 +5,7 @@ public class PlayerAttackState : IState<Player> {
 
     public void Enter(Player owner) {
         _player = owner;
-        _player.Animator.Play(AnimationName.AttackMelee);
+        _player.Animator.Play(PlayerAnimationName.Attack);
     }
 
     public void Update() {

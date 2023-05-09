@@ -8,7 +8,7 @@ public class EnemyDragonWarriorDetectTargetState : EnemyDetectTargetState {
 
     private bool CanStrikeAttack { get => _enemy.IsThereTargetInRangeOfDistance(_enemy.Config.distanceStrikeAttack) && _randomChance <= _chanceStrikeAttack; }
 
-    public override void Enter(BasicEnemy owner) {
+    public override void Enter(Enemy owner) {
         _enemy = (EnemyDragorWarrior)owner;
         _randomChance = Random.Range(0, 100);
     }
