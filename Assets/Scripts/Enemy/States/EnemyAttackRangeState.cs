@@ -1,10 +1,10 @@
 public class EnemyAttackRangeState : EnemyAttackState {
 
-    private BasicEnemy _enemyRange;
+    private Enemy _enemyRange;
 
-    public override void Enter(BasicEnemy owner) {
+    public override void Enter(Enemy owner) {
         _enemyRange = owner;
-        _enemyRange.Animator.Play(AnimationName.AttackRange);
+        _enemyRange.Animator.Play(EnemyAnimationName.AttackRange);
     }
 
     public override void Update() {

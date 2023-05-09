@@ -1,6 +1,6 @@
-public class EnemyKnightCastState : IState<BasicEnemy> {
+public class EnemyKnightCastState : IState<Enemy> {
 
-    public void Enter(BasicEnemy owner) {
+    public void Enter(Enemy owner) {
     }
 
     public void Update() {

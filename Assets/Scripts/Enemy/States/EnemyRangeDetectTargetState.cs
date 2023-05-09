@@ -2,7 +2,7 @@ public class EnemyRangeDetectTargetState : EnemyDetectTargetState {
 
     private EnemyOfRange _enemy;
 
-    public override void Enter(BasicEnemy owner) {
+    public override void Enter(Enemy owner) {
         _enemy = (EnemyOfRange)owner;
     }
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyOfMelee : BasicEnemy {
+public class EnemyOfMelee : Enemy {
 
     protected AnimationEvent _enableAttackColliderEvent = new AnimationEvent();
 

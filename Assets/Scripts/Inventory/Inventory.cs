@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour {
+    private List<Cell> _cells = new List<Cell>();
+
     [SerializeField]
     private Cell _cellPrefab;
     [SerializeField]
@@ -16,15 +18,13 @@ public class Inventory : MonoBehaviour {
     [SerializeField]
     private Button _closeButton;
 
-    private List<Cell> _cells = new List<Cell>();
-
     private void OnEnable() {
-        GameManager.OpenCloseInventory += EnableDisableInventory;
+        EventManager.InventoryOpenlyClosed += EnableDisableInventory;
         GenerateCellsOfPlayerBag();
     }
 
     private void OnDestroy() {
-        GameManager.OpenCloseInventory -= EnableDisableInventory;
+        EventManager.InventoryOpenlyClosed -= EnableDisableInventory;
     }
 
     private void Awake() {

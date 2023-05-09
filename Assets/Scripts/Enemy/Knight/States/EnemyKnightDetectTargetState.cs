@@ -8,7 +8,7 @@ public class EnemyKnightDetectTargetState : EnemyDetectTargetState {
 
     private bool CanStrikeAttack { get => _randomChance <= _chanceStrikeAttack && _enemy.IsLeftHalfOfHealth; }
 
-    public override void Enter(BasicEnemy owner) {
+    public override void Enter(Enemy owner) {
         _enemy = (EnemyKnight)owner;
         _randomChance = Random.Range(0, 100);
     }

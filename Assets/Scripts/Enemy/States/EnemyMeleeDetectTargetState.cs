@@ -2,7 +2,7 @@ public class EnemyMeleeDetectTargetState : EnemyDetectTargetState {
 
     private EnemyOfMelee _enemy;
 
-    public override void Enter(BasicEnemy owner) {
+    public override void Enter(Enemy owner) {
         _enemy = (EnemyOfMelee)owner;
     }
 

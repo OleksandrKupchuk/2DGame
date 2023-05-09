@@ -1,7 +1,7 @@
 public class EnemyRougeAttackRightHandUpState : EnemyAttackState {
     private EnemyRogue _enemy;
 
-    public override void Enter(BasicEnemy owner) {
+    public override void Enter(Enemy owner) {
         _enemy = (EnemyRogue)owner;
         _enemy.Animator.Play("Attack_RightHand_Up");
     }

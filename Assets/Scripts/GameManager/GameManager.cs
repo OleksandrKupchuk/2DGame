@@ -8,8 +8,6 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private Inventory _inventory;
 
-    public static event Action OpenCloseInventory;
-
     private void Update() {
         CheckOpenCloseInventory();
     }
@@ -17,7 +15,7 @@ public class GameManager : MonoBehaviour {
     private void CheckOpenCloseInventory() {
         if (_openCloseInventoryInputAction.action.triggered) {
             //print("click I");
-            OpenCloseInventory.Invoke();
+            EventManager.InventoryOpenlyClosedEventHandler();
         }
     }
 }

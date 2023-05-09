@@ -7,6 +7,7 @@ public class RaisedItemState : IDragDropState {
     public void Enter(DragDropController controller) {
         _controller = controller;
         _controller.RaiseItem(_controller.Cursor.Item);
+        //_controller.Cursor.TryGetPlayerSlotComponentAndCallEvent(EventManager.TookOffItemEventHandler);
     }
 
     public void Exit() {

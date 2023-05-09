@@ -13,6 +13,10 @@ public class PlayerAttributes : MonoBehaviour {
     private float _speedPercent;
     private float _damageMinPercent;
     private float _damageMaxPercent;
+
+    private delegate void CalculationBaseInteger(Attribute attribute);
+    private delegate ValueType GetValueType();
+
     [SerializeField]
     private PlayerConfig _playerConfig;
     [SerializeField]
@@ -26,15 +30,19 @@ public class PlayerAttributes : MonoBehaviour {
     [SerializeField]
     private List<PlayerSlot> _playerSlots = new List<PlayerSlot>();
 
+    public float ResultArmor { get; private set; }
+    public float ResultHealth { get; private set; }
+    public float DifferentHealthBetweenPreviousAndCurrent { get; private set; }
+
     private void OnEnable() {
-        EventManager.PutOrTakeAwakeItem += CalculationAttributesOfPlayer;
+        EventManager.PutOnOrTakenAwakeItem += CalculationAttributesOfPlayer;
     }
 
     private void OnDestroy() {
-        EventManager.PutOrTakeAwakeItem -= CalculationAttributesOfPlayer;
+        EventManager.PutOnOrTakenAwakeItem -= CalculationAttributesOfPlayer;
     }
 
-    private void Awake() {
+    private void Start() {
         if(_playerSlots.Count == 0) {
             Debug.LogError("Player slots is 0");
         }
@@ -51,11 +59,11 @@ public class PlayerAttributes : MonoBehaviour {
     }
 
     private void UpdateTextOfAttributes() {
-        float _resultArmor = _baseArmor + _armorPercent;
-        _armorValueTextComponent.text = "" + (int)Mathf.Floor(_resultArmor);
+        ResultArmor = _baseArmor + _armorPercent;
+        _armorValueTextComponent.text = "" + (int)Mathf.Floor(ResultArmor);
 
-        float _resultHealth = _baseHealth + _healthPercent;
-        _healthValueTextComponent.text = "" + (int)Mathf.Floor(_resultHealth);
+        ResultHealth = _baseHealth + _healthPercent;
+        _healthValueTextComponent.text = "" + (int)Mathf.Floor(ResultHealth);
 
         float _resultSpeed = _baseSpeed + _speedPercent;
         _speedValueTextComponent.text = "" + (int)Mathf.Floor(_resultSpeed);
@@ -63,8 +71,9 @@ public class PlayerAttributes : MonoBehaviour {
         int _resultDamageMin = (int)(_baseDamageMin + _damageMinPercent);
         int _resultDamageMax = (int)(_baseDamageMax + _damageMaxPercent);
         _damageValueTextComponent.text = _resultDamageMin + "-" + _resultDamageMax;
-        //print("damage min = " + _resultDamageMin);
-        //print("damage max = " + _resultDamageMax);
+
+        EventManager.TookOffItemEventHandler();
+        EventManager.UpdatingHealthBarEventHandler();
     }
 
     private void CalculationAttributesOfPlayer() {
@@ -75,14 +84,14 @@ public class PlayerAttributes : MonoBehaviour {
             if(_playerSlots[i].Cell.Item == null) {
                 continue;
             }
-            CalculationIntegerAttributesForItem(_playerSlots[i].Cell.Item);
+            CalculationAttributesForItem(_playerSlots[i].Cell.Item, GetIntegerType, CalculationBaseIntegerAttributes);
         }
 
         for (int i = 0; i < _playerSlots.Count; i++) {
             if (_playerSlots[i].Cell.Item == null) {
                 continue;
             }
-            CalculationPercentAttributesForItem(_playerSlots[i].Cell.Item);
+            CalculationAttributesForItem(_playerSlots[i].Cell.Item, GetPercentType, CalculationPercentAttributes);
         }
 
         UpdateTextOfAttributes();
@@ -96,20 +105,20 @@ public class PlayerAttributes : MonoBehaviour {
         _damageMaxPercent = 0;
     }
 
-    private void CalculationIntegerAttributesForItem(Item item) {
+    private void CalculationAttributesForItem(Item item, GetValueType valueType, CalculationBaseInteger calculationInteger) {
         for (int i = 0; i < item.Attributes.Count; i++) {
-            if(item.Attributes[i].valueType == ValueType.Integer) {
-                CalculationBaseIntegerAttributes(item.Attributes[i]);
+            if (item.Attributes[i].valueType == valueType.Invoke()) {
+                calculationInteger(item.Attributes[i]);
             }
         }
     }
 
-    private void CalculationPercentAttributesForItem(Item item) {
-        for (int i = 0; i < item.Attributes.Count; i++) {
-            if (item.Attributes[i].valueType == ValueType.Percent) {
-                CalculationPercentAttributes(item.Attributes[i]);
-            }
-        }
+    private ValueType GetIntegerType() {
+        return ValueType.Integer;
+    }
+
+    private ValueType GetPercentType() {
+        return ValueType.Percent;
     }
 
     private void CalculationBaseIntegerAttributes(Attribute attribute) {

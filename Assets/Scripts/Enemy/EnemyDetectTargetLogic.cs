@@ -2,26 +2,26 @@ using UnityEngine;
 
 public class EnemyDetectTargetLogic {
 
-    public void CheckHasTargetAndChangeToIdleState(BasicEnemy enemy) {
+    public void CheckHasTargetAndChangeToIdleState(Enemy enemy) {
         if (!enemy.HasTarget) {
             enemy.StateMachine.ChangeState(enemy.IdleState);
             return;
         }
     }
 
-    public void CheckNeedFlipAndFlip(BasicEnemy enemy) {
+    public void CheckNeedFlipAndFlip(Enemy enemy) {
         if (enemy.IsNeedLookOnPlayer()) {
             enemy.Flip();
         }
     }
 
-    public void CalculationDistanceToTarget(BasicEnemy enemy) {
+    public void CalculationDistanceToTarget(Enemy enemy) {
         if (enemy.FieldOfView.Target != null) {
             enemy.distanceToTarget = Mathf.Abs(enemy.transform.position.x - enemy.FieldOfView.Target.transform.position.x);
         }
     }
 
-    public void CheckIsThereTargetInRangeOfAttackAndAttackOrRun(float distance, BasicEnemy enemy, EnemyAttackState attackState) {
+    public void CheckIsThereTargetInRangeOfAttackAndAttackOrRun(float distance, Enemy enemy, EnemyAttackState attackState) {
         if (enemy.IsThereTargetInRangeOfDistance(distance)) {
             enemy.ResetRigidbodyVelocity();
             enemy.Animator.Play(AnimationName.Idle);
@@ -33,7 +33,7 @@ public class EnemyDetectTargetLogic {
         }
     }
 
-    private void HandleAttackDelay(BasicEnemy enemy, EnemyAttackState attackState) {
+    private void HandleAttackDelay(Enemy enemy, EnemyAttackState attackState) {
         enemy.Config.delayAttack -= Time.deltaTime;
 
         if (enemy.Config.delayAttack <= 0) {
@@ -41,7 +41,7 @@ public class EnemyDetectTargetLogic {
         }
     }
 
-    public void ChangeToStateAttackAfterDelay(BasicEnemy enemy, IState<BasicEnemy> attackState, float delayAttack) {
+    public void ChangeToStateAttackAfterDelay(Enemy enemy, IState<Enemy> attackState, float delayAttack) {
         enemy.ResetRigidbodyVelocity();
         enemy.Animator.Play(AnimationName.Idle);
 
@@ -51,13 +51,13 @@ public class EnemyDetectTargetLogic {
         }
     }
 
-    public void MoveIfPlayRunAnimation(BasicEnemy enemy) {
+    public void MoveIfPlayRunAnimation(Enemy enemy) {
         if (enemy.Animator.GetCurrentAnimatorStateInfo(AnimatorLayers.BaseLayer).IsName(AnimationName.Run)) {
             enemy.Move(enemy.GetDirectionX);
         }
     }
 
-    public void RefreshDelayForDifferentAttacks(BasicEnemy enemy) {
+    public void RefreshDelayForDifferentAttacks(Enemy enemy) {
         enemy.delayAttack = enemy.Config.delayAttack;
         enemy.delayStrikeAttack = enemy.Config.delayStrikeAttack;
     }

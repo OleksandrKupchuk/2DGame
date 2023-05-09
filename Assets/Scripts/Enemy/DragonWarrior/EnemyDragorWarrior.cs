@@ -3,7 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(LogicEnemyOfRange))]
 [RequireComponent(typeof(IgnoreCollision))]
-public class EnemyDragorWarrior : BasicEnemy {
+public class EnemyDragorWarrior : Enemy {
 
     protected AnimationEvent _shotFireBallEvent = new AnimationEvent();
     protected AnimationEvent _enableStrikeColliderEvent = new AnimationEvent();

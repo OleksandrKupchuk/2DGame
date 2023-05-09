@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class EnemyRunState : IState<BasicEnemy> {
+public class EnemyRunState : IState<Enemy> {
 
-    protected BasicEnemy _enemy;
+    protected Enemy _enemy;
     private float _timer;
 
-    public virtual void Enter(BasicEnemy owner) {
+    public virtual void Enter(Enemy owner) {
         _enemy = owner;
         _enemy.Animator.Play(AnimationName.Run);
         _timer = Random.Range(_enemy.Config.timerMinRun, _enemy.Config.timerMaxRun);

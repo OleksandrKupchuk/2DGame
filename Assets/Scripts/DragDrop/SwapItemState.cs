@@ -14,7 +14,7 @@ public class SwapItemState : IDragDropState {
 
         _controller.ChangeState(_controller.RaisedItemState);
 
-        _controller.Cursor.TryGetPlayerSlotComponentAndCallEvent();
+        _controller.Cursor.TryGetPlayerSlotComponentAndCallEvent(EventManager.PutOnOrTakenAwakeItemEventHandler);
     }
 
     public void Exit() {

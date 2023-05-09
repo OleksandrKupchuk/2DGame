@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerJumpUpState : IState<Player> {
@@ -9,7 +7,7 @@ public class PlayerJumpUpState : IState<Player> {
     public void Enter(Player owner) {
         //Debug.Log($"<color=green>enter jumpUp state</color>");
         _player = owner;
-        _player.Animator.Play(AnimationName.JumpUp);
+        _player.Animator.Play(PlayerAnimationName.JumpUp);
         _player.Jump();
         _timer = 0.5f;
     }

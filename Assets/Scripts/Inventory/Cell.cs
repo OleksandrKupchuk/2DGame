@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class Cell : MonoBehaviour {
     private RectTransform _rectTransform;
+
     [SerializeField]
     private Image _icon;
     [SerializeField]
