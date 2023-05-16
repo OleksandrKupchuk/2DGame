@@ -1,11 +1,11 @@
 using UnityEngine;
 
-[RequireComponent(typeof(LogicEnemyOfRange))]
+[RequireComponent(typeof(Projectile))]
 [RequireComponent(typeof(IgnoreCollision))]
 public class EnemyRogue : Enemy {
     protected AnimationEvent _enableAttackLeftHandUpColliderEvent = new AnimationEvent();
     protected AnimationEvent _enableAttackRightUpColliderEvent = new AnimationEvent();
-    protected LogicEnemyOfRange _logicEnemyOfRange;
+    protected Projectile _logicEnemyOfRange;
     private IgnoreCollision _ignoreCollision;
 
     [SerializeField]
@@ -35,7 +35,7 @@ public class EnemyRogue : Enemy {
     protected new void Awake() {
         base.Awake();
         _currentHealth = 4f;
-        _logicEnemyOfRange = GetComponent<LogicEnemyOfRange>();
+        _logicEnemyOfRange = GetComponent<Projectile>();
         _ignoreCollision = GetComponent<IgnoreCollision>();
         DisableColliderRightKnife();
         DisableColliderLeftKnife();

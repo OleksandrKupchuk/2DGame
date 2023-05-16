@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(LogicEnemyOfRange))]
+[RequireComponent(typeof(Projectile))]
 [RequireComponent(typeof(IgnoreCollision))]
 public class EnemyKnight : Enemy {
 
     protected AnimationEvent _enableAttackColliderEvent = new AnimationEvent();
     protected AnimationEvent _enableStrikeColliderEvent = new AnimationEvent();
     protected AnimationEvent _shotFireBallEvent = new AnimationEvent();
-    protected LogicEnemyOfRange _logicEnemyOfRange;
+    protected Projectile _logicEnemyOfRange;
     private IgnoreCollision _ignoreCollision;
 
     [SerializeField]
@@ -46,10 +46,10 @@ public class EnemyKnight : Enemy {
     protected new void Awake() {
         base.Awake();
         _currentHealth = 4f;
-        _logicEnemyOfRange = GetComponent<LogicEnemyOfRange>();
+        _logicEnemyOfRange = GetComponent<Projectile>();
         _ignoreCollision = GetComponent<IgnoreCollision>();
         DisableStrikeCollider();
-        FireBalls = _logicEnemyOfRange.CreateAndGetListPrefabs(_fireBallPrefab, _parentFireBalls);
+        FireBalls = _logicEnemyOfRange.CreateAndGetListPrefabs(_fireBallPrefab, _parentFireBalls, 5);
         DisableAttackCollider();
     }
 
@@ -88,7 +88,7 @@ public class EnemyKnight : Enemy {
     }
 
     private void EnbaleFireBallForEvent() {
-        _logicEnemyOfRange.SetPrefabDirectionShotPointAndEnable(FireBalls, CastPoint, GetDirectionX);
+        _logicEnemyOfRange.SetDirectionShotPointAndEnable(FireBalls, CastPoint, GetDirectionX);
     }
 
     public void AddEnableStrikeColliderForStrikeAnimation() {

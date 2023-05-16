@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(LogicEnemyOfRange))]
+[RequireComponent(typeof(Projectile))]
 [RequireComponent(typeof(IgnoreCollision))]
 public class EnemyDragorWarrior : Enemy {
 
     protected AnimationEvent _shotFireBallEvent = new AnimationEvent();
     protected AnimationEvent _enableStrikeColliderEvent = new AnimationEvent();
     protected AnimationEvent _moveStrikeEvent = new AnimationEvent();
-    protected LogicEnemyOfRange _logicEnemyOfRange;
+    protected Projectile _projectile;
     private IgnoreCollision _ignoreCollision;
 
     [SerializeField]
@@ -41,10 +41,10 @@ public class EnemyDragorWarrior : Enemy {
 
     protected new void Awake() {
         base.Awake();
-        _logicEnemyOfRange = GetComponent<LogicEnemyOfRange>();
+        _projectile = GetComponent<Projectile>();
         _ignoreCollision = GetComponent<IgnoreCollision>();
         DisableStrikeCollider();
-        FireBalls = _logicEnemyOfRange.CreateAndGetListPrefabs(_fireBallPrefab, _parentFireBalls);
+        FireBalls = _projectile.CreateAndGetListPrefabs(_fireBallPrefab, _parentFireBalls, 5);
     }
 
     private void Start() {
@@ -66,7 +66,7 @@ public class EnemyDragorWarrior : Enemy {
     }
 
     private void EnbaleFireBallForEvent() {
-        _logicEnemyOfRange.SetPrefabDirectionShotPointAndEnable(FireBalls, ShotPoint, GetDirectionX);
+        _projectile.SetDirectionShotPointAndEnable(FireBalls, ShotPoint, GetDirectionX);
     }
 
     public void AddEnableStrikeColliderForStrikeAnimation() {

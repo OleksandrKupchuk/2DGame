@@ -20,6 +20,10 @@ public class FireBall : Damage
         _timer = _timeToDisable;
     }
 
+    private void Start() {
+        _parent = transform.GetComponentInParent<Transform>();
+    }
+
     private void Update() {
         if (!gameObject.activeSelf) {
             return;
