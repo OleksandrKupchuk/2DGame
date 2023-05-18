@@ -18,3 +18,4 @@ MonoBehaviour:
   armor: 10
   damageMin: 10
   damageMax: 20
+  regenerationHealth: 2

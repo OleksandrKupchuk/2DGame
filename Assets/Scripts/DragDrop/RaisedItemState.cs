@@ -27,18 +27,18 @@ public class RaisedItemState : IDragDropState {
             }
 
             if (_controller.Cursor.RaycastHit2D.transform.TryGetComponent(out Cell cell)) {
-                _controller.cell = cell;
+                _controller.SetCell(cell);
             }
             else {
                 return;
             }
 
-            if (!_controller.cell.IsAvailableForInteraction) {
+            if (!_controller.Cell.IsAvailableForInteraction) {
                 Debug.Log("cell not avaible for iteraction");
                 return;
             }
 
-            if (_controller.cell.HasItem) {
+            if (_controller.Cell.HasItem) {
                 Debug.Log("cell not empty");
                 _controller.ChangeState(_controller.SwapItemState);
                 return;

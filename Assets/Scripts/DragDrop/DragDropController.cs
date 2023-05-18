@@ -6,8 +6,7 @@ public class DragDropController : MonoBehaviour {
     [SerializeField]
     private Cursor _cursor;
 
-    [HideInInspector]
-    public Cell cell;
+    public Cell Cell { get; private set; }
 
     public CheckItemState CheckItemState { get; private set; }
     public RaisedItemState RaisedItemState { get; private set; }
@@ -21,22 +20,6 @@ public class DragDropController : MonoBehaviour {
 
     public static event Action<Item> RaisedItemTrigger;
     public static event Action DropPutItemTrigger;
-
-    public void RaiseItem(Item item) {
-        RaisedItemTrigger?.Invoke(item);
-    }
-
-    public void DropPutItem() {
-        DropPutItemTrigger?.Invoke();
-    }
-
-    public void ChangeState(IDragDropState newState) {
-        if (CurrentState != null) {
-            CurrentState.Exit();
-        }
-        CurrentState = newState;
-        CurrentState.Enter(this);
-    }
 
     private void Awake() {
         _inventory = FindObjectOfType<Inventory>();
@@ -61,5 +44,25 @@ public class DragDropController : MonoBehaviour {
         if (CurrentState != null) {
             CurrentState.Update();
         }
+    }
+
+    public void RaiseItem(Item item) {
+        RaisedItemTrigger?.Invoke(item);
+    }
+
+    public void DropPutItem() {
+        DropPutItemTrigger?.Invoke();
+    }
+
+    public void ChangeState(IDragDropState newState) {
+        if (CurrentState != null) {
+            CurrentState.Exit();
+        }
+        CurrentState = newState;
+        CurrentState.Enter(this);
+    }
+
+    public void SetCell(Cell cell) {
+        Cell = cell;
     }
 }

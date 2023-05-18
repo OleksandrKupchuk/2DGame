@@ -7,6 +7,7 @@ public class Player : BaseCharacteristics {
     private List<Damage> _objectsAttack = new List<Damage>();
     private RaycastHit2D _raycastHit;
     private float _deafaultGravityScale;
+    private float _timeRegenerationHealth;
 
     [SerializeField]
     private InputActionReference _movementInputAction;
@@ -115,6 +116,7 @@ public class Player : BaseCharacteristics {
     private void Update() {
         IsGround();
         StateMachine.Update();
+        RegenerationHealth();
     }
 
     private void FixedUpdate() {
@@ -214,6 +216,20 @@ public class Player : BaseCharacteristics {
 
     public void ResetGravityScaleToDefault() {
         Rigidbody.gravityScale = _deafaultGravityScale;
+    }
+
+    private void RegenerationHealth() {
+        if(_currentHealth >= Attributes.ResultHealth) {
+            return;
+        }
+
+        _timeRegenerationHealth += Time.deltaTime;
+
+        if (_timeRegenerationHealth >= 1) {
+            _timeRegenerationHealth = 0;
+            PlayerConfig _playerConfig = (PlayerConfig)_config;
+            AddHealth(_playerConfig.regenerationHealth);
+        }
     }
 
     public void AddHealth(float health) {

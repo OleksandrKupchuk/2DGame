@@ -8,7 +8,7 @@ public enum ItemType {
     Amulet,
     Weapon,
     Belt,
-    Boots
+    Shield
 }
 
 [RequireComponent(typeof(Rigidbody2D))]

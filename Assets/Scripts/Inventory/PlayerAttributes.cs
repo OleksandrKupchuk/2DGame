@@ -3,11 +3,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerAttributes : MonoBehaviour {
-    private float _baseHealth;
-    private float _baseArmor;
-    private float _baseSpeed;
-    private float _baseDamageMin;
-    private float _baseDamageMax;
+    private float _health;
+    private float _armor;
+    private float _speed;
+    private float _damageMin;
+    private float _damageMax;
     private float _healthPercent;
     private float _armorPercent;
     private float _speedPercent;
@@ -51,25 +51,25 @@ public class PlayerAttributes : MonoBehaviour {
     }
 
     private void SetValueAttributesTakenFromPlayerConfig() {
-        _baseHealth = _playerConfig.health;
-        _baseArmor = _playerConfig.armor;
-        _baseSpeed = _playerConfig.speed;
-        _baseDamageMin = _playerConfig.damageMin;
-        _baseDamageMax = _playerConfig.damageMax;
+        _health = _playerConfig.health;
+        _armor = _playerConfig.armor;
+        _speed = _playerConfig.speed;
+        _damageMin = _playerConfig.damageMin;
+        _damageMax = _playerConfig.damageMax;
     }
 
     private void UpdateTextOfAttributes() {
-        ResultArmor = _baseArmor + _armorPercent;
+        ResultArmor = _armor + _armorPercent;
         _armorValueTextComponent.text = "" + (int)Mathf.Floor(ResultArmor);
 
-        ResultHealth = _baseHealth + _healthPercent;
+        ResultHealth = _health + _healthPercent;
         _healthValueTextComponent.text = "" + (int)Mathf.Floor(ResultHealth);
 
-        float _resultSpeed = _baseSpeed + _speedPercent;
+        float _resultSpeed = _speed + _speedPercent;
         _speedValueTextComponent.text = "" + (int)Mathf.Floor(_resultSpeed);
 
-        int _resultDamageMin = (int)(_baseDamageMin + _damageMinPercent);
-        int _resultDamageMax = (int)(_baseDamageMax + _damageMaxPercent);
+        int _resultDamageMin = (int)(_damageMin + _damageMinPercent);
+        int _resultDamageMax = (int)(_damageMax + _damageMaxPercent);
         _damageValueTextComponent.text = _resultDamageMin + "-" + _resultDamageMax;
 
         EventManager.TookOffItemEventHandler();
@@ -124,20 +124,20 @@ public class PlayerAttributes : MonoBehaviour {
     private void CalculationBaseIntegerAttributes(Attribute attribute) {
         switch (attribute.type) {
             case AttributeType.Armor:
-                _baseArmor += attribute.value;
+                _armor += attribute.value;
                 break;
 
             case AttributeType.Damage:
-                _baseDamageMin += attribute.damageMin;
-                _baseDamageMax += attribute.damageMax;
+                _damageMin += attribute.damageMin;
+                _damageMax += attribute.damageMax;
                 break;
 
             case AttributeType.Health:
-                _baseHealth += attribute.value;
+                _health += attribute.value;
                 break;
 
             case AttributeType.Speed:
-                _baseSpeed += attribute.value;
+                _speed += attribute.value;
                 break;
         }
     }
@@ -145,26 +145,26 @@ public class PlayerAttributes : MonoBehaviour {
     private void CalculationPercentAttributes(Attribute attribute) {
         switch (attribute.type) {
             case AttributeType.Armor:
-                float resultArmorPercent = attribute.value * _baseArmor / 100;
-                _armorPercent += resultArmorPercent;
+                _armorPercent += GetCalculationPercent(attribute, _armor);
                 break;
 
             case AttributeType.Damage:
-                float resultDamageMinPercent = attribute.value * _baseDamageMin / 100;
-                _damageMinPercent += resultDamageMinPercent;
-                float resultDamageMaxPercent = attribute.value * _baseDamageMax / 100;
-                _damageMaxPercent += resultDamageMaxPercent;
+                _damageMinPercent += GetCalculationPercent(attribute, _damageMin);
+                _damageMaxPercent += GetCalculationPercent(attribute, _damageMax);
                 break;
 
             case AttributeType.Health:
-                float resultHealthPercent = attribute.value * _baseHealth / 100;
-                _healthPercent += resultHealthPercent;
+                _healthPercent += GetCalculationPercent(attribute, _health);
                 break;
 
             case AttributeType.Speed:
-                float resultSpeedPercent = attribute.value * _baseSpeed / 100;
-                _speedPercent += resultSpeedPercent;
+                _speedPercent += GetCalculationPercent(attribute, _speed);
                 break;
         }
+    }
+
+    private float GetCalculationPercent(Attribute attribute, float integerValue) {
+        float _result = attribute.value * integerValue / 100;
+        return _result;
     }
 }

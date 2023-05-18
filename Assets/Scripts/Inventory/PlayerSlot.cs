@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSlot : MonoBehaviour {
     private Cell _cell;
     [SerializeField]
-    private ItemType _itemType = new ItemType();
+    private List<ItemType> _itemTypes = new List<ItemType>();
 
     public Cell Cell { get => _cell; }
 
@@ -19,7 +20,7 @@ public class PlayerSlot : MonoBehaviour {
     }
 
     private void ChageColorBorderCell(Item item) {
-        if (item.ItemType != _itemType) {
+        if (!_itemTypes.Contains(item.ItemType)) {
             _cell.SetAvailableForInteraction(false);
             _cell.SetRedBorder();
         }

@@ -17,9 +17,12 @@ public class Cursor : MonoBehaviour {
     public delegate void DelegateEvent();
     public Item Item { get; private set; }
     public RaycastHit2D RaycastHit2D { get; private set; }
+    public ItemTooltip ItemTooltip { get; private set; }
+    public Cell Cell { get; private set; }
 
     private void Awake() {
         DisableIcon();
+        ItemTooltip = FindObjectOfType<ItemTooltip>();
     }
 
     public void SetAndEnableIcon(Sprite icon) {
@@ -57,6 +60,19 @@ public class Cursor : MonoBehaviour {
         PlayerSlot _playerSlot = RaycastHit2D.transform.GetComponent<PlayerSlot>();
         if (_playerSlot != null) {
             delegateEvent.Invoke();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.TryGetComponent(out Cell cell)) {
+            Cell = cell;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.TryGetComponent(out Cell cell)) {
+            Cell = null;
+            ItemTooltip.DisableAttributes();
         }
     }
 }

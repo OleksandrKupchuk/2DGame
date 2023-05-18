@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Cell : MonoBehaviour {
-    private RectTransform _rectTransform;
 
     [SerializeField]
     private Image _icon;
@@ -14,10 +13,17 @@ public class Cell : MonoBehaviour {
     public bool IsAvailableForInteraction { get; private set; } = true;
     public bool HasItem { get => Item != null; }
     public Item Item { get; private set; }
+    public RectTransform RectTransform { get; private set; }
 
     private void Awake() {
         DisableIcon();
-        _rectTransform = GetComponent<RectTransform>();
+        RectTransform = GetComponent<RectTransform>();
+    }
+
+    public void PrintPosition(int id) {
+        print($"{id} position rect anchored = " + RectTransform.anchoredPosition);
+        print($"{id} position rect local = " + RectTransform.localPosition);
+        print($"{id} position rect position = " + RectTransform.position);
     }
 
     public void SetItem(Item item) {
@@ -62,7 +68,25 @@ public class Cell : MonoBehaviour {
     }
 
     public void SetRectTransformPosition(Vector3 newPosition) {
-        //_rectTransform.anchoredPosition = newPosition;
-        _rectTransform.localPosition = newPosition;
+        RectTransform.localPosition = newPosition;
     }
+
+    //private void OnTriggerEnter2D(Collider2D collision) {
+    //    if (!HasItem) {
+    //        return;
+    //    }
+    //    if(collision.TryGetComponent(out Cursor cursor)) {
+    //        //StartCoroutine(cursor.ItemTooltip.ShowAttributes(Item, transform.position, _rectTransform.rect.height));
+    //        cursor.ItemTooltip.ShowAttributes(Item, transform.position, RectTransform.rect.height);
+    //    }
+    //}
+
+    //private void OnTriggerExit2D(Collider2D collision) {
+    //    if (!HasItem) {
+    //        return;
+    //    }
+    //    if (collision.TryGetComponent(out Cursor cursor)) {
+    //        cursor.ItemTooltip.DisableAttributes();
+    //    }
+    //}
 }
