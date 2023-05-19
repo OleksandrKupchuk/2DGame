@@ -8,6 +8,7 @@ public class PutItemState : IDragDropState {
         _controller.Cell.SetAvailableForInteraction(true);
         _controller.Cell.SetAndEnableIcon(_controller.Cursor.Item.Icon);
 
+        _controller.Cursor.OnTriggerEnter2D(_controller.Cursor.Cell.BoxCollider2D);
         _controller.Cursor.DisableIcon();
         _controller.Cursor.SetItem(null);
         _controller.ChangeState(_controller.CheckItemState);

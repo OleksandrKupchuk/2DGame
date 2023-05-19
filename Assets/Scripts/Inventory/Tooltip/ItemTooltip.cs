@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,13 +34,10 @@ public class ItemTooltip : MonoBehaviour {
         }
     }
 
-    public void ShowAttributes(Item item, Vector2 pos, float heightCell) {
+    public void ShowAttributes(Item item, Vector2 positionCell, float heightCell) {
+        DisableAttributes();
         SetSizeBackground(item.Attributes.Count);
-        SetPosition(pos, heightCell);
-
-        //foreach (Attribute attribute in item.Attributes) {
-        //    SetDataAndEnableAttribute(attribute);
-        //}
+        SetPosition(positionCell, heightCell);
 
         for (int i = 0; i < item.Attributes.Count; i++) {
             _attributeTooltips[i].SetValue(item.Attributes[i]);
@@ -49,14 +45,12 @@ public class ItemTooltip : MonoBehaviour {
         }
     }
 
-    private void SetDataAndEnableAttribute(Attribute attribute) {
-        for (int i = 0; i < _attributeTooltips.Count; i++) {
-            if (!_attributeTooltips[i].gameObject.activeSelf) {
-                _attributeTooltips[i].SetValue(attribute);
-                _attributeTooltips[i].gameObject.SetActive(true);
-                return;
-            }
+    public void DisableAttributes() {
+        foreach (AttributeTooltip attributeTooltip in _attributeTooltips) {
+            attributeTooltip.gameObject.SetActive(false);
         }
+
+        _backgroundRectTransform.sizeDelta = new Vector2(_backgroundRectTransform.rect.width, 0f);
     }
 
     private void SetSizeBackground(int amountAttributes) {
@@ -69,13 +63,5 @@ public class ItemTooltip : MonoBehaviour {
         float _spaceBetweenTooltipAndCellInPixel = 10;
         float _heightInPixel = (_backgroundRectTransform.rect.height + heightCell) / 2 + _spaceBetweenTooltipAndCellInPixel;
         _backgroundRectTransform.anchoredPosition = new Vector2(_backgroundRectTransform.anchoredPosition.x, _backgroundRectTransform.anchoredPosition.y + _heightInPixel);
-    }
-
-    public void DisableAttributes() {
-        foreach (AttributeTooltip attributeTooltip in _attributeTooltips) {
-            attributeTooltip.gameObject.SetActive(false);
-        }
-
-        _backgroundRectTransform.sizeDelta = new Vector2(_backgroundRectTransform.rect.width, 0f);
     }
 }

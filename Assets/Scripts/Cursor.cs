@@ -10,8 +10,6 @@ public class Cursor : MonoBehaviour {
     [SerializeField]
     private LayerMask _layerMaskUI;
     [SerializeField]
-    private LayerMask _layerMaskBackgroundInventory;
-    [SerializeField]
     private Canvas _canvas;
 
     public delegate void DelegateEvent();
@@ -63,15 +61,18 @@ public class Cursor : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
+    public void OnTriggerEnter2D(Collider2D collision) {
         if (collision.TryGetComponent(out Cell cell)) {
             Cell = cell;
+            if (!cell.HasItem) {
+                return;
+            }
+            ItemTooltip.ShowAttributes(cell.Item, cell.transform.position, cell.RectTransform.rect.height);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.TryGetComponent(out Cell cell)) {
-            Cell = null;
             ItemTooltip.DisableAttributes();
         }
     }

@@ -14,6 +14,7 @@ public class Cell : MonoBehaviour {
     public bool HasItem { get => Item != null; }
     public Item Item { get; private set; }
     public RectTransform RectTransform { get; private set; }
+    public BoxCollider2D BoxCollider2D { get => _boxCollider2D; }
 
     private void Awake() {
         DisableIcon();

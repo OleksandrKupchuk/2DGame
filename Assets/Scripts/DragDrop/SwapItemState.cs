@@ -9,6 +9,7 @@ public class SwapItemState : IDragDropState {
         _controller.Cell.SetAndEnableIcon(_controller.Cursor.Item.Icon);
         _controller.Cell.SetItem(_controller.Cursor.Item);
 
+        _controller.Cursor.OnTriggerEnter2D(_controller.Cell.BoxCollider2D);
         _controller.Cursor.SetItem(_bufferItem);
         _controller.Cursor.SetAndEnableIcon(_bufferItem.Icon);
 
