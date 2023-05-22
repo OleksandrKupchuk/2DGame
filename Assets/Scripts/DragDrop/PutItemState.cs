@@ -4,9 +4,10 @@ public class PutItemState : IDragDropState {
     public void Enter(DragDropController controller) {
         _controller = controller;
 
-        _controller.Cell.SetItem(_controller.Cursor.Item);
-        _controller.Cell.SetAvailableForInteraction(true);
-        _controller.Cell.SetAndEnableIcon(_controller.Cursor.Item.Icon);
+        _controller.Cursor.Cell.PutItem(_controller.Cursor.Item);
+        _controller.Cursor.Cell.SetAvailableForInteraction(true);
+        //_controller.Cursor.Cell.SetAndEnableIcon(_controller.Cursor.Item.Icon);
+
 
         _controller.Cursor.OnTriggerEnter2D(_controller.Cursor.Cell.BoxCollider2D);
         _controller.Cursor.DisableIcon();

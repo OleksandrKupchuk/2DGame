@@ -24,23 +24,20 @@ public class CheckItemState : IDragDropState {
                 return;
             }
 
-            Cell _cell = _controller.Cursor.RaycastHit2D.transform.GetComponent<Cell>();
-
-            if (_cell == null) {
+            if (_controller.Cursor.Cell == null) {
                 Debug.Log("cell component is null");
                 return;
             }
 
-            if (!_cell.HasItem) {
+            if (!_controller.Cursor.Cell.HasItem) {
                 Debug.Log("cell not have item");
                 return;
             }
 
-            _controller.Cursor.SetAndEnableIcon(_cell.Item.Icon);
-            _controller.Cursor.SetItem(_cell.Item);
+            _controller.Cursor.SetItem(_controller.Cursor.Cell.Item);
 
-            _cell.DisableIcon();
-            _cell.SetItem(null);
+            _controller.Cursor.Cell.DisableIcon();
+            _controller.Cursor.Cell.PutItem(null);
             _controller.ChangeState(_controller.RaisedItemState);
 
             _controller.Cursor.TryGetPlayerSlotComponentAndCallEvent(EventManager.PutOnOrTakenAwakeItemEventHandler);

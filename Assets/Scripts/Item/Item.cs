@@ -53,5 +53,6 @@ public enum AttributeType {
     Armor,
     Damage,
     Health,
-    Speed
+    Speed,
+    HealthRegeneration
 }

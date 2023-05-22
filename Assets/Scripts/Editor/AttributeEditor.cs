@@ -1,8 +1,8 @@
 using UnityEditor;
+using UnityEngine;
 
 [CustomEditor(typeof(Attribute))]
 public class AttributeEditor : Editor {
-
     SerializedProperty _attributeTypeProperty;
     SerializedProperty _valueTypeProperty;
     SerializedProperty _valueProperty;

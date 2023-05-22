@@ -23,11 +23,6 @@ public class Cursor : MonoBehaviour {
         ItemTooltip = FindObjectOfType<ItemTooltip>();
     }
 
-    public void SetAndEnableIcon(Sprite icon) {
-        _icon.sprite = icon;
-        EnableIcon();
-    }
-
     public void DisableIcon() {
         _icon.enabled = false;
     }
@@ -38,6 +33,16 @@ public class Cursor : MonoBehaviour {
 
     public void SetItem(Item item) {
         Item = item;
+
+        if(Item != null) {
+            SetIcon(Item.Icon);
+            EnableIcon();
+        }
+    }
+
+    private void SetIcon(Sprite icon) {
+        _icon.sprite = icon;
+        EnableIcon();
     }
 
     public void FollowTheMouse() {
@@ -63,7 +68,7 @@ public class Cursor : MonoBehaviour {
 
     public void OnTriggerEnter2D(Collider2D collision) {
         if (collision.TryGetComponent(out Cell cell)) {
-            Cell = cell;
+            SetCell(cell);
             if (!cell.HasItem) {
                 return;
             }
@@ -75,5 +80,9 @@ public class Cursor : MonoBehaviour {
         if (collision.TryGetComponent(out Cell cell)) {
             ItemTooltip.DisableAttributes();
         }
+    }
+
+    public void SetCell(Cell cell) {
+        Cell = cell;
     }
 }

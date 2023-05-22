@@ -40,7 +40,9 @@ public class ItemTooltip : MonoBehaviour {
         SetPosition(positionCell, heightCell);
 
         for (int i = 0; i < item.Attributes.Count; i++) {
+            Sprite _icon = LoadAttributesIcon.GetIcon(item.Attributes[i].type);
             _attributeTooltips[i].SetValue(item.Attributes[i]);
+            _attributeTooltips[i].SetIcon(_icon);
             _attributeTooltips[i].gameObject.SetActive(true);
         }
     }

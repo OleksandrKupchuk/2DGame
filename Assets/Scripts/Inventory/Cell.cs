@@ -27,13 +27,16 @@ public class Cell : MonoBehaviour {
         print($"{id} position rect position = " + RectTransform.position);
     }
 
-    public void SetItem(Item item) {
+    public void PutItem(Item item) {
         Item = item;
+        if(Item != null) {
+            SetIcon(Item.Icon);
+            EnableIcon();
+        }
     }
 
-    public void SetAndEnableIcon(Sprite icon) {
+    private void SetIcon(Sprite icon) {
         _icon.sprite = icon;
-        EnableIcon();
     }
 
     public void DisableIcon() {
@@ -71,23 +74,4 @@ public class Cell : MonoBehaviour {
     public void SetRectTransformPosition(Vector3 newPosition) {
         RectTransform.localPosition = newPosition;
     }
-
-    //private void OnTriggerEnter2D(Collider2D collision) {
-    //    if (!HasItem) {
-    //        return;
-    //    }
-    //    if(collision.TryGetComponent(out Cursor cursor)) {
-    //        //StartCoroutine(cursor.ItemTooltip.ShowAttributes(Item, transform.position, _rectTransform.rect.height));
-    //        cursor.ItemTooltip.ShowAttributes(Item, transform.position, RectTransform.rect.height);
-    //    }
-    //}
-
-    //private void OnTriggerExit2D(Collider2D collision) {
-    //    if (!HasItem) {
-    //        return;
-    //    }
-    //    if (collision.TryGetComponent(out Cursor cursor)) {
-    //        cursor.ItemTooltip.DisableAttributes();
-    //    }
-    //}
 }

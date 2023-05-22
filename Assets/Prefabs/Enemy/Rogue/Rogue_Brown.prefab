@@ -128,9 +128,9 @@ GameObject:
   - component: {fileID: 4000010141028922}
   - component: {fileID: 95000012403032898}
   - component: {fileID: 1525327993080314713}
-  - component: {fileID: 2345015853051294881}
   - component: {fileID: 4926260825350098026}
   - component: {fileID: 4342419411296983399}
+  - component: {fileID: 404054845971468582}
   m_Layer: 10
   m_Name: Rogue_Brown
   m_TagString: Untagged
@@ -186,7 +186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae5094d45b7cd3409f24f071e1ec119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 0
   _config: {fileID: 11400000, guid: d9f8c402f477fa44897d2b7912e7a74f, type: 2}
   delayAttack: 0
   delayStrikeAttack: 0
@@ -200,18 +199,6 @@ MonoBehaviour:
   _attackRightHandUpAnimation: {fileID: 7400000, guid: 8c1e88648e47cbf4b92f6cb1b7b7c8fd, type: 2}
   _attackJumpUpAnimation: {fileID: 7400000, guid: 1005dfb1994dd4d4c9407b61173a0890, type: 2}
   _bodyCollider: {fileID: 4878541346403530629}
---- !u!114 &2345015853051294881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000010208881502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b5d343976633ae4287b1b7bf19813da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4926260825350098026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,6 +232,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &404054845971468582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010208881502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dee570033ef0ed8478c9aa98e5dc215d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1000010251440012
 GameObject:
   m_ObjectHideFlags: 0

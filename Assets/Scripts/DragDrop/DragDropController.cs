@@ -6,8 +6,6 @@ public class DragDropController : MonoBehaviour {
     [SerializeField]
     private Cursor _cursor;
 
-    public Cell Cell { get; private set; }
-
     public CheckItemState CheckItemState { get; private set; }
     public RaisedItemState RaisedItemState { get; private set; }
     public PutItemState PutItemState { get; private set; }
@@ -60,9 +58,5 @@ public class DragDropController : MonoBehaviour {
         }
         CurrentState = newState;
         CurrentState.Enter(this);
-    }
-
-    public void SetCell(Cell cell) {
-        Cell = cell;
     }
 }

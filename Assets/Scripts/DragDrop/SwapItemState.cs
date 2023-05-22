@@ -4,14 +4,12 @@ public class SwapItemState : IDragDropState {
     public void Enter(DragDropController controller) {
         _controller = controller;
 
-        Item _bufferItem = _controller.Cell.Item;
+        Item _bufferItem = _controller.Cursor.Cell.Item;
 
-        _controller.Cell.SetAndEnableIcon(_controller.Cursor.Item.Icon);
-        _controller.Cell.SetItem(_controller.Cursor.Item);
+        _controller.Cursor.Cell.PutItem(_controller.Cursor.Item);
 
-        _controller.Cursor.OnTriggerEnter2D(_controller.Cell.BoxCollider2D);
+        _controller.Cursor.OnTriggerEnter2D(_controller.Cursor.Cell.BoxCollider2D);
         _controller.Cursor.SetItem(_bufferItem);
-        _controller.Cursor.SetAndEnableIcon(_bufferItem.Icon);
 
         _controller.ChangeState(_controller.RaisedItemState);
 

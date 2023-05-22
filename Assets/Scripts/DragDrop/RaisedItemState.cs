@@ -6,8 +6,8 @@ public class RaisedItemState : IDragDropState {
 
     public void Enter(DragDropController controller) {
         _controller = controller;
+        //_controller.Cursor.SetItem(_controller.Cursor.Cell.Item);
         _controller.RaiseItem(_controller.Cursor.Item);
-        //_controller.Cursor.TryGetPlayerSlotComponentAndCallEvent(EventManager.TookOffItemEventHandler);
     }
 
     public void Exit() {
@@ -26,19 +26,16 @@ public class RaisedItemState : IDragDropState {
                 return;
             }
 
-            if (_controller.Cursor.RaycastHit2D.transform.TryGetComponent(out Cell cell)) {
-                _controller.SetCell(cell);
-            }
-            else {
+            if (_controller.Cursor.Cell == null) {
                 return;
             }
 
-            if (!_controller.Cell.IsAvailableForInteraction) {
+            if (!_controller.Cursor.Cell.IsAvailableForInteraction) {
                 Debug.Log("cell not avaible for iteraction");
                 return;
             }
 
-            if (_controller.Cell.HasItem) {
+            if (_controller.Cursor.Cell.HasItem) {
                 Debug.Log("cell not empty");
                 _controller.ChangeState(_controller.SwapItemState);
                 return;
