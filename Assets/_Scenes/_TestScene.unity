@@ -1186,6 +1186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 267607142}
+  - component: {fileID: 267607143}
   m_Layer: 5
   m_Name: Armor
   m_TagString: Untagged
@@ -1216,6 +1217,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &267607143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267607141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 131f2c5596ee20b42b61d21f747f7b62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _valueTextComponent: {fileID: 80823368}
+  _icon: {fileID: 1891758117}
 --- !u!1 &270581287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1225,6 +1240,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 270581288}
+  - component: {fileID: 270581289}
   m_Layer: 5
   m_Name: HealthRegeneration
   m_TagString: Untagged
@@ -1255,6 +1271,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &270581289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270581287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88ffd935ca52f444829df5ba52ae54f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _valueTextComponent: {fileID: 2055830056}
+  _icon: {fileID: 734775734}
 --- !u!1001 &292415541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1826,6 +1856,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 436553905}
+  - component: {fileID: 436553906}
   m_Layer: 5
   m_Name: Speed
   m_TagString: Untagged
@@ -1856,6 +1887,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &436553906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436553904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8ddd4fceda7334bb1d8880bfa4aca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _valueTextComponent: {fileID: 633022759}
+  _icon: {fileID: 1699959808}
 --- !u!1 &448186983
 GameObject:
   m_ObjectHideFlags: 0
@@ -2769,6 +2814,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 760146202}
+  - component: {fileID: 760146203}
   m_Layer: 5
   m_Name: Health
   m_TagString: Untagged
@@ -2799,6 +2845,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &760146203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760146201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdda289dd509e794ab52f514f204226c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _valueTextComponent: {fileID: 822665492}
+  _icon: {fileID: 1694869916}
 --- !u!1 &822665490
 GameObject:
   m_ObjectHideFlags: 0
@@ -3045,6 +3105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 874629819}
+  - component: {fileID: 874629820}
   m_Layer: 5
   m_Name: Damage
   m_TagString: Untagged
@@ -3075,6 +3136,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &874629820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874629818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7ed9510ac1b95e40b4b1c1e4018155c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _valueTextComponent: {fileID: 1048229522}
+  _icon: {fileID: 1421499706}
 --- !u!1 &914955870
 GameObject:
   m_ObjectHideFlags: 0
@@ -4590,6 +4665,7 @@ MonoBehaviour:
   - {fileID: 1539776908}
   - {fileID: 1937681348}
   - {fileID: 2045876694}
+  _attributeHealthUI: {fileID: 760146203}
 --- !u!114 &1598821524
 MonoBehaviour:
   m_ObjectHideFlags: 0

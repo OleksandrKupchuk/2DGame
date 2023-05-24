@@ -6,6 +6,7 @@ public class ResourcesPath : MonoBehaviour
     public static readonly string FolderPrefabs = "Prefabs/";
     public static readonly string FolderFieldOfView = FolderPrefabs + "FieldOfView/";
     public static readonly string FolderTooltip = "Sprites/Inventory/ItemTooltip/";
+    public static readonly string FolderPlayerConfig = "Config/PlayerConfig/";
 
     //Prefabs
     public static readonly string FieldOfViewPrefab = FolderFieldOfView + "FieldOfView";
@@ -14,4 +15,8 @@ public class ResourcesPath : MonoBehaviour
     //Sprites
     public static readonly string SpriteHealth = FolderTooltip + "Health";
     public static readonly string SpriteHealthRegeneration = FolderTooltip + "Health_Regeneration";
+    public static readonly string SpriteDamage = FolderTooltip + "Damage";
+    public static readonly string SpriteArmor = FolderTooltip + "Armor";
+    public static readonly string SpriteSpeed = FolderTooltip + "Speed";
+    public static readonly string PlayerConfig = FolderPlayerConfig + "PlayerConfig";
 }

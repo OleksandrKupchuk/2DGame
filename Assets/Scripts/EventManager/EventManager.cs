@@ -20,9 +20,21 @@ public class EventManager : MonoBehaviour {
         UpdatingHealthBar.Invoke();
     }
 
-    public static event Action TookOffItem;
+    public static event Action UpdatePlayerCurrentHealth;
 
-    public static void TookOffItemEventHandler() {
-        TookOffItem.Invoke();
+    public static void UpdatePlayerCurrentHealthEventHandler() {
+        UpdatePlayerCurrentHealth.Invoke();
+    }
+
+    public static event Action<Item> PutOnItem;
+
+    public static void PutOnItemEventHandler(Item item) {
+        PutOnItem.Invoke(item);
+    }
+
+    public static event Action<Item> TakeAwayItem;
+
+    public static void TakeAwayItemEventHandler(Item item) {
+        TakeAwayItem.Invoke(item);
     }
 }

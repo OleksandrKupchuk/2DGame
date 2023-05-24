@@ -18,7 +18,7 @@ public class AttributeTooltip : MonoBehaviour {
     public void SetValue(Attribute attribute) {
         if (attribute.type == AttributeType.Damage) {
             if (attribute.valueType == ValueType.Integer) {
-                _value.text = "+" + attribute.damageMin + "/" + attribute.damageMax;
+                _value.text = "+" + attribute.damageMin + "-" + attribute.damageMax;
             }
             else {
                 _value.text = "+" + attribute.value + "%";

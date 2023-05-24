@@ -14,9 +14,9 @@ public class LoadAttributesIcon : MonoBehaviour {
     private void LoadIcons() {
         _health = Resources.Load<Sprite>(ResourcesPath.SpriteHealth);
         _healthRegeneration = Resources.Load<Sprite>(ResourcesPath.SpriteHealthRegeneration);
-        _armor = Resources.Load<Sprite>(ResourcesPath.SpriteHealth);
-        _speed = Resources.Load<Sprite>(ResourcesPath.SpriteHealthRegeneration);
-        _damage = Resources.Load<Sprite>(ResourcesPath.SpriteHealthRegeneration);
+        _armor = Resources.Load<Sprite>(ResourcesPath.SpriteArmor);
+        _speed = Resources.Load<Sprite>(ResourcesPath.SpriteSpeed);
+        _damage = Resources.Load<Sprite>(ResourcesPath.SpriteDamage);
     }
 
     public static Sprite GetIcon(AttributeType attributeType) {

@@ -12,7 +12,7 @@ public class Cursor : MonoBehaviour {
     [SerializeField]
     private Canvas _canvas;
 
-    public delegate void DelegateEvent();
+    public delegate void DelegateEvent(Item item);
     public Item Item { get; private set; }
     public RaycastHit2D RaycastHit2D { get; private set; }
     public ItemTooltip ItemTooltip { get; private set; }
@@ -59,11 +59,13 @@ public class Cursor : MonoBehaviour {
         }
     }
 
-    public void TryGetPlayerSlotComponentAndCallEvent(DelegateEvent delegateEvent) {
+    public bool TryGetPlayerSlotComponentAndCallEvent() {
         PlayerSlot _playerSlot = RaycastHit2D.transform.GetComponent<PlayerSlot>();
         if (_playerSlot != null) {
-            delegateEvent.Invoke();
+            return true;
         }
+
+        return false;
     }
 
     public void OnTriggerEnter2D(Collider2D collision) {

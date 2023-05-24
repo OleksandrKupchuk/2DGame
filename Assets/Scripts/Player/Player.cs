@@ -80,7 +80,7 @@ public class Player : BaseCharacteristics {
         _deafaultGravityScale = Rigidbody.gravityScale;
         Attributes = FindObjectOfType<PlayerAttributes>();
         CheckComponentOnNull();
-        EventManager.TookOffItem += CalculationCurrentHealth;
+        EventManager.UpdatePlayerCurrentHealth += CalculationCurrentHealth;
     }
 
     private void CalculationCurrentHealth() {
@@ -228,7 +228,7 @@ public class Player : BaseCharacteristics {
         if (_timeRegenerationHealth >= 1) {
             _timeRegenerationHealth = 0;
             PlayerConfig _playerConfig = (PlayerConfig)_config;
-            AddHealth(_playerConfig.regenerationHealth);
+            AddHealth(_playerConfig.healthRegeneration);
         }
     }
 
