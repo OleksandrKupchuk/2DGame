@@ -40,23 +40,23 @@ public class AttributeUI : MonoBehaviour {
 
     public void CalculationAddPlayerAttribute(Item item) {
         print("call calculation");
-        CalculationAttributesValue(item, GetIntegerType, AddInteger);
-        CalculationAttributesValue(item, GetPercentType, AddPercent);
+        CalculationAttributesForItem(item, GetIntegerType, AddInteger);
+        CalculationAttributesForItem(item, GetPercentType, AddPercent);
         AddPercent(ScriptableObject.CreateInstance<Attribute>());
         UpdateTextOfAttributes();
         EventManager.UpdatingHealthBarEventHandler();
     }
 
     public void CalculationMinusPlayerAttribute(Item item) {
-        CalculationAttributesValue(item, GetIntegerType, MinusInteger);
-        CalculationAttributesValue(item, GetPercentType, MinusPercent);
+        CalculationAttributesForItem(item, GetIntegerType, MinusInteger);
+        CalculationAttributesForItem(item, GetPercentType, MinusPercent);
         MinusPercent(ScriptableObject.CreateInstance<Attribute>());
         UpdateTextOfAttributes();
         EventManager.UpdatePlayerCurrentHealthEventHandler();
         EventManager.UpdatingHealthBarEventHandler();
     }
 
-    protected virtual void CalculationAttributesValue(Item item, GetValueType valueType, CalculationField calculationField) {
+    protected virtual void CalculationAttributesForItem(Item item, GetValueType valueType, CalculationField calculationField) {
         foreach (Attribute attribute in item.Attributes) {
             if(attribute.type != _attributeType) {
                 continue;
@@ -77,22 +77,22 @@ public class AttributeUI : MonoBehaviour {
     }
 
     protected virtual void AddPercent(Attribute attribute) {
-        _valuePercent = GetAddPercent(attribute);
+        _percent += attribute.value;
+        _valuePercent = GetCalculationAddPercent(_valueInteger);
     }
 
-    protected float GetAddPercent(Attribute attribute) {
-        _percent += attribute.value;
-        float _result = _percent * _valueInteger / 100;
+    protected float GetCalculationAddPercent(float valueInteger) {
+        float _result = _percent * valueInteger / 100;
         return _result;
     }
 
     protected virtual void MinusPercent(Attribute attribute) {
-        _valuePercent = GetMinusPercent(attribute);
+        _percent -= attribute.value;
+        _valuePercent = GetCalculationMinusPercent(_valueInteger);
     }
 
-    protected float GetMinusPercent(Attribute attribute) {
-        _percent -= attribute.value;
-        float _result = _percent * _valueInteger / 100;
+    protected float GetCalculationMinusPercent(float valueInteger) {
+        float _result = _percent * valueInteger / 100;
         return _result;
     }
 

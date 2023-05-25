@@ -4,6 +4,9 @@ public class AttributeDamageUI : AttributeUI {
     protected float _valuePercentMin;
     protected float _valuePercentMax;
 
+    public float DamageMin { get => _valueIntegerMin + _valuePercentMin; }
+    public float DamageMax { get => _valueIntegerMax + _valuePercentMax; }
+
     private new void Start() {
         base.Start();
         _valueIntegerMin = _playerConfig.damageMin;
@@ -31,23 +34,13 @@ public class AttributeDamageUI : AttributeUI {
 
     protected override void AddPercent(Attribute attribute) {
         _percent += attribute.value;
-        _valuePercentMin = GetAddPercent(_valueIntegerMin);
-        _valuePercentMax = GetAddPercent(_valueIntegerMax);
+        _valuePercentMin = GetCalculationAddPercent(_valueIntegerMin);
+        _valuePercentMax = GetCalculationAddPercent(_valueIntegerMax);
     }
 
     protected override void MinusPercent(Attribute attribute) {
         _percent -= attribute.value;
-        _valuePercentMin = GetMinusPercent(_valueIntegerMin);
-        _valuePercentMax = GetMinusPercent(_valueIntegerMax);
-    }
-
-    protected float GetAddPercent(float valueInteger) {
-        float _result = _percent * valueInteger / 100;
-        return _result;
-    }
-
-    protected float GetMinusPercent(float valueInteger) {
-        float _result = _percent * valueInteger / 100;
-        return _result;
+        _valuePercentMin = GetCalculationMinusPercent(_valueIntegerMin);
+        _valuePercentMax = GetCalculationMinusPercent(_valueIntegerMax);
     }
 }

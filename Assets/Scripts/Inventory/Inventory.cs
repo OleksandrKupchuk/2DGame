@@ -18,6 +18,8 @@ public class Inventory : MonoBehaviour {
     [SerializeField]
     private Button _closeButton;
 
+    public bool IsOpen { get => _inventoryBackground.activeSelf; }
+
     private void OnEnable() {
         EventManager.InventoryOpenlyClosed += EnableDisableInventory;
         GenerateCellsOfPlayerBag();
@@ -51,6 +53,7 @@ public class Inventory : MonoBehaviour {
     private void AddListenerForCloseButton() {
         _closeButton.onClick.AddListener(() => {
             _inventoryBackground.SetActive(false);
+            _closeButton.gameObject.SetActive(false);
         });
     }
 
@@ -66,6 +69,7 @@ public class Inventory : MonoBehaviour {
 
     public void EnableDisableInventory() {
         //print("active");
+        _closeButton.gameObject.SetActive(!_closeButton.gameObject.activeSelf);
         _inventoryBackground.SetActive(!_inventoryBackground.activeSelf);
     }
 

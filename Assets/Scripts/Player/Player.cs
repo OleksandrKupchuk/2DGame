@@ -66,6 +66,7 @@ public class Player : BaseCharacteristics {
     public InputActionReference JumpInputAction { get => _jumpInputAction; }
     public InvulnerabilityAnimation InvulnerableStatus { get => _invulnerableStatus; }
     public PlayerAttributes Attributes { get; private set; }
+    public Inventory Inventory { get; private set; }
 
     private new void Awake() {
         base.Awake();
@@ -79,12 +80,13 @@ public class Player : BaseCharacteristics {
         StateMachine = new StateMachine<Player>(this);
         _deafaultGravityScale = Rigidbody.gravityScale;
         Attributes = FindObjectOfType<PlayerAttributes>();
+        Inventory = FindObjectOfType<Inventory>();
         CheckComponentOnNull();
         EventManager.UpdatePlayerCurrentHealth += CalculationCurrentHealth;
     }
 
     private void CalculationCurrentHealth() {
-        _currentHealth = _currentHealth > Attributes.ResultHealth ? Attributes.ResultHealth : _currentHealth;
+        _currentHealth = _currentHealth > Attributes.Health ? Attributes.Health : _currentHealth;
         EventManager.UpdatingHealthBarEventHandler();
     }
 
@@ -106,6 +108,9 @@ public class Player : BaseCharacteristics {
         }
         if(Attributes == null) {
             Debug.LogError($"Component {typeof(PlayerAttributes).Name} is null");
+        }
+        if (Inventory == null) {
+            Debug.LogError($"Component {typeof(Inventory).Name} is null");
         }
     }
 
@@ -179,7 +184,7 @@ public class Player : BaseCharacteristics {
     }
 
     public void TakeDamage(float damage) {
-        float _clearDamage = damage - GetBlockedDamage;
+        float _clearDamage = damage - GetBlockedDamage(Attributes.Armor);
         if(_clearDamage <= 0) {
             return;
         }
@@ -219,7 +224,7 @@ public class Player : BaseCharacteristics {
     }
 
     private void RegenerationHealth() {
-        if(_currentHealth >= Attributes.ResultHealth) {
+        if(_currentHealth >= Attributes.Health) {
             return;
         }
 
@@ -234,7 +239,7 @@ public class Player : BaseCharacteristics {
 
     public void AddHealth(float health) {
         _currentHealth += health;
-        _currentHealth = _currentHealth > Attributes.ResultHealth ? Attributes.ResultHealth : _currentHealth;
+        _currentHealth = _currentHealth > Attributes.Health ? Attributes.Health : _currentHealth;
         EventManager.UpdatingHealthBarEventHandler();
     }
 }

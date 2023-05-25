@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerRunState : IState<Player> {
@@ -42,7 +40,7 @@ public class PlayerRunState : IState<Player> {
             return;
         }
 
-        _player.Move(_player.MovementInput.x);
+        _player.Move(_player.MovementInput.x, _player.Attributes.Speed);
     }
 
     public void Exit() {

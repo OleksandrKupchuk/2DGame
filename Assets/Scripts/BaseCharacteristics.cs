@@ -10,7 +10,6 @@ public class BaseCharacteristics : MonoBehaviour {
     public Rigidbody2D Rigidbody { get; protected set; }
     public Animator Animator { get; protected set; }
 
-    public float GetBlockedDamage { get => _config.armor * _blockedDamagePerOneArmor; }
     public float CurrentHealth { get => _currentHealth; }
 
     protected void Awake() {
@@ -35,7 +34,16 @@ public class BaseCharacteristics : MonoBehaviour {
         Rigidbody.velocity = new Vector2(inputDirection * _config.speed, Rigidbody.velocity.y);
     }
 
+    public void Move(float inputDirection, float speed) {
+        Rigidbody.velocity = new Vector2(inputDirection * speed, Rigidbody.velocity.y);
+    }
+
     public void MoveEaseInQuint(float inputDirection, float speed, float time) {
         Rigidbody.velocity = new Vector2(inputDirection * speed * time * time, Rigidbody.velocity.y);
+    }
+
+    public float GetBlockedDamage(float armor) { 
+        float _blockedDamage = armor * _blockedDamagePerOneArmor;
+        return _blockedDamage;
     }
 }

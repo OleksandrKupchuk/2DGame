@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerIdleState : IState<Player> {
     private Player _player;
@@ -18,6 +15,9 @@ public class PlayerIdleState : IState<Player> {
         //Debug.Log("info = " + _player.Animator.GetCurrentAnimatorStateInfo(0).IsName(PlayerAnimationName.Attack));
         //Debug.Log($"<color=yellow>idle execute</color>");
         //Debug.Log("jump button press = " + _player.JumpInputAction.action.triggered);
+        if (_player.Inventory.IsOpen) {
+            return;
+        }
         if (_player.isHit) {
             _player.StateMachine.ChangeState(_player.HitState);
         }
@@ -27,16 +27,15 @@ public class PlayerIdleState : IState<Player> {
         else if (_player.CanJump) {
             _player.StateMachine.ChangeState(_player.JumpUpState);
         }
-        //else if (_player.isAttack) {
-        //    _player.StateMachine.ChangeState(_player.AttackState);
-        //}
+        else if (_player.IsAttack) {
+            _player.StateMachine.ChangeState(_player.AttackState);
+        }
         else if (Mathf.Abs(_player.GetMovementInput().x) > 0) {
             _player.StateMachine.ChangeState(_player.RunState);
         }
     }
 
     public void FixedUpdate() {
-        //Debug.Log($"<color=yellow>idle fixed execute</color>");
     }
 
     public void Exit() {
