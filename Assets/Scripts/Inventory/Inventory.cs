@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour {
+    private Cursor _cursor;
     private List<Cell> _cells = new List<Cell>();
 
     [SerializeField]
@@ -30,7 +31,7 @@ public class Inventory : MonoBehaviour {
     }
 
     private void Awake() {
-        if(_cellPrefab == null) {
+        if (_cellPrefab == null) {
             Debug.LogError("object is null");
             return;
         }
@@ -42,16 +43,18 @@ public class Inventory : MonoBehaviour {
             Debug.LogError("object is null");
             return;
         }
-        if(_closeButton == null) {
+        if (_closeButton == null) {
             Debug.LogError("object is null");
             return;
         }
 
+        _cursor = FindObjectOfType<Cursor>();
         AddListenerForCloseButton();
     }
 
     private void AddListenerForCloseButton() {
         _closeButton.onClick.AddListener(() => {
+            CheckItemInCursorAndPutOnInInventory();
             _inventoryBackground.SetActive(false);
             _closeButton.gameObject.SetActive(false);
         });
@@ -81,6 +84,14 @@ public class Inventory : MonoBehaviour {
                 item.gameObject.SetActive(false);
                 return;
             }
+        }
+    }
+
+    private void CheckItemInCursorAndPutOnInInventory() {
+        if (_cursor.Item != null) {
+            PutItemInEmptyCell(_cursor.Item);
+            _cursor.SetItem(null);
+            DragDropController.DropPutItem();
         }
     }
 }

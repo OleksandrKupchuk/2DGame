@@ -4,6 +4,8 @@ public class EnemyDeadState : IState<Enemy> {
 
     public virtual void Enter(Enemy owner) {
         _enemy = owner;
+        _enemy.Animator.Play(AnimationName.Dead);
+        _enemy.FieldOfView.gameObject.SetActive(false);
     }
 
     public virtual void Update() {

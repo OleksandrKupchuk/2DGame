@@ -44,11 +44,11 @@ public class DragDropController : MonoBehaviour {
         }
     }
 
-    public void RaiseItem(Item item) {
+    public static void RaiseItem(Item item) {
         RaisedItemTrigger?.Invoke(item);
     }
 
-    public void DropPutItem() {
+    public static void DropPutItem() {
         DropPutItemTrigger?.Invoke();
     }
 

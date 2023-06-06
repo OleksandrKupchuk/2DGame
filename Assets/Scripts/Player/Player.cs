@@ -39,7 +39,6 @@ public class Player : BaseCharacteristics {
         }
     }
     public bool IsFalling { get => Rigidbody.velocity.y < 0; }
-    public bool IsDead { get => _currentHealth <= 0; }
     public bool CanJump {
         get {
             if (JumpInputAction.action.triggered && IsGround()) {
@@ -184,12 +183,14 @@ public class Player : BaseCharacteristics {
     }
 
     public void TakeDamage(float damage) {
+        print("damage = " + damage);
         float _clearDamage = damage - GetBlockedDamage(Attributes.Armor);
+        print("clear damage = " + _clearDamage);
         if(_clearDamage <= 0) {
             return;
         }
 
-        _currentHealth -= damage;
+        _currentHealth -= _clearDamage;
         EventManager.UpdatingHealthBarEventHandler();
         //print("health = " + _health);
         if (IsDead) {
@@ -232,8 +233,7 @@ public class Player : BaseCharacteristics {
 
         if (_timeRegenerationHealth >= 1) {
             _timeRegenerationHealth = 0;
-            PlayerConfig _playerConfig = (PlayerConfig)_config;
-            AddHealth(_playerConfig.healthRegeneration);
+            AddHealth(Attributes.HealthRegeneration);
         }
     }
 

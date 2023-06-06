@@ -37,7 +37,8 @@ public class LoadAttributesIcon : MonoBehaviour {
                 return _speed;
 
             default:
-                return _health;
+                Debug.LogError($"{attributeType} not exist");
+                return null;
         }
     }
 }

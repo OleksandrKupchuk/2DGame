@@ -36,7 +36,9 @@ public class Cursor : MonoBehaviour {
 
         if(Item != null) {
             SetIcon(Item.Icon);
-            EnableIcon();
+        }
+        else {
+            DisableIcon();
         }
     }
 
@@ -55,7 +57,7 @@ public class Cursor : MonoBehaviour {
     public void StartRaycast() {
         RaycastHit2D = Physics2D.Raycast(_mousePosition, Vector3.forward, 100f, _layerMaskUI, -100);
         if(RaycastHit2D.transform != null) {
-            Debug.Log("name transform = " + RaycastHit2D.transform.name);
+            //Debug.Log("name transform = " + RaycastHit2D.transform.name);
         }
     }
 
@@ -80,6 +82,7 @@ public class Cursor : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.TryGetComponent(out Cell cell)) {
+            SetCell(null);
             ItemTooltip.DisableAttributes();
         }
     }

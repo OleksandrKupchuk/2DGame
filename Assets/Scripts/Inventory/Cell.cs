@@ -33,6 +33,9 @@ public class Cell : MonoBehaviour {
             SetIcon(Item.Icon);
             EnableIcon();
         }
+        else {
+            DisableIcon();
+        }
     }
 
     private void SetIcon(Sprite icon) {

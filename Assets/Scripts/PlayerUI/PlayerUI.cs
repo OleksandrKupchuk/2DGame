@@ -28,6 +28,6 @@ public class PlayerUI : MonoBehaviour {
     }
 
     private void UpdateHealthText(float currentValue, float maxValue) {
-        _healthValueTextComponent.text = (int)currentValue + "/" + (int)maxValue;
+        _healthValueTextComponent.text = string.Format("{0:0.0}", currentValue) + "/" + string.Format("{0:0.0}", maxValue);
     }
 }

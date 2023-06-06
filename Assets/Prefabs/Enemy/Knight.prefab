@@ -70,8 +70,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36475e85fe5906f42802ade164a8360a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDamage: 2
-  maxDamage: 3
+  minDamage: 3
+  maxDamage: 5
 --- !u!1 &5427487527745984845
 GameObject:
   m_ObjectHideFlags: 0

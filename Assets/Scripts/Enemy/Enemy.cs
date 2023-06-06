@@ -74,4 +74,20 @@ public class Enemy : BaseCharacteristics {
     public void DisableCollider(Collider2D collider2D) {
         collider2D.enabled = false;
     }
+
+    public void TakeDamage(float damage) {
+        float _clearDamage = damage - GetBlockedDamage(_config.armor);
+        if (_clearDamage <= 0) {
+            return;
+        }
+
+        _currentHealth -= _clearDamage;
+
+        if (IsDead) {
+            StateMachine.ChangeState(DeadState);
+        }
+        else {
+            
+        }
+    }
 }
