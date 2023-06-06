@@ -35,7 +35,7 @@ public class DragDropController : MonoBehaviour {
 
     private void Update() {
         if (!_inventory.transform.GetChild(0).transform.gameObject.activeSelf) {
-            print("inventory not active");
+            //print("inventory not active");
             return;
         }
 
