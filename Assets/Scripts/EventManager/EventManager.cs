@@ -26,15 +26,25 @@ public class EventManager : MonoBehaviour {
         UpdatePlayerCurrentHealth.Invoke();
     }
 
-    public static event Action<Item> PutOnItem;
+    public static event Action<Equipment> PutOnItem;
 
     public static void PutOnItemEventHandler(Item item) {
-        PutOnItem.Invoke(item);
+        Equipment _equipment = item as Equipment;
+        if (_equipment == null) {
+            Debug.Log("Equipment is null");
+            return;
+        }
+        PutOnItem.Invoke(_equipment);
     }
 
-    public static event Action<Item> TakeAwayItem;
+    public static event Action<Equipment> TakeAwayItem;
 
     public static void TakeAwayItemEventHandler(Item item) {
-        TakeAwayItem.Invoke(item);
+        Equipment _equipment = item as Equipment;
+        if (_equipment == null) {
+            Debug.Log("Equipment is null");
+            return;
+        }
+        TakeAwayItem.Invoke(_equipment);
     }
 }

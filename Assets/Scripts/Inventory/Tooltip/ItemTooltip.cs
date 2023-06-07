@@ -35,13 +35,18 @@ public class ItemTooltip : MonoBehaviour {
     }
 
     public void ShowAttributes(Item item, Vector2 positionCell, float heightCell) {
+        Equipment _equipment = item as Equipment;
+        if (_equipment == null) {
+            print("Equipment is null");
+            return;
+        }
         DisableAttributes();
-        SetSizeBackground(item.Attributes.Count);
+        SetSizeBackground(_equipment.Attributes.Count);
         SetPosition(positionCell, heightCell);
 
-        for (int i = 0; i < item.Attributes.Count; i++) {
-            Sprite _icon = LoadAttributesIcon.GetIcon(item.Attributes[i].type);
-            _attributeTooltips[i].SetValue(item.Attributes[i]);
+        for (int i = 0; i < _equipment.Attributes.Count; i++) {
+            Sprite _icon = LoadAttributesIcon.GetIcon(_equipment.Attributes[i].type);
+            _attributeTooltips[i].SetValue(_equipment.Attributes[i]);
             _attributeTooltips[i].SetIcon(_icon);
             _attributeTooltips[i].gameObject.SetActive(true);
         }

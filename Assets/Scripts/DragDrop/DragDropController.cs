@@ -45,7 +45,12 @@ public class DragDropController : MonoBehaviour {
     }
 
     public static void RaiseItem(Item item) {
-        RaisedItemTrigger?.Invoke(item);
+        Equipment _equipment = item as Equipment;
+        if(_equipment == null) {
+            print("equipment is null");
+            return;
+        }
+        RaisedItemTrigger?.Invoke(_equipment);
     }
 
     public static void DropPutItem() {

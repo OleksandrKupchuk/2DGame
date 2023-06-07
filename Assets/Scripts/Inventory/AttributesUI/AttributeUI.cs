@@ -38,26 +38,26 @@ public class AttributeUI : MonoBehaviour {
         _valueTextComponent.text = "" + Value;
     }
 
-    public void CalculationAddPlayerAttribute(Item item) {
+    public void CalculationAddPlayerAttribute(Equipment equipment ) {
         print("call calculation");
-        CalculationAttributesForItem(item, GetIntegerType, AddInteger);
-        CalculationAttributesForItem(item, GetPercentType, AddPercent);
+        CalculationAttributesForItem(equipment, GetIntegerType, AddInteger);
+        CalculationAttributesForItem(equipment, GetPercentType, AddPercent);
         AddPercent(ScriptableObject.CreateInstance<Attribute>());
         UpdateTextOfAttributes();
         EventManager.UpdatingHealthBarEventHandler();
     }
 
-    public void CalculationMinusPlayerAttribute(Item item) {
-        CalculationAttributesForItem(item, GetIntegerType, MinusInteger);
-        CalculationAttributesForItem(item, GetPercentType, MinusPercent);
+    public void CalculationMinusPlayerAttribute(Equipment equipment) {
+        CalculationAttributesForItem(equipment, GetIntegerType, MinusInteger);
+        CalculationAttributesForItem(equipment, GetPercentType, MinusPercent);
         MinusPercent(ScriptableObject.CreateInstance<Attribute>());
         UpdateTextOfAttributes();
         EventManager.UpdatePlayerCurrentHealthEventHandler();
         EventManager.UpdatingHealthBarEventHandler();
     }
 
-    protected virtual void CalculationAttributesForItem(Item item, GetValueType valueType, CalculationField calculationField) {
-        foreach (Attribute attribute in item.Attributes) {
+    protected virtual void CalculationAttributesForItem(Equipment equipment, GetValueType valueType, CalculationField calculationField) {
+        foreach (Attribute attribute in equipment.Attributes) {
             if(attribute.type != _attributeType) {
                 continue;
             }

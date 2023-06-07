@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8977c4f42e963a428e0c5084c2ad4ec, type: 3}
-  m_Name: Metal_Shield_Health_Integer 1
+  m_Name: Metal_Shield_Health_Percent
   m_EditorClassIdentifier: 
   type: 0
   valueType: 1

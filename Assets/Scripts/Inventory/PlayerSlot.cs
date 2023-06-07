@@ -20,7 +20,12 @@ public class PlayerSlot : MonoBehaviour {
     }
 
     private void ChageColorBorderCell(Item item) {
-        if (!_itemTypes.Contains(item.ItemType)) {
+        Equipment _equipment = item as Equipment;
+        if (_equipment == null) {
+            print("Item not Equipment");
+            return;
+        }
+        if (!_itemTypes.Contains(_equipment.ItemType)) {
             _cell.SetAvailableForInteraction(false);
             _cell.SetRedBorder();
         }

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4210931743174618873}
   - component: {fileID: 4210931743174618872}
   - component: {fileID: 4210931743174618868}
-  - component: {fileID: 4210931743174618875}
   - component: {fileID: 4210931743174618874}
+  - component: {fileID: 9027822896342151768}
   m_Layer: 0
   m_Name: MetalShield
   m_TagString: Untagged
@@ -104,27 +104,16 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4210931743174618875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4210931743174618879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37854cf4aec128f439c8e597d923c21a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: f270ae2815e437842921f264c20b5271, type: 3}
-  <ItemType>k__BackingField: 6
-  <Attributes>k__BackingField:
-  - {fileID: 11400000, guid: b1c85214683179141aa3f5cb3246d665, type: 2}
-  - {fileID: 11400000, guid: 1bea199abd4d77646a3ddaf71c8c1195, type: 2}
 --- !u!61 &4210931743174618874
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -135,6 +124,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -151,3 +159,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.7596941, y: 1.9666691}
   m_EdgeRadius: 0
+--- !u!114 &9027822896342151768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4210931743174618879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c69bb848205d50419679bc27d50eac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 21300000, guid: f270ae2815e437842921f264c20b5271, type: 3}
+  <ItemType>k__BackingField: 6
+  <Attributes>k__BackingField:
+  - {fileID: 11400000, guid: b1c85214683179141aa3f5cb3246d665, type: 2}
+  - {fileID: 11400000, guid: 1bea199abd4d77646a3ddaf71c8c1195, type: 2}

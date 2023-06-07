@@ -21,12 +21,6 @@ public class Cell : MonoBehaviour {
         RectTransform = GetComponent<RectTransform>();
     }
 
-    public void PrintPosition(int id) {
-        print($"{id} position rect anchored = " + RectTransform.anchoredPosition);
-        print($"{id} position rect local = " + RectTransform.localPosition);
-        print($"{id} position rect position = " + RectTransform.position);
-    }
-
     public void PutItem(Item item) {
         Item = item;
         if(Item != null) {
@@ -42,12 +36,12 @@ public class Cell : MonoBehaviour {
         _icon.sprite = icon;
     }
 
-    public void DisableIcon() {
-        _icon.gameObject.SetActive(false);
+    private void EnableIcon() {
+        _icon.gameObject.SetActive(true);
     }
 
-    public void EnableIcon() {
-        _icon.gameObject.SetActive(true);
+    public void DisableIcon() {
+        _icon.gameObject.SetActive(false);
     }
 
     public void SetGreenBorder() {

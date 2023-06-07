@@ -23,19 +23,12 @@ public class Cursor : MonoBehaviour {
         ItemTooltip = FindObjectOfType<ItemTooltip>();
     }
 
-    public void DisableIcon() {
-        _icon.enabled = false;
-    }
-
-    public void EnableIcon() {
-        _icon.enabled = true;
-    }
-
     public void SetItem(Item item) {
         Item = item;
 
         if(Item != null) {
             SetIcon(Item.Icon);
+            EnableIcon();
         }
         else {
             DisableIcon();
@@ -44,7 +37,14 @@ public class Cursor : MonoBehaviour {
 
     private void SetIcon(Sprite icon) {
         _icon.sprite = icon;
-        EnableIcon();
+    }
+
+    private void EnableIcon() {
+        _icon.enabled = true;
+    }
+
+    private void DisableIcon() {
+        _icon.enabled = false;
     }
 
     public void FollowTheMouse() {

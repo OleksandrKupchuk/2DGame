@@ -42,8 +42,6 @@ public class CheckItemState : IDragDropState {
             _controller.Cursor.Cell.DisableIcon();
             _controller.Cursor.Cell.PutItem(null);
             _controller.ChangeState(_controller.RaisedItemState);
-
-            //_controller.Cursor.TryGetPlayerSlotComponentAndCallEvent(EventManager.PutOnOrTakenAwakeItemEventHandler);
         }
     }
 }
