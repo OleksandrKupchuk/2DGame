@@ -1,15 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSlot : MonoBehaviour {
-    private Cell _cell;
+public class PlayerSlot : Cell {
     [SerializeField]
     private List<ItemType> _itemTypes = new List<ItemType>();
 
-    public Cell Cell { get => _cell; }
 
-    private void Awake() {
-        _cell = GetComponent<Cell>();
+    private new void Awake() {
+        base.Awake();
         DragDropController.RaisedItemTrigger += ChageColorBorderCell;
         DragDropController.DropPutItemTrigger += ResetColorBorderCell;
     }
@@ -21,22 +19,33 @@ public class PlayerSlot : MonoBehaviour {
 
     private void ChageColorBorderCell(Item item) {
         Equipment _equipment = item as Equipment;
+
         if (_equipment == null) {
             print("Item not Equipment");
             return;
         }
         if (!_itemTypes.Contains(_equipment.ItemType)) {
-            _cell.SetAvailableForInteraction(false);
-            _cell.SetRedBorder();
+            SetAvailableForInteraction(false);
+            SetRedBorder();
         }
         else {
-            _cell.SetGreenBorder();
+            SetGreenBorder();
         }
     }
 
     private void ResetColorBorderCell() {
-        _cell.SetAvailableForInteraction(true);
-        _cell.EnableBoxCollider();
-        _cell.ResetColorBorder();
+        SetAvailableForInteraction(true);
+        //EnableBoxCollider();
+        ResetColorBorder();
+    }
+
+    public override bool IsCanPut(Item item) {
+        Equipment _equipment = item as Equipment;
+
+        if (_equipment == null) {
+            return false;
+        }
+
+        return true;
     }
 }
