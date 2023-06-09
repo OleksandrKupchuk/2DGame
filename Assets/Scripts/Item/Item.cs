@@ -21,7 +21,6 @@ public abstract class Item : MonoBehaviour {
     }
 
     public abstract void ShowTooltip(List<AttributeTooltip> attributeTooltips);
-    public abstract void Use();
 }
 
 public enum ValueType {

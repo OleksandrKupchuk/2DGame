@@ -3,18 +3,20 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Potion : Item {
-    private Text _description;
-    private Player _player;
+    protected Text _description;
+    protected Player _player;
 
     [field: SerializeField]
     public float Value { get; private set; }
+    [field: SerializeField]
+    public float Duration { get; private set; }
 
-    private new void Awake() {
+    protected new void Awake() {
         base.Awake();
         _description = GetComponent<Text>();
     }
 
-    private void Start() {
+    protected void Start() {
         _player = FindAnyObjectByType<Player>();
     }
 
@@ -24,7 +26,5 @@ public class Potion : Item {
         attributeTooltips[0].gameObject.SetActive(true);
     }
 
-    public override void Use() {
-        _player.AddHealth(Value);
-    }
+    public virtual void Use() { }
 }

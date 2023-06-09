@@ -61,7 +61,6 @@ public class Player : BaseCharacteristics {
     public PlayerJumpDownState JumpDownState { get; private set; }
     public PlayerHitState HitState { get; private set; }
     public PlayerDeadState DeadState { get; private set; }
-
     public StateMachine<Player> StateMachine { get; private set; }
     public InputActionReference ShotInputAction { get => _shotInputAction; }
     public InputActionReference JumpInputAction { get => _jumpInputAction; }
@@ -123,7 +122,6 @@ public class Player : BaseCharacteristics {
         IsGround();
         StateMachine.Update();
         RegenerationHealth();
-        UsePotion();
     }
 
     private void FixedUpdate() {
@@ -244,11 +242,5 @@ public class Player : BaseCharacteristics {
         _currentHealth += health;
         _currentHealth = _currentHealth > Attributes.Health ? Attributes.Health : _currentHealth;
         EventManager.UpdatingHealthBarEventHandler();
-    }
-
-    private void UsePotion() {
-        if (_use.action.triggered) {
-            Inventory.UseHealthPotion();
-        }
     }
 }

@@ -55,7 +55,4 @@ public class Equipment : Item {
             Debug.LogError($"You cannot have two same ValueType for the item '{gameObject.name}'");
         }
     }
-
-    public override void Use() {
-    }
 }

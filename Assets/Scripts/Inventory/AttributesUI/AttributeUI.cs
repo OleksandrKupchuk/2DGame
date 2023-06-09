@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,7 @@ public class AttributeUI : MonoBehaviour {
     protected delegate void CalculationField(Attribute attribute);
 
     public float Value { get; private set; }
+    public float AdditionalValue { get; private set; }
 
     protected void Awake() {
         EventManager.PutOnItem += CalculationAddPlayerAttribute;
@@ -40,7 +42,7 @@ public class AttributeUI : MonoBehaviour {
 
     public void CalculationAddPlayerAttribute(Item item) {
         Equipment _equipment = item as Equipment;
-        if ( _equipment == null ) {
+        if (_equipment == null) {
             return;
         }
         CalculationAttributesForItem(_equipment, GetIntegerType, AddInteger);
@@ -65,11 +67,11 @@ public class AttributeUI : MonoBehaviour {
 
     protected virtual void CalculationAttributesForItem(Equipment equipment, GetValueType valueType, CalculationField calculationField) {
         foreach (Attribute attribute in equipment.Attributes) {
-            if(attribute.type != _attributeType) {
+            if (attribute.type != _attributeType) {
                 continue;
             }
 
-            if(attribute.valueType == valueType.Invoke()) {
+            if (attribute.valueType == valueType.Invoke()) {
                 calculationField.Invoke(attribute);
             }
         }
@@ -109,5 +111,16 @@ public class AttributeUI : MonoBehaviour {
 
     protected ValueType GetPercentType() {
         return ValueType.Percent;
+    }
+
+    public void AddAdditionalValue(Potion potion) {
+        AdditionalValue = potion.Value;
+        _valueTextComponent.text += $"<color=green> + {AdditionalValue}</color>";
+        StartCoroutine(DelayPotionBuff(potion.Duration));
+    }
+
+    private IEnumerator DelayPotionBuff(float duration) {
+        yield return new WaitForSeconds(duration);
+        UpdateTextOfAttributes();
     }
 }

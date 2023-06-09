@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class ItemTooltip : MonoBehaviour {
     private RectTransform _backgroundRectTransform;
     private List<AttributeTooltip> _attributeTooltips = new List<AttributeTooltip>();
-    private VerticalLayoutGroup _verticalLayoutGroup;
 
     [SerializeField]
     private Image _imageBackground;
@@ -14,11 +13,9 @@ public class ItemTooltip : MonoBehaviour {
     [SerializeField]
     private AttributeTooltip _attributePrefab;
 
-    public float GetHeightImage { get => _backgroundRectTransform.rect.height; }
-
     private void Awake() {
         _backgroundRectTransform = _background.GetComponent<RectTransform>();
-        _verticalLayoutGroup = _background.GetComponent<VerticalLayoutGroup>();
+
         if (_background == null) {
             Debug.LogError("Object 'background' is null");
         }
@@ -38,18 +35,6 @@ public class ItemTooltip : MonoBehaviour {
     }
 
     public void ShowAttributes(Item item, Vector2 positionCell, float heightCell) {
-        //DisableAttributes();
-
-        //for (int i = 0; i < _equipment.Attributes.Count; i++) {
-        //    Sprite _icon = LoadAttributesIcon.GetIcon(_equipment.Attributes[i].type);
-        //    _attributeTooltips[i].SetValue(_equipment.Attributes[i]);
-        //    _attributeTooltips[i].SetIcon(_icon);
-        //    _attributeTooltips[i].gameObject.SetActive(true);
-        //}
-
-        //EnableImageBackground();
-        //SetPosition(positionCell, heightCell);
-
         DisableAttributes();
         item.ShowTooltip(_attributeTooltips);
 
@@ -62,7 +47,6 @@ public class ItemTooltip : MonoBehaviour {
             attributeTooltip.gameObject.SetActive(false);
         }
 
-        _backgroundRectTransform.sizeDelta = new Vector2(_backgroundRectTransform.rect.width, 0f);
         DisableImageBackground();
     }
 

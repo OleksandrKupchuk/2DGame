@@ -21,7 +21,6 @@ public class PlayerSlot : Cell {
         Equipment _equipment = item as Equipment;
 
         if (_equipment == null) {
-            print("Item not Equipment");
             return;
         }
         if (!_itemTypes.Contains(_equipment.ItemType)) {

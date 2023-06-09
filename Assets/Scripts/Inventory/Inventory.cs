@@ -93,17 +93,4 @@ public class Inventory : MonoBehaviour {
             DragDropController.DropPutItem();
         }
     }
-
-    public void UseHealthPotion() {
-        foreach(Cell cell in _cells) {
-            if (!cell.HasItem) {
-                return;
-            }
-            Potion _potion = cell.Item as Potion;
-            if (_potion != null) {
-                _potion.Use();
-                cell.SetItem(null);
-            }
-        }
-    }
 }
