@@ -4,11 +4,11 @@ using UnityEngine.UI;
 public class Cell : MonoBehaviour {
 
     [SerializeField]
-    private Image _icon;
+    protected Image _icon;
     [SerializeField]
-    private Image _border;
+    protected Image _border;
     [SerializeField]
-    private BoxCollider2D _boxCollider2D;
+    protected BoxCollider2D _boxCollider2D;
 
     public bool IsAvailableForInteraction { get; private set; } = true;
     public bool HasItem { get => Item != null; }
@@ -16,13 +16,14 @@ public class Cell : MonoBehaviour {
     public RectTransform RectTransform { get; private set; }
     public BoxCollider2D BoxCollider2D { get => _boxCollider2D; }
 
-    private void Awake() {
+    protected void Awake() {
         DisableIcon();
         RectTransform = GetComponent<RectTransform>();
     }
 
-    public void PutItem(Item item) {
+    public void SetItem(Item item) {
         Item = item;
+
         if(Item != null) {
             SetIcon(Item.Icon);
             EnableIcon();
@@ -32,15 +33,15 @@ public class Cell : MonoBehaviour {
         }
     }
 
-    private void SetIcon(Sprite icon) {
+    protected void SetIcon(Sprite icon) {
         _icon.sprite = icon;
     }
 
-    private void EnableIcon() {
+    protected void EnableIcon() {
         _icon.gameObject.SetActive(true);
     }
 
-    public void DisableIcon() {
+    protected void DisableIcon() {
         _icon.gameObject.SetActive(false);
     }
 
@@ -48,7 +49,7 @@ public class Cell : MonoBehaviour {
         _border.color = Color.green;
     }
 
-    public void SetWhiteBorder() {
+    public void ResetColorBorder() {
         _border.color = Color.white;
     }
 
@@ -70,5 +71,9 @@ public class Cell : MonoBehaviour {
 
     public void SetRectTransformPosition(Vector3 newPosition) {
         RectTransform.localPosition = newPosition;
+    }
+
+    public virtual bool IsCanPut(Item item) {
+        return true;
     }
 }

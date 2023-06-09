@@ -79,7 +79,7 @@ public class Inventory : MonoBehaviour {
     public void PutItemInEmptyCell(Item item) {
         foreach (Cell cell in _cells) {
             if (!cell.HasItem) {
-                cell.PutItem(item);
+                cell.SetItem(item);
                 item.gameObject.SetActive(false);
                 return;
             }
@@ -91,6 +91,19 @@ public class Inventory : MonoBehaviour {
             PutItemInEmptyCell(_cursor.Item);
             _cursor.SetItem(null);
             DragDropController.DropPutItem();
+        }
+    }
+
+    public void UseHealthPotion() {
+        foreach(Cell cell in _cells) {
+            if (!cell.HasItem) {
+                return;
+            }
+            Potion _potion = cell.Item as Potion;
+            if (_potion != null) {
+                _potion.Use();
+                cell.SetItem(null);
+            }
         }
     }
 }

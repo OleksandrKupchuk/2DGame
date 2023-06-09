@@ -67,6 +67,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ItemUsageSlotOne",
+                    "type": "Button",
+                    "id": "d39470eb-4bed-4d03-97dc-f5525323971b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ItemUsageSlotTwo",
+                    "type": "Button",
+                    "id": "d703718e-5c6a-4983-8343-a334139c5890",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ItemUsageSlotThree",
+                    "type": "Button",
+                    "id": "2b4358bf-efca-4626-b3a8-7a79ab171c8e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -386,6 +413,39 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "OpenCloseInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "16c51370-a118-48f4-b822-15a2c9ae9afa",
+                    "path": "<Keyboard>/1",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ItemUsageSlotOne",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b4b63b63-eaa6-456d-812d-e0cbfb619fb5",
+                    "path": "<Keyboard>/2",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ItemUsageSlotTwo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "21785795-5a07-402e-88f6-bf8b94c8aa0d",
+                    "path": "<Keyboard>/3",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ItemUsageSlotThree",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

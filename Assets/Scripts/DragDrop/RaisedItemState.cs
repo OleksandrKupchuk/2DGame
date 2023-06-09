@@ -6,7 +6,6 @@ public class RaisedItemState : IDragDropState {
 
     public void Enter(DragDropController controller) {
         _controller = controller;
-        //_controller.Cursor.SetItem(_controller.Cursor.Cell.Item);
         DragDropController.RaiseItem(_controller.Cursor.Item);
     }
 
@@ -41,7 +40,9 @@ public class RaisedItemState : IDragDropState {
                 return;
             }
 
-            _controller.ChangeState(_controller.PutItemState);
+            if (_controller.Cursor.Cell.IsCanPut(_controller.Cursor.Item)) {
+                _controller.ChangeState(_controller.PutItemState);
+            }
         }
     }
 }

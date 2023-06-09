@@ -12,10 +12,16 @@ public enum ItemType {
 }
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Item : MonoBehaviour {
-    [SerializeField]
+public abstract class Item : MonoBehaviour {
     protected Sprite _icon;
     public Sprite Icon { get => _icon; }
+
+    protected void Awake() {
+        _icon = GetComponent<SpriteRenderer>().sprite;
+    }
+
+    public abstract void ShowTooltip(List<AttributeTooltip> attributeTooltips);
+    public abstract void Use();
 }
 
 public enum ValueType {

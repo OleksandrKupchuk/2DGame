@@ -61,7 +61,7 @@ public class Cursor : MonoBehaviour {
         }
     }
 
-    public bool TryGetPlayerSlotComponentAndCallEvent() {
+    public bool IsPlayerSlot() {
         PlayerSlot _playerSlot = RaycastHit2D.transform.GetComponent<PlayerSlot>();
         if (_playerSlot != null) {
             return true;

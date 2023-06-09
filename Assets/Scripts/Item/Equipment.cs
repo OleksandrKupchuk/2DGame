@@ -7,7 +7,34 @@ public class Equipment : Item {
     [field: SerializeField]
     public List<Attribute> Attributes { get; private set; } = new List<Attribute>();
 
-    private void Awake() {
+    public override void ShowTooltip(List<AttributeTooltip> attributeTooltips) {
+        for (int i = 0; i < Attributes.Count; i++) {
+            Sprite _icon = LoadAttributesIcon.GetIcon(Attributes[i].type);
+            attributeTooltips[i].SetValue(GetAttributeString(Attributes[i]));
+            attributeTooltips[i].SetIcon(_icon);
+            attributeTooltips[i].gameObject.SetActive(true);
+        }
+    }
+
+    private string GetAttributeString(Attribute attribute) {
+        string _value = "";
+        if (attribute.type == AttributeType.Damage && attribute.valueType == ValueType.Integer) {
+            _value = "+" + attribute.damageMin + "-" + attribute.damageMax;
+        }
+        else {
+            if (attribute.valueType == ValueType.Integer) {
+                _value = "+" + attribute.value;
+            }
+            else {
+                _value = "+" + attribute.value + "%";
+            }
+        }
+
+        return _value;
+    }
+
+    private new void Awake() {
+        base.Awake();
         CheckDuplicateAttributes();
     }
 
@@ -27,5 +54,8 @@ public class Equipment : Item {
         if (first.valueType == second.valueType) {
             Debug.LogError($"You cannot have two same ValueType for the item '{gameObject.name}'");
         }
+    }
+
+    public override void Use() {
     }
 }

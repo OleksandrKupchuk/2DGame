@@ -37,6 +37,6 @@ public class PlayerSlot : MonoBehaviour {
     private void ResetColorBorderCell() {
         _cell.SetAvailableForInteraction(true);
         _cell.EnableBoxCollider();
-        _cell.SetWhiteBorder();
+        _cell.ResetColorBorder();
     }
 }

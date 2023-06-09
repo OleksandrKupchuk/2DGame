@@ -2,12 +2,6 @@ using System;
 using UnityEngine;
 
 public class EventManager : MonoBehaviour {
-    public static event Action PutOnOrTakenAwakeItem;
-
-    public static void PutOnOrTakenAwakeItemEventHandler() {
-        PutOnOrTakenAwakeItem.Invoke();
-    }
-
     public static event Action InventoryOpenlyClosed;
 
     public static void InventoryOpenlyClosedEventHandler() {
@@ -26,25 +20,15 @@ public class EventManager : MonoBehaviour {
         UpdatePlayerCurrentHealth.Invoke();
     }
 
-    public static event Action<Equipment> PutOnItem;
+    public static event Action<Item> PutOnItem;
 
     public static void PutOnItemEventHandler(Item item) {
-        Equipment _equipment = item as Equipment;
-        if (_equipment == null) {
-            Debug.Log("Equipment is null");
-            return;
-        }
-        PutOnItem.Invoke(_equipment);
+        PutOnItem.Invoke(item);
     }
 
-    public static event Action<Equipment> TakeAwayItem;
+    public static event Action<Item> TakeAwayItem;
 
     public static void TakeAwayItemEventHandler(Item item) {
-        Equipment _equipment = item as Equipment;
-        if (_equipment == null) {
-            Debug.Log("Equipment is null");
-            return;
-        }
-        TakeAwayItem.Invoke(_equipment);
+        TakeAwayItem.Invoke(item);
     }
 }

@@ -38,18 +38,25 @@ public class AttributeUI : MonoBehaviour {
         _valueTextComponent.text = "" + Value;
     }
 
-    public void CalculationAddPlayerAttribute(Equipment equipment ) {
-        print("call calculation");
-        CalculationAttributesForItem(equipment, GetIntegerType, AddInteger);
-        CalculationAttributesForItem(equipment, GetPercentType, AddPercent);
+    public void CalculationAddPlayerAttribute(Item item) {
+        Equipment _equipment = item as Equipment;
+        if ( _equipment == null ) {
+            return;
+        }
+        CalculationAttributesForItem(_equipment, GetIntegerType, AddInteger);
+        CalculationAttributesForItem(_equipment, GetPercentType, AddPercent);
         AddPercent(ScriptableObject.CreateInstance<Attribute>());
         UpdateTextOfAttributes();
         EventManager.UpdatingHealthBarEventHandler();
     }
 
-    public void CalculationMinusPlayerAttribute(Equipment equipment) {
-        CalculationAttributesForItem(equipment, GetIntegerType, MinusInteger);
-        CalculationAttributesForItem(equipment, GetPercentType, MinusPercent);
+    public void CalculationMinusPlayerAttribute(Item item) {
+        Equipment _equipment = item as Equipment;
+        if (_equipment == null) {
+            return;
+        }
+        CalculationAttributesForItem(_equipment, GetIntegerType, MinusInteger);
+        CalculationAttributesForItem(_equipment, GetPercentType, MinusPercent);
         MinusPercent(ScriptableObject.CreateInstance<Attribute>());
         UpdateTextOfAttributes();
         EventManager.UpdatePlayerCurrentHealthEventHandler();

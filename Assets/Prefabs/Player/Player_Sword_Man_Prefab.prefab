@@ -74,6 +74,7 @@ MonoBehaviour:
   - {fileID: 1686243371}
   - {fileID: 2059703570}
   - {fileID: 247315288}
+  _use: {fileID: 920941242200672320, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
   isHit: 0
 --- !u!114 &9206641031412101052
 MonoBehaviour:
@@ -151,6 +152,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 3
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -165,6 +172,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -213,7 +239,7 @@ MonoBehaviour:
   m_Camera: {fileID: 0}
 --- !u!95 &6843455573970313801
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -230,7 +256,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &5998367218307207105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,6 +380,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -458,7 +504,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 594345923685958800}
     m_Modifications:
     - target: {fileID: -9066368217272954386, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
@@ -2094,6 +2140,7 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -3977140554311962742, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
       insertIndex: -1
@@ -2101,6 +2148,97 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -5432311994297980624, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8131857798149475145}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -5569087685204261207, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7814057279204185440}
+    - targetCorrespondingSourceObject: {fileID: -5569087685204261207, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8873890313770814453}
+    - targetCorrespondingSourceObject: {fileID: 2078597120062851564, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7176322890815797042}
+    - targetCorrespondingSourceObject: {fileID: 2078597120062851564, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8997046979342837298}
+    - targetCorrespondingSourceObject: {fileID: -5801027284602445506, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2773165828981842979}
+    - targetCorrespondingSourceObject: {fileID: -5801027284602445506, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6774626616875102943}
+    - targetCorrespondingSourceObject: {fileID: 6383514140912864567, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 645660406143118580}
+    - targetCorrespondingSourceObject: {fileID: 6383514140912864567, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4003399029870390819}
+    - targetCorrespondingSourceObject: {fileID: 1054881246158031963, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5240712552241329631}
+    - targetCorrespondingSourceObject: {fileID: 1054881246158031963, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6930384719441787646}
+    - targetCorrespondingSourceObject: {fileID: -2014447450699062983, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 247315288}
+    - targetCorrespondingSourceObject: {fileID: -2014447450699062983, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8525109356647238640}
+    - targetCorrespondingSourceObject: {fileID: -7513875581864909590, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 550353306}
+    - targetCorrespondingSourceObject: {fileID: -7513875581864909590, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5279682440488992875}
+    - targetCorrespondingSourceObject: {fileID: 7342647219719412470, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1600008225}
+    - targetCorrespondingSourceObject: {fileID: 7342647219719412470, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7231560212206153730}
+    - targetCorrespondingSourceObject: {fileID: -3996546068344690189, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1923368385}
+    - targetCorrespondingSourceObject: {fileID: -3996546068344690189, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3808115821879926337}
+    - targetCorrespondingSourceObject: {fileID: -4163328761077184601, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 73855411}
+    - targetCorrespondingSourceObject: {fileID: -4163328761077184601, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6025161663253525389}
+    - targetCorrespondingSourceObject: {fileID: 5370077341597459102, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 112553050}
+    - targetCorrespondingSourceObject: {fileID: 5370077341597459102, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5839668266371676079}
+    - targetCorrespondingSourceObject: {fileID: -5165894177687657077, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1086410644}
+    - targetCorrespondingSourceObject: {fileID: -5165894177687657077, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1293596978013111665}
+    - targetCorrespondingSourceObject: {fileID: -680566325378072018, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 519255371}
+    - targetCorrespondingSourceObject: {fileID: -680566325378072018, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 47770295073517665}
+    - targetCorrespondingSourceObject: {fileID: 3560258737092163229, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1686243371}
+    - targetCorrespondingSourceObject: {fileID: 3560258737092163229, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 282848691596966499}
+    - targetCorrespondingSourceObject: {fileID: -6870996054092013860, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2059703570}
+    - targetCorrespondingSourceObject: {fileID: -6870996054092013860, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2774268889855569234}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
 --- !u!1 &106029683422397205 stripped
 GameObject:
@@ -2117,6 +2255,25 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 07e202a6798119a4fbcbe2b3a9945555, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -2163,8 +2320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 2.3126952e-26
+  m_labelHash: 0.0036570565
   m_SpriteKey: 0
   m_SpriteHash: 152694474
 --- !u!114 &8997046979342837298
@@ -2242,8 +2399,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 1.2755268e-11
+  m_labelHash: 0.0036570565
   m_SpriteKey: 0
   m_SpriteHash: 576671029
 --- !u!212 &1816198663059692267 stripped
@@ -2312,8 +2469,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 6.216492e-18
+  m_labelHash: 0.0036570565
   m_SpriteKey: 0
   m_SpriteHash: 266627569
 --- !u!1 &2857952799459905890 stripped
@@ -2331,6 +2488,25 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -2380,6 +2556,25 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -2434,6 +2629,25 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -2489,8 +2703,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 3.112294e-20
+  m_labelHash: 0.0036570565
   m_SpriteKey: 0
   m_SpriteHash: 812600983
 --- !u!212 &4214308229719292511 stripped
@@ -2560,8 +2774,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 3.491684e-30
+  m_labelHash: 0.0036570565
   m_SpriteKey: 0
   m_SpriteHash: 506774599
 --- !u!114 &4003399029870390819
@@ -2598,6 +2812,25 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -2647,6 +2880,25 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -2686,6 +2938,25 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -2725,6 +2996,25 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -2784,6 +3074,25 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 07e202a6798119a4fbcbe2b3a9945555, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -2818,6 +3127,25 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

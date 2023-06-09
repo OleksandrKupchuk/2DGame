@@ -15,22 +15,7 @@ public class AttributeTooltip : MonoBehaviour {
         _icon.sprite = icon;
     }
 
-    public void SetValue(Attribute attribute) {
-        if (attribute.type == AttributeType.Damage) {
-            if (attribute.valueType == ValueType.Integer) {
-                _value.text = "+" + attribute.damageMin + "-" + attribute.damageMax;
-            }
-            else {
-                _value.text = "+" + attribute.value + "%";
-            }
-        }
-        else {
-            if (attribute.valueType == ValueType.Integer) {
-                _value.text = "+" + attribute.value;
-            }
-            else {
-                _value.text = "+" + attribute.value + "%";
-            }
-        }
+    public void SetValue(string value) {
+        _value.text = value;
     }
 }

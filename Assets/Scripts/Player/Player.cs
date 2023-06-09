@@ -25,6 +25,8 @@ public class Player : BaseCharacteristics {
     private LayerMask _groundLayer;
     [SerializeField]
     private List<Collider2D> _collidersForIgnored = new List<Collider2D>();
+    [SerializeField]
+    private InputActionReference _use;
 
     [HideInInspector]
     public bool isHit = false;
@@ -121,6 +123,7 @@ public class Player : BaseCharacteristics {
         IsGround();
         StateMachine.Update();
         RegenerationHealth();
+        UsePotion();
     }
 
     private void FixedUpdate() {
@@ -241,5 +244,11 @@ public class Player : BaseCharacteristics {
         _currentHealth += health;
         _currentHealth = _currentHealth > Attributes.Health ? Attributes.Health : _currentHealth;
         EventManager.UpdatingHealthBarEventHandler();
+    }
+
+    private void UsePotion() {
+        if (_use.action.triggered) {
+            Inventory.UseHealthPotion();
+        }
     }
 }
