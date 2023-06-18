@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 130, y: 0}
+  m_SizeDelta: {x: 135, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &485568161585515639
 CanvasRenderer:
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 130
+  m_PreferredWidth: 135
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
@@ -209,8 +209,8 @@ GameObject:
   - component: {fileID: 485568162595676191}
   - component: {fileID: 485568162595676190}
   - component: {fileID: 485568162595676259}
-  - component: {fileID: 485568162595676189}
-  - component: {fileID: 5667966429885921812}
+  - component: {fileID: 1033746041442917572}
+  - component: {fileID: 8056263795028620008}
   m_Layer: 5
   m_Name: AttributeToolTip
   m_TagString: Untagged
@@ -263,7 +263,7 @@ MonoBehaviour:
   _icon: {fileID: 485568161614536671}
   _value: {fileID: 485568161585515632}
   _rect: {fileID: 485568162595676191}
---- !u!114 &485568162595676189
+--- !u!114 &1033746041442917572
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -276,8 +276,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 5
-    m_Right: 5
+    m_Left: 0
+    m_Right: 0
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &5667966429885921812
+--- !u!114 &8056263795028620008
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

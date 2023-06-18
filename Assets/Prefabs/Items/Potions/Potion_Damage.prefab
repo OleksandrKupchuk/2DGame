@@ -207,7 +207,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Add 10 damage for 120 seconds
+  m_Text: Add 10 damage for 30 seconds
 --- !u!114 &8483230091448121875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,4 +221,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Value>k__BackingField: 10
-  <Duration>k__BackingField: 5
+  <Duration>k__BackingField: 30

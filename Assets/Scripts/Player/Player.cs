@@ -8,6 +8,8 @@ public class Player : BaseCharacteristics {
     private RaycastHit2D _raycastHit;
     private float _deafaultGravityScale;
     private float _timeRegenerationHealth;
+    private float _delayHealthRegeneration;
+    protected AnimationEvent _attackEvent = new AnimationEvent();
 
     [SerializeField]
     private InputActionReference _movementInputAction;
@@ -26,7 +28,13 @@ public class Player : BaseCharacteristics {
     [SerializeField]
     private List<Collider2D> _collidersForIgnored = new List<Collider2D>();
     [SerializeField]
-    private InputActionReference _use;
+    private PlayerSword _playerSword;
+    [SerializeField]
+    protected int _frameRateInAttackAnimationForEnableCollider;
+    [SerializeField]
+    protected int _frameRateInAttackAnimationForDisableCollider;
+    [SerializeField]
+    protected AnimationClip _attackAnimation;
 
     [HideInInspector]
     public bool isHit = false;
@@ -82,6 +90,7 @@ public class Player : BaseCharacteristics {
         Attributes = FindObjectOfType<PlayerAttributes>();
         Inventory = FindObjectOfType<Inventory>();
         CheckComponentOnNull();
+        DisableSwordCollider();
         EventManager.UpdatePlayerCurrentHealth += CalculationCurrentHealth;
     }
 
@@ -106,7 +115,7 @@ public class Player : BaseCharacteristics {
         if (_boxCollider == null) {
             Debug.LogError("Component BoxCollider2D is null");
         }
-        if(Attributes == null) {
+        if (Attributes == null) {
             Debug.LogError($"Component {typeof(PlayerAttributes).Name} is null");
         }
         if (Inventory == null) {
@@ -187,7 +196,7 @@ public class Player : BaseCharacteristics {
         print("damage = " + damage);
         float _clearDamage = damage - GetBlockedDamage(Attributes.Armor);
         print("clear damage = " + _clearDamage);
-        if(_clearDamage <= 0) {
+        if (_clearDamage <= 0) {
             return;
         }
 
@@ -226,21 +235,46 @@ public class Player : BaseCharacteristics {
     }
 
     private void RegenerationHealth() {
-        if(_currentHealth >= Attributes.Health) {
-            return;
+        if (isHit) {
+            _delayHealthRegeneration = 0;
         }
 
-        _timeRegenerationHealth += Time.deltaTime;
+        _delayHealthRegeneration += Time.deltaTime;
 
-        if (_timeRegenerationHealth >= 1) {
-            _timeRegenerationHealth = 0;
-            AddHealth(Attributes.HealthRegeneration);
+        if (_delayHealthRegeneration >= Config.delayHealthRegeneration) {
+            if (_currentHealth >= Attributes.Health) {
+                return;
+            }
+
+            _timeRegenerationHealth += Time.deltaTime;
+
+            if (_timeRegenerationHealth >= 1) {
+                _timeRegenerationHealth = 0;
+                AddHealth(Attributes.HealthRegeneration);
+            }
         }
+
     }
 
     public void AddHealth(float health) {
         _currentHealth += health;
         _currentHealth = _currentHealth > Attributes.Health ? Attributes.Health : _currentHealth;
         EventManager.UpdatingHealthBarEventHandler();
+    }
+
+    public void AddEnableSwordColliderEventForAttackAnimation() {
+        AttachingEventToAnimation.AddEventForFrameOfAnimation(_attackAnimation, _attackEvent, _frameRateInAttackAnimationForEnableCollider, nameof(EnableSwordCollider));
+    }
+
+    public void AddDisableSwordColliderEventForAttackAnimation() {
+        AttachingEventToAnimation.AddEventForFrameOfAnimation(_attackAnimation, _attackEvent, _frameRateInAttackAnimationForDisableCollider, nameof(DisableSwordCollider));
+    }
+
+    private void EnableSwordCollider() {
+        _playerSword.BoxCollider2D.enabled = true;
+    }
+
+    private void DisableSwordCollider() {
+        _playerSword.BoxCollider2D.enabled = false;
     }
 }

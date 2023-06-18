@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4574032332259380865
 MonoBehaviour:
@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917d77cbeddac8d4083e83ae35ddbeea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 7139910950940667720, guid: 2e6fe925291ef6b4c8112f412e4d8147, type: 3}
   _enemyDragon: {fileID: 2520592524519590777, guid: 48babae3131708c4f9fff4e4c2e02593, type: 3}
   _enemyKnight: {fileID: 2084266895115381202, guid: d1a019e71faa8db49874e36d11f723d8, type: 3}
   _enemyRogue: {fileID: 1525327993080314713, guid: 722924ec8a0056f4a8fb443b2fb65ff9, type: 3}

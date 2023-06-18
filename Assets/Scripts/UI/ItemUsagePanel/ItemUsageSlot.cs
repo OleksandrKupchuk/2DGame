@@ -3,14 +3,14 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ItemUsageSlot : Cell {
+    private InputActionReference _inputAction;
     [SerializeField]
     private Text _labelButtonIcon;
     [SerializeField]
-    private InputActionReference _useButton;
+    private InputActionReference _inputActionTest;
 
     private new void Awake() {
         base.Awake();
-        _labelButtonIcon.text = "" + GetNameButton(_useButton.action.GetBindingDisplayString());
         DragDropController.RaisedItemTrigger += ChageColorBorderCell;
         DragDropController.DropPutItemTrigger += ResetColorBorder;
     }
@@ -21,20 +21,18 @@ public class ItemUsageSlot : Cell {
     }
 
     private void Update() {
-        UseItem();
+        if (_inputAction.action.triggered) {
+            UseItem(Item);
+        }
     }
 
-    private void UseItem() {
+    private void UseItem(IUse use) {
         if (!HasItem) {
-            //print("Item usage slot is empty");
             return;
         }
-
-        if (_useButton.action.triggered) {
-            Potion _potion = (Potion)Item;
-            _potion.Use();
-            SetItem(null);
-        }
+       
+        use.Use();
+        SetItem(null);
     }
 
     private string GetNameButton(string bindingString) {
@@ -45,7 +43,7 @@ public class ItemUsageSlot : Cell {
         Potion _potion = item as Potion;
 
         if (_potion == null) {
-            print("Item not Potion");
+            //print("Item not Potion");
             return;
         }
 
@@ -55,10 +53,15 @@ public class ItemUsageSlot : Cell {
     public override bool IsCanPut(Item item) {
         Potion _potion = item as Potion;
 
-        if(_potion == null) {
+        if (_potion == null) {
             return false;
         }
 
         return true;
+    }
+
+    public void SetInputAction(InputActionReference inputAction) {
+        _inputAction = inputAction;
+        _labelButtonIcon.text = "" + GetNameButton(_inputAction.action.GetBindingDisplayString());
     }
 }

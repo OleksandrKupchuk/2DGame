@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 9206641031412101052}
   - component: {fileID: 2123502423263786045}
   - component: {fileID: 2724809069109994693}
-  - component: {fileID: 7247369732987243490}
   - component: {fileID: 6843455573970313801}
   - component: {fileID: 5998367218307207105}
   m_Layer: 6
@@ -74,7 +73,10 @@ MonoBehaviour:
   - {fileID: 1686243371}
   - {fileID: 2059703570}
   - {fileID: 247315288}
-  _use: {fileID: 920941242200672320, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
+  _playerSword: {fileID: 607727161519057064}
+  _frameRateInAttackAnimationForEnableCollider: 25
+  _frameRateInAttackAnimationForDisableCollider: 30
+  _attackAnimation: {fileID: 7400000, guid: fb30f15524b4a2d4b83dc65fe81c33fd, type: 2}
   isHit: 0
 --- !u!114 &9206641031412101052
 MonoBehaviour:
@@ -207,36 +209,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8548913, y: 3.4607224}
   m_EdgeRadius: 0
---- !u!114 &7247369732987243490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5238491402704463331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard&Mouse
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!95 &6843455573970313801
 Animator:
   serializedVersion: 5
@@ -270,7 +242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b443d7a29afd094c88e8806744da99b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventory: {fileID: 0}
 --- !u!1 &7328863205628577472
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,6 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 132b9ca54ba837648b52da14050653f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <BoxCollider2D>k__BackingField: {fileID: 5244960924419892184}
   _player: {fileID: 7139910950940667720}
 --- !u!61 &5244960924419892184
 BoxCollider2D:

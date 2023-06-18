@@ -45,7 +45,7 @@ public class EnemyKnight : Enemy {
 
     protected new void Awake() {
         base.Awake();
-        _currentHealth = 4f;
+        //_currentHealth = 4f;
         _logicEnemyOfRange = GetComponent<Projectile>();
         _ignoreCollision = GetComponent<IgnoreCollision>();
         DisableStrikeCollider();

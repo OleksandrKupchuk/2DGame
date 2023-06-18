@@ -12,6 +12,7 @@ public class BaseCharacteristics : MonoBehaviour {
 
     public float CurrentHealth { get => _currentHealth; }
     public bool IsDead { get => _currentHealth <= 0; }
+    public AttachingEventToAnimation AttachingEventToAnimation { get; private set; } = new AttachingEventToAnimation();
 
     protected void Awake() {
         Rigidbody = gameObject.GetComponent<Rigidbody2D>();

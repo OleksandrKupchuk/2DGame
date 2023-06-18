@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public class FireBall : Damage
-{
+public class FireBall : Damage {
     private Rigidbody2D _rigidbody2D;
     private float _timer;
     private Transform _parent;

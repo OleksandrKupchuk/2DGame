@@ -19,7 +19,12 @@ public class AttributeDamageUI : AttributeUI {
     protected override void UpdateTextOfAttributes() {
         float resultMin = _valueIntegerMin + _valuePercentMin;
         float resultMax = _valueIntegerMax + _valuePercentMax;
-        _valueTextComponent.text = resultMin + "-" + resultMax;
+        if (AdditionalValue > 0) {
+            _valueTextComponent.text = $"{resultMin}-{resultMax} <color=green> + {AdditionalValue}</color>";
+        }
+        else {
+            _valueTextComponent.text = $"{resultMin}-{resultMax}";
+        }
     }
 
     protected override void AddInteger(Attribute attribute) {

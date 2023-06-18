@@ -56,13 +56,15 @@ public class Cursor : MonoBehaviour {
 
     public void StartRaycast() {
         RaycastHit2D = Physics2D.Raycast(_mousePosition, Vector3.forward, 100f, _layerMaskUI, -100);
+
         if(RaycastHit2D.transform != null) {
-            //Debug.Log("name transform = " + RaycastHit2D.transform.name);
+            Debug.Log("name transform = " + RaycastHit2D.transform.name);
         }
     }
 
     public bool IsPlayerSlot() {
         PlayerSlot _playerSlot = RaycastHit2D.transform.GetComponent<PlayerSlot>();
+
         if (_playerSlot != null) {
             return true;
         }
@@ -73,6 +75,7 @@ public class Cursor : MonoBehaviour {
     public void OnTriggerEnter2D(Collider2D collision) {
         if (collision.TryGetComponent(out Cell cell)) {
             SetCell(cell);
+
             if (!cell.HasItem) {
                 return;
             }

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Potion : Item {
+public class Potion : Item, IUse {
     protected Text _description;
     protected Player _player;
 
@@ -25,6 +25,4 @@ public class Potion : Item {
         attributeTooltips[0].SetIcon(_icon);
         attributeTooltips[0].gameObject.SetActive(true);
     }
-
-    public virtual void Use() { }
 }

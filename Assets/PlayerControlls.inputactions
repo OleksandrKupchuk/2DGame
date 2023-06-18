@@ -69,9 +69,18 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "One",
+                    "type": "Button",
+                    "id": "b1b32d51-983b-4a2f-b3c8-791c73241b54",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "ItemUsageSlotOne",
                     "type": "Button",
-                    "id": "d39470eb-4bed-4d03-97dc-f5525323971b",
+                    "id": "2de4e0ec-5a5f-43ce-b3f2-9ad090ea6670",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -80,7 +89,7 @@
                 {
                     "name": "ItemUsageSlotTwo",
                     "type": "Button",
-                    "id": "d703718e-5c6a-4983-8343-a334139c5890",
+                    "id": "511c5a80-29bd-4e90-a6b7-ce4f715e2912",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -89,7 +98,16 @@
                 {
                     "name": "ItemUsageSlotThree",
                     "type": "Button",
-                    "id": "2b4358bf-efca-4626-b3a8-7a79ab171c8e",
+                    "id": "f2fb96a0-8e9f-405e-b3fc-885cc3e8de38",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ItemUsageSlotFour",
+                    "type": "Button",
+                    "id": "6f928559-7e31-4934-92a7-cd7913283b82",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -418,7 +436,18 @@
                 },
                 {
                     "name": "",
-                    "id": "16c51370-a118-48f4-b822-15a2c9ae9afa",
+                    "id": "4796841e-196d-4d28-a69a-bfe84ad1aa1e",
+                    "path": "<Keyboard>/1",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "One",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "00605823-b74c-4a6e-9496-e440c894c9ec",
                     "path": "<Keyboard>/1",
                     "interactions": "Press",
                     "processors": "",
@@ -429,7 +458,7 @@
                 },
                 {
                     "name": "",
-                    "id": "b4b63b63-eaa6-456d-812d-e0cbfb619fb5",
+                    "id": "8b02a97d-333d-428d-a395-c56c6806bc61",
                     "path": "<Keyboard>/2",
                     "interactions": "Press",
                     "processors": "",
@@ -440,12 +469,23 @@
                 },
                 {
                     "name": "",
-                    "id": "21785795-5a07-402e-88f6-bf8b94c8aa0d",
+                    "id": "3bed0993-3788-41ec-8f51-9d0967e618f4",
                     "path": "<Keyboard>/3",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "ItemUsageSlotThree",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8de93593-4678-4f54-9875-c5e90827c989",
+                    "path": "<Keyboard>/4",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ItemUsageSlotFour",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -962,6 +1002,94 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TrackedDeviceOrientation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "ItemUsagePanel",
+            "id": "2a08840d-5de2-490e-8fe8-c289f561732c",
+            "actions": [
+                {
+                    "name": "ItemUsageSlotOne",
+                    "type": "Button",
+                    "id": "8a374d8e-bc7b-4ed1-8226-0a517b2aa755",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ItemUsageSlotTwo",
+                    "type": "Button",
+                    "id": "c9887d91-59bb-4bf7-99a3-e93b0b271fe6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ItemUsageSlotThree",
+                    "type": "Button",
+                    "id": "831ad74c-4486-4358-bf18-8953b900aab1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ItemUsageSlotFour",
+                    "type": "Button",
+                    "id": "95773fb3-ebc7-4ae7-b653-d2c06f5af7ad",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "727a20a5-e360-408d-ab81-43ac2a1226a8",
+                    "path": "<Keyboard>/2",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ItemUsageSlotTwo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bf3e7c5a-2b78-4b8d-8e7e-dabf7c851e45",
+                    "path": "<Keyboard>/3",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ItemUsageSlotThree",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c5091eec-31de-4e20-b7e3-325fac5b7412",
+                    "path": "<Keyboard>/4",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ItemUsageSlotFour",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8f66d7f4-b99d-4685-a8fa-9d3465c56560",
+                    "path": "<Keyboard>/1",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ItemUsageSlotOne",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

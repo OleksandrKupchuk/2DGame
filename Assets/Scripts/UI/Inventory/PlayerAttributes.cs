@@ -23,14 +23,14 @@ public class PlayerAttributes : MonoBehaviour {
     }
 
     public void AddAditionanDamage(Potion potion) {
-        _attributeArmorUI.AddAdditionalValue(potion);
+        _attributeDamageUI.AddAdditionalValue(potion);
     }
 
     public void AddAditionanSpeed(Potion potion) {
-        _attributeArmorUI.AddAdditionalValue(potion);
+        _attributeSpeedUI.AddAdditionalValue(potion);
     }
 
     public void AddAditionanHealthRegeneration(Potion potion) {
-        _attributeArmorUI.AddAdditionalValue(potion);
+        _attributeHealthRegenerationUI.AddAdditionalValue(potion);
     }
 }

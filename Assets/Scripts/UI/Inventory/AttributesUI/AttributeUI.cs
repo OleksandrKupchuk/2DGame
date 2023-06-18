@@ -10,9 +10,9 @@ public class AttributeUI : MonoBehaviour {
     protected float _percent;
 
     [SerializeField]
-    protected Text _valueTextComponent;
-    [SerializeField]
     protected Image _icon;
+    [SerializeField]
+    protected Text _valueTextComponent;
 
     protected delegate void CalculationBaseInteger(Attribute attribute);
     protected delegate ValueType GetValueType();
@@ -37,7 +37,12 @@ public class AttributeUI : MonoBehaviour {
 
     protected virtual void UpdateTextOfAttributes() {
         Value = _valueInteger + _valuePercent;
-        _valueTextComponent.text = "" + Value;
+        if (AdditionalValue > 0) {
+            _valueTextComponent.text = $"{Value} <color=green> + {AdditionalValue}</color>";
+        }
+        else {
+            _valueTextComponent.text = $"{Value}";
+        }
     }
 
     public void CalculationAddPlayerAttribute(Item item) {
@@ -115,12 +120,13 @@ public class AttributeUI : MonoBehaviour {
 
     public void AddAdditionalValue(Potion potion) {
         AdditionalValue = potion.Value;
-        _valueTextComponent.text += $"<color=green> + {AdditionalValue}</color>";
+        UpdateTextOfAttributes();
         StartCoroutine(DelayPotionBuff(potion.Duration));
     }
 
     private IEnumerator DelayPotionBuff(float duration) {
         yield return new WaitForSeconds(duration);
+        AdditionalValue = 0;
         UpdateTextOfAttributes();
     }
 }

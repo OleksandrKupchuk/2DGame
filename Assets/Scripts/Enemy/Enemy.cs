@@ -11,7 +11,6 @@ public class Enemy : BaseCharacteristics {
     public bool IsTargetBehindYouWhenLookLeft { get => (transform.position.x - FieldOfView.Target.transform.position.x) < 0 && IsLookLeft; }
     public float GetDirectionX { get => transform.localScale.x; }
     public FieldOfView FieldOfView { get; protected set; }
-    public AttachingEventToAnimation AttachingEventToAnimation { get; private set; } = new AttachingEventToAnimation();
     public bool HasTarget { get => FieldOfView.Target != null; }
 
     public EnemyConfig Config { get => (EnemyConfig)_config; }
@@ -76,18 +75,19 @@ public class Enemy : BaseCharacteristics {
     }
 
     public void TakeDamage(float damage) {
+        print("player damage = " + damage);
         float _clearDamage = damage - GetBlockedDamage(_config.armor);
         if (_clearDamage <= 0) {
             return;
         }
-
+        print("clear take enemy damage = " + _clearDamage);
         _currentHealth -= _clearDamage;
 
         if (IsDead) {
             StateMachine.ChangeState(DeadState);
         }
         else {
-            
+            StateMachine.ChangeState(HiState);
         }
     }
 }

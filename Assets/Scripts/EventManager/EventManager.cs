@@ -31,4 +31,10 @@ public class EventManager : MonoBehaviour {
     public static void TakeAwayItemEventHandler(Item item) {
         TakeAwayItem.Invoke(item);
     }
+
+    public static event Action<Potion> UsePotion;
+
+    public static void UsePotionEventHandler(Potion potion) {
+        UsePotion.Invoke(potion);
+    }
 }
