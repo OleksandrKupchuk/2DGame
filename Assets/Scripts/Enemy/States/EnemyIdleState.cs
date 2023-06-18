@@ -14,6 +14,7 @@ public class EnemyIdleState : IState<Enemy> {
 
     public virtual void Update() {
         _timer -= Time.deltaTime;
+
         if (_timer <= 0) {
             _enemy.StateMachine.ChangeState(_enemy.RunState);
         }
