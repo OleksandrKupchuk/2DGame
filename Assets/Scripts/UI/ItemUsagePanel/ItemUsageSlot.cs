@@ -30,7 +30,7 @@ public class ItemUsageSlot : Cell {
         if (!HasItem) {
             return;
         }
-       
+
         use.Use();
         SetItem(null);
     }

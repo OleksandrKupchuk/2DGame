@@ -1,3 +1,3 @@
 public interface IUse {
-    abstract void Use();
+    void Use();
 }

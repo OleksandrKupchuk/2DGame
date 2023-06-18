@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Potion : Item, IUse {
+public class Potion : Item {
     protected Text _description;
     protected Player _player;
 

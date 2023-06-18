@@ -22,7 +22,7 @@ public abstract class Item : MonoBehaviour, IUse {
 
     public abstract void ShowTooltip(List<AttributeTooltip> attributeTooltips);
 
-    public void Use() {}
+    public virtual void Use() {}
 }
 
 public enum ValueType {

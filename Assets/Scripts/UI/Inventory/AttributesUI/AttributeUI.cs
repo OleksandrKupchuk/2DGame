@@ -37,6 +37,7 @@ public class AttributeUI : MonoBehaviour {
 
     protected virtual void UpdateTextOfAttributes() {
         Value = _valueInteger + _valuePercent;
+
         if (AdditionalValue > 0) {
             _valueTextComponent.text = $"{Value} <color=green> + {AdditionalValue}</color>";
         }

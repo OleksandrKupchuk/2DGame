@@ -1,16 +1,24 @@
 using UnityEngine;
 
+[RequireComponent (typeof(AttributeHealthUI))]
+[RequireComponent (typeof(AttributeSpeedUI))]
+[RequireComponent (typeof(AttributeArmorUI))]
+[RequireComponent (typeof(AttributeDamageUI))]
+[RequireComponent (typeof(AttributeHealthRegenerationUI))]
 public class PlayerAttributes : MonoBehaviour {
-    [SerializeField]
     private AttributeHealthUI _attributeHealthUI;
-    [SerializeField]
     private AttributeSpeedUI _attributeSpeedUI;
-    [SerializeField]
     private AttributeArmorUI _attributeArmorUI;
-    [SerializeField]
     private AttributeDamageUI _attributeDamageUI;
-    [SerializeField]
     private AttributeHealthRegenerationUI _attributeHealthRegenerationUI;
+
+    private void Awake() {
+        _attributeHealthUI = GetComponent<AttributeHealthUI>();
+        _attributeSpeedUI = GetComponent <AttributeSpeedUI>();
+        _attributeArmorUI = GetComponent <AttributeArmorUI>();
+        _attributeDamageUI = GetComponent <AttributeDamageUI>();
+        _attributeHealthRegenerationUI = GetComponent <AttributeHealthRegenerationUI>();
+    }
 
     public float Health { get => _attributeHealthUI.Value; }
     public float Speed { get => _attributeSpeedUI.Value + _attributeSpeedUI.AdditionalValue; }

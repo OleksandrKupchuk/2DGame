@@ -75,12 +75,12 @@ public class Enemy : BaseCharacteristics {
     }
 
     public void TakeDamage(float damage) {
-        print("player damage = " + damage);
+        //print("player damage = " + damage);
         float _clearDamage = damage - GetBlockedDamage(_config.armor);
         if (_clearDamage <= 0) {
             return;
         }
-        print("clear take enemy damage = " + _clearDamage);
+        //print("clear take enemy damage = " + _clearDamage);
         _currentHealth -= _clearDamage;
 
         if (IsDead) {

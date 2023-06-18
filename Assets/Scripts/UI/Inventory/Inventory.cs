@@ -18,9 +18,8 @@ public class Inventory : MonoBehaviour {
     private PlayerConfig _playerConfig;
     [SerializeField]
     private Button _closeButton;
-    [field : SerializeField]
-    public PlayerAttributes PlayerAttributes { get; private set; }
 
+    public PlayerAttributes PlayerAttributes { get; private set; }
     public bool IsOpen { get => _inventoryBackground.activeSelf; }
 
     private void OnEnable() {
@@ -33,6 +32,8 @@ public class Inventory : MonoBehaviour {
     }
 
     private void Awake() {
+        PlayerAttributes = GetComponent<PlayerAttributes>();
+
         if (_cellPrefab == null) {
             Debug.LogError("object is null");
             return;
@@ -47,6 +48,10 @@ public class Inventory : MonoBehaviour {
         }
         if (_closeButton == null) {
             Debug.LogError("object is null");
+            return;
+        }
+        if (PlayerAttributes == null) {
+            Debug.LogError($"object {nameof(PlayerAttributes)} is null");
             return;
         }
 

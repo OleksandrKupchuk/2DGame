@@ -1,5 +1,5 @@
 public class PotionArmor : Potion, IUse {
-    public void Use() {
+    public override void Use() {
         _player.Inventory.PlayerAttributes.AddAditionanArmor(this);
         EventManager.UsePotionEventHandler(this);
     }

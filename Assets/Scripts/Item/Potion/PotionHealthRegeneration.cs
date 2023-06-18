@@ -1,5 +1,5 @@
 public class PotionHealthRegeneration : Potion, IUse {
-    public void Use() {
+    public override void Use() {
         _player.Inventory.PlayerAttributes.AddAditionanHealthRegeneration(this);
         EventManager.UsePotionEventHandler(this);
     }

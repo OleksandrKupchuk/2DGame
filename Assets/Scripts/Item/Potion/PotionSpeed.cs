@@ -1,5 +1,5 @@
 public class PotionSpeed : Potion, IUse {
-    public void Use() {
+    public override void Use() {
         _player.Inventory.PlayerAttributes.AddAditionanSpeed(this);
         EventManager.UsePotionEventHandler(this);
     }
