@@ -18,6 +18,8 @@ public class Inventory : MonoBehaviour {
     private PlayerConfig _playerConfig;
     [SerializeField]
     private Button _closeButton;
+    [field : SerializeField]
+    public PlayerAttributes PlayerAttributes { get; private set; }
 
     public bool IsOpen { get => _inventoryBackground.activeSelf; }
 

@@ -18,7 +18,7 @@ public class AttributeUI : MonoBehaviour {
     protected delegate ValueType GetValueType();
     protected delegate void CalculationField(Attribute attribute);
 
-    public float Value { get; private set; }
+    public float Value { get; protected set; }
     public float AdditionalValue { get; private set; }
 
     protected void Awake() {

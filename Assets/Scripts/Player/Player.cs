@@ -36,9 +36,6 @@ public class Player : BaseCharacteristics {
     [SerializeField]
     protected AnimationClip _attackAnimation;
 
-    [HideInInspector]
-    public bool isHit = false;
-
     public bool IsLookingLeft { get => transform.localScale.x > 0; }
     public bool IsAttack {
         get {
@@ -73,7 +70,6 @@ public class Player : BaseCharacteristics {
     public InputActionReference ShotInputAction { get => _shotInputAction; }
     public InputActionReference JumpInputAction { get => _jumpInputAction; }
     public InvulnerabilityAnimation InvulnerableStatus { get => _invulnerableStatus; }
-    public PlayerAttributes Attributes { get; private set; }
     public Inventory Inventory { get; private set; }
 
     private new void Awake() {
@@ -87,7 +83,6 @@ public class Player : BaseCharacteristics {
         DeadState = new PlayerDeadState();
         StateMachine = new StateMachine<Player>(this);
         _deafaultGravityScale = Rigidbody.gravityScale;
-        Attributes = FindObjectOfType<PlayerAttributes>();
         Inventory = FindObjectOfType<Inventory>();
         CheckComponentOnNull();
         DisableSwordCollider();
@@ -95,7 +90,7 @@ public class Player : BaseCharacteristics {
     }
 
     private void CalculationCurrentHealth() {
-        _currentHealth = _currentHealth > Attributes.Health ? Attributes.Health : _currentHealth;
+        _currentHealth = _currentHealth > Inventory.PlayerAttributes.Health ? Inventory.PlayerAttributes.Health : _currentHealth;
         EventManager.UpdatingHealthBarEventHandler();
     }
 
@@ -114,9 +109,6 @@ public class Player : BaseCharacteristics {
         }
         if (_boxCollider == null) {
             Debug.LogError("Component BoxCollider2D is null");
-        }
-        if (Attributes == null) {
-            Debug.LogError($"Component {typeof(PlayerAttributes).Name} is null");
         }
         if (Inventory == null) {
             Debug.LogError($"Component {typeof(Inventory).Name} is null");
@@ -193,9 +185,9 @@ public class Player : BaseCharacteristics {
     }
 
     public void TakeDamage(float damage) {
-        print("damage = " + damage);
-        float _clearDamage = damage - GetBlockedDamage(Attributes.Armor);
-        print("clear damage = " + _clearDamage);
+        //print("damage = " + damage);
+        float _clearDamage = damage - GetBlockedDamage(Inventory.PlayerAttributes.Armor);
+        //print("clear damage = " + _clearDamage);
         if (_clearDamage <= 0) {
             return;
         }
@@ -207,7 +199,7 @@ public class Player : BaseCharacteristics {
             StateMachine.ChangeState(DeadState);
         }
         else {
-            isHit = true;
+            StateMachine.ChangeState(HitState);
         }
     }
 
@@ -235,14 +227,14 @@ public class Player : BaseCharacteristics {
     }
 
     private void RegenerationHealth() {
-        if (isHit) {
+        if (Animator.GetCurrentAnimatorStateInfo(AnimatorLayers.BaseLayer).IsName(PlayerAnimationName.Hit)) {
             _delayHealthRegeneration = 0;
         }
 
         _delayHealthRegeneration += Time.deltaTime;
 
         if (_delayHealthRegeneration >= Config.delayHealthRegeneration) {
-            if (_currentHealth >= Attributes.Health) {
+            if (_currentHealth >= Inventory.PlayerAttributes.Health) {
                 return;
             }
 
@@ -250,7 +242,7 @@ public class Player : BaseCharacteristics {
 
             if (_timeRegenerationHealth >= 1) {
                 _timeRegenerationHealth = 0;
-                AddHealth(Attributes.HealthRegeneration);
+                AddHealth(Inventory.PlayerAttributes.HealthRegeneration);
             }
         }
 
@@ -258,7 +250,7 @@ public class Player : BaseCharacteristics {
 
     public void AddHealth(float health) {
         _currentHealth += health;
-        _currentHealth = _currentHealth > Attributes.Health ? Attributes.Health : _currentHealth;
+        _currentHealth = _currentHealth > Inventory.PlayerAttributes.Health ? Inventory.PlayerAttributes.Health : _currentHealth;
         EventManager.UpdatingHealthBarEventHandler();
     }
 

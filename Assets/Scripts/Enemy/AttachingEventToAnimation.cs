@@ -1,20 +1,10 @@
 using UnityEngine;
 
 public class AttachingEventToAnimation {
-    public delegate string NameMethod();
-
     public void AddEventForFrameOfAnimation(AnimationClip animation, AnimationEvent animationEvent, int frameRateAnimation, string nameMethod) {
         float _playingAnimationTime = frameRateAnimation / animation.frameRate;
         animationEvent.time = _playingAnimationTime;
         animationEvent.functionName = nameMethod;
-
-        animation.AddEvent(animationEvent);
-    }
-
-    public void AddEventForFrameOfAnimation(AnimationClip animation, AnimationEvent animationEvent, int frameRateAnimation, NameMethod nameMethod) {
-        float _playingAnimationTime = frameRateAnimation / animation.frameRate;
-        animationEvent.time = _playingAnimationTime;
-        animationEvent.functionName = nameMethod.Invoke();
 
         animation.AddEvent(animationEvent);
     }

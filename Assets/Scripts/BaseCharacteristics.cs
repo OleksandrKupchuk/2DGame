@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class BaseCharacteristics : MonoBehaviour {
     protected float _blockedDamagePerOneArmor = 0.2f;
@@ -25,7 +27,11 @@ public class BaseCharacteristics : MonoBehaviour {
     }
 
     public bool IsEndCurrentAnimation(Animator animator, int layer) {
-        if (animator.GetCurrentAnimatorStateInfo(layer).normalizedTime >= 1) {
+        AnimatorStateInfo _info = animator.GetCurrentAnimatorStateInfo(0);
+        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1) {
+
+        }
+        if (_info.normalizedTime >= 1) {
             return true;
         }
 

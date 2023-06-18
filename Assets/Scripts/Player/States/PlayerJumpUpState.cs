@@ -17,10 +17,6 @@ public class PlayerJumpUpState : IState<Player> {
         //Debug.Log("jump button press = " + _player.JumpInputAction.action.triggered);
         _timer -= Time.deltaTime;
 
-        if (_player.isHit) {
-            _player.isHit = false;
-            _player.InvulnerableStatus.PlayBlinkAnimation();
-        }
         if (_player.IsGround() && _timer <= 0) {
             _player.StateMachine.ChangeState(_player.IdleState);
         }

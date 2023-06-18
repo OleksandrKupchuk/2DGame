@@ -2807,6 +2807,7 @@ MonoBehaviour:
   _inventoryBackground: {fileID: 312497850}
   _playerConfig: {fileID: 11400000, guid: a54ace36f66f2cb4dbac2f323babad9b, type: 2}
   _closeButton: {fileID: 1557087817}
+  <PlayerAttributes>k__BackingField: {fileID: 1598821523}
 --- !u!61 &976615824
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3606,7 +3607,7 @@ PrefabInstance:
     - target: {fileID: 8528680245333609998, guid: aa3ae672733ade74ca5d7df3d174c1e0, type: 3}
       propertyPath: _enemy
       value: 
-      objectReference: {fileID: 9032465796065382889, guid: d1a019e71faa8db49874e36d11f723d8, type: 3}
+      objectReference: {fileID: 3413726013779498184, guid: 48babae3131708c4f9fff4e4c2e02593, type: 3}
     - target: {fileID: 8528680245333609999, guid: aa3ae672733ade74ca5d7df3d174c1e0, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
@@ -4464,7 +4465,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1567940794}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: -5.1, z: 0}
+  m_LocalPosition: {x: 6.7, y: -5.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4483,8 +4484,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 674452622e2b74649b0d9d13e997944b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDamage: 0
-  maxDamage: 0
+  minDamage: 1
+  maxDamage: 1
   _isMove: 0
   _speed: 3
 --- !u!114 &1567940800

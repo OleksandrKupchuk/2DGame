@@ -17,6 +17,6 @@ MonoBehaviour:
   jumpVelocity: 16
   armor: 3
   damageMin: 2
-  damageMax: 7
+  damageMax: 5
   healthRegeneration: 2
   delayHealthRegeneration: 5

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerJumpDownState : IState<Player> {
@@ -14,10 +12,6 @@ public class PlayerJumpDownState : IState<Player> {
     }
 
     public void Update() {
-        if (_player.isHit) {
-            _player.isHit = false;
-            _player.InvulnerableStatus.PlayBlinkAnimation();
-        }
         if (_player.IsGround()) {
             _player.StateMachine.ChangeState(_player.IdleState);
         }

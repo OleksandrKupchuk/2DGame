@@ -22,9 +22,9 @@ public class PlayerUI : MonoBehaviour {
     }
 
     private void UpdateHealthBar() {
-        float _value = _player.CurrentHealth / _player.Attributes.Health;
+        float _value = _player.CurrentHealth / _player.Inventory.PlayerAttributes.Health;
         _healthBar.fillAmount = _value;
-        UpdateHealthText(_player.CurrentHealth, _player.Attributes.Health);
+        UpdateHealthText(_player.CurrentHealth, _player.Inventory.PlayerAttributes.Health);
     }
 
     private void UpdateHealthText(float currentValue, float maxValue) {

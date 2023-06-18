@@ -13,11 +13,7 @@ public class PlayerRunState : IState<Player> {
     public void Update() {
         //Debug.Log($"<color=blue>run execute</color>");
         //Debug.Log("jump button = " + _player.JumpInputAction.action.ReadValue<bool>());
-
-        if (_player.isHit) {
-            _player.StateMachine.ChangeState(_player.HitState);
-        }
-        else if (!_player.IsGround()) {
+        if (!_player.IsGround()) {
             _player.StateMachine.ChangeState(_player.JumpDownState);
         }
         else if (_player.CanJump) {
@@ -40,7 +36,7 @@ public class PlayerRunState : IState<Player> {
             return;
         }
 
-        _player.Move(_player.MovementInput.x, _player.Attributes.Speed);
+        _player.Move(_player.MovementInput.x, _player.Inventory.PlayerAttributes.Speed);
     }
 
     public void Exit() {
