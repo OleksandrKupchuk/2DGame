@@ -27,7 +27,7 @@ ScriptedImporter:
     streamingMipmaps: 1
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -49,6 +49,7 @@ ScriptedImporter:
     flipbookRows: 0
     flipbookColumns: 0
     ignorePngGamma: 0
+    cookieMode: 0
     filterMode: 1
     aniso: 1
     mipBias: 0
@@ -90,6 +91,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
   - name: R_Hand_wear.png
@@ -395,7 +397,8 @@ ScriptedImporter:
     - {x: 22, y: 23}
     - {x: 23, y: 24}
     tessellationDetail: 0
-    uvTransform: {x: 193, y: -95}
+    uvTransform: {x: 392, y: 88}
+    spritePosition: {x: 200, y: 184}
   - name: R_Hand.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -699,7 +702,8 @@ ScriptedImporter:
     - {x: 22, y: 23}
     - {x: 23, y: 24}
     tessellationDetail: 0
-    uvTransform: {x: 95, y: -35}
+    uvTransform: {x: 294, y: 149}
+    spritePosition: {x: 200, y: 185}
   - name: R_Finger_wear.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -937,7 +941,8 @@ ScriptedImporter:
     - {x: 16, y: 17}
     - {x: 17, y: 18}
     tessellationDetail: 0
-    uvTransform: {x: 269, y: 165}
+    uvTransform: {x: 475, y: 376}
+    spritePosition: {x: 207, y: 212}
   - name: R_Finger.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1164,7 +1169,8 @@ ScriptedImporter:
     - {x: 15, y: 16}
     - {x: 16, y: 17}
     tessellationDetail: 0
-    uvTransform: {x: 57, y: 201}
+    uvTransform: {x: 264, y: 413}
+    spritePosition: {x: 208, y: 213}
   - name: R_Arm_wear.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1468,7 +1474,8 @@ ScriptedImporter:
     - {x: 22, y: 23}
     - {x: 23, y: 24}
     tessellationDetail: 0
-    uvTransform: {x: -89, y: 15}
+    uvTransform: {x: 138, y: 213}
+    spritePosition: {x: 228, y: 199}
   - name: R_Arm.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1772,7 +1779,8 @@ ScriptedImporter:
     - {x: 22, y: 23}
     - {x: 23, y: 24}
     tessellationDetail: 0
-    uvTransform: {x: -172, y: 103}
+    uvTransform: {x: 62, y: 306}
+    spritePosition: {x: 235, y: 204}
   - name: R_Shoulder.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -2076,7 +2084,8 @@ ScriptedImporter:
     - {x: 22, y: 23}
     - {x: 23, y: 24}
     tessellationDetail: 0
-    uvTransform: {x: 56, y: -38}
+    uvTransform: {x: 282, y: 213}
+    spritePosition: {x: 227, y: 252}
   - name: flush.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -2314,7 +2323,8 @@ ScriptedImporter:
     - {x: 16, y: 17}
     - {x: 17, y: 18}
     tessellationDetail: 0
-    uvTransform: {x: 142, y: -207}
+    uvTransform: {x: 279, y: 131}
+    spritePosition: {x: 138, y: 339}
   - name: Nose.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -2563,7 +2573,8 @@ ScriptedImporter:
     - {x: 17, y: 18}
     - {x: 18, y: 19}
     tessellationDetail: 0
-    uvTransform: {x: -18, y: 112}
+    uvTransform: {x: 130, y: 443}
+    spritePosition: {x: 149, y: 332}
   - name: L_eyebrow.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -2812,7 +2823,8 @@ ScriptedImporter:
     - {x: 17, y: 18}
     - {x: 18, y: 19}
     tessellationDetail: 0
-    uvTransform: {x: 48, y: 53}
+    uvTransform: {x: 220, y: 413}
+    spritePosition: {x: 173, y: 361}
   - name: R_eyebrow.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -3061,7 +3073,8 @@ ScriptedImporter:
     - {x: 17, y: 18}
     - {x: 18, y: 19}
     tessellationDetail: 0
-    uvTransform: {x: 172, y: 53}
+    uvTransform: {x: 298, y: 413}
+    spritePosition: {x: 127, y: 361}
   - name: eyes_close.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -3354,7 +3367,8 @@ ScriptedImporter:
     - {x: 21, y: 22}
     - {x: 22, y: 23}
     tessellationDetail: 0
-    uvTransform: {x: 303, y: -164}
+    uvTransform: {x: 441, y: 187}
+    spritePosition: {x: 138, y: 351}
   - name: eyes_open.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -3658,7 +3672,8 @@ ScriptedImporter:
     - {x: 22, y: 23}
     - {x: 23, y: 24}
     tessellationDetail: 0
-    uvTransform: {x: 133, y: 28}
+    uvTransform: {x: 273, y: 376}
+    spritePosition: {x: 141, y: 349}
   - name: Ear.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -3962,7 +3977,8 @@ ScriptedImporter:
     - {x: 22, y: 23}
     - {x: 23, y: 24}
     tessellationDetail: 0
-    uvTransform: {x: -130, y: 137}
+    uvTransform: {x: 93, y: 461}
+    spritePosition: {x: 224, y: 325}
   - name: Hair.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -4376,7 +4392,8 @@ ScriptedImporter:
     - {x: 32, y: 33}
     - {x: 33, y: 34}
     tessellationDetail: 0
-    uvTransform: {x: -128, y: -350}
+    uvTransform: {x: 3, y: 3}
+    spritePosition: {x: 132, y: 354}
   - name: mouth_close.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -4559,7 +4576,8 @@ ScriptedImporter:
     - {x: 11, y: 12}
     - {x: 12, y: 13}
     tessellationDetail: 0
-    uvTransform: {x: 197, y: -185}
+    uvTransform: {x: 355, y: 132}
+    spritePosition: {x: 158, y: 317}
   - name: mouth_hurt.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -4797,7 +4815,8 @@ ScriptedImporter:
     - {x: 16, y: 17}
     - {x: 17, y: 18}
     tessellationDetail: 0
-    uvTransform: {x: 187, y: 101}
+    uvTransform: {x: 341, y: 413}
+    spritePosition: {x: 155, y: 313}
   - name: mouth_open.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -5057,7 +5076,8 @@ ScriptedImporter:
     - {x: 18, y: 19}
     - {x: 19, y: 20}
     tessellationDetail: 0
-    uvTransform: {x: 282, y: 67}
+    uvTransform: {x: 436, y: 376}
+    spritePosition: {x: 155, y: 310}
   - name: FACE.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -5383,7 +5403,8 @@ ScriptedImporter:
     - {x: 24, y: 25}
     - {x: 25, y: 26}
     tessellationDetail: 0
-    uvTransform: {x: -126, y: -144}
+    uvTransform: {x: 3, y: 149}
+    spritePosition: {x: 130, y: 294}
   - name: Bottom_wear.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -5731,7 +5752,8 @@ ScriptedImporter:
     - {x: 26, y: 27}
     - {x: 27, y: 28}
     tessellationDetail: 0
-    uvTransform: {x: 237, y: -175}
+    uvTransform: {x: 393, y: 4}
+    spritePosition: {x: 156, y: 179}
   - name: Hip.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -6057,7 +6079,8 @@ ScriptedImporter:
     - {x: 24, y: 25}
     - {x: 25, y: 26}
     tessellationDetail: 0
-    uvTransform: {x: -20, y: -42}
+    uvTransform: {x: 138, y: 149}
+    spritePosition: {x: 159, y: 192}
   - name: Top_wear.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -6394,7 +6417,8 @@ ScriptedImporter:
     - {x: 25, y: 26}
     - {x: 26, y: 27}
     tessellationDetail: 0
-    uvTransform: {x: 130, y: -214}
+    uvTransform: {x: 280, y: 4}
+    spritePosition: {x: 150, y: 218}
   - name: Chest.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -6720,7 +6744,8 @@ ScriptedImporter:
     - {x: 24, y: 25}
     - {x: 25, y: 26}
     tessellationDetail: 0
-    uvTransform: {x: 17, y: -205}
+    uvTransform: {x: 167, y: 3}
+    spritePosition: {x: 151, y: 209}
   - name: R_Foot_wear.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -7024,7 +7049,8 @@ ScriptedImporter:
     - {x: 22, y: 23}
     - {x: 23, y: 24}
     tessellationDetail: 0
-    uvTransform: {x: 237, y: 52}
+    uvTransform: {x: 440, y: 149}
+    spritePosition: {x: 204, y: 98}
   - name: R_Foot.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -7328,7 +7354,8 @@ ScriptedImporter:
     - {x: 22, y: 23}
     - {x: 23, y: 24}
     tessellationDetail: 0
-    uvTransform: {x: 131, y: 279}
+    uvTransform: {x: 335, y: 376}
+    spritePosition: {x: 205, y: 98}
   - name: R_Thigh_wear.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -7643,7 +7670,8 @@ ScriptedImporter:
     - {x: 23, y: 24}
     - {x: 24, y: 25}
     tessellationDetail: 0
-    uvTransform: {x: -208, y: 285}
+    uvTransform: {x: 3, y: 447}
+    spritePosition: {x: 212, y: 163}
   - name: R_Thigh.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -7958,7 +7986,8 @@ ScriptedImporter:
     - {x: 23, y: 24}
     - {x: 24, y: 25}
     tessellationDetail: 0
-    uvTransform: {x: -163, y: 285}
+    uvTransform: {x: 48, y: 447}
+    spritePosition: {x: 212, y: 163}
   - name: R_Leg_wear.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -8284,7 +8313,8 @@ ScriptedImporter:
     - {x: 24, y: 25}
     - {x: 25, y: 26}
     tessellationDetail: 0
-    uvTransform: {x: -212, y: 277}
+    uvTransform: {x: 3, y: 376}
+    spritePosition: {x: 216, y: 100}
   - name: R_Leg.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -8599,7 +8629,8 @@ ScriptedImporter:
     - {x: 23, y: 24}
     - {x: 24, y: 25}
     tessellationDetail: 0
-    uvTransform: {x: 255, y: 108}
+    uvTransform: {x: 474, y: 213}
+    spritePosition: {x: 220, y: 106}
   - name: L_Finger_wear.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -8925,7 +8956,8 @@ ScriptedImporter:
     - {x: 24, y: 25}
     - {x: 25, y: 26}
     tessellationDetail: 0
-    uvTransform: {x: 350, y: -94}
+    uvTransform: {x: 461, y: 88}
+    spritePosition: {x: 112, y: 183}
   - name: L_Finger.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -9251,7 +9283,8 @@ ScriptedImporter:
     - {x: 24, y: 25}
     - {x: 25, y: 26}
     tessellationDetail: 0
-    uvTransform: {x: 238, y: -33}
+    uvTransform: {x: 349, y: 149}
+    spritePosition: {x: 112, y: 183}
   - name: L_Hand_wear.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -9544,7 +9577,8 @@ ScriptedImporter:
     - {x: 21, y: 22}
     - {x: 22, y: 23}
     tessellationDetail: 0
-    uvTransform: {x: 118, y: -36}
+    uvTransform: {x: 238, y: 149}
+    spritePosition: {x: 121, y: 186}
   - name: L_Hand.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -9848,7 +9882,8 @@ ScriptedImporter:
     - {x: 22, y: 23}
     - {x: 23, y: 24}
     tessellationDetail: 0
-    uvTransform: {x: 273, y: -38}
+    uvTransform: {x: 394, y: 149}
+    spritePosition: {x: 122, y: 188}
   - name: L_Arm_wear.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -10152,7 +10187,8 @@ ScriptedImporter:
     - {x: 22, y: 23}
     - {x: 23, y: 24}
     tessellationDetail: 0
-    uvTransform: {x: 73, y: 15}
+    uvTransform: {x: 211, y: 214}
+    spritePosition: {x: 138, y: 199}
   - name: L_Arm.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -10456,7 +10492,8 @@ ScriptedImporter:
     - {x: 22, y: 23}
     - {x: 23, y: 24}
     tessellationDetail: 0
-    uvTransform: {x: -135, y: 110}
+    uvTransform: {x: 3, y: 306}
+    spritePosition: {x: 139, y: 197}
   - name: L_Shoulder_wear.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -10771,7 +10808,8 @@ ScriptedImporter:
     - {x: 23, y: 24}
     - {x: 24, y: 25}
     tessellationDetail: 0
-    uvTransform: {x: 284, y: -51}
+    uvTransform: {x: 405, y: 213}
+    spritePosition: {x: 122, y: 265}
   - name: L_Shoulder.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -11086,7 +11124,8 @@ ScriptedImporter:
     - {x: 23, y: 24}
     - {x: 24, y: 25}
     tessellationDetail: 0
-    uvTransform: {x: 211, y: -32}
+    uvTransform: {x: 344, y: 213}
+    spritePosition: {x: 134, y: 246}
   - name: L_Foot_wear.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -11390,7 +11429,8 @@ ScriptedImporter:
     - {x: 22, y: 23}
     - {x: 23, y: 24}
     tessellationDetail: 0
-    uvTransform: {x: 65, y: 279}
+    uvTransform: {x: 220, y: 376}
+    spritePosition: {x: 156, y: 98}
   - name: L_Foot.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -11683,7 +11723,8 @@ ScriptedImporter:
     - {x: 21, y: 22}
     - {x: 22, y: 23}
     tessellationDetail: 0
-    uvTransform: {x: 230, y: 279}
+    uvTransform: {x: 386, y: 376}
+    spritePosition: {x: 157, y: 98}
   - name: L_Thigh_wear.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -11998,7 +12039,8 @@ ScriptedImporter:
     - {x: 23, y: 24}
     - {x: 24, y: 25}
     tessellationDetail: 0
-    uvTransform: {x: -33, y: 214}
+    uvTransform: {x: 130, y: 376}
+    spritePosition: {x: 164, y: 163}
   - name: L_Thigh.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -12313,7 +12355,8 @@ ScriptedImporter:
     - {x: 23, y: 24}
     - {x: 24, y: 25}
     tessellationDetail: 0
-    uvTransform: {x: 12, y: 214}
+    uvTransform: {x: 175, y: 376}
+    spritePosition: {x: 164, y: 163}
   - name: L_Leg_wear.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -12628,7 +12671,8 @@ ScriptedImporter:
     - {x: 23, y: 24}
     - {x: 24, y: 25}
     tessellationDetail: 0
-    uvTransform: {x: -118, y: 277}
+    uvTransform: {x: 48, y: 376}
+    spritePosition: {x: 167, y: 100}
   - name: L_Leg.png
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -12943,7 +12987,8 @@ ScriptedImporter:
     - {x: 23, y: 24}
     - {x: 24, y: 25}
     tessellationDetail: 0
-    uvTransform: {x: -78, y: 271}
+    uvTransform: {x: 93, y: 376}
+    spritePosition: {x: 172, y: 106}
   characterData:
     bones:
     - name: bone_upBody
@@ -13511,6 +13556,7 @@ ScriptedImporter:
   keepDupilcateSpriteName: 1
   skeletonAssetReferenceID: 
   padding: 4
+  spriteSizeExpand: 0
   spriteCategoryList:
     categories: []
   spritePackingTag: 
@@ -14200,6 +14246,8 @@ ScriptedImporter:
   sharedRigPSDLayers: []
   pSDLayerImportSetting: []
   importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  spriteSizeExpandChanged: 0
   generateGOHierarchy: 0
   textureAssetName: 
   prefabAssetName: 

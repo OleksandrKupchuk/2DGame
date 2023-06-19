@@ -10,33 +10,41 @@ public class Cursor : MonoBehaviour {
     [SerializeField]
     private LayerMask _layerMaskUI;
     [SerializeField]
-    private LayerMask _layerMaskBackgroundInventory;
-    [SerializeField]
     private Canvas _canvas;
 
-    public delegate void DelegateEvent();
+    public delegate void DelegateEvent(Item item);
     public Item Item { get; private set; }
     public RaycastHit2D RaycastHit2D { get; private set; }
+    public ItemTooltip ItemTooltip { get; private set; }
+    public Cell Cell { get; private set; }
 
     private void Awake() {
         DisableIcon();
-    }
-
-    public void SetAndEnableIcon(Sprite icon) {
-        _icon.sprite = icon;
-        EnableIcon();
-    }
-
-    public void DisableIcon() {
-        _icon.enabled = false;
-    }
-
-    public void EnableIcon() {
-        _icon.enabled = true;
+        ItemTooltip = FindObjectOfType<ItemTooltip>();
     }
 
     public void SetItem(Item item) {
         Item = item;
+
+        if(Item != null) {
+            SetIcon(Item.Icon);
+            EnableIcon();
+        }
+        else {
+            DisableIcon();
+        }
+    }
+
+    private void SetIcon(Sprite icon) {
+        _icon.sprite = icon;
+    }
+
+    private void EnableIcon() {
+        _icon.enabled = true;
+    }
+
+    private void DisableIcon() {
+        _icon.enabled = false;
     }
 
     public void FollowTheMouse() {
@@ -48,15 +56,41 @@ public class Cursor : MonoBehaviour {
 
     public void StartRaycast() {
         RaycastHit2D = Physics2D.Raycast(_mousePosition, Vector3.forward, 100f, _layerMaskUI, -100);
+
         if(RaycastHit2D.transform != null) {
             Debug.Log("name transform = " + RaycastHit2D.transform.name);
         }
     }
 
-    public void TryGetPlayerSlotComponentAndCallEvent(DelegateEvent delegateEvent) {
+    public bool IsPlayerSlot() {
         PlayerSlot _playerSlot = RaycastHit2D.transform.GetComponent<PlayerSlot>();
+
         if (_playerSlot != null) {
-            delegateEvent.Invoke();
+            return true;
         }
+
+        return false;
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.TryGetComponent(out Cell cell)) {
+            SetCell(cell);
+
+            if (!cell.HasItem) {
+                return;
+            }
+            ItemTooltip.ShowAttributes(cell.Item, cell.transform.position, cell.RectTransform.rect.height);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.TryGetComponent(out Cell cell)) {
+            SetCell(null);
+            ItemTooltip.DisableAttributes();
+        }
+    }
+
+    public void SetCell(Cell cell) {
+        Cell = cell;
     }
 }

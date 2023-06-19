@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7788311284545825223}
   - component: {fileID: 7788311284545825222}
   - component: {fileID: 7788311284545825241}
-  - component: {fileID: 7788311284545825240}
   - component: {fileID: 7788311284545825243}
-  m_Layer: 0
+  - component: {fileID: 7591357191464354636}
+  m_Layer: 11
   m_Name: BlueSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7788311284545825222
 SpriteRenderer:
@@ -104,26 +104,16 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7788311284545825240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7788311284545825242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37854cf4aec128f439c8e597d923c21a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 08d5ec2d201ece949a5e428ba3ea0e63, type: 3}
-  <ItemType>k__BackingField: 4
-  <Attributes>k__BackingField:
-  - {fileID: 11400000, guid: 7f52430d5fba3b24fa310b159899ac4d, type: 2}
 --- !u!61 &7788311284545825243
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -134,6 +124,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -150,3 +159,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.6223251, y: 1.6521413}
   m_EdgeRadius: 0
+--- !u!114 &7591357191464354636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7788311284545825242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c69bb848205d50419679bc27d50eac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 0}
+  <ItemType>k__BackingField: 0
+  <Attributes>k__BackingField: []

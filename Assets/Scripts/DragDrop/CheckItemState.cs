@@ -10,10 +10,12 @@ public class CheckItemState : IDragDropState {
     }
 
     public void Exit() {
+        _controller.Cursor.ItemTooltip.DisableAttributes();
     }
 
     public void Update() {
         _controller.Cursor.FollowTheMouse();
+
 
         if (Mouse.current.leftButton.wasPressedThisFrame) {
             _controller.Cursor.StartRaycast();
@@ -21,24 +23,25 @@ public class CheckItemState : IDragDropState {
             if (_controller.Cursor.RaycastHit2D.transform == null) {
                 return;
             }
-            Cell _cell = _controller.Cursor.RaycastHit2D.transform.GetComponent<Cell>();
-            if (_cell == null) {
+
+            if (_controller.Cursor.Cell == null) {
                 Debug.Log("cell component is null");
                 return;
             }
-            if (!_cell.HasItem) {
+
+            if (!_controller.Cursor.Cell.HasItem) {
                 Debug.Log("cell not have item");
                 return;
             }
 
-            _controller.Cursor.SetAndEnableIcon(_cell.Item.Icon);
-            _controller.Cursor.SetItem(_cell.Item);
+            _controller.Cursor.SetItem(_controller.Cursor.Cell.Item);
 
-            _cell.DisableIcon();
-            _cell.SetItem(null);
+            //if (_controller.Cursor.IsPlayerSlot()) {
+            //    EventManager.TakeAwayItemEventHandler(_controller.Cursor.Item);
+            //}
+
+            _controller.Cursor.Cell.SetItem(null);
             _controller.ChangeState(_controller.RaisedItemState);
-
-            _controller.Cursor.TryGetPlayerSlotComponentAndCallEvent(EventManager.PutOnOrTakenAwakeItemEventHandler);
         }
     }
 }

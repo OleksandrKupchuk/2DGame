@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public class FireBall : Damage
-{
+public class FireBall : Damage {
     private Rigidbody2D _rigidbody2D;
     private float _timer;
     private Transform _parent;
@@ -18,6 +17,10 @@ public class FireBall : Damage
     private void Awake() {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _timer = _timeToDisable;
+    }
+
+    private void Start() {
+        _parent = transform.GetComponentInParent<Transform>();
     }
 
     private void Update() {

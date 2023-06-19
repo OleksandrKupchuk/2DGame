@@ -4,17 +4,22 @@ public class SwapItemState : IDragDropState {
     public void Enter(DragDropController controller) {
         _controller = controller;
 
-        Item _bufferItem = _controller.cell.Item;
+        Item _bufferItem = _controller.Cursor.Cell.Item;
 
-        _controller.cell.SetAndEnableIcon(_controller.Cursor.Item.Icon);
-        _controller.cell.SetItem(_controller.Cursor.Item);
+        //if (_controller.Cursor.IsPlayerSlot()) {
+        //    EventManager.TakeAwayItemEventHandler(_controller.Cursor.Cell.Item);
+        //}
 
+        _controller.Cursor.Cell.SetItem(_controller.Cursor.Item);
+        //if (_controller.Cursor.IsPlayerSlot()) {
+        //    EventManager.PutOnItemEventHandler(_controller.Cursor.Item);
+        //}
+
+        _controller.Cursor.OnTriggerEnter2D(_controller.Cursor.Cell.BoxCollider2D);
         _controller.Cursor.SetItem(_bufferItem);
-        _controller.Cursor.SetAndEnableIcon(_bufferItem.Icon);
 
         _controller.ChangeState(_controller.RaisedItemState);
 
-        _controller.Cursor.TryGetPlayerSlotComponentAndCallEvent(EventManager.PutOnOrTakenAwakeItemEventHandler);
     }
 
     public void Exit() {

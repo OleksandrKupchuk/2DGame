@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PickUp : MonoBehaviour {
-    [SerializeField]
     private Inventory _inventory;
     private List<Item> _items = new List<Item>();
 

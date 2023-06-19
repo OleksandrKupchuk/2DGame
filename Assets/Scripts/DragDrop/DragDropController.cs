@@ -6,9 +6,6 @@ public class DragDropController : MonoBehaviour {
     [SerializeField]
     private Cursor _cursor;
 
-    [HideInInspector]
-    public Cell cell;
-
     public CheckItemState CheckItemState { get; private set; }
     public RaisedItemState RaisedItemState { get; private set; }
     public PutItemState PutItemState { get; private set; }
@@ -21,22 +18,6 @@ public class DragDropController : MonoBehaviour {
 
     public static event Action<Item> RaisedItemTrigger;
     public static event Action DropPutItemTrigger;
-
-    public void RaiseItem(Item item) {
-        RaisedItemTrigger?.Invoke(item);
-    }
-
-    public void DropPutItem() {
-        DropPutItemTrigger?.Invoke();
-    }
-
-    public void ChangeState(IDragDropState newState) {
-        if (CurrentState != null) {
-            CurrentState.Exit();
-        }
-        CurrentState = newState;
-        CurrentState.Enter(this);
-    }
 
     private void Awake() {
         _inventory = FindObjectOfType<Inventory>();
@@ -54,12 +35,28 @@ public class DragDropController : MonoBehaviour {
 
     private void Update() {
         if (!_inventory.transform.GetChild(0).transform.gameObject.activeSelf) {
-            print("inventory not active");
+            //print("inventory not active");
             return;
         }
 
         if (CurrentState != null) {
             CurrentState.Update();
         }
+    }
+
+    public static void RaiseItem(Item item) {
+        RaisedItemTrigger?.Invoke(item);
+    }
+
+    public static void DropPutItem() {
+        DropPutItemTrigger?.Invoke();
+    }
+
+    public void ChangeState(IDragDropState newState) {
+        if (CurrentState != null) {
+            CurrentState.Exit();
+        }
+        CurrentState = newState;
+        CurrentState.Enter(this);
     }
 }

@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(LogicEnemyOfRange))]
+[RequireComponent(typeof(Projectile))]
 [RequireComponent(typeof(IgnoreCollision))]
 public class EnemyKnight : Enemy {
 
     protected AnimationEvent _enableAttackColliderEvent = new AnimationEvent();
     protected AnimationEvent _enableStrikeColliderEvent = new AnimationEvent();
     protected AnimationEvent _shotFireBallEvent = new AnimationEvent();
-    protected LogicEnemyOfRange _logicEnemyOfRange;
+    protected Projectile _logicEnemyOfRange;
     private IgnoreCollision _ignoreCollision;
 
     [SerializeField]
@@ -45,11 +45,11 @@ public class EnemyKnight : Enemy {
 
     protected new void Awake() {
         base.Awake();
-        _currentHealth = 4f;
-        _logicEnemyOfRange = GetComponent<LogicEnemyOfRange>();
+        //_currentHealth = 4f;
+        _logicEnemyOfRange = GetComponent<Projectile>();
         _ignoreCollision = GetComponent<IgnoreCollision>();
         DisableStrikeCollider();
-        FireBalls = _logicEnemyOfRange.CreateAndGetListPrefabs(_fireBallPrefab, _parentFireBalls);
+        FireBalls = _logicEnemyOfRange.CreateAndGetListPrefabs(_fireBallPrefab, _parentFireBalls, 5);
         DisableAttackCollider();
     }
 
@@ -68,38 +68,38 @@ public class EnemyKnight : Enemy {
     }
 
     public void AddEnableAttackColliderForAttackAnimation() {
-        LogicEnemy.AddEventForFrameOfAnimation(_attackAnimation, _enableAttackColliderEvent, _frameRateInAttackAnimationForEnableAttackCollider, nameof(EnableAttackCollider));
+        AttachingEventToAnimation.AddEventForFrameOfAnimation(_attackAnimation, _enableAttackColliderEvent, _frameRateInAttackAnimationForEnableAttackCollider, nameof(EnableAttackCollider));
     }
 
     private void EnableAttackCollider() {
-        LogicEnemy.EnableCollider(_attackCollider);
+        EnableCollider(_attackCollider);
     }
 
     public void AddDisableAttackCoolliderEventForAttackAnimation() {
-        LogicEnemy.AddEventToEndOfAnimation(_attackAnimation, _enableAttackColliderEvent, nameof(DisableAttackCollider));
+        AttachingEventToAnimation.AddEventToEndOfAnimation(_attackAnimation, _enableAttackColliderEvent, nameof(DisableAttackCollider));
     }
 
     public void DisableAttackCollider() {
-        LogicEnemy.DisableCollider(_attackCollider);
+        DisableCollider(_attackCollider);
     }
 
     public void AddEnableFireBallEventForCastAnimation() {
-        LogicEnemy.AddEventForFrameOfAnimation(_castAnimation, _shotFireBallEvent, _frameRateInCastAnimationForEnableFireBall, nameof(EnbaleFireBallForEvent));
+        AttachingEventToAnimation.AddEventForFrameOfAnimation(_castAnimation, _shotFireBallEvent, _frameRateInCastAnimationForEnableFireBall, nameof(EnbaleFireBallForEvent));
     }
 
     private void EnbaleFireBallForEvent() {
-        _logicEnemyOfRange.SetPrefabDirectionShotPointAndEnable(FireBalls, CastPoint, GetDirectionX);
+        _logicEnemyOfRange.SetDirectionShotPointAndEnable(FireBalls, CastPoint, GetDirectionX);
     }
 
     public void AddEnableStrikeColliderForStrikeAnimation() {
-        LogicEnemy.AddEventForFrameOfAnimation(_strikeAnimation, _enableStrikeColliderEvent, _frameRateInStrikeAnimationForEnableCollider, nameof(EnableStrikeCollider));
+        AttachingEventToAnimation.AddEventForFrameOfAnimation(_strikeAnimation, _enableStrikeColliderEvent, _frameRateInStrikeAnimationForEnableCollider, nameof(EnableStrikeCollider));
     }
 
     private void EnableStrikeCollider() {
-        LogicEnemy.EnableCollider(_strikeCollider);
+        EnableCollider(_strikeCollider);
     }
 
     public void DisableStrikeCollider() {
-        LogicEnemy.DisableCollider(_strikeCollider);
+        DisableCollider(_strikeCollider);
     }
 }

@@ -7,6 +7,9 @@ public class Player : BaseCharacteristics {
     private List<Damage> _objectsAttack = new List<Damage>();
     private RaycastHit2D _raycastHit;
     private float _deafaultGravityScale;
+    private float _timeRegenerationHealth;
+    private float _delayHealthRegeneration;
+    protected AnimationEvent _attackEvent = new AnimationEvent();
 
     [SerializeField]
     private InputActionReference _movementInputAction;
@@ -24,9 +27,14 @@ public class Player : BaseCharacteristics {
     private LayerMask _groundLayer;
     [SerializeField]
     private List<Collider2D> _collidersForIgnored = new List<Collider2D>();
-
-    [HideInInspector]
-    public bool isHit = false;
+    [SerializeField]
+    private PlayerSword _playerSword;
+    [SerializeField]
+    protected int _frameRateInAttackAnimationForEnableCollider;
+    [SerializeField]
+    protected int _frameRateInAttackAnimationForDisableCollider;
+    [SerializeField]
+    protected AnimationClip _attackAnimation;
 
     public bool IsLookingLeft { get => transform.localScale.x > 0; }
     public bool IsAttack {
@@ -38,7 +46,6 @@ public class Player : BaseCharacteristics {
         }
     }
     public bool IsFalling { get => Rigidbody.velocity.y < 0; }
-    public bool IsDead { get => _currentHealth <= 0; }
     public bool CanJump {
         get {
             if (JumpInputAction.action.triggered && IsGround()) {
@@ -59,12 +66,11 @@ public class Player : BaseCharacteristics {
     public PlayerJumpDownState JumpDownState { get; private set; }
     public PlayerHitState HitState { get; private set; }
     public PlayerDeadState DeadState { get; private set; }
-
     public StateMachine<Player> StateMachine { get; private set; }
     public InputActionReference ShotInputAction { get => _shotInputAction; }
     public InputActionReference JumpInputAction { get => _jumpInputAction; }
     public InvulnerabilityAnimation InvulnerableStatus { get => _invulnerableStatus; }
-    public PlayerAttributes Attributes { get; private set; }
+    public Inventory Inventory { get; private set; }
 
     private new void Awake() {
         base.Awake();
@@ -77,13 +83,14 @@ public class Player : BaseCharacteristics {
         DeadState = new PlayerDeadState();
         StateMachine = new StateMachine<Player>(this);
         _deafaultGravityScale = Rigidbody.gravityScale;
-        Attributes = FindObjectOfType<PlayerAttributes>();
+        Inventory = FindObjectOfType<Inventory>();
         CheckComponentOnNull();
-        EventManager.TookOffItem += CalculationCurrentHealth;
+        DisableSwordCollider();
+        EventManager.UpdatePlayerCurrentHealth += CalculationCurrentHealth;
     }
 
     private void CalculationCurrentHealth() {
-        _currentHealth = _currentHealth > Attributes.ResultHealth ? Attributes.ResultHealth : _currentHealth;
+        _currentHealth = _currentHealth > Inventory.PlayerAttributes.Health ? Inventory.PlayerAttributes.Health : _currentHealth;
         EventManager.UpdatingHealthBarEventHandler();
     }
 
@@ -103,8 +110,8 @@ public class Player : BaseCharacteristics {
         if (_boxCollider == null) {
             Debug.LogError("Component BoxCollider2D is null");
         }
-        if(Attributes == null) {
-            Debug.LogError($"Component {typeof(PlayerAttributes).Name} is null");
+        if (Inventory == null) {
+            Debug.LogError($"Component {typeof(Inventory).Name} is null");
         }
     }
 
@@ -115,6 +122,7 @@ public class Player : BaseCharacteristics {
     private void Update() {
         IsGround();
         StateMachine.Update();
+        RegenerationHealth();
     }
 
     private void FixedUpdate() {
@@ -177,19 +185,21 @@ public class Player : BaseCharacteristics {
     }
 
     public void TakeDamage(float damage) {
-        float _clearDamage = damage - GetBlockedDamage;
-        if(_clearDamage <= 0) {
+        //print("damage = " + damage);
+        float _clearDamage = damage - GetBlockedDamage(Inventory.PlayerAttributes.Armor);
+        //print("clear damage = " + _clearDamage);
+        if (_clearDamage <= 0) {
             return;
         }
 
-        _currentHealth -= damage;
+        _currentHealth -= _clearDamage;
         EventManager.UpdatingHealthBarEventHandler();
         //print("health = " + _health);
         if (IsDead) {
             StateMachine.ChangeState(DeadState);
         }
         else {
-            isHit = true;
+            StateMachine.ChangeState(HitState);
         }
     }
 
@@ -216,9 +226,47 @@ public class Player : BaseCharacteristics {
         Rigidbody.gravityScale = _deafaultGravityScale;
     }
 
+    private void RegenerationHealth() {
+        if (Animator.GetCurrentAnimatorStateInfo(AnimatorLayers.BaseLayer).IsName(PlayerAnimationName.Hit)) {
+            _delayHealthRegeneration = 0;
+        }
+
+        _delayHealthRegeneration += Time.deltaTime;
+
+        if (_delayHealthRegeneration >= Config.delayHealthRegeneration) {
+            if (_currentHealth >= Inventory.PlayerAttributes.Health) {
+                return;
+            }
+
+            _timeRegenerationHealth += Time.deltaTime;
+
+            if (_timeRegenerationHealth >= 1) {
+                _timeRegenerationHealth = 0;
+                AddHealth(Inventory.PlayerAttributes.HealthRegeneration);
+            }
+        }
+
+    }
+
     public void AddHealth(float health) {
         _currentHealth += health;
-        _currentHealth = _currentHealth > Attributes.ResultHealth ? Attributes.ResultHealth : _currentHealth;
+        _currentHealth = _currentHealth > Inventory.PlayerAttributes.Health ? Inventory.PlayerAttributes.Health : _currentHealth;
         EventManager.UpdatingHealthBarEventHandler();
+    }
+
+    public void AddEnableSwordColliderEventForAttackAnimation() {
+        AttachingEventToAnimation.AddEventForFrameOfAnimation(_attackAnimation, _attackEvent, _frameRateInAttackAnimationForEnableCollider, nameof(EnableSwordCollider));
+    }
+
+    public void AddDisableSwordColliderEventForAttackAnimation() {
+        AttachingEventToAnimation.AddEventForFrameOfAnimation(_attackAnimation, _attackEvent, _frameRateInAttackAnimationForDisableCollider, nameof(DisableSwordCollider));
+    }
+
+    private void EnableSwordCollider() {
+        _playerSword.BoxCollider2D.enabled = true;
+    }
+
+    private void DisableSwordCollider() {
+        _playerSword.BoxCollider2D.enabled = false;
     }
 }

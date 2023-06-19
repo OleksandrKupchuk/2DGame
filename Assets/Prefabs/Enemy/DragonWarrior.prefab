@@ -45,8 +45,8 @@ GameObject:
   - component: {fileID: 3413726013779498187}
   - component: {fileID: 3413726013779498189}
   - component: {fileID: 3413726013779498188}
-  - component: {fileID: 5924259937446649754}
   - component: {fileID: 4728737359327816759}
+  - component: {fileID: 7737505242309111669}
   m_Layer: 10
   m_Name: DragonWarrior
   m_TagString: Untagged
@@ -136,7 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979e059c0cd422b4ea3c8c75b5365471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 0
   _config: {fileID: 11400000, guid: cc5a875545926f64b975841e0583567d, type: 2}
   delayAttack: 0
   delayStrikeAttack: 0
@@ -208,18 +207,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &5924259937446649754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3413726013779498184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b5d343976633ae4287b1b7bf19813da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4728737359327816759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +217,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 030b95b9bdae52a418d057879c4c3002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7737505242309111669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3413726013779498184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dee570033ef0ed8478c9aa98e5dc215d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4630521871464963784
