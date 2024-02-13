@@ -968,7 +968,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3062570284460223176, guid: 1a1acbc61d864ef498a64b8d00d01b05, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3062570284460223178, guid: 1a1acbc61d864ef498a64b8d00d01b05, type: 3}
       propertyPath: m_RootOrder
@@ -2219,7 +2219,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4951690539704594268, guid: 28ad21f9507e5464d9a63adb54245b99, type: 3}
       propertyPath: m_Name
-      value: AttributeUIDamage
+      value: AttributeDamageUi
       objectReference: {fileID: 0}
     - target: {fileID: 4951690539704594271, guid: 28ad21f9507e5464d9a63adb54245b99, type: 3}
       propertyPath: m_Pivot.x
@@ -2993,7 +2993,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4951690539704594268, guid: 28ad21f9507e5464d9a63adb54245b99, type: 3}
       propertyPath: m_Name
-      value: AttributeUIHealthRegeneration
+      value: AttributeHealthRegenerationUi
       objectReference: {fileID: 0}
     - target: {fileID: 4951690539704594271, guid: 28ad21f9507e5464d9a63adb54245b99, type: 3}
       propertyPath: m_Pivot.x
@@ -3903,7 +3903,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4951690539704594268, guid: 28ad21f9507e5464d9a63adb54245b99, type: 3}
       propertyPath: m_Name
-      value: AttributeUIHealth
+      value: AttributeHealthUi
       objectReference: {fileID: 0}
     - target: {fileID: 4951690539704594271, guid: 28ad21f9507e5464d9a63adb54245b99, type: 3}
       propertyPath: m_Pivot.x
@@ -4823,7 +4823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3065624761884181616, guid: 491a9eab62a5d0740aff148925a7f09a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3547642963612654163, guid: 491a9eab62a5d0740aff148925a7f09a, type: 3}
       propertyPath: m_RootOrder
@@ -5743,7 +5743,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4951690539704594268, guid: 28ad21f9507e5464d9a63adb54245b99, type: 3}
       propertyPath: m_Name
-      value: AttributeUIArmor
+      value: AttributeArmorUi
       objectReference: {fileID: 0}
     - target: {fileID: 4951690539704594271, guid: 28ad21f9507e5464d9a63adb54245b99, type: 3}
       propertyPath: m_Pivot.x
@@ -6097,7 +6097,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4951690539704594268, guid: 28ad21f9507e5464d9a63adb54245b99, type: 3}
       propertyPath: m_Name
-      value: AttributeUISpeed
+      value: AttributeSpeedUi
       objectReference: {fileID: 0}
     - target: {fileID: 4951690539704594271, guid: 28ad21f9507e5464d9a63adb54245b99, type: 3}
       propertyPath: m_Pivot.x
