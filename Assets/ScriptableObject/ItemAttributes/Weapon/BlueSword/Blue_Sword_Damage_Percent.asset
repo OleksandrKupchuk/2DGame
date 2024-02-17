@@ -17,3 +17,4 @@ MonoBehaviour:
   value: 50
   damageMin: 0
   damageMax: 0
+  icon: {fileID: 21300000, guid: bf1aabd8052f97f41896842c39766751, type: 3}

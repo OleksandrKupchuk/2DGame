@@ -9,9 +9,8 @@ public class Equipment : Item {
 
     public override void ShowTooltip(List<AttributeTooltip> attributeTooltips) {
         for (int i = 0; i < Attributes.Count; i++) {
-            Sprite _icon = LoadAttributesIcon.GetIcon(Attributes[i].type);
             attributeTooltips[i].SetValue(GetAttributeString(Attributes[i]));
-            attributeTooltips[i].SetIcon(_icon);
+            attributeTooltips[i].SetIcon(Attributes[i].icon);
             attributeTooltips[i].gameObject.SetActive(true);
         }
     }

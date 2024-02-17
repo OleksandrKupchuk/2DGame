@@ -7,6 +7,7 @@ public class AttributeEditor : Editor {
     SerializedProperty _valueProperty;
     SerializedProperty _dmageMinProperty;
     SerializedProperty _dmageMaxProperty;
+    SerializedProperty _attributeIconProperty;
 
     public override void OnInspectorGUI() {
 
@@ -15,6 +16,7 @@ public class AttributeEditor : Editor {
         _valueProperty = serializedObject.FindProperty("value");
         _dmageMinProperty = serializedObject.FindProperty("damageMin");
         _dmageMaxProperty = serializedObject.FindProperty("damageMax");
+        _attributeIconProperty = serializedObject.FindProperty("icon");
 
         serializedObject.Update();
         EditorGUILayout.PropertyField(_attributeTypeProperty);
@@ -32,6 +34,8 @@ public class AttributeEditor : Editor {
         else {
             EditorGUILayout.PropertyField(_valueProperty);
         }
+
+        EditorGUILayout.PropertyField(_attributeIconProperty);
 
         serializedObject.ApplyModifiedProperties();
     }

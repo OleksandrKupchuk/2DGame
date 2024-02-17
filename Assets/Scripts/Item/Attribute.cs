@@ -7,4 +7,5 @@ public class Attribute : ScriptableObject {
     public float value;
     public float damageMin;
     public float damageMax;
+    public Sprite icon;
 }
