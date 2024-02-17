@@ -96,7 +96,7 @@ public class Inventory : MonoBehaviour {
     private void CheckItemInCursorAndPutOnInInventory() {
         if (_cursor.Item != null) {
             PutItemInEmptyCell(_cursor.Item);
-            _cursor.SetItem(null);
+            _cursor.RemoveItem();
             DragDropController.DropPutItem();
         }
     }

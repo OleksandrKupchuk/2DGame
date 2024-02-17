@@ -12,7 +12,7 @@ public class PutItemState : IDragDropState {
 
         if (_cell.HasItem) {
             _controller.Cursor.OnTriggerEnter2D(_cell.BoxCollider2D);
-            _controller.Cursor.SetItem(null);
+            _controller.Cursor.RemoveItem();
             _controller.ChangeState(_controller.CheckItemState);
         }
         else {

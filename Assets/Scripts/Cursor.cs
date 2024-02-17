@@ -30,13 +30,11 @@ public class Cursor : MonoBehaviour {
             SetIcon(Item.Icon);
             EnableIcon();
         }
-        else {
-            DisableIcon();
-        }
     }
 
     public void RemoveItem() {
         Item = null;
+        DisableIcon();
     }
 
     private void SetIcon(Sprite icon) {

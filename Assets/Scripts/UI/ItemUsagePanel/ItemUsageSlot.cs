@@ -11,13 +11,6 @@ public class ItemUsageSlot : Cell {
 
     private new void Awake() {
         base.Awake();
-        DragDropController.RaisedItemTrigger += ChageColorBorderCell;
-        DragDropController.DropPutItemTrigger += ResetColorBorder;
-    }
-
-    private void OnDestroy() {
-        DragDropController.RaisedItemTrigger -= ChageColorBorderCell;
-        DragDropController.DropPutItemTrigger -= ResetColorBorder;
     }
 
     private void Update() {
@@ -37,17 +30,6 @@ public class ItemUsageSlot : Cell {
 
     private string GetNameButton(string bindingString) {
         return bindingString.Substring(bindingString.Length - 1, 1);
-    }
-
-    private void ChageColorBorderCell(Item item) {
-        Potion _potion = item as Potion;
-
-        if (_potion == null) {
-            //print("Item not Potion");
-            return;
-        }
-
-        SetGreenBorder();
     }
 
     public void SetInputAction(InputActionReference inputAction) {
