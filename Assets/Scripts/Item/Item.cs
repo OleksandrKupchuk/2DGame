@@ -12,7 +12,7 @@ public enum ItemType {
 }
 
 [RequireComponent(typeof(Rigidbody2D))]
-public abstract class Item : MonoBehaviour, IUse {
+public abstract class Item : MonoBehaviour {
     protected Sprite _icon;
     public Sprite Icon { get => _icon; }
 
@@ -21,8 +21,6 @@ public abstract class Item : MonoBehaviour, IUse {
     }
 
     public abstract void ShowTooltip(List<AttributeTooltip> attributeTooltips);
-
-    public virtual void Use() {}
 }
 
 public enum ValueType {

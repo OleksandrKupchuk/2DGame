@@ -43,18 +43,6 @@ public class Cell : MonoBehaviour {
         _icon.gameObject.SetActive(false);
     }
 
-    public void SetGreenBorder() {
-        _border.color = Color.green;
-    }
-
-    public void ResetColorBorder() {
-        _border.color = Color.white;
-    }
-
-    public void SetRedBorder() {
-        _border.color = Color.red;
-    }
-
     public void SetRectTransformPosition(Vector3 newPosition) {
         RectTransform.localPosition = newPosition;
     }

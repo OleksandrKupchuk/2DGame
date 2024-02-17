@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2779285724816536027}
   - component: {fileID: 8123576408081907660}
+  - component: {fileID: 6473373149014293939}
   - component: {fileID: 2094758828844449613}
   - component: {fileID: 5800932954640797202}
   - component: {fileID: 6323688263138077681}
   - component: {fileID: 603795621877991390}
-  - component: {fileID: 6473373149014293939}
   m_Layer: 0
   m_Name: Potion_Armor
   m_TagString: Untagged
@@ -94,6 +94,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6473373149014293939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7783609211246636534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7e46e8af48bcc74db105f19a7a8d24d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CanUse>k__BackingField: 1
+  <Value>k__BackingField: 7
+  <Duration>k__BackingField: 30
 --- !u!50 &2094758828844449613
 Rigidbody2D:
   serializedVersion: 4
@@ -208,17 +223,3 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Add 7 armor for 30 seconds
---- !u!114 &6473373149014293939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7783609211246636534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7e46e8af48bcc74db105f19a7a8d24d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Value>k__BackingField: 7
-  <Duration>k__BackingField: 30

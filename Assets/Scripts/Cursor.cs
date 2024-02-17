@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Cursor : MonoBehaviour {
     private Vector2 _mousePosition;
+    private RaycastHit2D RaycastHit2D { get; set; }
 
     [SerializeField]
     private Image _icon;
@@ -14,7 +15,6 @@ public class Cursor : MonoBehaviour {
 
     public delegate void DelegateEvent(Item item);
     public Item Item { get; private set; }
-    public RaycastHit2D RaycastHit2D { get; private set; }
     public ItemTooltip ItemTooltip { get; private set; }
     public bool HasItem { get => Item != null; }
 
@@ -25,11 +25,8 @@ public class Cursor : MonoBehaviour {
 
     public void SetItem(Item item) {
         Item = item;
-
-        if(Item != null) {
-            SetIcon(Item.Icon);
-            EnableIcon();
-        }
+        SetIcon(Item.Icon);
+        EnableIcon();
     }
 
     public void RemoveItem() {

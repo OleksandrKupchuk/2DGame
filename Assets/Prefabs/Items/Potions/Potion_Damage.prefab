@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2982259974022020129}
   - component: {fileID: 4276030464080888337}
+  - component: {fileID: 8483230091448121875}
   - component: {fileID: 3101896408332089383}
   - component: {fileID: 7974928101380017108}
   - component: {fileID: 8765174945236822555}
   - component: {fileID: 3805747722879578798}
-  - component: {fileID: 8483230091448121875}
   m_Layer: 0
   m_Name: Potion_Damage
   m_TagString: Untagged
@@ -94,6 +94,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8483230091448121875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7168476610257152028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d446e9e9e9d741540b77062662ebe095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CanUse>k__BackingField: 1
+  <Value>k__BackingField: 10
+  <Duration>k__BackingField: 30
 --- !u!50 &3101896408332089383
 Rigidbody2D:
   serializedVersion: 4
@@ -208,17 +223,3 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Add 10 damage for 30 seconds
---- !u!114 &8483230091448121875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7168476610257152028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d446e9e9e9d741540b77062662ebe095, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Value>k__BackingField: 10
-  <Duration>k__BackingField: 30

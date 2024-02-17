@@ -24,15 +24,15 @@ public class PlayerSlot : Cell {
             return;
         }
         if (!_itemTypes.Contains(_equipment.ItemType)) {
-            SetRedBorder();
+            SetColorForBorder(Color.red);
         }
         else {
-            SetGreenBorder();
+            SetColorForBorder(Color.green);
         }
     }
 
     private void ResetColorBorderCell() {
-        ResetColorBorder();
+        SetColorForBorder(Color.white);
     }
 
     public override void SetItem(Item item) {
@@ -50,5 +50,9 @@ public class PlayerSlot : Cell {
         EventManager.TakeAwayItemEventHandler(Item);
         Item = null;
         DisableIcon();
+    }
+
+    private void SetColorForBorder(Color color) {
+        _border.color = color;
     }
 }

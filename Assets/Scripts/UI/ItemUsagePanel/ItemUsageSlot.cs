@@ -6,26 +6,28 @@ public class ItemUsageSlot : Cell {
     private InputActionReference _inputAction;
     [SerializeField]
     private Text _labelButtonIcon;
-    [SerializeField]
-    private InputActionReference _inputActionTest;
 
     private new void Awake() {
         base.Awake();
     }
 
     private void Update() {
+        if (!HasItem) { return; }
+
         if (_inputAction.action.triggered) {
             UseItem(Item);
         }
     }
 
-    private void UseItem(IUse use) {
-        if (!HasItem) {
+    private void UseItem(Item item) {
+        IUse _useItem = item as IUse;
+
+        if (_useItem == null) {
+            Debug.Log($"you can't use this item {Item.name}");
             return;
         }
 
-        use.Use();
-        RemoveItem();
+        _useItem.Use();
     }
 
     private string GetNameButton(string bindingString) {
