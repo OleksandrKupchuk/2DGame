@@ -6,10 +6,6 @@ public class AttributeTooltip : MonoBehaviour {
     private Image _icon;
     [SerializeField]
     private Text _value;
-    [SerializeField]
-    private RectTransform _rect;
-
-    public RectTransform RectTransform { get => _rect; }
 
     public void SetIcon(Sprite icon) {
         _icon.sprite = icon;

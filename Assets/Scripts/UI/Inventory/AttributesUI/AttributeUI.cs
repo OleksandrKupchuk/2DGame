@@ -10,6 +10,8 @@ public class AttributeUI : MonoBehaviour {
     protected float _percent;
 
     [SerializeField]
+    protected Sprite _sprite;
+    [SerializeField]
     protected Image _icon;
     [SerializeField]
     protected Text _valueTextComponent;
@@ -33,6 +35,7 @@ public class AttributeUI : MonoBehaviour {
 
     protected void Start() {
         _playerConfig = Resources.Load<PlayerConfig>(ResourcesPath.PlayerConfig);
+        _icon.sprite = _sprite;
     }
 
     protected virtual void UpdateTextOfAttributes() {

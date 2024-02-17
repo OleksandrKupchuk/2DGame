@@ -831,7 +831,7 @@ GameObject:
   - component: {fileID: 224425481}
   - component: {fileID: 224425480}
   m_Layer: 5
-  m_Name: RemoveHealth
+  m_Name: RemoveHealthButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2860,6 +2860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c88ffd935ca52f444829df5ba52ae54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sprite: {fileID: 21300000, guid: b2e3f46c371bd1040bed68201de8f040, type: 3}
   _icon: {fileID: 1008653577}
   _valueTextComponent: {fileID: 1008653576}
 --- !u!114 &976615827
@@ -2874,6 +2875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7ed9510ac1b95e40b4b1c1e4018155c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sprite: {fileID: 21300000, guid: bf1aabd8052f97f41896842c39766751, type: 3}
   _icon: {fileID: 811661654}
   _valueTextComponent: {fileID: 811661653}
 --- !u!114 &976615828
@@ -2888,6 +2890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131f2c5596ee20b42b61d21f747f7b62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sprite: {fileID: 21300000, guid: 59c203c833bb0894384b1c344e889244, type: 3}
   _icon: {fileID: 1940917418}
   _valueTextComponent: {fileID: 1940917417}
 --- !u!114 &976615829
@@ -2902,6 +2905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc8ddd4fceda7334bb1d8880bfa4aca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sprite: {fileID: 21300000, guid: 5f4654cabe0051a40859dd17896b524b, type: 3}
   _icon: {fileID: 1984348011}
   _valueTextComponent: {fileID: 1984348010}
 --- !u!114 &976615830
@@ -2916,6 +2920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdda289dd509e794ab52f514f204226c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sprite: {fileID: 21300000, guid: 57a2433b9e60c4b41a56bbb8cc51e67b, type: 3}
   _icon: {fileID: 1408999163}
   _valueTextComponent: {fileID: 1408999162}
 --- !u!1001 &1008067420
@@ -5125,7 +5130,7 @@ GameObject:
   - component: {fileID: 1802934941}
   - component: {fileID: 1802934940}
   m_Layer: 5
-  m_Name: AddHealth
+  m_Name: AddHealthButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -3,7 +3,6 @@ public class AttributeHealthRegenerationUI : AttributeUI {
         base.Start();
         _valueInteger = _playerConfig.healthRegeneration;
         _attributeType = AttributeType.HealthRegeneration;
-        _icon.sprite = LoadAttributesIcon.GetIcon(_attributeType);
         UpdateTextOfAttributes();
     }
 }

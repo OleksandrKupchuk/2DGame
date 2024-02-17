@@ -9,7 +9,6 @@ public class BaseCharacteristics : MonoBehaviour {
 
     public Rigidbody2D Rigidbody { get; protected set; }
     public Animator Animator { get; protected set; }
-
     public float CurrentHealth { get => _currentHealth; }
     public bool IsDead { get => _currentHealth <= 0; }
     public AttachingEventToAnimation AttachingEventToAnimation { get; private set; } = new AttachingEventToAnimation();

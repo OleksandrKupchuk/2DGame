@@ -3,7 +3,6 @@ public class AttributeArmorUI : AttributeUI {
         base.Start();
         _valueInteger = _playerConfig.armor;
         _attributeType = AttributeType.Armor;
-        _icon.sprite = LoadAttributesIcon.GetIcon(_attributeType);
         UpdateTextOfAttributes();
     }
 }

@@ -12,7 +12,6 @@ public class AttributeDamageUI : AttributeUI {
         _valueIntegerMin = _playerConfig.damageMin;
         _valueIntegerMax = _playerConfig.damageMax;
         _attributeType = AttributeType.Damage;
-        _icon.sprite = LoadAttributesIcon.GetIcon(_attributeType);
         UpdateTextOfAttributes();
     }
 
