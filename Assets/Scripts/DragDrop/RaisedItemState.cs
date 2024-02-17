@@ -7,6 +7,7 @@ public class RaisedItemState : IDragDropState {
     public void Enter(DragDropController controller) {
         _controller = controller;
         DragDropController.RaiseItem(_controller.Cursor.Item);
+        Debug.Log("raised item enter");
     }
 
     public void Exit() {
@@ -15,34 +16,28 @@ public class RaisedItemState : IDragDropState {
 
     public void Update() {
         _controller.Cursor.FollowTheMouse();
+        Debug.Log("raised item update");
 
         if (Mouse.current.leftButton.wasPressedThisFrame) {
-            _controller.Cursor.StartRaycast();
+            Cell _cell = _controller.Cursor.GetCell();
 
-            if (_controller.Cursor.RaycastHit2D.transform == null) {
+            if (_cell == null) {
                 _controller.ChangeState(_controller.DropItemState);
                 Debug.Log("object null");
                 return;
             }
 
-            if (_controller.Cursor.Cell == null) {
-                return;
-            }
-
-            if (!_controller.Cursor.Cell.IsAvailableForInteraction) {
-                Debug.Log("cell not avaible for iteraction");
-                return;
-            }
-
-            if (_controller.Cursor.Cell.HasItem) {
-                Debug.Log("cell not empty");
+            if (CanSwap(_cell)) {
+                Debug.Log($"cell have item {_cell.Item.name}");
                 _controller.ChangeState(_controller.SwapItemState);
-                return;
             }
-
-            if (_controller.Cursor.Cell.IsCanPut(_controller.Cursor.Item)) {
+            else {
                 _controller.ChangeState(_controller.PutItemState);
             }
         }
+    }
+
+    private bool CanSwap(Cell cell) {
+        return cell.HasItem && _controller.Cursor.HasItem;
     }
 }

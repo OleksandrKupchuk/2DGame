@@ -10,9 +10,8 @@ public class Cell : MonoBehaviour {
     [SerializeField]
     protected BoxCollider2D _boxCollider2D;
 
-    public bool IsAvailableForInteraction { get; private set; } = true;
     public bool HasItem { get => Item != null; }
-    public Item Item { get; private set; }
+    public Item Item { get; protected set; }
     public RectTransform RectTransform { get; private set; }
     public BoxCollider2D BoxCollider2D { get => _boxCollider2D; }
 
@@ -21,16 +20,15 @@ public class Cell : MonoBehaviour {
         RectTransform = GetComponent<RectTransform>();
     }
 
-    public void SetItem(Item item) {
+    public virtual void SetItem(Item item) {
         Item = item;
+        SetIcon(Item.Icon);
+        EnableIcon();
+    }
 
-        if(Item != null) {
-            SetIcon(Item.Icon);
-            EnableIcon();
-        }
-        else {
-            DisableIcon();
-        }
+    public virtual void RemoveItem() {
+        Item = null;
+        DisableIcon();
     }
 
     protected void SetIcon(Sprite icon) {
@@ -57,23 +55,7 @@ public class Cell : MonoBehaviour {
         _border.color = Color.red;
     }
 
-    public void EnableBoxCollider() {
-        _boxCollider2D.enabled = true;
-    }
-
-    public void DisableBoxCollider() {
-        _boxCollider2D.enabled = false;
-    }
-
-    public void SetAvailableForInteraction(bool isAvailable) {
-        IsAvailableForInteraction = isAvailable;
-    }
-
     public void SetRectTransformPosition(Vector3 newPosition) {
         RectTransform.localPosition = newPosition;
-    }
-
-    public virtual bool IsCanPut(Item item) {
-        return true;
     }
 }

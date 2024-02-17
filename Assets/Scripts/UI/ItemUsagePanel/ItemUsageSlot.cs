@@ -32,7 +32,7 @@ public class ItemUsageSlot : Cell {
         }
 
         use.Use();
-        SetItem(null);
+        RemoveItem();
     }
 
     private string GetNameButton(string bindingString) {
@@ -48,16 +48,6 @@ public class ItemUsageSlot : Cell {
         }
 
         SetGreenBorder();
-    }
-
-    public override bool IsCanPut(Item item) {
-        Potion _potion = item as Potion;
-
-        if (_potion == null) {
-            return false;
-        }
-
-        return true;
     }
 
     public void SetInputAction(InputActionReference inputAction) {

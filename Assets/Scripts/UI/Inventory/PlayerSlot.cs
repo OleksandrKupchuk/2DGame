@@ -24,7 +24,6 @@ public class PlayerSlot : Cell {
             return;
         }
         if (!_itemTypes.Contains(_equipment.ItemType)) {
-            SetAvailableForInteraction(false);
             SetRedBorder();
         }
         else {
@@ -33,18 +32,23 @@ public class PlayerSlot : Cell {
     }
 
     private void ResetColorBorderCell() {
-        SetAvailableForInteraction(true);
-        //EnableBoxCollider();
         ResetColorBorder();
     }
 
-    public override bool IsCanPut(Item item) {
+    public override void SetItem(Item item) {
         Equipment _equipment = item as Equipment;
 
-        if (_equipment == null) {
-            return false;
+        if (_equipment != null && _itemTypes.Contains(_equipment.ItemType)) {
+            Item = item;
+            SetIcon(item.Icon);
+            EnableIcon();
+            EventManager.PutOnItemEventHandler(item);
         }
+    }
 
-        return true;
+    public override void RemoveItem() {
+        EventManager.TakeAwayItemEventHandler(Item);
+        Item = null;
+        DisableIcon();
     }
 }
