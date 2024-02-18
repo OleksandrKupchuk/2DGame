@@ -171,7 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c69bb848205d50419679bc27d50eac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 719c2201c2f5f6c4aafffaeb5abdf5f9, type: 3}
   <ItemType>k__BackingField: 4
   <Attributes>k__BackingField:
   - {fileID: 11400000, guid: aa994891a1cc5c1458cb10121d46b9dd, type: 2}

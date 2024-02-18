@@ -1,4 +1,5 @@
 using UnityEditor;
+using UnityEngine;
 
 [CustomEditor(typeof(Attribute))]
 public class AttributeEditor : Editor {
@@ -35,7 +36,15 @@ public class AttributeEditor : Editor {
             EditorGUILayout.PropertyField(_valueProperty);
         }
 
-        EditorGUILayout.PropertyField(_attributeIconProperty);
+        string _path = ResourcesPath.FolderTooltip + _attributeTypeProperty.enumNames[_attributeTypeProperty.intValue];
+        Sprite _icon = Resources.Load<Sprite>(_path);
+        if (_icon != null) {
+            _attributeIconProperty.objectReferenceValue = _icon;
+            EditorGUILayout.PropertyField(_attributeIconProperty);
+        }
+        else {
+            Debug.Log($"can't load sprite? please check the path '{ResourcesPath.FolderTooltip + _attributeTypeProperty.enumNames[_attributeTypeProperty.intValue]}'");
+        }
 
         serializedObject.ApplyModifiedProperties();
     }
