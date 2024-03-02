@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Cell : MonoBehaviour {
-
     [SerializeField]
     protected Image _icon;
     [SerializeField]
@@ -45,5 +44,13 @@ public class Cell : MonoBehaviour {
 
     public void SetRectTransformPosition(Vector3 newPosition) {
         RectTransform.localPosition = newPosition;
+    }
+
+    public void ResetBorderColor() {
+        SetBorderColor(Color.white);
+    }
+
+    public void SetBorderColor(Color color) {
+        _border.color = color;
     }
 }

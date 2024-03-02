@@ -2,34 +2,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class IndicatorPanel : MonoBehaviour {
-    private List<Indicator> _indicators = new List<Indicator>();
+    private List<BuffIndicator> _buffIndicators = new List<BuffIndicator>();
     [SerializeField]
-    private Indicator _indicator;
+    private BuffIndicator _indicator;
 
     private void Awake() {
-        CreateIndicators();
-        EventManager.UsePotion += Show;
+        CreateBuffIndicators();
+        EventManager.UseItem += ShowBuffIndacator;
     }
 
     private void OnDestroy() {
-        EventManager.UsePotion -= Show;
+        EventManager.UseItem -= ShowBuffIndacator;
     }
 
-    private void CreateIndicators() {
+    private void CreateBuffIndicators() {
         for (int i = 0; i < 5; i++) {
-            Indicator _indicatorObject = Instantiate(_indicator);
+            BuffIndicator _indicatorObject = Instantiate(_indicator);
             _indicatorObject.transform.SetParent(transform, false);
             _indicatorObject.gameObject.SetActive(false);
-            _indicators.Add(_indicatorObject);
+            _buffIndicators.Add(_indicatorObject);
         }
     }
 
-    private void Show(Potion potion) {
-        foreach (var indicator in _indicators) {
+    private void ShowBuffIndacator(Item item) {
+        foreach (var indicator in _buffIndicators) {
             if (!indicator.gameObject.activeSelf) {
-                indicator.SetPotion(potion);
-                StartCoroutine(indicator.ShowDurationEffect(potion.Duration));
                 indicator.gameObject.SetActive(true);
+                indicator.Display(item);
                 return;
             }
         }

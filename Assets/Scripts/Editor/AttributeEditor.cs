@@ -8,7 +8,8 @@ public class AttributeEditor : Editor {
     SerializedProperty _valueProperty;
     SerializedProperty _dmageMinProperty;
     SerializedProperty _dmageMaxProperty;
-    SerializedProperty _attributeIconProperty;
+    SerializedProperty _durationProperty;
+    SerializedProperty _iconProperty;
 
     public override void OnInspectorGUI() {
 
@@ -17,7 +18,8 @@ public class AttributeEditor : Editor {
         _valueProperty = serializedObject.FindProperty("value");
         _dmageMinProperty = serializedObject.FindProperty("damageMin");
         _dmageMaxProperty = serializedObject.FindProperty("damageMax");
-        _attributeIconProperty = serializedObject.FindProperty("icon");
+        _durationProperty = serializedObject.FindProperty("duration");
+        _iconProperty = serializedObject.FindProperty("icon");
 
         serializedObject.Update();
         EditorGUILayout.PropertyField(_attributeTypeProperty);
@@ -36,11 +38,13 @@ public class AttributeEditor : Editor {
             EditorGUILayout.PropertyField(_valueProperty);
         }
 
+        EditorGUILayout.PropertyField(_durationProperty);
+
         string _path = ResourcesPath.FolderTooltip + _attributeTypeProperty.enumNames[_attributeTypeProperty.intValue];
         Sprite _icon = Resources.Load<Sprite>(_path);
         if (_icon != null) {
-            _attributeIconProperty.objectReferenceValue = _icon;
-            EditorGUILayout.PropertyField(_attributeIconProperty);
+            _iconProperty.objectReferenceValue = _icon;
+            EditorGUILayout.PropertyField(_iconProperty);
         }
         else {
             Debug.Log($"can't load sprite? please check the path '{ResourcesPath.FolderTooltip + _attributeTypeProperty.enumNames[_attributeTypeProperty.intValue]}'");

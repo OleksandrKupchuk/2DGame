@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Progress;
 
 [RequireComponent (typeof(AttributeHealthUI))]
 [RequireComponent (typeof(AttributeSpeedUI))]
@@ -26,19 +27,19 @@ public class PlayerAttributes : MonoBehaviour {
     public float Damage { get => Random.Range(_attributeDamageUI.DamageMin + _attributeDamageUI.AdditionalValue, _attributeDamageUI.DamageMax + _attributeDamageUI.AdditionalValue); }
     public float HealthRegeneration { get => _attributeHealthRegenerationUI.Value + _attributeHealthRegenerationUI.AdditionalValue; }
 
-    public void AddAditionanArmor(Potion potion) {
-        _attributeArmorUI.AddAdditionalValue(potion);
+    public void AddAditionanArmor(Item item) {
+        _attributeArmorUI.AddAdditionalValue(item);
     }
 
-    public void AddAditionanDamage(Potion potion) {
-        _attributeDamageUI.AddAdditionalValue(potion);
+    public void AddAditionanDamage(Item item) {
+        _attributeDamageUI.AddAdditionalValue(item);
     }
 
-    public void AddAditionanSpeed(Potion potion) {
-        _attributeSpeedUI.AddAdditionalValue(potion);
+    public void AddAditionanSpeed(Item item) {
+        _attributeSpeedUI.AddAdditionalValue(item);
     }
 
-    public void AddAditionanHealthRegeneration(Potion potion) {
-        _attributeHealthRegenerationUI.AddAdditionalValue(potion);
+    public void AddAditionanHealthRegeneration(Item item) {
+        _attributeHealthRegenerationUI.AddAdditionalValue(item);
     }
 }

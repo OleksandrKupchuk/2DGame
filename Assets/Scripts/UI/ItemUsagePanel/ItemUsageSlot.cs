@@ -9,25 +9,51 @@ public class ItemUsageSlot : Cell {
 
     private new void Awake() {
         base.Awake();
+        DragDropController.RaisedItemTrigger += ChangeBorderColor;
+        DragDropController.DropPutItemTrigger += ResetBorderColor;
+    }
+
+    private void OnDestroy() {
+        DragDropController.RaisedItemTrigger -= ChangeBorderColor;
+        DragDropController.DropPutItemTrigger -= ResetBorderColor;
+    }
+
+    private void ChangeBorderColor(Item item) {
+        if (CanUseItem(item)) {
+            SetBorderColor(Color.green);
+        }
+        else {
+            SetBorderColor(Color.red);
+        }
+    }
+
+    public override void SetItem(Item item) {
+        if (CanUseItem(item)) {
+            Item = item;
+            SetIcon(item.Icon);
+            EnableIcon();
+        }
+    }
+
+    private bool CanUseItem(Item item) {
+        if (item.ItemType == ItemType.Usage) {
+            return true;
+        }
+
+        return false;
     }
 
     private void Update() {
         if (!HasItem) { return; }
 
         if (_inputAction.action.triggered) {
-            UseItem(Item);
+            UseItem();
         }
     }
 
-    private void UseItem(Item item) {
-        IUse _useItem = item as IUse;
-
-        if (_useItem == null) {
-            Debug.Log($"you can't use this item {Item.name}");
-            return;
-        }
-
-        _useItem.Use();
+    private void UseItem() {
+        Item.Use();
+        RemoveItem();
     }
 
     private string GetNameButton(string bindingString) {

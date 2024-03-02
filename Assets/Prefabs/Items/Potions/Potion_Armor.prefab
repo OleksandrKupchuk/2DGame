@@ -106,9 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e46e8af48bcc74db105f19a7a8d24d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CanUse>k__BackingField: 1
-  <Value>k__BackingField: 7
-  <Duration>k__BackingField: 30
+  <ItemType>k__BackingField: 7
+  <Attributes>k__BackingField:
+  - {fileID: 11400000, guid: 248f6e426a0f68c4e856d00e01a073d3, type: 2}
 --- !u!50 &2094758828844449613
 Rigidbody2D:
   serializedVersion: 4

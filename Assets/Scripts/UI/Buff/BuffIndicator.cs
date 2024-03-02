@@ -2,31 +2,19 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Indicator : MonoBehaviour {
-    private Potion _potion;
+public class BuffIndicator : MonoBehaviour {
     [SerializeField]
     private Image _icon;
     [SerializeField]
     private Image _border;
 
-    public void SetPotion(Potion potion) {
-        _potion = potion;
-
-        if (_potion == null) {
-            ActiveIcon(false);
-        }
-        else {
-            SetIcon(potion.Icon);
-            ActiveIcon(true);
-        }
+    public void Display(Item item) {
+        SetIcon(item.Icon);
+        StartCoroutine(ShowDurationEffect(item.Attributes[0].duration));
     }
 
     private void SetIcon(Sprite icon) {
         _icon.sprite = icon;
-    }
-
-    private void ActiveIcon(bool isActive) {
-        _icon.enabled = isActive;
     }
 
     public IEnumerator ShowDurationEffect(float duration) {
@@ -41,4 +29,5 @@ public class Indicator : MonoBehaviour {
         _border.fillAmount = 1;
         gameObject.SetActive(false);
     }
+
 }

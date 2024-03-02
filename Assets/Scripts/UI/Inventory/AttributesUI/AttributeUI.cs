@@ -50,31 +50,23 @@ public class AttributeUI : MonoBehaviour {
     }
 
     public void CalculationAddPlayerAttribute(Item item) {
-        Equipment _equipment = item as Equipment;
-        if (_equipment == null) {
-            return;
-        }
-        CalculationAttributesForItem(_equipment, GetIntegerType, AddInteger);
-        CalculationAttributesForItem(_equipment, GetPercentType, AddPercent);
+        CalculationAttributesForItem(item, GetIntegerType, AddInteger);
+        CalculationAttributesForItem(item, GetPercentType, AddPercent);
         AddPercent(ScriptableObject.CreateInstance<Attribute>());
         UpdateTextOfAttributes();
         EventManager.UpdatingHealthBarEventHandler();
     }
 
     public void CalculationMinusPlayerAttribute(Item item) {
-        Equipment _equipment = item as Equipment;
-        if (_equipment == null) {
-            return;
-        }
-        CalculationAttributesForItem(_equipment, GetIntegerType, MinusInteger);
-        CalculationAttributesForItem(_equipment, GetPercentType, MinusPercent);
+        CalculationAttributesForItem(item, GetIntegerType, MinusInteger);
+        CalculationAttributesForItem(item, GetPercentType, MinusPercent);
         MinusPercent(ScriptableObject.CreateInstance<Attribute>());
         UpdateTextOfAttributes();
         EventManager.UpdatePlayerCurrentHealthEventHandler();
         EventManager.UpdatingHealthBarEventHandler();
     }
 
-    protected virtual void CalculationAttributesForItem(Equipment equipment, GetValueType valueType, CalculationField calculationField) {
+    protected virtual void CalculationAttributesForItem(Item equipment, GetValueType valueType, CalculationField calculationField) {
         foreach (Attribute attribute in equipment.Attributes) {
             if (attribute.type != _attributeType) {
                 continue;
@@ -122,10 +114,10 @@ public class AttributeUI : MonoBehaviour {
         return ValueType.Percent;
     }
 
-    public void AddAdditionalValue(Potion potion) {
-        AdditionalValue = potion.Value;
+    public void AddAdditionalValue(Item item) {
+        AdditionalValue = item.Attributes[0].value;
         UpdateTextOfAttributes();
-        StartCoroutine(DelayPotionBuff(potion.Duration));
+        StartCoroutine(DelayPotionBuff(item.Attributes[0].duration));
     }
 
     private IEnumerator DelayPotionBuff(float duration) {
