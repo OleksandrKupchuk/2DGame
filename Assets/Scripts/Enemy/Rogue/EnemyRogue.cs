@@ -34,7 +34,7 @@ public class EnemyRogue : Enemy {
 
     protected new void Awake() {
         base.Awake();
-        _currentHealth = 4f;
+        CurrentHealth = 4f;
         _logicEnemyOfRange = GetComponent<Projectile>();
         _ignoreCollision = GetComponent<IgnoreCollision>();
         DisableColliderRightKnife();

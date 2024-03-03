@@ -10,11 +10,11 @@ public class PlayerUI : MonoBehaviour {
     private Image _healthBar;
 
     private void OnEnable() {
-        EventManager.UpdatingHealthBar += UpdateHealthBar;
+        EventManager.UpdateAttributes += UpdateHealthBar;
     }
 
     private void OnDestroy() {
-        EventManager.UpdatingHealthBar -= UpdateHealthBar;
+        EventManager.UpdateAttributes -= UpdateHealthBar;
     }
 
     private void Awake() {

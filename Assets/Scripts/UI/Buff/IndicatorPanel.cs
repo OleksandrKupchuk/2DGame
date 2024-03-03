@@ -25,11 +25,13 @@ public class IndicatorPanel : MonoBehaviour {
     }
 
     private void ShowBuffIndacator(Item item) {
-        foreach (var indicator in _buffIndicators) {
-            if (!indicator.gameObject.activeSelf) {
-                indicator.gameObject.SetActive(true);
-                indicator.Display(item);
-                return;
+        foreach (Attribute attribute in item.Attributes) {
+            foreach (var indicator in _buffIndicators) {
+                if (!indicator.gameObject.activeSelf) {
+                    indicator.gameObject.SetActive(true);
+                    indicator.Display(attribute);
+                    break;
+                }
             }
         }
     }

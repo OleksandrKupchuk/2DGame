@@ -8,9 +8,9 @@ public class BuffIndicator : MonoBehaviour {
     [SerializeField]
     private Image _border;
 
-    public void Display(Item item) {
-        SetIcon(item.Icon);
-        StartCoroutine(ShowDurationEffect(item.Attributes[0].duration));
+    public void Display(Attribute attribute) {
+        SetIcon(attribute.icon);
+        StartCoroutine(ShowDurationEffect(attribute.duration));
     }
 
     private void SetIcon(Sprite icon) {

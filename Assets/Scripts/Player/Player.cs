@@ -86,29 +86,32 @@ public class Player : BaseCharacteristics {
         Inventory = FindObjectOfType<Inventory>();
         CheckComponentOnNull();
         DisableSwordCollider();
-        EventManager.UpdatePlayerCurrentHealth += CalculationCurrentHealth;
+        EventManager.UpdateAttributes += CalculationCurrentHealth;
+    }
+
+    private void OnDestroy() {
+        EventManager.UpdateAttributes -= CalculationCurrentHealth;
     }
 
     private void CalculationCurrentHealth() {
-        _currentHealth = _currentHealth > Inventory.PlayerAttributes.Health ? Inventory.PlayerAttributes.Health : _currentHealth;
-        EventManager.UpdatingHealthBarEventHandler();
+        CurrentHealth = CurrentHealth > Inventory.PlayerAttributes.Health ? Inventory.PlayerAttributes.Health : CurrentHealth;
     }
 
     private void CheckComponentOnNull() {
         if (_movementInputAction == null) {
-            Debug.LogError("Component MovementInputAction is null");
+            Debug.LogError($"Component {typeof(InputActionReference).Name} is null");
         }
         if (_shotInputAction == null) {
-            Debug.LogError("Component ShotInputAction is null");
+            Debug.LogError($"Component {typeof(InputActionReference).Name} is null");
         }
         if (_jumpInputAction == null) {
-            Debug.LogError("Component JumpInputAction is null");
+            Debug.LogError($"Component {typeof(InputActionReference).Name} is null");
         }
         if (_invulnerableStatus == null) {
             Debug.LogError($"Component {typeof(InvulnerabilityAnimation).Name} is null");
         }
         if (_boxCollider == null) {
-            Debug.LogError("Component BoxCollider2D is null");
+            Debug.LogError($"Component {typeof(BoxCollider2D).Name} is null");
         }
         if (Inventory == null) {
             Debug.LogError($"Component {typeof(Inventory).Name} is null");
@@ -192,8 +195,8 @@ public class Player : BaseCharacteristics {
             return;
         }
 
-        _currentHealth -= _clearDamage;
-        EventManager.UpdatingHealthBarEventHandler();
+        CurrentHealth -= _clearDamage;
+        EventManager.UpdateAttributesEventHandler();
         //print("health = " + _health);
         if (IsDead) {
             StateMachine.ChangeState(DeadState);
@@ -234,7 +237,7 @@ public class Player : BaseCharacteristics {
         _delayHealthRegeneration += Time.deltaTime;
 
         if (_delayHealthRegeneration >= Config.delayHealthRegeneration) {
-            if (_currentHealth >= Inventory.PlayerAttributes.Health) {
+            if (CurrentHealth >= Inventory.PlayerAttributes.Health) {
                 return;
             }
 
@@ -249,9 +252,9 @@ public class Player : BaseCharacteristics {
     }
 
     public void AddHealth(float health) {
-        _currentHealth += health;
-        _currentHealth = _currentHealth > Inventory.PlayerAttributes.Health ? Inventory.PlayerAttributes.Health : _currentHealth;
-        EventManager.UpdatingHealthBarEventHandler();
+        CurrentHealth += health;
+        CurrentHealth = CurrentHealth > Inventory.PlayerAttributes.Health ? Inventory.PlayerAttributes.Health : CurrentHealth;
+        EventManager.UpdateAttributesEventHandler();
     }
 
     public void AddEnableSwordColliderEventForAttackAnimation() {

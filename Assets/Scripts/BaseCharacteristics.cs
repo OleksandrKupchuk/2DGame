@@ -2,21 +2,20 @@ using UnityEngine;
 
 public class BaseCharacteristics : MonoBehaviour {
     protected float _blockedDamagePerOneArmor = 0.2f;
-    protected float _currentHealth;
 
     [SerializeField]
     protected Config _config;
 
     public Rigidbody2D Rigidbody { get; protected set; }
     public Animator Animator { get; protected set; }
-    public float CurrentHealth { get => _currentHealth; }
-    public bool IsDead { get => _currentHealth <= 0; }
+    public float CurrentHealth { get; protected set; }
+    public bool IsDead { get => CurrentHealth <= 0; }
     public AttachingEventToAnimation AttachingEventToAnimation { get; private set; } = new AttachingEventToAnimation();
 
     protected void Awake() {
         Rigidbody = gameObject.GetComponent<Rigidbody2D>();
         Animator = gameObject.GetComponent<Animator>();
-        _currentHealth = _config.health;
+        CurrentHealth = _config.health;
     }
 
     public void ResetRigidbodyVelocity() {

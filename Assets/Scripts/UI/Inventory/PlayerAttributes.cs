@@ -1,11 +1,10 @@
 using UnityEngine;
-using static UnityEditor.Progress;
 
-[RequireComponent (typeof(AttributeHealthUI))]
-[RequireComponent (typeof(AttributeSpeedUI))]
-[RequireComponent (typeof(AttributeArmorUI))]
-[RequireComponent (typeof(AttributeDamageUI))]
-[RequireComponent (typeof(AttributeHealthRegenerationUI))]
+[RequireComponent(typeof(AttributeHealthUI))]
+[RequireComponent(typeof(AttributeSpeedUI))]
+[RequireComponent(typeof(AttributeArmorUI))]
+[RequireComponent(typeof(AttributeDamageUI))]
+[RequireComponent(typeof(AttributeHealthRegenerationUI))]
 public class PlayerAttributes : MonoBehaviour {
     private AttributeHealthUI _attributeHealthUI;
     private AttributeSpeedUI _attributeSpeedUI;
@@ -15,10 +14,16 @@ public class PlayerAttributes : MonoBehaviour {
 
     private void Awake() {
         _attributeHealthUI = GetComponent<AttributeHealthUI>();
-        _attributeSpeedUI = GetComponent <AttributeSpeedUI>();
-        _attributeArmorUI = GetComponent <AttributeArmorUI>();
-        _attributeDamageUI = GetComponent <AttributeDamageUI>();
-        _attributeHealthRegenerationUI = GetComponent <AttributeHealthRegenerationUI>();
+        _attributeSpeedUI = GetComponent<AttributeSpeedUI>();
+        _attributeArmorUI = GetComponent<AttributeArmorUI>();
+        _attributeDamageUI = GetComponent<AttributeDamageUI>();
+        _attributeHealthRegenerationUI = GetComponent<AttributeHealthRegenerationUI>();
+
+        EventManager.UseItem += AddAditionanAttributes;
+    }
+
+    private void OnDestroy() {
+        EventManager.UseItem -= AddAditionanAttributes;
     }
 
     public float Health { get => _attributeHealthUI.Value; }
@@ -27,19 +32,20 @@ public class PlayerAttributes : MonoBehaviour {
     public float Damage { get => Random.Range(_attributeDamageUI.DamageMin + _attributeDamageUI.AdditionalValue, _attributeDamageUI.DamageMax + _attributeDamageUI.AdditionalValue); }
     public float HealthRegeneration { get => _attributeHealthRegenerationUI.Value + _attributeHealthRegenerationUI.AdditionalValue; }
 
-    public void AddAditionanArmor(Item item) {
-        _attributeArmorUI.AddAdditionalValue(item);
-    }
-
-    public void AddAditionanDamage(Item item) {
-        _attributeDamageUI.AddAdditionalValue(item);
-    }
-
-    public void AddAditionanSpeed(Item item) {
-        _attributeSpeedUI.AddAdditionalValue(item);
-    }
-
-    public void AddAditionanHealthRegeneration(Item item) {
-        _attributeHealthRegenerationUI.AddAdditionalValue(item);
+    public void AddAditionanAttributes(Item item) {
+        foreach (Attribute attribute in item.Attributes) {
+            if (attribute.type == AttributeType.Armor) {
+                _attributeArmorUI.AddAdditionalValue(attribute);
+            }
+            else if (attribute.type == AttributeType.Damage) {
+                _attributeDamageUI.AddAdditionalValue(attribute);
+            }
+            else if (attribute.type == AttributeType.Speed) {
+                _attributeSpeedUI.AddAdditionalValue(attribute);
+            }
+            else if (attribute.type == AttributeType.HealthRegeneration) {
+                _attributeHealthRegenerationUI.AddAdditionalValue(attribute);
+            }
+        }
     }
 }

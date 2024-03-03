@@ -81,7 +81,7 @@ public class Enemy : BaseCharacteristics {
             return;
         }
         //print("clear take enemy damage = " + _clearDamage);
-        _currentHealth -= _clearDamage;
+        CurrentHealth -= _clearDamage;
 
         if (IsDead) {
             StateMachine.ChangeState(DeadState);

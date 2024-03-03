@@ -4,6 +4,6 @@ public class AttributeHealthUI : AttributeUI {
         _valueInteger = _playerConfig.health;
         _attributeType = AttributeType.Health;
         UpdateTextOfAttributes();
-        EventManager.UpdatingHealthBarEventHandler();
+        EventManager.UpdateAttributesEventHandler();
     }
 }

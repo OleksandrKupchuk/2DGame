@@ -8,16 +8,10 @@ public class EventManager : MonoBehaviour {
         InventoryOpenlyClosed.Invoke();
     }
 
-    public static event Action UpdatingHealthBar;
+    public static event Action UpdateAttributes;
 
-    public static void UpdatingHealthBarEventHandler() {
-        UpdatingHealthBar.Invoke();
-    }
-
-    public static event Action UpdatePlayerCurrentHealth;
-
-    public static void UpdatePlayerCurrentHealthEventHandler() {
-        UpdatePlayerCurrentHealth.Invoke();
+    public static void UpdateAttributesEventHandler() {
+        UpdateAttributes.Invoke();
     }
 
     public static event Action<Item> PutOnItem;

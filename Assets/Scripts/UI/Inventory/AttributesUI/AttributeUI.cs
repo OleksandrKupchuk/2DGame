@@ -52,22 +52,19 @@ public class AttributeUI : MonoBehaviour {
     public void CalculationAddPlayerAttribute(Item item) {
         CalculationAttributesForItem(item, GetIntegerType, AddInteger);
         CalculationAttributesForItem(item, GetPercentType, AddPercent);
-        AddPercent(ScriptableObject.CreateInstance<Attribute>());
         UpdateTextOfAttributes();
-        EventManager.UpdatingHealthBarEventHandler();
+        EventManager.UpdateAttributesEventHandler();
     }
 
     public void CalculationMinusPlayerAttribute(Item item) {
         CalculationAttributesForItem(item, GetIntegerType, MinusInteger);
         CalculationAttributesForItem(item, GetPercentType, MinusPercent);
-        MinusPercent(ScriptableObject.CreateInstance<Attribute>());
         UpdateTextOfAttributes();
-        EventManager.UpdatePlayerCurrentHealthEventHandler();
-        EventManager.UpdatingHealthBarEventHandler();
+        EventManager.UpdateAttributesEventHandler();
     }
 
-    protected virtual void CalculationAttributesForItem(Item equipment, GetValueType valueType, CalculationField calculationField) {
-        foreach (Attribute attribute in equipment.Attributes) {
+    protected virtual void CalculationAttributesForItem(Item item, GetValueType valueType, CalculationField calculationField) {
+        foreach (Attribute attribute in item.Attributes) {
             if (attribute.type != _attributeType) {
                 continue;
             }
@@ -114,13 +111,13 @@ public class AttributeUI : MonoBehaviour {
         return ValueType.Percent;
     }
 
-    public void AddAdditionalValue(Item item) {
-        AdditionalValue = item.Attributes[0].value;
+    public void AddAdditionalValue(Attribute attribute) {
+        AdditionalValue = attribute.value;
         UpdateTextOfAttributes();
-        StartCoroutine(DelayPotionBuff(item.Attributes[0].duration));
+        StartCoroutine(DelayBuff(attribute.duration));
     }
 
-    private IEnumerator DelayPotionBuff(float duration) {
+    private IEnumerator DelayBuff(float duration) {
         yield return new WaitForSeconds(duration);
         AdditionalValue = 0;
         UpdateTextOfAttributes();
