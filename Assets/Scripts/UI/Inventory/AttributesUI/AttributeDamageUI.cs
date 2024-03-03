@@ -11,11 +11,10 @@ public class AttributeDamageUI : AttributeUI {
         base.Start();
         _valueIntegerMin = _playerConfig.damageMin;
         _valueIntegerMax = _playerConfig.damageMax;
-        _attributeType = AttributeType.Damage;
-        UpdateTextOfAttributes();
+        UpdateTextAttributes();
     }
 
-    protected override void UpdateTextOfAttributes() {
+    protected override void UpdateTextAttributes() {
         float resultMin = _valueIntegerMin + _valuePercentMin;
         float resultMax = _valueIntegerMax + _valuePercentMax;
         if (AdditionalValue > 0) {

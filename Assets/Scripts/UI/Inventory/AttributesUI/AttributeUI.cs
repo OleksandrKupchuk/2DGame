@@ -3,12 +3,13 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class AttributeUI : MonoBehaviour {
-    protected AttributeType _attributeType;
     protected PlayerConfig _playerConfig;
     protected float _valueInteger;
     protected float _valuePercent;
     protected float _percent;
 
+    [SerializeField]
+    protected string _nameAttribute;
     [SerializeField]
     protected Sprite _sprite;
     [SerializeField]
@@ -16,10 +17,11 @@ public class AttributeUI : MonoBehaviour {
     [SerializeField]
     protected Text _valueTextComponent;
 
-    protected delegate void CalculationBaseInteger(Attribute attribute);
     protected delegate ValueType GetValueType();
     protected delegate void CalculationField(Attribute attribute);
 
+    [field: SerializeField]
+    public AttributeType AttributeType { get; protected set; }  
     public float Value { get; protected set; }
     public float AdditionalValue { get; private set; }
 
@@ -38,7 +40,7 @@ public class AttributeUI : MonoBehaviour {
         _icon.sprite = _sprite;
     }
 
-    protected virtual void UpdateTextOfAttributes() {
+    protected virtual void UpdateTextAttributes() {
         Value = _valueInteger + _valuePercent;
 
         if (AdditionalValue > 0) {
@@ -52,20 +54,20 @@ public class AttributeUI : MonoBehaviour {
     public void CalculationAddPlayerAttribute(Item item) {
         CalculationAttributesForItem(item, GetIntegerType, AddInteger);
         CalculationAttributesForItem(item, GetPercentType, AddPercent);
-        UpdateTextOfAttributes();
+        UpdateTextAttributes();
         EventManager.UpdateAttributesEventHandler();
     }
 
     public void CalculationMinusPlayerAttribute(Item item) {
         CalculationAttributesForItem(item, GetIntegerType, MinusInteger);
         CalculationAttributesForItem(item, GetPercentType, MinusPercent);
-        UpdateTextOfAttributes();
+        UpdateTextAttributes();
         EventManager.UpdateAttributesEventHandler();
     }
 
     protected virtual void CalculationAttributesForItem(Item item, GetValueType valueType, CalculationField calculationField) {
         foreach (Attribute attribute in item.Attributes) {
-            if (attribute.type != _attributeType) {
+            if (attribute.type != AttributeType) {
                 continue;
             }
 
@@ -88,14 +90,14 @@ public class AttributeUI : MonoBehaviour {
         _valuePercent = GetCalculationAddPercent(_valueInteger);
     }
 
-    protected float GetCalculationAddPercent(float valueInteger) {
-        float _result = _percent * valueInteger / 100;
-        return _result;
-    }
-
     protected virtual void MinusPercent(Attribute attribute) {
         _percent -= attribute.value;
         _valuePercent = GetCalculationMinusPercent(_valueInteger);
+    }
+
+    protected float GetCalculationAddPercent(float valueInteger) {
+        float _result = _percent * valueInteger / 100;
+        return _result;
     }
 
     protected float GetCalculationMinusPercent(float valueInteger) {
@@ -113,13 +115,13 @@ public class AttributeUI : MonoBehaviour {
 
     public void AddAdditionalValue(Attribute attribute) {
         AdditionalValue = attribute.value;
-        UpdateTextOfAttributes();
+        UpdateTextAttributes();
         StartCoroutine(DelayBuff(attribute.duration));
     }
 
     private IEnumerator DelayBuff(float duration) {
         yield return new WaitForSeconds(duration);
         AdditionalValue = 0;
-        UpdateTextOfAttributes();
+        UpdateTextAttributes();
     }
 }

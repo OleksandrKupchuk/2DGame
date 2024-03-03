@@ -12,7 +12,6 @@ public class AttributeEditor : Editor {
     SerializedProperty _iconProperty;
 
     public override void OnInspectorGUI() {
-
         _attributeTypeProperty = serializedObject.FindProperty("type");
         _valueTypeProperty = serializedObject.FindProperty("valueType");
         _valueProperty = serializedObject.FindProperty("value");
