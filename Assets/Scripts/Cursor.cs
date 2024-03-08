@@ -69,13 +69,13 @@ public class Cursor : MonoBehaviour {
             if (!cell.HasItem) {
                 return;
             }
-            ItemTooltip.ShowAttributes(cell.Item, cell.transform.position, cell.RectTransform.rect.height);
+            ItemTooltip.ShowTooltip(cell.Item, cell.transform.position, cell.RectTransform.rect.height);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.TryGetComponent(out Cell cell)) {
-            ItemTooltip.DisableAttributes();
+            ItemTooltip.HideTooltip();
         }
     }
 }

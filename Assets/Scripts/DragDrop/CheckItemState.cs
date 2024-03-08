@@ -10,7 +10,7 @@ public class CheckItemState : IDragDropState {
     }
 
     public void Exit() {
-        _controller.Cursor.ItemTooltip.DisableAttributes();
+        _controller.Cursor.ItemTooltip.HideTooltip();
     }
 
     public void Update() {

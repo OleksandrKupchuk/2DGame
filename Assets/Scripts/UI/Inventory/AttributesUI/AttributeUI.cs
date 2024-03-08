@@ -9,8 +9,6 @@ public class AttributeUI : MonoBehaviour {
     protected float _percent;
 
     [SerializeField]
-    protected string _nameAttribute;
-    [SerializeField]
     protected Sprite _sprite;
     [SerializeField]
     protected Image _icon;
@@ -44,7 +42,7 @@ public class AttributeUI : MonoBehaviour {
         Value = _valueInteger + _valuePercent;
 
         if (AdditionalValue > 0) {
-            _valueTextComponent.text = $"{Value} <color=green> + {AdditionalValue}</color>";
+            _valueTextComponent.text = $"<color=green> {Value + AdditionalValue}</color>";
         }
         else {
             _valueTextComponent.text = $"{Value}";
@@ -113,13 +111,13 @@ public class AttributeUI : MonoBehaviour {
         return ValueType.Percent;
     }
 
-    public void AddAdditionalValue(Attribute attribute) {
+    public virtual void AddAdditionalValue(Attribute attribute) {
         AdditionalValue = attribute.value;
         UpdateTextAttributes();
         StartCoroutine(DelayBuff(attribute.duration));
     }
 
-    private IEnumerator DelayBuff(float duration) {
+    protected IEnumerator DelayBuff(float duration) {
         yield return new WaitForSeconds(duration);
         AdditionalValue = 0;
         UpdateTextAttributes();

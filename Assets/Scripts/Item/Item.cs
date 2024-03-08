@@ -26,17 +26,13 @@ public class Item : MonoBehaviour, IUse {
         Icon = GetComponent<SpriteRenderer>().sprite;
         Description = GetComponent<Text>();
         CheckDuplicateAttributes();
-    }
 
-    public void ShowTooltip(List<AttributeTooltip> attributeTooltips) {
-        for (int i = 0; i < Attributes.Count; i++) {
-            attributeTooltips[i].SetValue(GetAttributeString(Attributes[i]));
-            attributeTooltips[i].SetIcon(Attributes[i].icon);
-            attributeTooltips[i].gameObject.SetActive(true);
+        if(Attributes == null || Attributes.Count == 0 ) {
+            Debug.LogError($"{nameof(Attributes)} is null or empty, {gameObject.name}");
         }
     }
 
-    private string GetAttributeString(Attribute attribute) {
+    public string GetAttributeString(Attribute attribute) {
         string _value = "";
         if (attribute.type == AttributeType.Damage && attribute.valueType == ValueType.Integer) {
             _value = "+" + attribute.damageMin + "-" + attribute.damageMax;

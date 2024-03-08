@@ -35,7 +35,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -55,7 +55,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ItemType>k__BackingField: 7
-  <Attributes>k__BackingField: []
+  <Attributes>k__BackingField:
+  - {fileID: 11400000, guid: 373693730255f9a40be7edea1395cedd, type: 2}
 --- !u!212 &4276030464080888337
 SpriteRenderer:
   m_ObjectHideFlags: 0

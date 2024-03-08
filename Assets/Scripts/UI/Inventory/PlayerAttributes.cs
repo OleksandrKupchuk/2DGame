@@ -25,12 +25,6 @@ public class PlayerAttributes : MonoBehaviour {
         _attributeArmorUI = (AttributeArmorUI)GetAttributeType(AttributeType.Armor);
         _attributeDamageUI = (AttributeDamageUI)GetAttributeType(AttributeType.Damage);
         _attributeHealthRegenerationUI = (AttributeHealthRegenerationUI)GetAttributeType(AttributeType.HealthRegeneration);
-
-        EventManager.UseItem += AddAditionanAttributes;
-    }
-
-    private void OnDestroy() {
-        EventManager.UseItem -= AddAditionanAttributes;
     }
 
     private AttributeUI GetAttributeType(AttributeType attributeType) {

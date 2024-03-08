@@ -57,7 +57,6 @@ MonoBehaviour:
   <ItemType>k__BackingField: 7
   <Attributes>k__BackingField:
   - {fileID: 11400000, guid: 248f6e426a0f68c4e856d00e01a073d3, type: 2}
-  - {fileID: 11400000, guid: 1e2365376114b2c4692443a9ab3d70cf, type: 2}
 --- !u!212 &8123576408081907660
 SpriteRenderer:
   m_ObjectHideFlags: 0

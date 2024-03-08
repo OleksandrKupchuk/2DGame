@@ -71,6 +71,7 @@ public class Player : BaseCharacteristics {
     public InputActionReference JumpInputAction { get => _jumpInputAction; }
     public InvulnerabilityAnimation InvulnerableStatus { get => _invulnerableStatus; }
     public Inventory Inventory { get; private set; }
+    public PlayerAttributes PlayerAttributes { get; private set; }
 
     private new void Awake() {
         base.Awake();
@@ -84,6 +85,7 @@ public class Player : BaseCharacteristics {
         StateMachine = new StateMachine<Player>(this);
         _deafaultGravityScale = Rigidbody.gravityScale;
         Inventory = FindObjectOfType<Inventory>();
+        PlayerAttributes = FindObjectOfType<PlayerAttributes>();
         CheckComponentOnNull();
         DisableSwordCollider();
         EventManager.UpdateAttributes += CalculationCurrentHealth;
@@ -94,27 +96,31 @@ public class Player : BaseCharacteristics {
     }
 
     private void CalculationCurrentHealth() {
-        CurrentHealth = CurrentHealth > Inventory.PlayerAttributes.Health ? Inventory.PlayerAttributes.Health : CurrentHealth;
+        CurrentHealth = CurrentHealth > PlayerAttributes.Health ? PlayerAttributes.Health : CurrentHealth;
     }
 
     private void CheckComponentOnNull() {
         if (_movementInputAction == null) {
-            Debug.LogError($"Component {typeof(InputActionReference).Name} is null");
+            Debug.LogError($"Component {nameof(InputActionReference)} is null");
         }
         if (_shotInputAction == null) {
-            Debug.LogError($"Component {typeof(InputActionReference).Name} is null");
+            Debug.LogError($"Component {nameof(InputActionReference)} is null");
         }
         if (_jumpInputAction == null) {
-            Debug.LogError($"Component {typeof(InputActionReference).Name} is null");
+            Debug.LogError($"Component {nameof(InputActionReference)} is null");
         }
         if (_invulnerableStatus == null) {
-            Debug.LogError($"Component {typeof(InvulnerabilityAnimation).Name} is null");
+            Debug.LogError($"Component {nameof(InvulnerabilityAnimation)} is null");
         }
         if (_boxCollider == null) {
-            Debug.LogError($"Component {typeof(BoxCollider2D).Name} is null");
+            Debug.LogError($"Component {nameof(BoxCollider2D)} is null");
         }
         if (Inventory == null) {
-            Debug.LogError($"Component {typeof(Inventory).Name} is null");
+            Debug.LogError($"Component {nameof(Inventory)} is null");
+        }
+        if (PlayerAttributes == null) {
+            Debug.LogError($"object {nameof(PlayerAttributes)} is null");
+            return;
         }
     }
 
@@ -189,7 +195,7 @@ public class Player : BaseCharacteristics {
 
     public void TakeDamage(float damage) {
         //print("damage = " + damage);
-        float _clearDamage = damage - GetBlockedDamage(Inventory.PlayerAttributes.Armor);
+        float _clearDamage = damage - GetBlockedDamage(PlayerAttributes.Armor);
         //print("clear damage = " + _clearDamage);
         if (_clearDamage <= 0) {
             return;
@@ -237,7 +243,7 @@ public class Player : BaseCharacteristics {
         _delayHealthRegeneration += Time.deltaTime;
 
         if (_delayHealthRegeneration >= Config.delayHealthRegeneration) {
-            if (CurrentHealth >= Inventory.PlayerAttributes.Health) {
+            if (CurrentHealth >= PlayerAttributes.Health) {
                 return;
             }
 
@@ -245,15 +251,16 @@ public class Player : BaseCharacteristics {
 
             if (_timeRegenerationHealth >= 1) {
                 _timeRegenerationHealth = 0;
-                AddHealth(Inventory.PlayerAttributes.HealthRegeneration);
+                AddHealth(PlayerAttributes.HealthRegeneration);
+                Debug.Log($"regenration health + <color=green>{PlayerAttributes.HealthRegeneration}</color>");
+                Debug.Log($"health after healing + <color=blue>{PlayerAttributes.Health}</color>");
             }
         }
-
     }
 
     public void AddHealth(float health) {
         CurrentHealth += health;
-        CurrentHealth = CurrentHealth > Inventory.PlayerAttributes.Health ? Inventory.PlayerAttributes.Health : CurrentHealth;
+        CurrentHealth = CurrentHealth > PlayerAttributes.Health ? PlayerAttributes.Health : CurrentHealth;
         EventManager.UpdateAttributesEventHandler();
     }
 

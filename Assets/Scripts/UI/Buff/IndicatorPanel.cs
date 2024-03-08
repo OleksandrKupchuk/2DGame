@@ -8,11 +8,6 @@ public class IndicatorPanel : MonoBehaviour {
 
     private void Awake() {
         CreateBuffIndicators();
-        EventManager.UseItem += ShowBuffIndacator;
-    }
-
-    private void OnDestroy() {
-        EventManager.UseItem -= ShowBuffIndacator;
     }
 
     private void CreateBuffIndicators() {
@@ -24,7 +19,7 @@ public class IndicatorPanel : MonoBehaviour {
         }
     }
 
-    private void ShowBuffIndacator(Item item) {
+    public void ShowBuffIndacator(Item item) {
         foreach (Attribute attribute in item.Attributes) {
             foreach (var indicator in _buffIndicators) {
                 if (!indicator.gameObject.activeSelf) {

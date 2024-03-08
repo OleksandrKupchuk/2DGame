@@ -21,10 +21,10 @@ public class ItemTooltip : MonoBehaviour {
         }
 
         _imageBackground.enabled = false;
-        CreateAttributes();
+        CreateAttributeTooltips();
     }
 
-    private void CreateAttributes() {
+    private void CreateAttributeTooltips() {
         for (int i = 0; i < 5; i++) {
             AttributeTooltip _attributeTooltip = Instantiate(_attributePrefab);
             _attributeTooltip.transform.SetParent(_background.transform);
@@ -34,20 +34,26 @@ public class ItemTooltip : MonoBehaviour {
         }
     }
 
-    public void ShowAttributes(Item item, Vector2 positionCell, float heightCell) {
-        DisableAttributes();
-        item.ShowTooltip(_attributeTooltips);
-
+    public void ShowTooltip(Item item, Vector2 positionCell, float heightCell) {
+        InitAttributes(item);
         EnableImageBackground();
         SetPosition(positionCell, heightCell);
     }
 
-    public void DisableAttributes() {
+    public void HideTooltip() {
         foreach (AttributeTooltip attributeTooltip in _attributeTooltips) {
             attributeTooltip.gameObject.SetActive(false);
         }
 
         DisableImageBackground();
+    }
+
+    private void InitAttributes(Item item) {
+        for (int i = 0; i < item.Attributes.Count; i++) {
+            _attributeTooltips[i].SetValue(item.GetAttributeString(item.Attributes[i]));
+            _attributeTooltips[i].SetIcon(item.Attributes[i].icon);
+            _attributeTooltips[i].gameObject.SetActive(true);
+        }
     }
 
     private void SetPosition(Vector2 pos, float heightCell) {
