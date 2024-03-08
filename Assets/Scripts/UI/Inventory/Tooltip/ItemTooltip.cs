@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,7 +38,7 @@ public class ItemTooltip : MonoBehaviour {
     public void ShowTooltip(Item item, Vector2 positionCell, float heightCell) {
         InitAttributes(item);
         EnableImageBackground();
-        SetPosition(positionCell, heightCell);
+        StartCoroutine(SetPosition(positionCell, heightCell));
     }
 
     public void HideTooltip() {
@@ -56,11 +57,16 @@ public class ItemTooltip : MonoBehaviour {
         }
     }
 
-    private void SetPosition(Vector2 pos, float heightCell) {
+    private IEnumerator SetPosition(Vector2 pos, float height) {
         _background.transform.position = pos;
         float _spaceBetweenTooltipAndCellInPixel = 10;
-        float _heightInPixel = (_backgroundRectTransform.rect.height + heightCell) / 2 + _spaceBetweenTooltipAndCellInPixel;
+        yield return StartCoroutine(WaitForEnableBackground());
+        float _heightInPixel = (_backgroundRectTransform.rect.height + height) / 2 + _spaceBetweenTooltipAndCellInPixel;
         _backgroundRectTransform.anchoredPosition = new Vector2(_backgroundRectTransform.anchoredPosition.x, _backgroundRectTransform.anchoredPosition.y + _heightInPixel);
+    }
+
+    private IEnumerator WaitForEnableBackground() {
+        yield return new WaitUntil(() => _imageBackground.enabled = true);
     }
 
     private void EnableImageBackground() {
