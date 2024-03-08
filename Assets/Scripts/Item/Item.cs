@@ -15,8 +15,11 @@ public enum ItemType {
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Item : MonoBehaviour, IUse {
+    [field: SerializeField]
+    public string Name { get; protected set; }
+    [field: SerializeField]
+    public string Description { get; protected set; }
     public Sprite Icon { get; protected set; }
-    public Text Description { get; protected set; }
     [field: SerializeField]
     public ItemType ItemType { get; protected set; } = new ItemType();
     [field: SerializeField]
@@ -24,7 +27,6 @@ public class Item : MonoBehaviour, IUse {
 
     protected void Awake() {
         Icon = GetComponent<SpriteRenderer>().sprite;
-        Description = GetComponent<Text>();
         CheckDuplicateAttributes();
 
         if(Attributes == null || Attributes.Count == 0 ) {

@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37854cf4aec128f439c8e597d923c21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: Gold Crown
   <ItemType>k__BackingField: 0
   <Attributes>k__BackingField:
   - {fileID: 11400000, guid: 1e2d34dc136c721408d319b5f8faace8, type: 2}

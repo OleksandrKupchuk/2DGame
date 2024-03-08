@@ -2,7 +2,6 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : BaseCharacteristics {
-
     protected float _xScale;
 
     public bool IsLookRight { get => transform.localScale.x > 0; }
@@ -12,7 +11,6 @@ public class Enemy : BaseCharacteristics {
     public float GetDirectionX { get => transform.localScale.x; }
     public FieldOfView FieldOfView { get; protected set; }
     public bool HasTarget { get => FieldOfView.Target != null; }
-
     public EnemyConfig Config { get => (EnemyConfig)_config; }
     public StateMachine<Enemy> StateMachine { get; protected set; }
     public virtual EnemyIdleState IdleState { get; protected set; } = new EnemyIdleState();

@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37854cf4aec128f439c8e597d923c21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: Gold Ring
+  <Description>k__BackingField: Long time ago, this item wore kings
   <ItemType>k__BackingField: 2
   <Attributes>k__BackingField:
   - {fileID: 11400000, guid: ec7870a7c6b21084bacbc37064040de0, type: 2}

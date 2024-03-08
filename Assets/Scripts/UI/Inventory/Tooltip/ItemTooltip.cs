@@ -8,9 +8,15 @@ public class ItemTooltip : MonoBehaviour {
     private List<AttributeTooltip> _attributeTooltips = new List<AttributeTooltip>();
 
     [SerializeField]
+    private Text _name;
+    [SerializeField] 
+    private Text _description;
+    [SerializeField]
     private Image _imageBackground;
     [SerializeField]
     private GameObject _background;
+    [SerializeField]
+    private GameObject _containerAttributes;
     [SerializeField]
     private AttributeTooltip _attributePrefab;
 
@@ -18,17 +24,23 @@ public class ItemTooltip : MonoBehaviour {
         _backgroundRectTransform = _background.GetComponent<RectTransform>();
 
         if (_background == null) {
-            Debug.LogError("Object 'background' is null");
+            Debug.LogError($"Object 'background' is null");
+        }
+        if(_name == null) {
+            Debug.LogError($"Object '_name' is null");
+        }
+        if (_description == null) { 
+            Debug.LogError($"Object '_description' is null");
         }
 
-        _imageBackground.enabled = false;
+        DisableImageBackground();
         CreateAttributeTooltips();
     }
 
     private void CreateAttributeTooltips() {
         for (int i = 0; i < 5; i++) {
             AttributeTooltip _attributeTooltip = Instantiate(_attributePrefab);
-            _attributeTooltip.transform.SetParent(_background.transform);
+            _attributeTooltip.transform.SetParent(_containerAttributes.transform);
             _attributeTooltip.transform.localScale = new Vector3(1, 1, 1);
             _attributeTooltip.gameObject.SetActive(false);
             _attributeTooltips.Add(_attributeTooltip);
@@ -36,6 +48,8 @@ public class ItemTooltip : MonoBehaviour {
     }
 
     public void ShowTooltip(Item item, Vector2 positionCell, float heightCell) {
+        _name.text = item.Name;
+        _description.text = item.Description;
         InitAttributes(item);
         EnableImageBackground();
         StartCoroutine(SetPosition(positionCell, heightCell));
@@ -51,8 +65,7 @@ public class ItemTooltip : MonoBehaviour {
 
     private void InitAttributes(Item item) {
         for (int i = 0; i < item.Attributes.Count; i++) {
-            _attributeTooltips[i].SetValue(item.GetAttributeString(item.Attributes[i]));
-            _attributeTooltips[i].SetIcon(item.Attributes[i].icon);
+            _attributeTooltips[i].Set(item.Attributes[i].icon, item.GetAttributeString(item.Attributes[i]));
             _attributeTooltips[i].gameObject.SetActive(true);
         }
     }
@@ -66,14 +79,16 @@ public class ItemTooltip : MonoBehaviour {
     }
 
     private IEnumerator WaitForEnableBackground() {
-        yield return new WaitUntil(() => _imageBackground.enabled = true);
+        yield return new WaitUntil(() => _background.activeSelf == true);
     }
 
     private void EnableImageBackground() {
-        _imageBackground.enabled = true;
+        //_imageBackground.enabled = true;
+        _background.SetActive(true);
     }
 
     private void DisableImageBackground() {
-        _imageBackground.enabled = false;
+        //_imageBackground.enabled = false;
+        _background.SetActive(false);
     }
 }

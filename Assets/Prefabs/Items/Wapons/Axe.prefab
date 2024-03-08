@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37854cf4aec128f439c8e597d923c21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: Axe
+  <Description>k__BackingField: Good weapon for first time
   <ItemType>k__BackingField: 4
   <Attributes>k__BackingField:
   - {fileID: 11400000, guid: aa994891a1cc5c1458cb10121d46b9dd, type: 2}

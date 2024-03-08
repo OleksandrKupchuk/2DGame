@@ -54,6 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81b12ff0b449cc441a31a35e8225d9a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: Potion Health
   <ItemType>k__BackingField: 7
   <Attributes>k__BackingField:
   - {fileID: 11400000, guid: 4a35aea78414c8a4eb5f1fcec7b14e57, type: 2}
