@@ -29,9 +29,7 @@ public class ItemUsageSlot : Cell {
 
     public override void SetItem(Item item) {
         if (CanUseItem(item)) {
-            Item = item;
-            SetIcon(item.Icon);
-            EnableIcon();
+            base.SetItem(item);
         }
     }
 
@@ -56,12 +54,12 @@ public class ItemUsageSlot : Cell {
         RemoveItem();
     }
 
-    private string GetNameButton(string bindingString) {
-        return bindingString.Substring(bindingString.Length - 1, 1);
-    }
-
     public void SetInputAction(InputActionReference inputAction) {
         _inputAction = inputAction;
         _labelButtonIcon.text = "" + GetNameButton(_inputAction.action.GetBindingDisplayString());
+    }
+
+    private string GetNameButton(string bindingString) {
+        return bindingString.Substring(bindingString.Length - 1, 1);
     }
 }

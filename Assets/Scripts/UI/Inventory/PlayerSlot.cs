@@ -28,9 +28,7 @@ public class PlayerSlot : Cell {
 
     public override void SetItem(Item item) {
         if (_itemTypes.Contains(item.ItemType)) {
-            Item = item;
-            SetIcon(item.Icon);
-            EnableIcon();
+            base.SetItem(item);
             EventManager.PutOnItemEventHandler(item);
         }
     }

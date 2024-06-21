@@ -25,17 +25,17 @@ public class Cell : MonoBehaviour {
         EnableIcon();
     }
 
-    public virtual void RemoveItem() {
-        Item = null;
-        DisableIcon();
-    }
-
     protected void SetIcon(Sprite icon) {
         _icon.sprite = icon;
     }
 
     protected void EnableIcon() {
         _icon.gameObject.SetActive(true);
+    }
+
+    public virtual void RemoveItem() {
+        Item = null;
+        DisableIcon();
     }
 
     protected void DisableIcon() {

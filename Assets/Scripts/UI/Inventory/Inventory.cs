@@ -13,22 +13,11 @@ public class Inventory : MonoBehaviour {
     [SerializeField]
     private Transform _bag;
     [SerializeField]
-    private GameObject _inventoryBackground;
-    [SerializeField]
-    private PlayerConfig _playerConfig;
+    private GameObject _background;
     [SerializeField]
     private Button _closeButton;
 
-    public bool IsOpen { get => _inventoryBackground.activeSelf; }
-
-    private void OnEnable() {
-        EventManager.InventoryOpenlyClosed += EnableDisableInventory;
-        GenerateCellsOfPlayerBag();
-    }
-
-    private void OnDestroy() {
-        EventManager.InventoryOpenlyClosed -= EnableDisableInventory;
-    }
+    public bool IsOpen { get => _background.activeSelf; }
 
     private void Awake() {
         if (_cellPrefab == null) {
@@ -39,7 +28,7 @@ public class Inventory : MonoBehaviour {
             Debug.LogError("object is null");
             return;
         }
-        if (_inventoryBackground == null) {
+        if (_background == null) {
             Debug.LogError("object is null");
             return;
         }
@@ -52,12 +41,30 @@ public class Inventory : MonoBehaviour {
         AddListenerForCloseButton();
     }
 
+    private void OnEnable() {
+        EventManager.InventoryOpenlyClosed += EnableDisableInventory;
+        GenerateCellsOfPlayerBag();
+        _background.SetActive(false);
+    }
+
+    private void OnDestroy() {
+        EventManager.InventoryOpenlyClosed -= EnableDisableInventory;
+    }
+
     private void AddListenerForCloseButton() {
         _closeButton.onClick.AddListener(() => {
             CheckItemInCursorAndPutOnInInventory();
-            _inventoryBackground.SetActive(false);
+            _background.SetActive(false);
             _closeButton.gameObject.SetActive(false);
         });
+    }
+
+    private void CheckItemInCursorAndPutOnInInventory() {
+        if (_cursor.Item != null) {
+            PutItemInEmptyCell(_cursor.Item);
+            _cursor.RemoveItem();
+            DragDropController.DropPutItem();
+        }
     }
 
     private void GenerateCellsOfPlayerBag() {
@@ -73,7 +80,7 @@ public class Inventory : MonoBehaviour {
     public void EnableDisableInventory() {
         //print("active");
         _closeButton.gameObject.SetActive(!_closeButton.gameObject.activeSelf);
-        _inventoryBackground.SetActive(!_inventoryBackground.activeSelf);
+        _background.SetActive(!_background.activeSelf);
     }
 
     public void PutItemInEmptyCell(Item item) {
@@ -83,14 +90,6 @@ public class Inventory : MonoBehaviour {
                 item.gameObject.SetActive(false);
                 return;
             }
-        }
-    }
-
-    private void CheckItemInCursorAndPutOnInInventory() {
-        if (_cursor.Item != null) {
-            PutItemInEmptyCell(_cursor.Item);
-            _cursor.RemoveItem();
-            DragDropController.DropPutItem();
         }
     }
 }
