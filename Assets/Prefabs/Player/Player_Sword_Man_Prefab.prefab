@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2724809069109994693}
   - component: {fileID: 6843455573970313801}
   - component: {fileID: 5998367218307207105}
+  - component: {fileID: 2377159792989392474}
   m_Layer: 6
   m_Name: Player_Sword_Man_Prefab
   m_TagString: Player
@@ -77,7 +78,6 @@ MonoBehaviour:
   _frameRateInAttackAnimationForEnableCollider: 25
   _frameRateInAttackAnimationForDisableCollider: 30
   _attackAnimation: {fileID: 7400000, guid: fb30f15524b4a2d4b83dc65fe81c33fd, type: 2}
-  hitAnimation: {fileID: 7400000, guid: 0703f8522b275df46991bc9d30fb99ec, type: 2}
 --- !u!114 &9206641031412101052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +242,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b443d7a29afd094c88e8806744da99b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2377159792989392474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5238491402704463331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71dcf2ecb34753247911e3bb5a36d614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteResolvers:
+  - {fileID: 8873890313770814453}
+  - {fileID: 7176322890815797042}
+  - {fileID: 6774626616875102943}
+  - {fileID: 645660406143118580}
+  - {fileID: 6930384719441787646}
 --- !u!1 &7328863205628577472
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,7 +486,7 @@ SpriteRenderer:
   m_Size: {x: 2.352, y: 4.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &1639847481028110335
