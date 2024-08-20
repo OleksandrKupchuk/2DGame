@@ -120,9 +120,9 @@ MonoBehaviour:
       m_SpriteOverride: {fileID: 2583880355392797511, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
     - m_Name: Wear
       m_Hash: 997174074
-      m_Sprite: {fileID: 21300000, guid: 440e09337e4eef846a322a1d9fbab2cc, type: 3}
+      m_Sprite: {fileID: -6862289779368173415, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 21300000, guid: 440e09337e4eef846a322a1d9fbab2cc, type: 3}
+      m_SpriteOverride: {fileID: -6862289779368173415, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
     m_FromMain: 0
     m_EntryOverrideCount: 2
   - m_Name: LeftThigh
@@ -254,5 +254,5 @@ MonoBehaviour:
     m_FromMain: 0
     m_EntryOverrideCount: 2
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 638597829861993012
+  m_ModificationHash: 638597839672828532
   m_Version: 1
