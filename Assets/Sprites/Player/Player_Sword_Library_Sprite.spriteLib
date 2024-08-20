@@ -173,6 +173,86 @@ MonoBehaviour:
       m_SpriteOverride: {fileID: 1583695322600661672, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
     m_FromMain: 0
     m_EntryOverrideCount: 2
+  - m_Name: RightFoot
+    m_Hash: 454309420
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Empty
+      m_Hash: 688263872
+      m_Sprite: {fileID: -8973412617844173057, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8973412617844173057, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+    - m_Name: Wear
+      m_Hash: 997174074
+      m_Sprite: {fileID: -6300210910709547380, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6300210910709547380, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 2
+  - m_Name: LeftFinger
+    m_Hash: 43530397
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Empty
+      m_Hash: 688263872
+      m_Sprite: {fileID: 7710292360242630056, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7710292360242630056, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+    - m_Name: Wear
+      m_Hash: 997174074
+      m_Sprite: {fileID: -7852490273896482039, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7852490273896482039, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 2
+  - m_Name: LeftHand
+    m_Hash: 913699692
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Empty
+      m_Hash: 688263872
+      m_Sprite: {fileID: 8959139982904226699, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8959139982904226699, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+    - m_Name: Wear
+      m_Hash: 997174074
+      m_Sprite: {fileID: -2924518258329303977, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2924518258329303977, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 2
+  - m_Name: LeftArm
+    m_Hash: 730008282
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Empty
+      m_Hash: 688263872
+      m_Sprite: {fileID: 6576382250019314721, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6576382250019314721, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+    - m_Name: Wear
+      m_Hash: 997174074
+      m_Sprite: {fileID: -1559125074686976460, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1559125074686976460, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 2
+  - m_Name: LeftFoot
+    m_Hash: 412649584
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Empty
+      m_Hash: 688263872
+      m_Sprite: {fileID: -8073080443220101354, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8073080443220101354, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+    - m_Name: Wear
+      m_Hash: 997174074
+      m_Sprite: {fileID: -3809552748277596975, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3809552748277596975, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 2
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 638597096060008613
+  m_ModificationHash: 638597829861993012
   m_Version: 1
