@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Enemy : BaseCharacteristics {
+public class Enemy : Character {
     protected float _xScale;
 
     public bool IsLookRight { get => transform.localScale.x > 0; }

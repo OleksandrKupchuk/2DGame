@@ -24,13 +24,13 @@ public class AttributeUI : MonoBehaviour {
     public float AdditionalValue { get; private set; }
 
     protected void Awake() {
-        EventManager.PutOnItem += CalculationAddPlayerAttribute;
-        EventManager.TakeAwayItem += CalculationMinusPlayerAttribute;
+        EventManager.PutOnItem += AddPlayerAttribute;
+        EventManager.TakeAwayItem += MinusPlayerAttribute;
     }
 
     protected void OnDestroy() {
-        EventManager.PutOnItem -= CalculationAddPlayerAttribute;
-        EventManager.TakeAwayItem -= CalculationMinusPlayerAttribute;
+        EventManager.PutOnItem -= AddPlayerAttribute;
+        EventManager.TakeAwayItem -= MinusPlayerAttribute;
     }
 
     protected void Start() {
@@ -49,14 +49,14 @@ public class AttributeUI : MonoBehaviour {
         }
     }
 
-    public void CalculationAddPlayerAttribute(Item item) {
+    public void AddPlayerAttribute(Item item) {
         CalculationAttributesForItem(item, GetIntegerType, AddInteger);
         CalculationAttributesForItem(item, GetPercentType, AddPercent);
         UpdateTextAttributes();
         EventManager.UpdateAttributesEventHandler();
     }
 
-    public void CalculationMinusPlayerAttribute(Item item) {
+    public void MinusPlayerAttribute(Item item) {
         CalculationAttributesForItem(item, GetIntegerType, MinusInteger);
         CalculationAttributesForItem(item, GetPercentType, MinusPercent);
         UpdateTextAttributes();

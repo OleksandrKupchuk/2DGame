@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BaseCharacteristics : MonoBehaviour {
+public class Character : MonoBehaviour {
     protected float _blockedDamagePerOneArmor = 0.2f;
 
     [SerializeField]
@@ -24,6 +24,7 @@ public class BaseCharacteristics : MonoBehaviour {
 
     public bool IsEndCurrentAnimation(Animator animator, int layer) {
         AnimatorStateInfo _info = animator.GetCurrentAnimatorStateInfo(layer);
+
         if (_info.normalizedTime >= 1) {
             return true;
         }
@@ -33,6 +34,7 @@ public class BaseCharacteristics : MonoBehaviour {
 
     public bool IsEndCurrentAnimation(Animator animator, int layer, string currentAnimation) {
         AnimatorStateInfo _info = animator.GetCurrentAnimatorStateInfo(layer);
+
         if (!_info.IsName(currentAnimation)) {
             return false;
         }

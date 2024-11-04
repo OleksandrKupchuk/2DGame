@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 101909904}
   - component: {fileID: 101909903}
   m_Layer: 5
-  m_Name: Background
+  m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1406,7 +1406,7 @@ GameObject:
   - component: {fileID: 427808156}
   - component: {fileID: 427808155}
   m_Layer: 5
-  m_Name: TextValue
+  m_Name: Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1532,7 +1532,7 @@ GameObject:
   - component: {fileID: 499673737}
   - component: {fileID: 499673736}
   m_Layer: 5
-  m_Name: Bar
+  m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4452,7 +4452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1481758812}
   m_Layer: 5
-  m_Name: Health
+  m_Name: ProgressBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5313,7 +5313,7 @@ GameObject:
   - component: {fileID: 1737287505}
   - component: {fileID: 1737287506}
   m_Layer: 5
-  m_Name: PlayerUI
+  m_Name: PlayerHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5361,7 +5361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2bfa516e480a024e86f3063717b5705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthValueTextComponent: {fileID: 427808155}
+  _healthValue: {fileID: 427808155}
   _healthBar: {fileID: 499673736}
 --- !u!1 &1783139920
 GameObject:
@@ -5903,7 +5903,7 @@ GameObject:
   - component: {fileID: 1896085171}
   - component: {fileID: 1896085172}
   m_Layer: 5
-  m_Name: PlayerIcon
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5952,7 +5952,7 @@ GameObject:
   - component: {fileID: 1909367590}
   - component: {fileID: 1909367589}
   m_Layer: 5
-  m_Name: Background
+  m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

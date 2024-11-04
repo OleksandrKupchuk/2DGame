@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerUI : MonoBehaviour {
+public class HealthController : MonoBehaviour {
     private Player _player;
 
     [SerializeField]
-    private Text _healthValueTextComponent;
+    private Text _healthValue;
     [SerializeField]
     private Image _healthBar;
 
@@ -24,10 +24,10 @@ public class PlayerUI : MonoBehaviour {
     private void UpdateHealthBar() {
         float _value = _player.CurrentHealth / _player.PlayerAttributes.Health;
         _healthBar.fillAmount = _value;
-        UpdateHealthText(_player.CurrentHealth, _player.PlayerAttributes.Health);
+        UpdateHealthValue(_player.CurrentHealth, _player.PlayerAttributes.Health);
     }
 
-    private void UpdateHealthText(float currentValue, float maxValue) {
-        _healthValueTextComponent.text = string.Format("{0:0.0}", currentValue) + "/" + string.Format("{0:0.0}", maxValue);
+    private void UpdateHealthValue(float currentValue, float maxValue) {
+        _healthValue.text = string.Format("{0:0.0}", currentValue) + "/" + string.Format("{0:0.0}", maxValue);
     }
 }

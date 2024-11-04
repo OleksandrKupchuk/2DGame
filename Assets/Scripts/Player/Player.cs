@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : BaseCharacteristics {
+public class Player : Character {
     private List<Damage> _objectsAttack = new List<Damage>();
     private RaycastHit2D _raycastHit;
     private float _deafaultGravityScale;
