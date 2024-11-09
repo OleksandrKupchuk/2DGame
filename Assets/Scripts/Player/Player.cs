@@ -9,7 +9,7 @@ public class Player : Character {
     private float _deafaultGravityScale;
     private float _timeRegenerationHealth;
     private float _delayHealthRegeneration;
-    protected AnimationEvent _attackEvent = new AnimationEvent();
+    private AnimationEvent _attackEvent = new AnimationEvent();
 
     [SerializeField]
     private InputActionReference _movementInputAction;
@@ -36,6 +36,8 @@ public class Player : Character {
     [SerializeField]
     protected AnimationClip _attackAnimation;
 
+    public float CurrentHealth { get; protected set; }
+    public bool IsDead { get => CurrentHealth <= 0; }
     public bool IsLookingLeft { get => transform.localScale.x > 0; }
     public bool IsAttack {
         get {

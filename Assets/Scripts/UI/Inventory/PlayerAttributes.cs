@@ -39,10 +39,10 @@ public class PlayerAttributes : MonoBehaviour {
     }
 
     public void AddAditionanAttributes(Item item) {
-        foreach (Attribute attribute in item.Attributes) {
+        foreach (Attribute itemAttribute in item.Attributes) {
             foreach (AttributeUI attributeUI in _attributes) {
-                if (attribute.type == attributeUI.AttributeType) {
-                    attributeUI.AddAdditionalValue(attribute);
+                if (itemAttribute.type == attributeUI.AttributeType) {
+                    attributeUI.AddAdditionalValue(itemAttribute);
                 }
             }
         }

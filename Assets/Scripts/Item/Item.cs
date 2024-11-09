@@ -33,8 +33,9 @@ public class Item : MonoBehaviour, IUse {
         }
     }
 
-    public string GetAttributeString(Attribute attribute) {
+    public string GetAttributeValue(Attribute attribute) {
         string _value = "";
+
         if (attribute.type == AttributeType.Damage && attribute.valueType == ValueType.Integer) {
             _value = "+" + attribute.damageMin + "-" + attribute.damageMax;
         }

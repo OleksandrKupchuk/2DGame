@@ -4,6 +4,8 @@ using UnityEngine;
 public class Enemy : Character {
     protected float _xScale;
 
+    public float CurrentHealth { get; protected set; }
+    public bool IsDead { get => CurrentHealth <= 0; }
     public bool IsLookRight { get => transform.localScale.x > 0; }
     public bool IsLookLeft { get => transform.localScale.x < 0; }
     public bool IsTargetBehindYouWhenLookRight { get => (transform.position.x - FieldOfView.Target.transform.position.x) >= 0 && IsLookRight; }
@@ -29,6 +31,7 @@ public class Enemy : Character {
 
     protected new void Awake() {
         base.Awake();
+        CurrentHealth = _config.health;
         _xScale = transform.localScale.x;
         GameObject _fieldOfViewPrefab = Resources.Load(ResourcesPath.FieldOfViewPrefab) as GameObject;
         FieldOfView = Instantiate(_fieldOfViewPrefab.GetComponent<FieldOfView>());

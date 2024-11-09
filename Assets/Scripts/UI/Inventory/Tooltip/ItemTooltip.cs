@@ -65,7 +65,7 @@ public class ItemTooltip : MonoBehaviour {
 
     private void InitAttributes(Item item) {
         for (int i = 0; i < item.Attributes.Count; i++) {
-            _attributeTooltips[i].Set(item.Attributes[i].icon, item.GetAttributeString(item.Attributes[i]));
+            _attributeTooltips[i].Set(item.Attributes[i].icon, item.GetAttributeValue(item.Attributes[i]));
             _attributeTooltips[i].gameObject.SetActive(true);
         }
     }

@@ -8,14 +8,11 @@ public class Character : MonoBehaviour {
 
     public Rigidbody2D Rigidbody { get; protected set; }
     public Animator Animator { get; protected set; }
-    public float CurrentHealth { get; protected set; }
-    public bool IsDead { get => CurrentHealth <= 0; }
     public AttachingEventToAnimation AttachingEventToAnimation { get; private set; } = new AttachingEventToAnimation();
 
     protected void Awake() {
         Rigidbody = gameObject.GetComponent<Rigidbody2D>();
         Animator = gameObject.GetComponent<Animator>();
-        CurrentHealth = _config.health;
     }
 
     public void ResetRigidbodyVelocity() {

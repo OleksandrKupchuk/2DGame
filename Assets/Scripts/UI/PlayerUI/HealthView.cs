@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthController : MonoBehaviour {
+public class HealthView : MonoBehaviour {
     private Player _player;
 
     [SerializeField]
