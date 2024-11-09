@@ -26,11 +26,13 @@ public class AttributeUI : MonoBehaviour {
     protected void Awake() {
         EventManager.PutOnItem += AddPlayerAttribute;
         EventManager.TakeAwayItem += MinusPlayerAttribute;
+        EventManager.UseItem += AddAdditionalValue;
     }
 
     protected void OnDestroy() {
         EventManager.PutOnItem -= AddPlayerAttribute;
         EventManager.TakeAwayItem -= MinusPlayerAttribute;
+        EventManager.UseItem -= AddAdditionalValue;
     }
 
     protected void Start() {
@@ -63,7 +65,7 @@ public class AttributeUI : MonoBehaviour {
         EventManager.UpdateAttributesEventHandler();
     }
 
-    protected virtual void CalculationAttributesForItem(Item item, GetValueType valueType, CalculationField calculationField) {
+    protected void CalculationAttributesForItem(Item item, GetValueType valueType, CalculationField calculationField) {
         foreach (Attribute attribute in item.Attributes) {
             if (attribute.type != AttributeType) {
                 continue;
@@ -111,10 +113,15 @@ public class AttributeUI : MonoBehaviour {
         return ValueType.Percent;
     }
 
-    public virtual void AddAdditionalValue(Attribute attribute) {
-        AdditionalValue = attribute.value;
-        UpdateTextAttributes();
-        StartCoroutine(DelayBuff(attribute.duration));
+    public virtual void AddAdditionalValue(Item item) {
+        foreach (Attribute attribute in item.Attributes) {
+            if (attribute.type == AttributeType) {
+                AdditionalValue = attribute.value;
+                UpdateTextAttributes();
+                StartCoroutine(DelayBuff(attribute.duration));
+                return;
+            }
+        }
     }
 
     protected IEnumerator DelayBuff(float duration) {

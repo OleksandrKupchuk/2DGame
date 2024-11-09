@@ -69,5 +69,5 @@ public class Item : MonoBehaviour, IUse {
         }
     }
 
-    public virtual void Use() { }
+    public virtual void Use() { EventManager.UseItemEventHandler(this); }
 }

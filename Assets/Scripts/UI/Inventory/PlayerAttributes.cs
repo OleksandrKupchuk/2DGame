@@ -6,45 +6,19 @@ using UnityEngine;
 [RequireComponent(typeof(AttributeDamageUI))]
 [RequireComponent(typeof(AttributeHealthRegenerationUI))]
 public class PlayerAttributes : MonoBehaviour {
-    private AttributeUI[] _attributes;
+    [SerializeField]
     private AttributeHealthUI _attributeHealthUI;
+    [SerializeField]
     private AttributeSpeedUI _attributeSpeedUI;
+    [SerializeField]
     private AttributeArmorUI _attributeArmorUI;
+    [SerializeField]
     private AttributeDamageUI _attributeDamageUI;
+    [SerializeField]
     private AttributeHealthRegenerationUI _attributeHealthRegenerationUI;
     public float Health { get => _attributeHealthUI.Value + _attributeHealthUI.AdditionalValue; }
     public float Speed { get => _attributeSpeedUI.Value + _attributeSpeedUI.AdditionalValue; }
     public float Armor { get => _attributeArmorUI.Value + _attributeArmorUI.AdditionalValue; }
     public float Damage { get => Random.Range(_attributeDamageUI.DamageMin + _attributeDamageUI.AdditionalValue, _attributeDamageUI.DamageMax + _attributeDamageUI.AdditionalValue); }
     public float HealthRegeneration { get => _attributeHealthRegenerationUI.Value + _attributeHealthRegenerationUI.AdditionalValue; }
-
-    private void Awake() {
-        _attributes = GetComponents<AttributeUI>();
-        _attributeHealthUI = (AttributeHealthUI)GetAttributeType(AttributeType.Health);
-        _attributeSpeedUI = (AttributeSpeedUI)GetAttributeType(AttributeType.Speed);
-        _attributeArmorUI = (AttributeArmorUI)GetAttributeType(AttributeType.Armor);
-        _attributeDamageUI = (AttributeDamageUI)GetAttributeType(AttributeType.Damage);
-        _attributeHealthRegenerationUI = (AttributeHealthRegenerationUI)GetAttributeType(AttributeType.HealthRegeneration);
-    }
-
-    private AttributeUI GetAttributeType(AttributeType attributeType) {
-        foreach (var attribute in _attributes) {
-            if (attribute.AttributeType == attributeType) {
-                return attribute;
-            }
-        }
-
-        Debug.Log("can't find attribute");
-        return null;
-    }
-
-    public void AddAditionanAttributes(Item item) {
-        foreach (Attribute itemAttribute in item.Attributes) {
-            foreach (AttributeUI attributeUI in _attributes) {
-                if (itemAttribute.type == attributeUI.AttributeType) {
-                    attributeUI.AddAdditionalValue(itemAttribute);
-                }
-            }
-        }
-    }
 }

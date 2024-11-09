@@ -1,3 +1,5 @@
+using static UnityEditor.Progress;
+
 public class AttributeDamageUI : AttributeUI {
     protected float _valueIntegerMin;
     protected float _valueIntegerMax;
@@ -49,10 +51,15 @@ public class AttributeDamageUI : AttributeUI {
         _valuePercentMax = GetCalculationMinusPercent(_valueIntegerMax);
     }
 
-    public override void AddAdditionalValue(Attribute attribute) {
-        AdditionalMinValue = attribute.damageMin;
-        AdditionalMaxValue = attribute.damageMax;
-        UpdateTextAttributes();
-        StartCoroutine(DelayBuff(attribute.duration));
+    public override void AddAdditionalValue(Item item) {
+        foreach (Attribute attribute in item.Attributes) {
+            if (attribute.type == AttributeType) {
+                AdditionalMinValue = attribute.damageMin;
+                AdditionalMaxValue = attribute.damageMax;
+                UpdateTextAttributes();
+                StartCoroutine(DelayBuff(attribute.duration));
+                return;
+            }
+        }
     }
 }

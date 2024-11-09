@@ -8,7 +8,7 @@ public class PotionBuff : Item {
     }
 
     public override void Use() {
-        _player.PlayerAttributes.AddAditionanAttributes(this);
+        base.Use();
         _indicatorPanel.ShowBuffIndacator(this);
     }
 }

@@ -25,4 +25,10 @@ public class EventManager : MonoBehaviour {
     public static void TakeAwayItemEventHandler(Item item) {
         TakeAwayItem.Invoke(item);
     }
+
+    public static event Action<Item> UseItem;
+
+    public static void UseItemEventHandler(Item item) {
+        UseItem.Invoke(item);
+    }
 }
