@@ -1,7 +1,7 @@
 public class AttributeSpeedUI : AttributeUI {
-    private new void Start() {
-        base.Start();
+    private new void Awake() {
+        base.Awake();
         _valueInteger = _playerConfig.speed;
-        UpdateTextAttributes();
+        _attributeView.UpdateAttribute(this);
     }
 }

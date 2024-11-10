@@ -1,32 +1,18 @@
-using static UnityEditor.Progress;
-
-public class AttributeDamageUI : AttributeUI {
+public class AttributeDamageUI : AttributeUI, IAttribureController {
     protected float _valueIntegerMin;
     protected float _valueIntegerMax;
     protected float _valuePercentMin;
     protected float _valuePercentMax;
-    public float DamageMin { get => _valueIntegerMin + _valuePercentMin; }
-    public float DamageMax { get => _valueIntegerMax + _valuePercentMax; }
+    public float DamageMin { get => _valueIntegerMin + _valuePercentMin + AdditionalMinValue; }
+    public float DamageMax { get => _valueIntegerMax + _valuePercentMax + AdditionalMaxValue; }
     public float AdditionalMaxValue { get; protected set; }
     public float AdditionalMinValue { get; protected set; }
 
-    private new void Start() {
-        base.Start();
+    private new void Awake() {
+        base.Awake();
         _valueIntegerMin = _playerConfig.damageMin;
         _valueIntegerMax = _playerConfig.damageMax;
-        UpdateTextAttributes();
-    }
-
-    protected override void UpdateTextAttributes() {
-        float resultMin = _valueIntegerMin + _valuePercentMin;
-        float resultMax = _valueIntegerMax + _valuePercentMax;
-
-        if (AdditionalMinValue > 0) {
-            _valueTextComponent.text = $"<color=green>{resultMin + AdditionalMinValue}-{resultMax + AdditionalMaxValue}</color>";
-        }
-        else {
-            _valueTextComponent.text = $"{resultMin}-{resultMax}";
-        }
+        _attributeView.UpdateAttribute(this);
     }
 
     protected override void AddInteger(Attribute attribute) {
@@ -40,15 +26,15 @@ public class AttributeDamageUI : AttributeUI {
     }
 
     protected override void AddPercent(Attribute attribute) {
-        _percent += attribute.value;
-        _valuePercentMin = GetCalculationAddPercent(_valueIntegerMin);
-        _valuePercentMax = GetCalculationAddPercent(_valueIntegerMax);
+        _percentOfAttribute += attribute.value;
+        _valuePercentMin = GetCalculationPercent(_valueIntegerMin);
+        _valuePercentMax = GetCalculationPercent(_valueIntegerMax);
     }
 
     protected override void MinusPercent(Attribute attribute) {
-        _percent -= attribute.value;
-        _valuePercentMin = GetCalculationMinusPercent(_valueIntegerMin);
-        _valuePercentMax = GetCalculationMinusPercent(_valueIntegerMax);
+        _percentOfAttribute -= attribute.value;
+        _valuePercentMin = GetCalculationPercent(_valueIntegerMin);
+        _valuePercentMax = GetCalculationPercent(_valueIntegerMax);
     }
 
     public override void AddAdditionalValue(Item item) {
@@ -56,10 +42,13 @@ public class AttributeDamageUI : AttributeUI {
             if (attribute.type == AttributeType) {
                 AdditionalMinValue = attribute.damageMin;
                 AdditionalMaxValue = attribute.damageMax;
-                UpdateTextAttributes();
+                _attributeView.UpdateAttribute(this);
                 StartCoroutine(DelayBuff(attribute.duration));
                 return;
             }
         }
+    }
+
+    public void AddTemporaryAttribute(Item item) {
     }
 }

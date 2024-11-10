@@ -8,12 +8,6 @@ public class EventManager : MonoBehaviour {
         InventoryOpenlyClosed.Invoke();
     }
 
-    public static event Action UpdateAttributes;
-
-    public static void UpdateAttributesEventHandler() {
-        UpdateAttributes.Invoke();
-    }
-
     public static event Action<Item> PutOnItem;
 
     public static void PutOnItemEventHandler(Item item) {
@@ -30,5 +24,11 @@ public class EventManager : MonoBehaviour {
 
     public static void UseItemEventHandler(Item item) {
         UseItem.Invoke(item);
+    }
+
+    public static event Action<Item> ActionItemOver;
+
+    public static void ActionItemOverEventHandler(Item item) {
+        ActionItemOver.Invoke(item);
     }
 }

@@ -1,9 +1,7 @@
 public class AttributeHealthUI : AttributeUI {
-
-    private new void Start() {
-        base.Start();
+    private new void Awake() {
+        base.Awake();
         _valueInteger = _playerConfig.health;
-        UpdateTextAttributes();
-        EventManager.UpdateAttributesEventHandler();
+        _attributeView.UpdateAttribute(this);
     }
 }

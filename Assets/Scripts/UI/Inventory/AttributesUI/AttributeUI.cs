@@ -1,78 +1,77 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class AttributeUI : MonoBehaviour {
     protected PlayerConfig _playerConfig;
     protected float _valueInteger;
     protected float _valuePercent;
-    protected float _percent;
+    protected float _percentOfAttribute;
 
     [SerializeField]
-    protected Sprite _sprite;
-    [SerializeField]
-    protected Image _icon;
-    [SerializeField]
-    protected Text _valueTextComponent;
-
-    protected delegate ValueType GetValueType();
-    protected delegate void CalculationField(Attribute attribute);
+    protected AttributeView _attributeView;
 
     [field: SerializeField]
     public AttributeType AttributeType { get; protected set; }  
-    public float Value { get; protected set; }
+    public virtual float Value { get => _valueInteger + _valuePercent + AdditionalValue; }
     public float AdditionalValue { get; private set; }
 
     protected void Awake() {
-        EventManager.PutOnItem += AddPlayerAttribute;
-        EventManager.TakeAwayItem += MinusPlayerAttribute;
+        EventManager.PutOnItem += AddItemAttributes;
+        EventManager.TakeAwayItem += SubstractItemAttributes;
         EventManager.UseItem += AddAdditionalValue;
+        _playerConfig = Resources.Load<PlayerConfig>(ResourcesPath.PlayerConfig);
     }
 
     protected void OnDestroy() {
-        EventManager.PutOnItem -= AddPlayerAttribute;
-        EventManager.TakeAwayItem -= MinusPlayerAttribute;
+        EventManager.PutOnItem -= AddItemAttributes;
+        EventManager.TakeAwayItem -= SubstractItemAttributes;
         EventManager.UseItem -= AddAdditionalValue;
     }
 
-    protected void Start() {
-        _playerConfig = Resources.Load<PlayerConfig>(ResourcesPath.PlayerConfig);
-        _icon.sprite = _sprite;
+    public void AddItemAttributes(Item item) {
+        AddIntegerAttributes(item);
+        AddPercentAttributes(item);
+
+        _attributeView.UpdateAttribute(this);
     }
 
-    protected virtual void UpdateTextAttributes() {
-        Value = _valueInteger + _valuePercent;
-
-        if (AdditionalValue > 0) {
-            _valueTextComponent.text = $"<color=green> {Value + AdditionalValue}</color>";
-        }
-        else {
-            _valueTextComponent.text = $"{Value}";
-        }
-    }
-
-    public void AddPlayerAttribute(Item item) {
-        CalculationAttributesForItem(item, GetIntegerType, AddInteger);
-        CalculationAttributesForItem(item, GetPercentType, AddPercent);
-        UpdateTextAttributes();
-        EventManager.UpdateAttributesEventHandler();
-    }
-
-    public void MinusPlayerAttribute(Item item) {
-        CalculationAttributesForItem(item, GetIntegerType, MinusInteger);
-        CalculationAttributesForItem(item, GetPercentType, MinusPercent);
-        UpdateTextAttributes();
-        EventManager.UpdateAttributesEventHandler();
-    }
-
-    protected void CalculationAttributesForItem(Item item, GetValueType valueType, CalculationField calculationField) {
+    public void AddIntegerAttributes(Item item) {
         foreach (Attribute attribute in item.Attributes) {
-            if (attribute.type != AttributeType) {
-                continue;
+            if (attribute.type == AttributeType && attribute.valueType == ValueType.Integer) {
+                _valueInteger += attribute.value;
             }
+        }
+    }
 
-            if (attribute.valueType == valueType.Invoke()) {
-                calculationField.Invoke(attribute);
+    public void AddPercentAttributes(Item item) {
+        foreach (Attribute attribute in item.Attributes) {
+            if (attribute.type == AttributeType && attribute.valueType == ValueType.Percent) {
+                _percentOfAttribute += attribute.value;
+                _valuePercent = _percentOfAttribute * _valueInteger / 100;
+            }
+        }
+    }
+
+    public void SubstractItemAttributes(Item item) {
+        SubstractIntegerAttributes(item);
+        SubstractPercentAttributes(item);
+
+        _attributeView.UpdateAttribute(this);
+    }
+
+    public void SubstractIntegerAttributes(Item item) {
+        foreach (Attribute attribute in item.Attributes) {
+            if (attribute.type == AttributeType && attribute.valueType == ValueType.Integer) {
+                _valueInteger -= attribute.value;
+            }
+        }
+    }
+
+    public void SubstractPercentAttributes(Item item) {
+        foreach (Attribute attribute in item.Attributes) {
+            if (attribute.type == AttributeType && attribute.valueType == ValueType.Percent) {
+                _percentOfAttribute -= attribute.value;
+                _valuePercent = _percentOfAttribute * _valueInteger / 100;
             }
         }
     }
@@ -86,38 +85,25 @@ public class AttributeUI : MonoBehaviour {
     }
 
     protected virtual void AddPercent(Attribute attribute) {
-        _percent += attribute.value;
-        _valuePercent = GetCalculationAddPercent(_valueInteger);
+        _percentOfAttribute += attribute.value;
+        _valuePercent = GetCalculationPercent(_valueInteger);
     }
 
     protected virtual void MinusPercent(Attribute attribute) {
-        _percent -= attribute.value;
-        _valuePercent = GetCalculationMinusPercent(_valueInteger);
+        _percentOfAttribute -= attribute.value;
+        _valuePercent = GetCalculationPercent(_valueInteger);
     }
 
-    protected float GetCalculationAddPercent(float valueInteger) {
-        float _result = _percent * valueInteger / 100;
+    protected float GetCalculationPercent(float valueInteger) {
+        float _result = _percentOfAttribute * valueInteger / 100;
         return _result;
-    }
-
-    protected float GetCalculationMinusPercent(float valueInteger) {
-        float _result = _percent * valueInteger / 100;
-        return _result;
-    }
-
-    protected ValueType GetIntegerType() {
-        return ValueType.Integer;
-    }
-
-    protected ValueType GetPercentType() {
-        return ValueType.Percent;
     }
 
     public virtual void AddAdditionalValue(Item item) {
         foreach (Attribute attribute in item.Attributes) {
             if (attribute.type == AttributeType) {
                 AdditionalValue = attribute.value;
-                UpdateTextAttributes();
+                _attributeView.UpdateAttribute(this);
                 StartCoroutine(DelayBuff(attribute.duration));
                 return;
             }
@@ -127,6 +113,7 @@ public class AttributeUI : MonoBehaviour {
     protected IEnumerator DelayBuff(float duration) {
         yield return new WaitForSeconds(duration);
         AdditionalValue = 0;
-        UpdateTextAttributes();
+        _attributeView.UpdateAttribute(this);
+        EventManager.ActionItemOverEventHandler(null);
     }
 }

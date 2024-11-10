@@ -10,6 +10,8 @@ public class Player : Character {
     private float _timeRegenerationHealth;
     private float _delayHealthRegeneration;
     private AnimationEvent _attackEvent = new AnimationEvent();
+    private PlayerHealthView _playerHealthView;
+    private float _currentHealth;
 
     [SerializeField]
     private InputActionReference _movementInputAction;
@@ -36,7 +38,7 @@ public class Player : Character {
     [SerializeField]
     protected AnimationClip _attackAnimation;
 
-    public float CurrentHealth { get; protected set; }
+    public float CurrentHealth { get => _currentHealth = _currentHealth > PlayerAttributes.Health ? PlayerAttributes.Health : _currentHealth; }
     public bool IsDead { get => CurrentHealth <= 0; }
     public bool IsLookingLeft { get => transform.localScale.x > 0; }
     public bool IsAttack {
@@ -90,15 +92,7 @@ public class Player : Character {
         PlayerAttributes = FindObjectOfType<PlayerAttributes>();
         CheckComponentOnNull();
         DisableSwordCollider();
-        EventManager.UpdateAttributes += CalculationCurrentHealth;
-    }
-
-    private void OnDestroy() {
-        EventManager.UpdateAttributes -= CalculationCurrentHealth;
-    }
-
-    private void CalculationCurrentHealth() {
-        CurrentHealth = CurrentHealth > PlayerAttributes.Health ? PlayerAttributes.Health : CurrentHealth;
+        _currentHealth = _config.health;
     }
 
     private void CheckComponentOnNull() {
@@ -128,6 +122,8 @@ public class Player : Character {
 
     private void Start() {
         StateMachine.ChangeState(IdleState);
+        _playerHealthView = FindAnyObjectByType<PlayerHealthView>();
+        _playerHealthView.UpdateHealthBar(null);
     }
 
     private void Update() {
@@ -197,14 +193,15 @@ public class Player : Character {
 
     public void TakeDamage(float damage) {
         //print("damage = " + damage);
-        float _clearDamage = damage - GetBlockedDamage(PlayerAttributes.Armor);
+        float _cleanDamage = damage - GetBlockedDamage(PlayerAttributes.Armor);
         //print("clear damage = " + _clearDamage);
-        if (_clearDamage <= 0) {
+        if (_cleanDamage <= 0) {
             return;
         }
 
-        CurrentHealth -= _clearDamage;
-        EventManager.UpdateAttributesEventHandler();
+        _currentHealth -= _cleanDamage;
+        _playerHealthView.UpdateHealthBar(null);
+
         //print("health = " + _health);
         if (IsDead) {
             StateMachine.ChangeState(DeadState);
@@ -261,9 +258,10 @@ public class Player : Character {
     }
 
     public void AddHealth(float health) {
-        CurrentHealth += health;
-        CurrentHealth = CurrentHealth > PlayerAttributes.Health ? PlayerAttributes.Health : CurrentHealth;
-        EventManager.UpdateAttributesEventHandler();
+        _currentHealth += health;
+        //CurrentHealth = CurrentHealth > PlayerAttributes.Health ? PlayerAttributes.Health : CurrentHealth;
+        //EventManager.UpdateAttributesEventHandler();
+        _playerHealthView.UpdateHealthBar(null);
     }
 
     public void AddEnableSwordColliderEventForAttackAnimation() {

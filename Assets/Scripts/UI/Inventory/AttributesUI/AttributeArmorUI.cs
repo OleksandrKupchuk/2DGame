@@ -1,7 +1,7 @@
 public class AttributeArmorUI : AttributeUI {
-    private new void Start() {
-        base.Start();
+    private new void Awake() {
+        base.Awake();
         _valueInteger = _playerConfig.armor;
-        UpdateTextAttributes();
+        _attributeView.UpdateAttribute(this);
     }
 }

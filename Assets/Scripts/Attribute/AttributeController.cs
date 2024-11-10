@@ -12,36 +12,20 @@ public class AttributeController : MonoBehaviour, IAttribureController {
 
     [field: SerializeField]
     public AttributeType AttributeType { get; protected set; }
-    public float Value { get => _valueInteger + _valuePercent; }
+    public float Value { get => _valueInteger + _valuePercent + TemporaryValue; }
     public float TemporaryValue { get; private set; }
 
     protected void Awake() {
         EventManager.PutOnItem += AddItemAttributes;
         EventManager.TakeAwayItem += SubstractItemAttributes;
         EventManager.UseItem += AddTemporaryAttribute;
+        _playerConfig = Resources.Load<PlayerConfig>(ResourcesPath.PlayerConfig);
     }
 
     protected void OnDestroy() {
         EventManager.PutOnItem -= AddItemAttributes;
         EventManager.TakeAwayItem -= SubstractItemAttributes;
         EventManager.UseItem -= AddTemporaryAttribute;
-    }
-
-    protected void Start() {
-        _playerConfig = Resources.Load<PlayerConfig>(ResourcesPath.PlayerConfig);
-
-        if(AttributeType == AttributeType.Armor) {
-            _valueInteger = _playerConfig.armor;
-        }
-        else if(AttributeType == AttributeType.Health) {
-            _valueInteger = _playerConfig.health;
-        }
-        else if(AttributeType == AttributeType.Speed) { 
-            _valueInteger = _playerConfig.speed;
-        }
-        else if (AttributeType == AttributeType.HealthRegeneration) {
-            _valueInteger = _playerConfig.healthRegeneration;
-        }
     }
 
     public void AddItemAttributes(Item item) {

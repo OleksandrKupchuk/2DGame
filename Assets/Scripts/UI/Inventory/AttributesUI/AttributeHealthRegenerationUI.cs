@@ -1,7 +1,7 @@
 public class AttributeHealthRegenerationUI : AttributeUI {
-    private new void Start() {
-        base.Start();
+    private new void Awake() {
+        base.Awake();
         _valueInteger = _playerConfig.healthRegeneration;
-        UpdateTextAttributes();
+        _attributeView.UpdateAttribute(this);
     }
 }

@@ -16,9 +16,9 @@ public class PlayerAttributes : MonoBehaviour {
     private AttributeDamageUI _attributeDamageUI;
     [SerializeField]
     private AttributeHealthRegenerationUI _attributeHealthRegenerationUI;
-    public float Health { get => _attributeHealthUI.Value + _attributeHealthUI.AdditionalValue; }
-    public float Speed { get => _attributeSpeedUI.Value + _attributeSpeedUI.AdditionalValue; }
-    public float Armor { get => _attributeArmorUI.Value + _attributeArmorUI.AdditionalValue; }
+    public float Health { get => _attributeHealthUI.Value; }
+    public float Speed { get => _attributeSpeedUI.Value; }
+    public float Armor { get => _attributeArmorUI.Value; }
     public float Damage { get => Random.Range(_attributeDamageUI.DamageMin + _attributeDamageUI.AdditionalValue, _attributeDamageUI.DamageMax + _attributeDamageUI.AdditionalValue); }
-    public float HealthRegeneration { get => _attributeHealthRegenerationUI.Value + _attributeHealthRegenerationUI.AdditionalValue; }
+    public float HealthRegeneration { get => _attributeHealthRegenerationUI.Value; }
 }
