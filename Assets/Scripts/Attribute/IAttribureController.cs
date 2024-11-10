@@ -1,6 +1,3 @@
-using System.Collections;
-using UnityEngine;
-
 public interface IAttribureController {
     void AddItemAttributes(Item item);
     void AddIntegerAttributes(Item item);

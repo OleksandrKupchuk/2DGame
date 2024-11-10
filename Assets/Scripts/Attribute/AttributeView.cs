@@ -14,20 +14,11 @@ public class AttributeView : MonoBehaviour {
     }
 
     public void UpdateAttribute(AttributeController attributeController) {
-        if (attributeController.TemporaryValue > 0) {
-            _value.text = $"<color=green>{attributeController.Value}</color>";
+        if (attributeController.IsValueTemplorary) {
+            _value.text = $"<color=green>{attributeController.ValueString}</color>";
         }
         else {
-            _value.text = $"{attributeController.Value}";
-        }
-    }
-
-    public void UpdateAttribute(AttributeUI attributeController) {
-        if (attributeController.AdditionalValue > 0) {
-            _value.text = $"<color=green>{attributeController.Value}</color>";
-        }
-        else {
-            _value.text = $"{attributeController.Value}";
+            _value.text = $"{attributeController.ValueString}";
         }
     }
 }

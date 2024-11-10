@@ -1,19 +1,21 @@
 using System.Collections;
 using UnityEngine;
 
-public class AttributeController : MonoBehaviour, IAttribureController {
+public abstract class AttributeController : MonoBehaviour, IAttribureController {
     protected PlayerConfig _playerConfig;
     protected float _valueInteger;
     protected float _valuePercent;
     protected float _percentOfAttribute;
+    protected float _valueTemporary;
 
     [SerializeField]
     protected AttributeView _attributeView;
 
     [field: SerializeField]
-    public AttributeType AttributeType { get; protected set; }
-    public float Value { get => _valueInteger + _valuePercent + TemporaryValue; }
-    public float TemporaryValue { get; private set; }
+    public AttributeType AttributeType { get; protected set; }  
+    public virtual float Value { get => _valueInteger + _valuePercent + _valueTemporary; }
+    public virtual string ValueString { get => (_valueInteger + _valuePercent + _valueTemporary).ToString(); }
+    public virtual bool IsValueTemplorary { get => _valueTemporary > 0; }
 
     protected void Awake() {
         EventManager.PutOnItem += AddItemAttributes;
@@ -35,7 +37,7 @@ public class AttributeController : MonoBehaviour, IAttribureController {
         _attributeView.UpdateAttribute(this);
     }
 
-    public void AddIntegerAttributes(Item item) {
+    public virtual void AddIntegerAttributes(Item item) {
         foreach (Attribute attribute in item.Attributes) {
             if (attribute.type == AttributeType && attribute.valueType == ValueType.Integer) {
                 _valueInteger += attribute.value;
@@ -43,7 +45,7 @@ public class AttributeController : MonoBehaviour, IAttribureController {
         }
     }
 
-    public void AddPercentAttributes(Item item) {
+    public virtual void AddPercentAttributes(Item item) {
         foreach (Attribute attribute in item.Attributes) {
             if (attribute.type == AttributeType && attribute.valueType == ValueType.Percent) {
                 _percentOfAttribute += attribute.value;
@@ -59,7 +61,7 @@ public class AttributeController : MonoBehaviour, IAttribureController {
         _attributeView.UpdateAttribute(this);
     }
 
-    public void SubstractIntegerAttributes(Item item) {
+    public virtual void SubstractIntegerAttributes(Item item) {
         foreach (Attribute attribute in item.Attributes) {
             if (attribute.type == AttributeType && attribute.valueType == ValueType.Integer) {
                 _valueInteger -= attribute.value;
@@ -67,7 +69,7 @@ public class AttributeController : MonoBehaviour, IAttribureController {
         }
     }
 
-    public void SubstractPercentAttributes(Item item) {
+    public virtual void SubstractPercentAttributes(Item item) {
         foreach (Attribute attribute in item.Attributes) {
             if (attribute.type == AttributeType && attribute.valueType == ValueType.Percent) {
                 _percentOfAttribute -= attribute.value;
@@ -76,20 +78,21 @@ public class AttributeController : MonoBehaviour, IAttribureController {
         }
     }
 
-    public void AddTemporaryAttribute(Item item) {
+    public virtual void AddTemporaryAttribute(Item item) {
         foreach (Attribute attribute in item.Attributes) {
             if (attribute.type == AttributeType) {
-                TemporaryValue = attribute.value;
+                _valueTemporary = attribute.value;
                 _attributeView.UpdateAttribute(this);
-                StartCoroutine(DelayTemporaryValue(attribute.duration));
+                StartCoroutine(DelayBuff(attribute.duration));
                 return;
             }
         }
     }
 
-    protected IEnumerator DelayTemporaryValue(float duration) {
+    private IEnumerator DelayBuff(float duration) {
         yield return new WaitForSeconds(duration);
-        TemporaryValue = 0;
+        _valueTemporary = 0;
         _attributeView.UpdateAttribute(this);
+        EventManager.ActionItemOverEventHandler(null);
     }
 }
