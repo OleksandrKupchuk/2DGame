@@ -7,4 +7,18 @@ public class Attribute : ScriptableObject {
     public float value;
     public float damageMin;
     public float damageMax;
+    public Sprite icon;
+}
+
+public enum AttributeType {
+    Armor,
+    Damage,
+    Health,
+    Speed,
+    HealthRegeneration
+}
+
+public enum ValueType {
+    Integer,
+    Percent
 }

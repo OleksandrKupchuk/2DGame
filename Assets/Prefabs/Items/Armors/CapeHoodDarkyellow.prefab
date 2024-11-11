@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8229544849785706399}
   - component: {fileID: 8229544849785706398}
   - component: {fileID: 1348968308888082049}
-  - component: {fileID: 6103015165853933324}
   m_Layer: 11
   m_Name: CapeHoodDarkyellow
   m_TagString: Untagged
@@ -159,18 +158,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.335232, y: 1.9027169}
   m_EdgeRadius: 0
---- !u!114 &6103015165853933324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8229544849785706392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c69bb848205d50419679bc27d50eac0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
-  <ItemType>k__BackingField: 0
-  <Attributes>k__BackingField: []

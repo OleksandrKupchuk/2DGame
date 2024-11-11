@@ -8,7 +8,7 @@ public class PlayerSword : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.transform.TryGetComponent(out Enemy enemy)) {
-            enemy.TakeDamage(_player.Inventory.PlayerAttributes.Damage);
+            enemy.TakeDamage(_player.PlayerAttributes.Damage);
         }
     }
 }

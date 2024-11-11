@@ -7,15 +7,9 @@ public class AttributeTooltip : MonoBehaviour {
     [SerializeField]
     private Text _value;
     [SerializeField]
-    private RectTransform _rect;
 
-    public RectTransform RectTransform { get => _rect; }
-
-    public void SetIcon(Sprite icon) {
+    public void Set(Sprite icon, string value) {
         _icon.sprite = icon;
-    }
-
-    public void SetValue(string value) {
         _value.text = value;
     }
 }

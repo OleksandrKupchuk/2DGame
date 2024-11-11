@@ -36,7 +36,7 @@ public class PlayerRunState : IState<Player> {
             return;
         }
 
-        _player.Move(_player.MovementInput.x, _player.Inventory.PlayerAttributes.Speed);
+        _player.Move(_player.MovementInput.x, _player.PlayerAttributes.Speed);
     }
 
     public void Exit() {

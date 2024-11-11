@@ -6,62 +6,60 @@ public class ItemUsageSlot : Cell {
     private InputActionReference _inputAction;
     [SerializeField]
     private Text _labelButtonIcon;
-    [SerializeField]
-    private InputActionReference _inputActionTest;
 
     private new void Awake() {
         base.Awake();
-        DragDropController.RaisedItemTrigger += ChageColorBorderCell;
-        DragDropController.DropPutItemTrigger += ResetColorBorder;
+        DragDropController.RaisedItemTrigger += ChangeBorderColor;
+        DragDropController.DropPutItemTrigger += ResetBorderColor;
     }
 
     private void OnDestroy() {
-        DragDropController.RaisedItemTrigger -= ChageColorBorderCell;
-        DragDropController.DropPutItemTrigger -= ResetColorBorder;
+        DragDropController.RaisedItemTrigger -= ChangeBorderColor;
+        DragDropController.DropPutItemTrigger -= ResetBorderColor;
+    }
+
+    private void ChangeBorderColor(Item item) {
+        if (CanUseItem(item)) {
+            SetBorderColor(Color.green);
+        }
+        else {
+            SetBorderColor(Color.red);
+        }
+    }
+
+    public override void SetItem(Item item) {
+        if (CanUseItem(item)) {
+            base.SetItem(item);
+        }
+    }
+
+    private bool CanUseItem(Item item) {
+        if (item.ItemType == ItemType.Usage) {
+            return true;
+        }
+
+        return false;
     }
 
     private void Update() {
+        if (!HasItem) { return; }
+
         if (_inputAction.action.triggered) {
-            UseItem(Item);
+            UseItem();
         }
     }
 
-    private void UseItem(IUse use) {
-        if (!HasItem) {
-            return;
-        }
-
-        use.Use();
-        SetItem(null);
-    }
-
-    private string GetNameButton(string bindingString) {
-        return bindingString.Substring(bindingString.Length - 1, 1);
-    }
-
-    private void ChageColorBorderCell(Item item) {
-        Potion _potion = item as Potion;
-
-        if (_potion == null) {
-            //print("Item not Potion");
-            return;
-        }
-
-        SetGreenBorder();
-    }
-
-    public override bool IsCanPut(Item item) {
-        Potion _potion = item as Potion;
-
-        if (_potion == null) {
-            return false;
-        }
-
-        return true;
+    private void UseItem() {
+        Item.Use();
+        RemoveItem();
     }
 
     public void SetInputAction(InputActionReference inputAction) {
         _inputAction = inputAction;
         _labelButtonIcon.text = "" + GetNameButton(_inputAction.action.GetBindingDisplayString());
+    }
+
+    private string GetNameButton(string bindingString) {
+        return bindingString.Substring(bindingString.Length - 1, 1);
     }
 }

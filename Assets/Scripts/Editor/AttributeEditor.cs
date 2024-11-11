@@ -1,4 +1,5 @@
 using UnityEditor;
+using UnityEngine;
 
 [CustomEditor(typeof(Attribute))]
 public class AttributeEditor : Editor {
@@ -7,14 +8,15 @@ public class AttributeEditor : Editor {
     SerializedProperty _valueProperty;
     SerializedProperty _dmageMinProperty;
     SerializedProperty _dmageMaxProperty;
+    SerializedProperty _iconProperty;
 
     public override void OnInspectorGUI() {
-
         _attributeTypeProperty = serializedObject.FindProperty("type");
         _valueTypeProperty = serializedObject.FindProperty("valueType");
         _valueProperty = serializedObject.FindProperty("value");
         _dmageMinProperty = serializedObject.FindProperty("damageMin");
         _dmageMaxProperty = serializedObject.FindProperty("damageMax");
+        _iconProperty = serializedObject.FindProperty("icon");
 
         serializedObject.Update();
         EditorGUILayout.PropertyField(_attributeTypeProperty);
@@ -31,6 +33,16 @@ public class AttributeEditor : Editor {
         }
         else {
             EditorGUILayout.PropertyField(_valueProperty);
+        }
+
+        string _path = ResourcesPath.FolderTooltip + _attributeTypeProperty.enumNames[_attributeTypeProperty.intValue];
+        Sprite _icon = Resources.Load<Sprite>(_path);
+        if (_icon != null) {
+            _iconProperty.objectReferenceValue = _icon;
+            EditorGUILayout.PropertyField(_iconProperty);
+        }
+        else {
+            Debug.Log($"can't load sprite? please check the path '{ResourcesPath.FolderTooltip + _attributeTypeProperty.enumNames[_attributeTypeProperty.intValue]}'");
         }
 
         serializedObject.ApplyModifiedProperties();

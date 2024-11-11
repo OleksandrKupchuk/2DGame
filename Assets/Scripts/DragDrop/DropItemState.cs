@@ -9,7 +9,7 @@ public class DropItemState : IDragDropState {
         _controller = controller;
         DropItem(_controller.Cursor.Item);
         SpawnItem();
-        _controller.Cursor.SetItem(null);
+        _controller.Cursor.RemoveItem();
         _controller.ChangeState(_controller.CheckItemState);
     }
 

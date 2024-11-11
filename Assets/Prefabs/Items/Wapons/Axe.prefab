@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3062570284460223178}
+  - component: {fileID: 5503942403602594241}
   - component: {fileID: 3062570284460223179}
   - component: {fileID: 3062570284460223029}
   - component: {fileID: 3062570284460223031}
-  - component: {fileID: 3938885739547709158}
   m_Layer: 11
   m_Name: Axe
   m_TagString: Untagged
@@ -35,6 +35,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5503942403602594241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3062570284460223176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37854cf4aec128f439c8e597d923c21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Axe
+  <Description>k__BackingField: Good weapon for first time
+  <ItemType>k__BackingField: 4
+  <Attributes>k__BackingField:
+  - {fileID: 11400000, guid: aa994891a1cc5c1458cb10121d46b9dd, type: 2}
+  - {fileID: 11400000, guid: 0c049d7562b87b949b0cfafd4c1dce06, type: 2}
 --- !u!212 &3062570284460223179
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -159,20 +177,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3938885739547709158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3062570284460223176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c69bb848205d50419679bc27d50eac0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 719c2201c2f5f6c4aafffaeb5abdf5f9, type: 3}
-  <ItemType>k__BackingField: 4
-  <Attributes>k__BackingField:
-  - {fileID: 11400000, guid: aa994891a1cc5c1458cb10121d46b9dd, type: 2}
-  - {fileID: 11400000, guid: 0c049d7562b87b949b0cfafd4c1dce06, type: 2}

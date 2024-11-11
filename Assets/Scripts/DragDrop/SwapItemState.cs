@@ -1,28 +1,26 @@
+using UnityEngine;
+
 public class SwapItemState : IDragDropState {
     private DragDropController _controller;
 
     public void Enter(DragDropController controller) {
+        Debug.Log("swap item enter");
         _controller = controller;
 
-        Item _bufferItem = _controller.Cursor.Cell.Item;
+        Cell _cell = _controller.Cursor.GetCell();
+        Item _bufferItem = _cell.Item;
 
-        //if (_controller.Cursor.IsPlayerSlot()) {
-        //    EventManager.TakeAwayItemEventHandler(_controller.Cursor.Cell.Item);
-        //}
+        _cell.SetItem(_controller.Cursor.Item);
 
-        _controller.Cursor.Cell.SetItem(_controller.Cursor.Item);
-        //if (_controller.Cursor.IsPlayerSlot()) {
-        //    EventManager.PutOnItemEventHandler(_controller.Cursor.Item);
-        //}
-
-        _controller.Cursor.OnTriggerEnter2D(_controller.Cursor.Cell.BoxCollider2D);
-        _controller.Cursor.SetItem(_bufferItem);
-
+        if (_cell.Item == _controller.Cursor.Item) {
+            _controller.Cursor.SetItem(_bufferItem);
+        }
         _controller.ChangeState(_controller.RaisedItemState);
-
+        _controller.Cursor.OnTriggerEnter2D(_cell.BoxCollider2D);
     }
 
     public void Exit() {
+        Debug.Log("swap item exit");
     }
 
     public void Update() {

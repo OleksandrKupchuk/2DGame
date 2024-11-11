@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Cursor : MonoBehaviour {
     private Vector2 _mousePosition;
+    private RaycastHit2D RaycastHit2D { get; set; }
 
     [SerializeField]
     private Image _icon;
@@ -14,9 +15,8 @@ public class Cursor : MonoBehaviour {
 
     public delegate void DelegateEvent(Item item);
     public Item Item { get; private set; }
-    public RaycastHit2D RaycastHit2D { get; private set; }
     public ItemTooltip ItemTooltip { get; private set; }
-    public Cell Cell { get; private set; }
+    public bool HasItem { get => Item != null; }
 
     private void Awake() {
         DisableIcon();
@@ -25,14 +25,13 @@ public class Cursor : MonoBehaviour {
 
     public void SetItem(Item item) {
         Item = item;
+        SetIcon(Item.Icon);
+        EnableIcon();
+    }
 
-        if(Item != null) {
-            SetIcon(Item.Icon);
-            EnableIcon();
-        }
-        else {
-            DisableIcon();
-        }
+    public void RemoveItem() {
+        Item = null;
+        DisableIcon();
     }
 
     private void SetIcon(Sprite icon) {
@@ -54,43 +53,29 @@ public class Cursor : MonoBehaviour {
         transform.position = _canvas.transform.TransformPoint(_localPosition);
     }
 
-    public void StartRaycast() {
+    public Cell GetCell() {
         RaycastHit2D = Physics2D.Raycast(_mousePosition, Vector3.forward, 100f, _layerMaskUI, -100);
 
-        if(RaycastHit2D.transform != null) {
+        if (RaycastHit2D.transform != null) {
             Debug.Log("name transform = " + RaycastHit2D.transform.name);
-        }
-    }
-
-    public bool IsPlayerSlot() {
-        PlayerSlot _playerSlot = RaycastHit2D.transform.GetComponent<PlayerSlot>();
-
-        if (_playerSlot != null) {
-            return true;
+            return RaycastHit2D.transform.gameObject.GetComponent<Cell>();
         }
 
-        return false;
+        return null;
     }
 
     public void OnTriggerEnter2D(Collider2D collision) {
         if (collision.TryGetComponent(out Cell cell)) {
-            SetCell(cell);
-
             if (!cell.HasItem) {
                 return;
             }
-            ItemTooltip.ShowAttributes(cell.Item, cell.transform.position, cell.RectTransform.rect.height);
+            ItemTooltip.ShowTooltip(cell.Item, cell.transform.position, cell.RectTransform.rect.height);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.TryGetComponent(out Cell cell)) {
-            SetCell(null);
-            ItemTooltip.DisableAttributes();
+            ItemTooltip.HideTooltip();
         }
-    }
-
-    public void SetCell(Cell cell) {
-        Cell = cell;
     }
 }

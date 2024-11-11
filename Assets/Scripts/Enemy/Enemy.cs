@@ -1,10 +1,11 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Enemy : BaseCharacteristics {
-
+public class Enemy : Character {
     protected float _xScale;
 
+    public float CurrentHealth { get; protected set; }
+    public bool IsDead { get => CurrentHealth <= 0; }
     public bool IsLookRight { get => transform.localScale.x > 0; }
     public bool IsLookLeft { get => transform.localScale.x < 0; }
     public bool IsTargetBehindYouWhenLookRight { get => (transform.position.x - FieldOfView.Target.transform.position.x) >= 0 && IsLookRight; }
@@ -12,7 +13,6 @@ public class Enemy : BaseCharacteristics {
     public float GetDirectionX { get => transform.localScale.x; }
     public FieldOfView FieldOfView { get; protected set; }
     public bool HasTarget { get => FieldOfView.Target != null; }
-
     public EnemyConfig Config { get => (EnemyConfig)_config; }
     public StateMachine<Enemy> StateMachine { get; protected set; }
     public virtual EnemyIdleState IdleState { get; protected set; } = new EnemyIdleState();
@@ -31,6 +31,7 @@ public class Enemy : BaseCharacteristics {
 
     protected new void Awake() {
         base.Awake();
+        CurrentHealth = _config.health;
         _xScale = transform.localScale.x;
         GameObject _fieldOfViewPrefab = Resources.Load(ResourcesPath.FieldOfViewPrefab) as GameObject;
         FieldOfView = Instantiate(_fieldOfViewPrefab.GetComponent<FieldOfView>());
@@ -81,7 +82,7 @@ public class Enemy : BaseCharacteristics {
             return;
         }
         //print("clear take enemy damage = " + _clearDamage);
-        _currentHealth -= _clearDamage;
+        CurrentHealth -= _clearDamage;
 
         if (IsDead) {
             StateMachine.ChangeState(DeadState);

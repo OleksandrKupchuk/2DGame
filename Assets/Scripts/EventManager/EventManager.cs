@@ -8,18 +8,6 @@ public class EventManager : MonoBehaviour {
         InventoryOpenlyClosed.Invoke();
     }
 
-    public static event Action UpdatingHealthBar;
-
-    public static void UpdatingHealthBarEventHandler() {
-        UpdatingHealthBar.Invoke();
-    }
-
-    public static event Action UpdatePlayerCurrentHealth;
-
-    public static void UpdatePlayerCurrentHealthEventHandler() {
-        UpdatePlayerCurrentHealth.Invoke();
-    }
-
     public static event Action<Item> PutOnItem;
 
     public static void PutOnItemEventHandler(Item item) {
@@ -32,9 +20,15 @@ public class EventManager : MonoBehaviour {
         TakeAwayItem.Invoke(item);
     }
 
-    public static event Action<Potion> UsePotion;
+    public static event Action<Item> UseItem;
 
-    public static void UsePotionEventHandler(Potion potion) {
-        UsePotion.Invoke(potion);
+    public static void UseItemEventHandler(Item item) {
+        UseItem.Invoke(item);
+    }
+
+    public static event Action<Item> ActionItemOver;
+
+    public static void ActionItemOverEventHandler(Item item) {
+        ActionItemOver.Invoke(item);
     }
 }

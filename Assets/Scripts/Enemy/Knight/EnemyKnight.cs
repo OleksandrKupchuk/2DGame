@@ -36,7 +36,7 @@ public class EnemyKnight : Enemy {
     [SerializeField]
     private Collider2D _bodyCollider;
 
-    public virtual bool IsLeftHalfOfHealth { get => _currentHealth <= _config.health / 2; }
+    public virtual bool IsLeftHalfOfHealth { get => CurrentHealth <= _config.health / 2; }
     public List<FireBall> FireBalls { get; protected set; } = new List<FireBall>();
     public Transform CastPoint { get => _castPoint; }
     public override EnemyAttackState AttackState { get; protected set; } = new EnemyAttackMeleeState();

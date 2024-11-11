@@ -1,44 +1,27 @@
 using UnityEngine;
 
-[RequireComponent (typeof(AttributeHealthUI))]
-[RequireComponent (typeof(AttributeSpeedUI))]
-[RequireComponent (typeof(AttributeArmorUI))]
-[RequireComponent (typeof(AttributeDamageUI))]
-[RequireComponent (typeof(AttributeHealthRegenerationUI))]
+[RequireComponent(typeof(AttributeHealthController))]
+[RequireComponent(typeof(AttributeSpeedController))]
+[RequireComponent(typeof(AttributeArmorController))]
+[RequireComponent(typeof(AttributeDamageController))]
+[RequireComponent(typeof(AttributeHealthRegenerationController))]
 public class PlayerAttributes : MonoBehaviour {
-    private AttributeHealthUI _attributeHealthUI;
-    private AttributeSpeedUI _attributeSpeedUI;
-    private AttributeArmorUI _attributeArmorUI;
-    private AttributeDamageUI _attributeDamageUI;
-    private AttributeHealthRegenerationUI _attributeHealthRegenerationUI;
+    private AttributeHealthController _attributeHealthController;
+    private AttributeSpeedController _attributeSpeedController;
+    private AttributeArmorController _attributeArmorController;
+    private AttributeDamageController _attributeDamageController;
+    private AttributeHealthRegenerationController _attributeHealthRegenerationController;
+    public float Health { get => _attributeHealthController.Value; }
+    public float Speed { get => _attributeSpeedController.Value; }
+    public float Armor { get => _attributeArmorController.Value; }
+    public float Damage { get => _attributeDamageController.Value; }
+    public float HealthRegeneration { get => _attributeHealthRegenerationController.Value; }
 
     private void Awake() {
-        _attributeHealthUI = GetComponent<AttributeHealthUI>();
-        _attributeSpeedUI = GetComponent <AttributeSpeedUI>();
-        _attributeArmorUI = GetComponent <AttributeArmorUI>();
-        _attributeDamageUI = GetComponent <AttributeDamageUI>();
-        _attributeHealthRegenerationUI = GetComponent <AttributeHealthRegenerationUI>();
-    }
-
-    public float Health { get => _attributeHealthUI.Value; }
-    public float Speed { get => _attributeSpeedUI.Value + _attributeSpeedUI.AdditionalValue; }
-    public float Armor { get => _attributeArmorUI.Value + _attributeArmorUI.AdditionalValue; }
-    public float Damage { get => Random.Range(_attributeDamageUI.DamageMin + _attributeDamageUI.AdditionalValue, _attributeDamageUI.DamageMax + _attributeDamageUI.AdditionalValue); }
-    public float HealthRegeneration { get => _attributeHealthRegenerationUI.Value + _attributeHealthRegenerationUI.AdditionalValue; }
-
-    public void AddAditionanArmor(Potion potion) {
-        _attributeArmorUI.AddAdditionalValue(potion);
-    }
-
-    public void AddAditionanDamage(Potion potion) {
-        _attributeDamageUI.AddAdditionalValue(potion);
-    }
-
-    public void AddAditionanSpeed(Potion potion) {
-        _attributeSpeedUI.AddAdditionalValue(potion);
-    }
-
-    public void AddAditionanHealthRegeneration(Potion potion) {
-        _attributeHealthRegenerationUI.AddAdditionalValue(potion);
+        _attributeHealthController = GetComponent<AttributeHealthController>();
+        _attributeSpeedController = GetComponent<AttributeSpeedController>();
+        _attributeArmorController = GetComponent<AttributeArmorController>();
+        _attributeDamageController = GetComponent<AttributeDamageController>();
+        _attributeHealthRegenerationController = GetComponent<AttributeHealthRegenerationController>();
     }
 }

@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2348688643277264028}
+  - component: {fileID: 2963407055028208311}
   - component: {fileID: 7928793378388994737}
   - component: {fileID: 4139109943010451201}
   - component: {fileID: 9003306185512115778}
   - component: {fileID: 6074463917359228701}
   - component: {fileID: 5338506284620307616}
-  - component: {fileID: 6413942456211622591}
   m_Layer: 0
   m_Name: Potion_Health
   m_TagString: Untagged
@@ -35,13 +35,31 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2963407055028208311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3668950853142534034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81b12ff0b449cc441a31a35e8225d9a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Potion Health
+  <Description>k__BackingField: 
+  <ItemType>k__BackingField: 7
+  <Duration>k__BackingField: 15
+  <Attributes>k__BackingField:
+  - {fileID: 11400000, guid: 4a35aea78414c8a4eb5f1fcec7b14e57, type: 2}
 --- !u!212 &7928793378388994737
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -208,17 +226,3 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Restore 15 health
---- !u!114 &6413942456211622591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3668950853142534034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c33f4166aca8c3418b3ac0c115643cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Value>k__BackingField: 15
-  <Duration>k__BackingField: 0

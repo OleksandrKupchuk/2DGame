@@ -8,43 +8,34 @@ public class PlayerSlot : Cell {
 
     private new void Awake() {
         base.Awake();
-        DragDropController.RaisedItemTrigger += ChageColorBorderCell;
-        DragDropController.DropPutItemTrigger += ResetColorBorderCell;
+        DragDropController.RaisedItemTrigger += ChageBorderColor;
+        DragDropController.DropPutItemTrigger += ResetBorderColor;
     }
 
     private void OnDestroy() {
-        DragDropController.RaisedItemTrigger -= ChageColorBorderCell;
-        DragDropController.DropPutItemTrigger -= ResetColorBorderCell;
+        DragDropController.RaisedItemTrigger -= ChageBorderColor;
+        DragDropController.DropPutItemTrigger -= ResetBorderColor;
     }
 
-    private void ChageColorBorderCell(Item item) {
-        Equipment _equipment = item as Equipment;
-
-        if (_equipment == null) {
-            return;
-        }
-        if (!_itemTypes.Contains(_equipment.ItemType)) {
-            SetAvailableForInteraction(false);
-            SetRedBorder();
+    private void ChageBorderColor(Item item) {
+        if (_itemTypes.Contains(item.ItemType)) {
+            SetBorderColor(Color.green);
         }
         else {
-            SetGreenBorder();
+            SetBorderColor(Color.red);
         }
     }
 
-    private void ResetColorBorderCell() {
-        SetAvailableForInteraction(true);
-        //EnableBoxCollider();
-        ResetColorBorder();
+    public override void SetItem(Item item) {
+        if (_itemTypes.Contains(item.ItemType)) {
+            base.SetItem(item);
+            EventManager.PutOnItemEventHandler(item);
+        }
     }
 
-    public override bool IsCanPut(Item item) {
-        Equipment _equipment = item as Equipment;
-
-        if (_equipment == null) {
-            return false;
-        }
-
-        return true;
+    public override void RemoveItem() {
+        EventManager.TakeAwayItemEventHandler(Item);
+        Item = null;
+        DisableIcon();
     }
 }

@@ -6,42 +6,33 @@ public class CheckItemState : IDragDropState {
 
     public void Enter(DragDropController controller) {
         _controller = controller;
-        //Debug.Log("check item");
+        Debug.Log("check item enter");
     }
 
     public void Exit() {
-        _controller.Cursor.ItemTooltip.DisableAttributes();
+        _controller.Cursor.ItemTooltip.HideTooltip();
     }
 
     public void Update() {
         _controller.Cursor.FollowTheMouse();
-
+        //Debug.Log("check item update");
 
         if (Mouse.current.leftButton.wasPressedThisFrame) {
-            _controller.Cursor.StartRaycast();
+            Cell _cell = _controller.Cursor.GetCell();
 
-            if (_controller.Cursor.RaycastHit2D.transform == null) {
-                return;
-            }
-
-            if (_controller.Cursor.Cell == null) {
+            if (_cell == null) {
                 Debug.Log("cell component is null");
                 return;
             }
 
-            if (!_controller.Cursor.Cell.HasItem) {
-                Debug.Log("cell not have item");
-                return;
+            if (_cell.HasItem) {
+                _controller.Cursor.SetItem(_cell.Item);
+                _cell.RemoveItem();
+                _controller.ChangeState(_controller.RaisedItemState);
             }
-
-            _controller.Cursor.SetItem(_controller.Cursor.Cell.Item);
-
-            //if (_controller.Cursor.IsPlayerSlot()) {
-            //    EventManager.TakeAwayItemEventHandler(_controller.Cursor.Item);
-            //}
-
-            _controller.Cursor.Cell.SetItem(null);
-            _controller.ChangeState(_controller.RaisedItemState);
+            else {
+                Debug.Log("cell is empty");
+            }
         }
     }
 }

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5648250663215412420}
   - component: {fileID: 5648250663215412422}
   - component: {fileID: 5648250663215412423}
-  - component: {fileID: 1567263263380735831}
   m_Layer: 11
   m_Name: Breastplate
   m_TagString: Untagged
@@ -159,19 +158,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1567263263380735831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5648250663215412416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c69bb848205d50419679bc27d50eac0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: d659f7396cd57754eba78763cf986c51, type: 3}
-  <ItemType>k__BackingField: 1
-  <Attributes>k__BackingField:
-  - {fileID: 11400000, guid: db21ae61b14c16e449946e2f39dde720, type: 2}
