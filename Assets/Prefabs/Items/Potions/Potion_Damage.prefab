@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2982259974022020129}
-  - component: {fileID: 2080663858316132837}
+  - component: {fileID: 4441953188289649206}
   - component: {fileID: 4276030464080888337}
   - component: {fileID: 3101896408332089383}
   - component: {fileID: 7974928101380017108}
@@ -42,7 +42,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2080663858316132837
+--- !u!114 &4441953188289649206
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7168476610257152028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fe2e4552fb6e2541b1cd6b6e9293686, type: 3}
+  m_Script: {fileID: 11500000, guid: 37854cf4aec128f439c8e597d923c21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Potion Damage
