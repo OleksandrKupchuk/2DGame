@@ -7,12 +7,7 @@ public class Attribute : ScriptableObject {
     public float value;
     public float damageMin;
     public float damageMax;
-    public float duration;
     public Sprite icon;
-
-    public string getRangeValue() {
-        return $"{damageMin}-{damageMax}";
-    }
 }
 
 public enum AttributeType {

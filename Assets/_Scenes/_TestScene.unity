@@ -2257,6 +2257,10 @@ PrefabInstance:
       propertyPath: m_CategoryHash
       value: 4.2091926e-16
       objectReference: {fileID: 0}
+    - target: {fileID: 8322012696639228835, guid: 2e6fe925291ef6b4c8112f412e4d8147, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8873890313770814453, guid: 2e6fe925291ef6b4c8112f412e4d8147, type: 3}
       propertyPath: m_labelHash
       value: 0.0036570565
@@ -2476,7 +2480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3148660713017235469, guid: 1d9cc7f4ad80b0f48929df543f8da9ea, type: 3}
       propertyPath: m_Name
-      value: PlayerSlotHead
+      value: Head
       objectReference: {fileID: 0}
     - target: {fileID: 3148660713017235469, guid: 1d9cc7f4ad80b0f48929df543f8da9ea, type: 3}
       propertyPath: m_IsActive
@@ -2586,7 +2590,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3148660713017235469, guid: 1d9cc7f4ad80b0f48929df543f8da9ea, type: 3}
       propertyPath: m_Name
-      value: PlayerSlotWeaponShield
+      value: WeaponShield
       objectReference: {fileID: 0}
     - target: {fileID: 3148660713017235469, guid: 1d9cc7f4ad80b0f48929df543f8da9ea, type: 3}
       propertyPath: m_IsActive
@@ -3198,7 +3202,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3148660713017235469, guid: 1d9cc7f4ad80b0f48929df543f8da9ea, type: 3}
       propertyPath: m_Name
-      value: PlayerSlotWeapon
+      value: Weapon
       objectReference: {fileID: 0}
     - target: {fileID: 3148660713017235469, guid: 1d9cc7f4ad80b0f48929df543f8da9ea, type: 3}
       propertyPath: m_IsActive
@@ -3680,7 +3684,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3148660713017235469, guid: 1d9cc7f4ad80b0f48929df543f8da9ea, type: 3}
       propertyPath: m_Name
-      value: PlayerSlotRing
+      value: Ring
       objectReference: {fileID: 0}
     - target: {fileID: 3148660713017235469, guid: 1d9cc7f4ad80b0f48929df543f8da9ea, type: 3}
       propertyPath: m_IsActive
@@ -4645,7 +4649,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3148660713017235469, guid: 1d9cc7f4ad80b0f48929df543f8da9ea, type: 3}
       propertyPath: m_Name
-      value: PlayerSlotAmulet
+      value: Amulet
       objectReference: {fileID: 0}
     - target: {fileID: 3148660713017235469, guid: 1d9cc7f4ad80b0f48929df543f8da9ea, type: 3}
       propertyPath: m_IsActive
@@ -5932,7 +5936,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3148660713017235469, guid: 1d9cc7f4ad80b0f48929df543f8da9ea, type: 3}
       propertyPath: m_Name
-      value: PlayerSlotArmor
+      value: Armor
       objectReference: {fileID: 0}
     - target: {fileID: 3148660713017235469, guid: 1d9cc7f4ad80b0f48929df543f8da9ea, type: 3}
       propertyPath: m_IsActive
@@ -6611,7 +6615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3148660713017235469, guid: 1d9cc7f4ad80b0f48929df543f8da9ea, type: 3}
       propertyPath: m_Name
-      value: PlayerSlotBelt
+      value: SlotBelt
       objectReference: {fileID: 0}
     - target: {fileID: 3148660713017235469, guid: 1d9cc7f4ad80b0f48929df543f8da9ea, type: 3}
       propertyPath: m_IsActive

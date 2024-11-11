@@ -8,7 +8,6 @@ public class AttributeEditor : Editor {
     SerializedProperty _valueProperty;
     SerializedProperty _dmageMinProperty;
     SerializedProperty _dmageMaxProperty;
-    SerializedProperty _durationProperty;
     SerializedProperty _iconProperty;
 
     public override void OnInspectorGUI() {
@@ -17,7 +16,6 @@ public class AttributeEditor : Editor {
         _valueProperty = serializedObject.FindProperty("value");
         _dmageMinProperty = serializedObject.FindProperty("damageMin");
         _dmageMaxProperty = serializedObject.FindProperty("damageMax");
-        _durationProperty = serializedObject.FindProperty("duration");
         _iconProperty = serializedObject.FindProperty("icon");
 
         serializedObject.Update();
@@ -36,8 +34,6 @@ public class AttributeEditor : Editor {
         else {
             EditorGUILayout.PropertyField(_valueProperty);
         }
-
-        EditorGUILayout.PropertyField(_durationProperty);
 
         string _path = ResourcesPath.FolderTooltip + _attributeTypeProperty.enumNames[_attributeTypeProperty.intValue];
         Sprite _icon = Resources.Load<Sprite>(_path);

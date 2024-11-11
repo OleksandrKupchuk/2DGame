@@ -6,7 +6,6 @@ public class PotionHealth : Item {
     }
 
     public override void Use() {
-        base.Use();
         _player.AddHealth(Attributes[0].value);
     }
 }

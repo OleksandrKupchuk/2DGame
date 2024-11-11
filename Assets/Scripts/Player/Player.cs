@@ -8,7 +8,7 @@ public class Player : Character {
     private RaycastHit2D _raycastHit;
     private float _deafaultGravityScale;
     private float _timeRegenerationHealth;
-    private float _delayHealthRegeneration;
+    private float _timerHealthRegeneration;
     private AnimationEvent _attackEvent = new AnimationEvent();
     private PlayerHealthView _playerHealthView;
     private float _currentHealth;
@@ -236,12 +236,12 @@ public class Player : Character {
 
     private void RegenerationHealth() {
         if (Animator.GetCurrentAnimatorStateInfo(AnimatorLayers.BaseLayer).IsName(PlayerAnimationName.Hit)) {
-            _delayHealthRegeneration = 0;
+            _timerHealthRegeneration = 0;
         }
 
-        _delayHealthRegeneration += Time.deltaTime;
+        _timerHealthRegeneration += Time.deltaTime;
 
-        if (_delayHealthRegeneration >= Config.delayHealthRegeneration) {
+        if (_timerHealthRegeneration >= Config.delayHealthRegeneration) {
             if (CurrentHealth >= PlayerAttributes.Health) {
                 return;
             }
@@ -251,6 +251,7 @@ public class Player : Character {
             if (_timeRegenerationHealth >= 1) {
                 _timeRegenerationHealth = 0;
                 AddHealth(PlayerAttributes.HealthRegeneration);
+                //_currentHealth += PlayerAttributes.HealthRegeneration;
                 Debug.Log($"regenration health + <color=green>{PlayerAttributes.HealthRegeneration}</color>");
                 Debug.Log($"health after healing + <color=blue>{PlayerAttributes.Health}</color>");
             }
@@ -259,8 +260,6 @@ public class Player : Character {
 
     public void AddHealth(float health) {
         _currentHealth += health;
-        //CurrentHealth = CurrentHealth > PlayerAttributes.Health ? PlayerAttributes.Health : CurrentHealth;
-        //EventManager.UpdateAttributesEventHandler();
         _playerHealthView.UpdateHealthBar(null);
     }
 
