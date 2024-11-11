@@ -61,7 +61,7 @@ public class Inventory : MonoBehaviour {
 
     private void CheckItemInCursorAndPutOnInInventory() {
         if (_cursor.Item != null) {
-            PutItemInEmptyCell(_cursor.Item);
+            PutItem(_cursor.Item);
             _cursor.RemoveItem();
             DragDropController.DropPutItem();
         }
@@ -83,11 +83,11 @@ public class Inventory : MonoBehaviour {
         _background.SetActive(!_background.activeSelf);
     }
 
-    public void PutItemInEmptyCell(Item item) {
+    public void PutItem(Item item) {
         foreach (Cell cell in _cells) {
             if (!cell.HasItem) {
                 cell.SetItem(item);
-                item.gameObject.SetActive(false);
+                item.Disable();
                 return;
             }
         }

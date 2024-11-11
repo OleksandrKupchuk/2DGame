@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,10 @@ public enum ItemType {
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Item : MonoBehaviour, IUse {
+    private Collider2D _collider;
+    private SpriteRenderer _spriteRenderer;
+    private Rigidbody2D _rigidbody;
+
     [field: SerializeField]
     public string Name { get; protected set; }
     [field: SerializeField]
@@ -22,10 +27,17 @@ public class Item : MonoBehaviour, IUse {
     [field: SerializeField]
     public ItemType ItemType { get; protected set; } = new ItemType();
     [field: SerializeField]
+    public float Duration { get; protected set; }
+    [field: SerializeField]
     public List<Attribute> Attributes { get; protected set; } = new List<Attribute>();
 
+
     protected void Awake() {
-        Icon = GetComponent<SpriteRenderer>().sprite;
+        _collider = GetComponent<Collider2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _rigidbody = GetComponent<Rigidbody2D>();
+        Icon = _spriteRenderer.sprite;
+
         CheckDuplicateAttributes();
 
         if(Attributes == null || Attributes.Count == 0 ) {
@@ -70,6 +82,18 @@ public class Item : MonoBehaviour, IUse {
     }
 
     public virtual void Use() { 
-        EventManager.UseItemEventHandler(this); 
+        EventManager.UseItemEventHandler(this);
+        StartCoroutine(SrartTimer());
+    }
+
+    protected IEnumerator SrartTimer() {
+        yield return new WaitForSeconds(Duration);
+        EventManager.ActionItemOverEventHandler(this);
+    }
+
+    public void Disable() {
+        _spriteRenderer.enabled = false;
+        _collider.enabled = false;
+        _rigidbody.bodyType = RigidbodyType2D.Static;
     }
 }

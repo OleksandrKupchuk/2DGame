@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public abstract class AttributeController : MonoBehaviour, IAttribureController {
@@ -21,6 +20,7 @@ public abstract class AttributeController : MonoBehaviour, IAttribureController 
         EventManager.PutOnItem += AddItemAttributes;
         EventManager.TakeAwayItem += SubstractItemAttributes;
         EventManager.UseItem += AddTemporaryAttribute;
+        EventManager.ActionItemOver += SubstractTemporaryAttribute;
         _playerConfig = Resources.Load<PlayerConfig>(ResourcesPath.PlayerConfig);
     }
 
@@ -28,6 +28,7 @@ public abstract class AttributeController : MonoBehaviour, IAttribureController 
         EventManager.PutOnItem -= AddItemAttributes;
         EventManager.TakeAwayItem -= SubstractItemAttributes;
         EventManager.UseItem -= AddTemporaryAttribute;
+        EventManager.ActionItemOver -= SubstractTemporaryAttribute;
     }
 
     public void AddItemAttributes(Item item) {
@@ -81,18 +82,20 @@ public abstract class AttributeController : MonoBehaviour, IAttribureController 
     public virtual void AddTemporaryAttribute(Item item) {
         foreach (Attribute attribute in item.Attributes) {
             if (attribute.type == AttributeType) {
-                _valueTemporary = attribute.value;
+                _valueTemporary += attribute.value;
                 _attributeView.UpdateAttribute(this);
-                StartCoroutine(DelayBuff(attribute.duration));
                 return;
             }
         }
     }
 
-    private IEnumerator DelayBuff(float duration) {
-        yield return new WaitForSeconds(duration);
-        _valueTemporary = 0;
-        _attributeView.UpdateAttribute(this);
-        EventManager.ActionItemOverEventHandler(null);
+    public virtual void SubstractTemporaryAttribute(Item item) {
+        foreach (Attribute attribute in item.Attributes) {
+            if (attribute.type == AttributeType) {
+                _valueTemporary -= attribute.value;
+                _attributeView.UpdateAttribute(this);
+                return;
+            }
+        }
     }
 }

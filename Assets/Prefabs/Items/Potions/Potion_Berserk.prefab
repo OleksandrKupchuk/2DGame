@@ -57,6 +57,7 @@ MonoBehaviour:
   <Name>k__BackingField: Potion Damage
   <Description>k__BackingField: Give you additional damage. Duration 12 second
   <ItemType>k__BackingField: 7
+  <Duration>k__BackingField: 15
   <Attributes>k__BackingField:
   - {fileID: 11400000, guid: 813c902204e36684b92661aed2234fc1, type: 2}
   - {fileID: 11400000, guid: f7bfab23be4ad194888938c681115434, type: 2}

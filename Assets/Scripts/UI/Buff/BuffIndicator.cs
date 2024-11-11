@@ -3,21 +3,26 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class BuffIndicator : MonoBehaviour {
+    private Item _item;
+
     [SerializeField]
     private Image _icon;
     [SerializeField]
     private Image _border;
 
-    public void Display(Attribute attribute) {
-        SetIcon(attribute.icon);
-        StartCoroutine(ShowDurationEffect(attribute.duration));
+    public Item Item => _item;
+
+    public void Display(Item item) {
+        _item = item;
+        SetIcon(item.Icon);
+        StartCoroutine(ShowDurationEffect(item.Duration));
     }
 
     private void SetIcon(Sprite icon) {
         _icon.sprite = icon;
     }
 
-    public IEnumerator ShowDurationEffect(float duration) {
+    private IEnumerator ShowDurationEffect(float duration) {
         float _time = duration;
 
         while (_time > 0) {

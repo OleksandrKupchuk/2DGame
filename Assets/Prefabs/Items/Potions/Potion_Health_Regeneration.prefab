@@ -55,7 +55,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Potion Health Regeneration
+  <Description>k__BackingField: 
   <ItemType>k__BackingField: 7
+  <Duration>k__BackingField: 15
   <Attributes>k__BackingField:
   - {fileID: 11400000, guid: c4c3987ffbf80e14a8115359a3e9810b, type: 2}
 --- !u!212 &8531331201663793107

@@ -3321,11 +3321,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53a69654f4c67904ebd98b3d47a0b0d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attributeHealthUI: {fileID: 976615830}
-  _attributeSpeedUI: {fileID: 976615831}
-  _attributeArmorUI: {fileID: 976615833}
-  _attributeDamageUI: {fileID: 976615827}
-  _attributeHealthRegenerationUI: {fileID: 976615832}
 --- !u!114 &976615827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8977,12 +8972,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5800932954640797202, guid: ba4bd23bfc3594449a81c0d12c0fe0a9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7783609211246636534, guid: ba4bd23bfc3594449a81c0d12c0fe0a9, type: 3}
       propertyPath: m_Name
       value: Potion_Armor
       objectReference: {fileID: 0}
     - target: {fileID: 7783609211246636534, guid: ba4bd23bfc3594449a81c0d12c0fe0a9, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8123576408081907660, guid: ba4bd23bfc3594449a81c0d12c0fe0a9, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class AttributeDamageController : AttributeController {
@@ -66,20 +65,22 @@ public class AttributeDamageController : AttributeController {
     public override void AddTemporaryAttribute(Item item) {
         foreach (Attribute attribute in item.Attributes) {
             if (attribute.type == AttributeType) {
-                _temporaryMinValue = attribute.damageMin;
-                _temporaryMaxValue = attribute.damageMax;
+                _temporaryMinValue += attribute.damageMin;
+                _temporaryMaxValue += attribute.damageMax;
                 _attributeView.UpdateAttribute(this);
-                StartCoroutine(DelayBuff(attribute.duration));
                 return;
             }
         }
     }
 
-    private IEnumerator DelayBuff(float duration) {
-        yield return new WaitForSeconds(duration);
-        _temporaryMinValue = 0;
-        _temporaryMaxValue = 0;
-        _attributeView.UpdateAttribute(this);
-        EventManager.ActionItemOverEventHandler(null);
+    public override void SubstractTemporaryAttribute(Item item) {
+        foreach (Attribute attribute in item.Attributes) {
+            if (attribute.type == AttributeType) {
+                _temporaryMinValue -= attribute.damageMin;
+                _temporaryMaxValue -= attribute.damageMax;
+                _attributeView.UpdateAttribute(this);
+                return;
+            }
+        }
     }
 }
