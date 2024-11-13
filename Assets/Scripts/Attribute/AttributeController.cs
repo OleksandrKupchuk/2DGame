@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class AttributeController : MonoBehaviour, IAttribureController {
+public abstract class AttributeController : MonoBehaviour {
     protected PlayerConfig _playerConfig;
     protected float _valueInteger;
     protected float _valuePercent;

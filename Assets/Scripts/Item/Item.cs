@@ -14,7 +14,7 @@ public enum ItemType {
 }
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Item : MonoBehaviour, IUse {
+public class Item : MonoBehaviour {
     private Collider2D _collider;
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rigidbody;

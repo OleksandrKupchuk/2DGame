@@ -38,7 +38,7 @@ public class Inventory : MonoBehaviour {
         }
 
         _cursor = FindObjectOfType<Cursor>();
-        AddListenerForCloseButton();
+        CheckItemInCloseButton();
     }
 
     private void OnEnable() {
@@ -51,7 +51,7 @@ public class Inventory : MonoBehaviour {
         EventManager.InventoryOpenlyClosed -= EnableDisableInventory;
     }
 
-    private void AddListenerForCloseButton() {
+    private void CheckItemInCloseButton() {
         _closeButton.onClick.AddListener(() => {
             CheckItemInCursorAndPutOnInInventory();
             _background.SetActive(false);
