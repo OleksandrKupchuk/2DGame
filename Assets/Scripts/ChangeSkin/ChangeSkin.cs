@@ -2,44 +2,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 
-public class ChangeSkin : MonoBehaviour
-{
-    private int _skinCounter = 0;
-    private SpriteLibraryAsset _spriteLibraryAsset;
-    private List<string> _categories = new();
-    private List<string> _labels = new();
+public class ChangeSkin : MonoBehaviour {
+    [SerializeField]
+    private List<BodyPart> _bodyParts = new List<BodyPart>();
     [SerializeField]
     private List<SpriteResolver> _spriteResolvers = new List<SpriteResolver>();
 
-    //private void Awake() {
-    //    _spriteLibraryAsset = _spriteResolvers[0].spriteLibrary.spriteLibraryAsset;
-    //    _categories = new List<string>(_spriteLibraryAsset.GetCategoryNames());
-    //    _labels = new List<string>(_spriteLibraryAsset.GetCategoryLabelNames(_categories[0]));
-    //}
+    private void Awake() {
+        EventManager.PutOnItem += Chnage;
+        EventManager.TakeAwayItem += Reset;
+    }
 
-    [ContextMenu("Change Skin")]
-    public void NextSkin() {
-        _spriteLibraryAsset = _spriteResolvers[0].spriteLibrary.spriteLibraryAsset;
-        _categories = new List<string>(_spriteLibraryAsset.GetCategoryNames());
-        _labels = new List<string>(_spriteLibraryAsset.GetCategoryLabelNames(_categories[0]));
+    private void OnDestroy() {
+        EventManager.PutOnItem -= Chnage;
+        EventManager.TakeAwayItem -= Reset;
+    }
 
-        foreach (string _category in _categories) {
-            print("category " + _category);
-
-
-            foreach (string _label in _labels) {
-                print("label " + _label);
+    public void Chnage(Item item) {
+        foreach(BodyPart bodyPart in _bodyParts) {
+            if(item.BodyType == bodyPart.Type) {
+                bodyPart.ChangeSkin(item);
             }
         }
+    }
 
-        _skinCounter++;
-
-        if (_skinCounter >= _labels.Count) {
-            _skinCounter = 0;
-        }
-
-        foreach (SpriteResolver _spriteResolver in _spriteResolvers) {
-            _spriteResolver.SetCategoryAndLabel(_spriteResolver.GetCategory(), _labels[_skinCounter]);
+    public void Reset(Item item) {
+        foreach (BodyPart bodyPart in _bodyParts) {
+            if (item.BodyType == bodyPart.Type) {
+                bodyPart.ResetSkin(item);
+            }
         }
     }
 }

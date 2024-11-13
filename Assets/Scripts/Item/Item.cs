@@ -29,6 +29,8 @@ public class Item : MonoBehaviour, IUse {
     [field: SerializeField]
     public float Duration { get; protected set; }
     [field: SerializeField]
+    public BodyType BodyType { get; protected set; }
+    [field: SerializeField]
     public List<Attribute> Attributes { get; protected set; } = new List<Attribute>();
 
 
