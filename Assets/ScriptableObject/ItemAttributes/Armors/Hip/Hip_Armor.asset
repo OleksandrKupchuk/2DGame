@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8977c4f42e963a428e0c5084c2ad4ec, type: 3}
+  m_Name: Hip_Armor
+  m_EditorClassIdentifier: 
+  type: 0
+  valueType: 0
+  value: 2
+  damageMin: 0
+  damageMax: 0
+  icon: {fileID: 21300000, guid: 59c203c833bb0894384b1c344e889244, type: 3}
