@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2982259974022020129}
-  - component: {fileID: -1108380552917240087}
+  - component: {fileID: 8388028343321145547}
   - component: {fileID: 4276030464080888337}
   - component: {fileID: 3101896408332089383}
   - component: {fileID: 7974928101380017108}
@@ -42,7 +42,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &-1108380552917240087
+--- !u!114 &8388028343321145547
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -51,17 +51,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 7168476610257152028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37854cf4aec128f439c8e597d923c21a, type: 3}
+  m_Script: {fileID: 11500000, guid: 97bba5a1167158344928469379e4b3af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Potion Berserk
   <Description>k__BackingField: Give you additional damage and health regeneration.
     Duration 15 second
   <ItemType>k__BackingField: 7
-  <Duration>k__BackingField: 15
+  <BodyType>k__BackingField: 0
   <Attributes>k__BackingField:
   - {fileID: 11400000, guid: 813c902204e36684b92661aed2234fc1, type: 2}
   - {fileID: 11400000, guid: f7bfab23be4ad194888938c681115434, type: 2}
+  <Duration>k__BackingField: 15
 --- !u!212 &4276030464080888337
 SpriteRenderer:
   m_ObjectHideFlags: 0

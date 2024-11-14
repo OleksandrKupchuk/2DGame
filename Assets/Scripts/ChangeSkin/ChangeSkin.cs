@@ -19,17 +19,26 @@ public class ChangeSkin : MonoBehaviour {
     }
 
     public void Chnage(Item item) {
-        foreach(BodyPart bodyPart in _bodyParts) {
-            if(item.BodyType == bodyPart.Type) {
-                bodyPart.ChangeSkin(item);
+        if (item is WearableItem) {
+            WearableItem _item = item as WearableItem;
+
+            foreach (BodyPart bodyPart in _bodyParts) {
+                if (_item.BodyType == bodyPart.Type) {
+                    bodyPart.ChangeSkin(_item);
+                }
             }
+
         }
     }
 
     public void Reset(Item item) {
-        foreach (BodyPart bodyPart in _bodyParts) {
-            if (item.BodyType == bodyPart.Type) {
-                bodyPart.ResetSkin(item);
+        if (item is WearableItem) {
+            WearableItem _item = item as WearableItem;
+
+            foreach (BodyPart bodyPart in _bodyParts) {
+                if (_item.BodyType == bodyPart.Type) {
+                    bodyPart.ResetSkin(_item);
+                }
             }
         }
     }

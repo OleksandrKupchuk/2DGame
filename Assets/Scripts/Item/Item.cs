@@ -9,12 +9,11 @@ public enum ItemType {
     Amulet,
     Weapon,
     Belt,
-    Shield,
-    Usage
+    Shield
 }
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Item : MonoBehaviour {
+public abstract class Item : MonoBehaviour {
     private Collider2D _collider;
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rigidbody;
@@ -24,10 +23,6 @@ public class Item : MonoBehaviour {
     [field: SerializeField]
     public string Description { get; protected set; }
     public Sprite Icon { get; protected set; }
-    [field: SerializeField]
-    public ItemType ItemType { get; protected set; } = new ItemType();
-    [field: SerializeField]
-    public BodyType BodyType { get; protected set; }
     [field: SerializeField]
     public List<Attribute> Attributes { get; protected set; } = new List<Attribute>();
 

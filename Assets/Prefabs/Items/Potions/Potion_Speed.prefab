@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5495071407342441346}
-  - component: {fileID: 8752067965754110828}
+  - component: {fileID: 4625397972554276950}
   - component: {fileID: 280292003938461652}
   - component: {fileID: 3576321653772133914}
   - component: {fileID: 1228890744554252781}
@@ -42,7 +42,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8752067965754110828
+--- !u!114 &4625397972554276950
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -51,15 +51,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4960239040758630424}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37854cf4aec128f439c8e597d923c21a, type: 3}
+  m_Script: {fileID: 11500000, guid: 97bba5a1167158344928469379e4b3af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Potion Speed
   <Description>k__BackingField: 
   <ItemType>k__BackingField: 7
-  <Duration>k__BackingField: 15
+  <BodyType>k__BackingField: 0
   <Attributes>k__BackingField:
   - {fileID: 11400000, guid: f31a88fa443f8754c9101333ce6af677, type: 2}
+  <Duration>k__BackingField: 5
 --- !u!212 &280292003938461652
 SpriteRenderer:
   m_ObjectHideFlags: 0

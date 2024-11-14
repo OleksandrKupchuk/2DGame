@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3771908523360819853}
   - component: {fileID: 790467860464501866}
   - component: {fileID: 7620996291159239517}
-  - component: {fileID: 9209565597166412127}
   - component: {fileID: 1713628816580942751}
+  - component: {fileID: -573523087885422262}
   m_Layer: 0
   m_Name: Hip
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &790467860464501866
 SpriteRenderer:
@@ -114,26 +114,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &9209565597166412127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253122335124310123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37854cf4aec128f439c8e597d923c21a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Name>k__BackingField: Hip simple
-  <Description>k__BackingField: 
-  <ItemType>k__BackingField: 0
-  <Duration>k__BackingField: 0
-  <BodyType>k__BackingField: 1
-  <Attributes>k__BackingField:
-  - {fileID: 11400000, guid: f10fb0e0564248f4bb2b5e29e73aa26e, type: 2}
-  - {fileID: 11400000, guid: ac0a89e218d28ef42940dfbc9f01625e, type: 2}
 --- !u!61 &1713628816580942751
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -179,3 +159,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.02, y: 0.77}
   m_EdgeRadius: 0
+--- !u!114 &-573523087885422262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253122335124310123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bed930a2ee30fcb48940cc94f38fb8ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Hip simple
+  <Description>k__BackingField: 
+  <Attributes>k__BackingField:
+  - {fileID: 11400000, guid: f10fb0e0564248f4bb2b5e29e73aa26e, type: 2}
+  - {fileID: 11400000, guid: ac0a89e218d28ef42940dfbc9f01625e, type: 2}
+  <ItemType>k__BackingField: 1
+  <BodyType>k__BackingField: 1

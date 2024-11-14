@@ -2,7 +2,8 @@ using UnityEngine;
 
 public enum BodyType {
     BODY,
-    HIP
+    HIP,
+    ANOTHER
 }
 
 public class BodyPart : MonoBehaviour {

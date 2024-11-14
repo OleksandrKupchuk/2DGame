@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSlot : CellData, ICell {
-    private Item _item;
+    private WearableItem _item;
 
     [SerializeField]
     private List<ItemType> _itemTypes = new List<ItemType>();
@@ -26,20 +26,29 @@ public class PlayerSlot : CellData, ICell {
     }
 
     private void ChageBorderColor(Item item) {
-        if (_itemTypes.Contains(item.ItemType)) {
-            SetBorderColor(Color.green);
+        if (item is WearableItem) {
+            WearableItem _item = item as WearableItem;
+
+            if (_itemTypes.Contains(_item.ItemType)) {
+                SetBorderColor(Color.green);
+            }
+            else {
+                SetBorderColor(Color.red);
+            }
         }
-        else {
-            SetBorderColor(Color.red);
-        }
+
     }
 
     public void SetItem(Item item) {
-        if (_itemTypes.Contains(item.ItemType)) {
-            _item = item;
-            SetIcon(Item.Icon);
-            EnableIcon();
-            EventManager.PutOnItemEventHandler(item);
+        if (item is WearableItem) {
+            WearableItem _item = item as WearableItem;
+
+            if (_itemTypes.Contains(_item.ItemType)) {
+                this._item = _item;
+                SetIcon(Item.Icon);
+                EnableIcon();
+                EventManager.PutOnItemEventHandler(_item);
+            }
         }
     }
 

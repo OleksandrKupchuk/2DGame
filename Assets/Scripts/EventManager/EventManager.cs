@@ -8,9 +8,9 @@ public class EventManager : MonoBehaviour {
         InventoryOpenlyClosed.Invoke();
     }
 
-    public static event Action<Item> PutOnItem;
+    public static event Action<WearableItem> PutOnItem;
 
-    public static void PutOnItemEventHandler(Item item) {
+    public static void PutOnItemEventHandler(WearableItem item) {
         PutOnItem.Invoke(item);
     }
 
