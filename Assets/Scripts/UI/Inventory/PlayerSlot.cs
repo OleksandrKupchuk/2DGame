@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSlot : CellData, ICell {
+public class PlayerSlot : Cell, ICell {
     private WearableItem _item;
 
     [SerializeField]
@@ -58,11 +58,11 @@ public class PlayerSlot : CellData, ICell {
         DisableIcon();
     }
 
-    public void ResetBorderColor() {
+    private void ResetBorderColor() {
         SetBorderColor(Color.white);
     }
 
-    public void SetBorderColor(Color color) {
+    private void SetBorderColor(Color color) {
         _border.color = color;
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class ItemUsageSlot : CellData, ICell {
+public class ItemUsageSlot : Cell, ICell {
     private InputActionReference _inputAction;
     private ItemUsable _item;
 
@@ -37,11 +37,11 @@ public class ItemUsageSlot : CellData, ICell {
         }
     }
 
-    public void ResetBorderColor() {
+    private void ResetBorderColor() {
         SetBorderColor(Color.white);
     }
 
-    public void SetBorderColor(Color color) {
+    private void SetBorderColor(Color color) {
         _border.color = color;
     }
 
@@ -74,6 +74,11 @@ public class ItemUsageSlot : CellData, ICell {
         RemoveItem();
     }
 
+    public void RemoveItem() {
+        _item = null;
+        DisableIcon();
+    }
+
     public void SetInputAction(InputActionReference inputAction) {
         _inputAction = inputAction;
         _labelButtonIcon.text = "" + GetNameButton(_inputAction.action.GetBindingDisplayString());
@@ -81,10 +86,5 @@ public class ItemUsageSlot : CellData, ICell {
 
     private string GetNameButton(string bindingString) {
         return bindingString.Substring(bindingString.Length - 1, 1);
-    }
-
-    public void RemoveItem() {
-        _item = null;
-        DisableIcon();
     }
 }

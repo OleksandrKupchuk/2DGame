@@ -1,32 +1,23 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Cell : CellData, ICell {
-    private Item _item;
+public abstract class Cell : MonoBehaviour {
+    [SerializeField]
+    protected Image _icon;
+    [SerializeField]
+    protected Image _border;
+    [SerializeField]
+    protected Collider2D _collider;
 
-    public bool HasItem { get => Item != null; }
-    public Item Item { get => _item; }
-    public RectTransform RectTransform { get; private set; }
-    public Collider2D Collider { get => _collider; }
-    public Transform Transfom => transform;
-
-    protected void Awake() {
-        DisableIcon();
-        RectTransform = GetComponent<RectTransform>();
+    protected void EnableIcon() {
+        _icon.gameObject.SetActive(true);
     }
 
-    public void SetItem(Item item) {
-        _item = item;
-        SetIcon(Item.Icon);
-        EnableIcon();
+    protected void DisableIcon() {
+        _icon.gameObject.SetActive(false);
     }
 
-    public void RemoveItem() {
-        _item = null;
-        DisableIcon();
-    }
-
-    public void SetRectTransformPosition(Vector3 newPosition) {
-        RectTransform.localPosition = newPosition;
+    protected void SetIcon(Sprite icon) {
+        _icon.sprite = icon;
     }
 }

@@ -1,11 +1,11 @@
 using UnityEngine;
 
 public abstract class AttributeController : MonoBehaviour {
-    protected PlayerConfig _playerConfig;
     protected float _valueInteger;
     protected float _valuePercent;
     protected float _percentOfAttribute;
     protected float _valueTemporary;
+    protected PlayerConfig _playerConfig;
 
     [SerializeField]
     protected AttributeView _attributeView;

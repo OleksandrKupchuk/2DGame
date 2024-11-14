@@ -5,14 +5,14 @@ public class AttributeDamageController : AttributeController {
     private float _valueIntegerMax;
     private float _valuePercentMin;
     private float _valuePercentMax;
-    private float _temporaryMinValue;
-    private float _temporaryMaxValue;
+    private float _valueTemporaryMin;
+    private float _valueTemporaryMax;
 
-    public float DamageMin { get => _valueIntegerMin + _valuePercentMin + _temporaryMinValue; }
-    public float DamageMax { get => _valueIntegerMax + _valuePercentMax + _temporaryMaxValue; }
+    public float DamageMin { get => _valueIntegerMin + _valuePercentMin + _valueTemporaryMin; }
+    public float DamageMax { get => _valueIntegerMax + _valuePercentMax + _valueTemporaryMax; }
     public override float Value => Random.Range(DamageMin, DamageMax);
     public override string ValueString => $"{DamageMin}-{DamageMax}";
-    public override bool IsValueTemplorary => _temporaryMinValue > 0 || _temporaryMaxValue > 0;
+    public override bool IsValueTemplorary => _valueTemporaryMin > 0 || _valueTemporaryMax > 0;
 
     private new void Awake() {
         base.Awake();
@@ -65,8 +65,8 @@ public class AttributeDamageController : AttributeController {
     public override void AddTemporaryAttribute(Item item) {
         foreach (Attribute attribute in item.Attributes) {
             if (attribute.type == AttributeType) {
-                _temporaryMinValue += attribute.damageMin;
-                _temporaryMaxValue += attribute.damageMax;
+                _valueTemporaryMin += attribute.damageMin;
+                _valueTemporaryMax += attribute.damageMax;
                 _attributeView.UpdateAttribute(this);
                 return;
             }
@@ -76,8 +76,8 @@ public class AttributeDamageController : AttributeController {
     public override void SubstractTemporaryAttribute(Item item) {
         foreach (Attribute attribute in item.Attributes) {
             if (attribute.type == AttributeType) {
-                _temporaryMinValue -= attribute.damageMin;
-                _temporaryMaxValue -= attribute.damageMax;
+                _valueTemporaryMin -= attribute.damageMin;
+                _valueTemporaryMax -= attribute.damageMax;
                 _attributeView.UpdateAttribute(this);
                 return;
             }

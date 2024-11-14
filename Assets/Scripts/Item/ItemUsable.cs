@@ -10,9 +10,8 @@ public class ItemUsable : Item {
         StartCoroutine(SrartTimer());
     }
 
-    protected IEnumerator SrartTimer() {
+    private IEnumerator SrartTimer() {
         yield return new WaitForSeconds(Duration);
         EventManager.ActionItemOverEventHandler(this);
     }
-
 }

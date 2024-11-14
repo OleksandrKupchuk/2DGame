@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,9 +13,9 @@ public enum ItemType {
 
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class Item : MonoBehaviour {
-    private Collider2D _collider;
-    private SpriteRenderer _spriteRenderer;
-    private Rigidbody2D _rigidbody;
+    protected Collider2D _collider;
+    protected SpriteRenderer _spriteRenderer;
+    protected Rigidbody2D _rigidbody;
 
     [field: SerializeField]
     public string Name { get; protected set; }
@@ -25,7 +24,6 @@ public abstract class Item : MonoBehaviour {
     public Sprite Icon { get; protected set; }
     [field: SerializeField]
     public List<Attribute> Attributes { get; protected set; } = new List<Attribute>();
-
 
     protected void Awake() {
         _collider = GetComponent<Collider2D>();
@@ -61,6 +59,7 @@ public abstract class Item : MonoBehaviour {
     protected void CheckDuplicateAttributes() {
         for (int i = 0; i < Attributes.Count; i++) {
             int _nextAttribute = i + 1;
+
             if (_nextAttribute == Attributes.Count) {
                 return;
             }

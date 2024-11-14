@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour {
     private Cursor _cursor;
-    private List<Cell> _cells = new List<Cell>();
+    private List<InventoryCell> _cells = new List<InventoryCell>();
 
     [SerializeField]
-    private Cell _cellPrefab;
+    private InventoryCell _cellPrefab;
     [SerializeField]
     private int _amountCells;
     [SerializeField]
@@ -69,7 +69,7 @@ public class Inventory : MonoBehaviour {
 
     private void GenerateCellsOfPlayerBag() {
         for (int i = 0; i < _amountCells; i++) {
-            Cell _cellObject = Instantiate(_cellPrefab);
+            InventoryCell _cellObject = Instantiate(_cellPrefab);
             _cellObject.transform.SetParent(_bag);
             _cellObject.transform.localScale = new Vector3(1, 1, 1);
             _cellObject.SetRectTransformPosition(new Vector3(_bag.transform.position.x, _bag.transform.position.y, _bag.transform.position.z));
@@ -84,7 +84,7 @@ public class Inventory : MonoBehaviour {
     }
 
     public void PutItem(Item item) {
-        foreach (Cell cell in _cells) {
+        foreach (InventoryCell cell in _cells) {
             if (!cell.HasItem) {
                 cell.SetItem(item);
                 item.Disable();

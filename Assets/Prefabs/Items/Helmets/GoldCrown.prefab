@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 515604923435902443}
-  - component: {fileID: 2359019374413558167}
   - component: {fileID: 515604923435902436}
   - component: {fileID: 515604923435902438}
   - component: {fileID: -3273413498712304040}
@@ -35,23 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2359019374413558167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 515604923435902439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37854cf4aec128f439c8e597d923c21a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Name>k__BackingField: Gold Crown
-  <ItemType>k__BackingField: 0
-  <Attributes>k__BackingField:
-  - {fileID: 11400000, guid: 1e2d34dc136c721408d319b5f8faace8, type: 2}
-  - {fileID: 11400000, guid: 2b3aa397aa5d677408e34f914df3d99f, type: 2}
 --- !u!212 &515604923435902436
 SpriteRenderer:
   m_ObjectHideFlags: 0
