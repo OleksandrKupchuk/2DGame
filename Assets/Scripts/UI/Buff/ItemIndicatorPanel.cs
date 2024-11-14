@@ -26,7 +26,7 @@ public class ItemIndicatorPanel : MonoBehaviour {
         }
     }
 
-    private void ShowBuffIndacator(Item item) {
+    private void ShowBuffIndacator(ItemUsable item) {
         foreach (BuffIndicator indicator in _buffIndicators) {
             if (!indicator.gameObject.activeSelf) {
                 indicator.gameObject.SetActive(true);

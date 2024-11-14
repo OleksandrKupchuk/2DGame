@@ -12,7 +12,7 @@ public class BuffIndicator : MonoBehaviour {
 
     public Item Item => _item;
 
-    public void Display(Item item) {
+    public void Display(ItemUsable item) {
         _item = item;
         SetIcon(item.Icon);
         StartCoroutine(ShowDurationEffect(item.Duration));

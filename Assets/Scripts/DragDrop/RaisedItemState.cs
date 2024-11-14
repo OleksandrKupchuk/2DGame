@@ -19,7 +19,7 @@ public class RaisedItemState : IDragDropState {
         Debug.Log("raised item update");
 
         if (Mouse.current.leftButton.wasPressedThisFrame) {
-            Cell _cell = _controller.Cursor.GetCell();
+            ICell _cell = _controller.Cursor.GetCell();
 
             if (_cell == null) {
                 _controller.ChangeState(_controller.DropItemState);
@@ -37,7 +37,7 @@ public class RaisedItemState : IDragDropState {
         }
     }
 
-    private bool CanSwap(Cell cell) {
+    private bool CanSwap(ICell cell) {
         return cell.HasItem && _controller.Cursor.HasItem;
     }
 }

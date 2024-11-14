@@ -18,7 +18,7 @@ public class CheckItemState : IDragDropState {
         //Debug.Log("check item update");
 
         if (Mouse.current.leftButton.wasPressedThisFrame) {
-            Cell _cell = _controller.Cursor.GetCell();
+            ICell _cell = _controller.Cursor.GetCell();
 
             if (_cell == null) {
                 Debug.Log("cell component is null");

@@ -2,13 +2,23 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class ItemUsageSlot : Cell {
+public class ItemUsageSlot : CellData, ICell {
     private InputActionReference _inputAction;
+    private ItemUsable _item;
+
     [SerializeField]
     private Text _labelButtonIcon;
 
-    private new void Awake() {
-        base.Awake();
+    public Item Item { get => _item; }
+
+    public bool HasItem => _item != null;
+    public RectTransform RectTransform { get; private set; }
+    public Collider2D Collider { get => _collider; }
+    public Transform Transfom => transform;
+
+    private void Awake() {
+        DisableIcon();
+        RectTransform = GetComponent<RectTransform>();
         DragDropController.RaisedItemTrigger += ChangeBorderColor;
         DragDropController.DropPutItemTrigger += ResetBorderColor;
     }
@@ -27,14 +37,24 @@ public class ItemUsageSlot : Cell {
         }
     }
 
-    public override void SetItem(Item item) {
+    public void ResetBorderColor() {
+        SetBorderColor(Color.white);
+    }
+
+    public void SetBorderColor(Color color) {
+        _border.color = color;
+    }
+
+    public void SetItem(Item item) {
         if (CanUseItem(item)) {
-            base.SetItem(item);
+            _item = item as ItemUsable;
+            SetIcon(Item.Icon);
+            EnableIcon();
         }
     }
 
     private bool CanUseItem(Item item) {
-        if (item.ItemType == ItemType.Usage) {
+        if (item is ItemUsable) {
             return true;
         }
 
@@ -50,7 +70,7 @@ public class ItemUsageSlot : Cell {
     }
 
     private void UseItem() {
-        Item.Use();
+        _item.Use();
         RemoveItem();
     }
 
@@ -61,5 +81,10 @@ public class ItemUsageSlot : Cell {
 
     private string GetNameButton(string bindingString) {
         return bindingString.Substring(bindingString.Length - 1, 1);
+    }
+
+    public void RemoveItem() {
+        _item = null;
+        DisableIcon();
     }
 }

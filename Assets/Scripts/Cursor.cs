@@ -53,28 +53,28 @@ public class Cursor : MonoBehaviour {
         transform.position = _canvas.transform.TransformPoint(_localPosition);
     }
 
-    public Cell GetCell() {
+    public ICell GetCell() {
         RaycastHit2D = Physics2D.Raycast(_mousePosition, Vector3.forward, 100f, _layerMaskUI, -100);
 
         if (RaycastHit2D.transform != null) {
             Debug.Log("name transform = " + RaycastHit2D.transform.name);
-            return RaycastHit2D.transform.gameObject.GetComponent<Cell>();
+            return RaycastHit2D.transform.gameObject.GetComponent<ICell>();
         }
 
         return null;
     }
 
     public void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.TryGetComponent(out Cell cell)) {
+        if (collision.TryGetComponent(out ICell cell)) {
             if (!cell.HasItem) {
                 return;
             }
-            ItemTooltip.ShowTooltip(cell.Item, cell.transform.position, cell.RectTransform.rect.height);
+            ItemTooltip.ShowTooltip(cell.Item, cell.Transfom.position, cell.RectTransform.rect.height);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
-        if (collision.TryGetComponent(out Cell cell)) {
+        if (collision.TryGetComponent(out ICell cell)) {
             ItemTooltip.HideTooltip();
         }
     }

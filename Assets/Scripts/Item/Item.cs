@@ -27,8 +27,6 @@ public class Item : MonoBehaviour {
     [field: SerializeField]
     public ItemType ItemType { get; protected set; } = new ItemType();
     [field: SerializeField]
-    public float Duration { get; protected set; }
-    [field: SerializeField]
     public BodyType BodyType { get; protected set; }
     [field: SerializeField]
     public List<Attribute> Attributes { get; protected set; } = new List<Attribute>();
@@ -81,16 +79,6 @@ public class Item : MonoBehaviour {
         if (first.valueType == second.valueType) {
             Debug.LogError($"You cannot have two same ValueType for the item '{gameObject.name}'");
         }
-    }
-
-    public virtual void Use() {
-        EventManager.UseItemEventHandler(this);
-        StartCoroutine(SrartTimer());
-    }
-
-    protected IEnumerator SrartTimer() {
-        yield return new WaitForSeconds(Duration);
-        EventManager.ActionItemOverEventHandler(this);
     }
 
     public void Disable() {

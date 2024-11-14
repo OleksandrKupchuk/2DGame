@@ -328,9 +328,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 5133646653901411637}
   _border: {fileID: 7577363215467446216}
-  _boxCollider2D: {fileID: 1223477845305521611}
+  _collider: {fileID: 1223477845305521611}
   _labelButtonIcon: {fileID: 1553535059656873081}
-  _useButton: {fileID: 920941242200672320, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
 --- !u!61 &1223477845305521611
 BoxCollider2D:
   m_ObjectHideFlags: 0

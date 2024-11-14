@@ -7,7 +7,7 @@ public class SwapItemState : IDragDropState {
         Debug.Log("swap item enter");
         _controller = controller;
 
-        Cell _cell = _controller.Cursor.GetCell();
+        ICell _cell = _controller.Cursor.GetCell();
         Item _bufferItem = _cell.Item;
 
         _cell.SetItem(_controller.Cursor.Item);
@@ -16,7 +16,7 @@ public class SwapItemState : IDragDropState {
             _controller.Cursor.SetItem(_bufferItem);
         }
         _controller.ChangeState(_controller.RaisedItemState);
-        _controller.Cursor.OnTriggerEnter2D(_cell.BoxCollider2D);
+        _controller.Cursor.OnTriggerEnter2D(_cell.Collider);
     }
 
     public void Exit() {

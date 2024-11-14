@@ -7,11 +7,11 @@ public class PutItemState : IDragDropState {
         Debug.Log("put item enter");
         _controller = controller;
 
-        Cell _cell = _controller.Cursor.GetCell();
+        ICell _cell = _controller.Cursor.GetCell();
         _cell.SetItem(_controller.Cursor.Item);
 
         if (_cell.HasItem) {
-            _controller.Cursor.OnTriggerEnter2D(_cell.BoxCollider2D);
+            _controller.Cursor.OnTriggerEnter2D(_cell.Collider);
             _controller.Cursor.RemoveItem();
             _controller.ChangeState(_controller.CheckItemState);
         }

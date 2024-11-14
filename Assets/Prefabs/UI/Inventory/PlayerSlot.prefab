@@ -63,7 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 1678737434942239233}
   _border: {fileID: 3495361816053905098}
-  _boxCollider2D: {fileID: 7073628953220453078}
+  _collider: {fileID: 7073628953220453078}
   _itemTypes: 00000000
 --- !u!114 &4989003202458725114
 MonoBehaviour:

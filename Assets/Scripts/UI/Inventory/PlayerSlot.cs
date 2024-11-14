@@ -1,13 +1,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSlot : Cell {
+public class PlayerSlot : CellData, ICell {
+    private Item _item;
+
     [SerializeField]
     private List<ItemType> _itemTypes = new List<ItemType>();
 
+    public bool HasItem => _item != null;
+    public Item Item { get => _item; }
+    public RectTransform RectTransform { get; private set; }
+    public Collider2D Collider { get => _collider; }
+    public Transform Transfom => transform;
 
-    private new void Awake() {
-        base.Awake();
+    private void Awake() {
+        DisableIcon();
+        RectTransform = GetComponent<RectTransform>();
         DragDropController.RaisedItemTrigger += ChageBorderColor;
         DragDropController.DropPutItemTrigger += ResetBorderColor;
     }
@@ -26,16 +34,26 @@ public class PlayerSlot : Cell {
         }
     }
 
-    public override void SetItem(Item item) {
+    public void SetItem(Item item) {
         if (_itemTypes.Contains(item.ItemType)) {
-            base.SetItem(item);
+            _item = item;
+            SetIcon(Item.Icon);
+            EnableIcon();
             EventManager.PutOnItemEventHandler(item);
         }
     }
 
-    public override void RemoveItem() {
-        EventManager.TakeAwayItemEventHandler(Item);
-        Item = null;
+    public void RemoveItem() {
+        EventManager.TakeAwayItemEventHandler(_item);
+        _item = null;
         DisableIcon();
+    }
+
+    public void ResetBorderColor() {
+        SetBorderColor(Color.white);
+    }
+
+    public void SetBorderColor(Color color) {
+        _border.color = color;
     }
 }

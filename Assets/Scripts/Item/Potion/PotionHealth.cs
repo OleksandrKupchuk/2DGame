@@ -1,4 +1,4 @@
-public class PotionHealth : Item {
+public class PotionHealth : ItemUsable {
     private Player _player;
 
     private void Start() {
