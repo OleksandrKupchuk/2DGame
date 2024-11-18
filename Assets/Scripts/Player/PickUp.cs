@@ -49,6 +49,6 @@ public class PickUp : MonoBehaviour {
     }
 
     private void PickUpItem(Item item) {
-        _inventory.PutItem(item);
+        _inventory.AddItem(item);
     }
 }

@@ -31,4 +31,10 @@ public class EventManager : MonoBehaviour {
     public static void ActionItemOverEventHandler(Item item) {
         ActionItemOver.Invoke(item);
     }
+
+    public static event Action<Item> BuyItem;
+
+    public static void BuyItemEventHandler(Item item) {
+        BuyItem.Invoke(item);
+    }
 }

@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class ItemUsable : Item {
@@ -7,11 +6,10 @@ public class ItemUsable : Item {
 
     public virtual void Use() {
         EventManager.UseItemEventHandler(this);
-        StartCoroutine(SrartTimer());
+        Invoke(nameof(SrartTimerDelay), Duration);
     }
 
-    private IEnumerator SrartTimer() {
-        yield return new WaitForSeconds(Duration);
+    private void SrartTimerDelay() {
         EventManager.ActionItemOverEventHandler(this);
     }
 }

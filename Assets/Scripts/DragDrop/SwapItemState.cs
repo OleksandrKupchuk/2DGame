@@ -10,6 +10,7 @@ public class SwapItemState : IDragDropState {
         ICell _cell = _controller.Cursor.GetCell();
         Item _bufferItem = _cell.Item;
 
+        _cell.RemoveItem();
         _cell.SetItem(_controller.Cursor.Item);
 
         if (_cell.Item == _controller.Cursor.Item) {

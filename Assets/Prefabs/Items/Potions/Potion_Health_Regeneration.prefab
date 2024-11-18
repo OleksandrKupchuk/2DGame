@@ -54,10 +54,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97bba5a1167158344928469379e4b3af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider: {fileID: 4923831652963888022}
+  _rigidbody: {fileID: 1806466740052117435}
+  _spriteRenderer: {fileID: 8531331201663793107}
   <Name>k__BackingField: Potion Health Regeneration
   <Description>k__BackingField: 
-  <ItemType>k__BackingField: 7
-  <BodyType>k__BackingField: 0
+  <Price>k__BackingField: 5
   <Attributes>k__BackingField:
   - {fileID: 11400000, guid: c4c3987ffbf80e14a8115359a3e9810b, type: 2}
   <Duration>k__BackingField: 10

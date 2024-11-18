@@ -4,4 +4,5 @@ using UnityEngine;
 public class PlayerConfig : Config {
     public float healthRegeneration;
     public float delayHealthRegeneration;
+    public int conis;
 }

@@ -54,10 +54,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97bba5a1167158344928469379e4b3af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider: {fileID: 1228890744554252781}
+  _rigidbody: {fileID: 3576321653772133914}
+  _spriteRenderer: {fileID: 280292003938461652}
   <Name>k__BackingField: Potion Speed
   <Description>k__BackingField: 
-  <ItemType>k__BackingField: 7
-  <BodyType>k__BackingField: 0
+  <Price>k__BackingField: 12
   <Attributes>k__BackingField:
   - {fileID: 11400000, guid: f31a88fa443f8754c9101333ce6af677, type: 2}
   <Duration>k__BackingField: 5
@@ -121,7 +123,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4960239040758630424}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

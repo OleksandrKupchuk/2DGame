@@ -13,24 +13,23 @@ public enum ItemType {
 
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class Item : MonoBehaviour {
+    [SerializeField]
     protected Collider2D _collider;
-    protected SpriteRenderer _spriteRenderer;
+    [SerializeField]
     protected Rigidbody2D _rigidbody;
-
+    [SerializeField]
+    protected SpriteRenderer _spriteRenderer;
     [field: SerializeField]
     public string Name { get; protected set; }
     [field: SerializeField]
     public string Description { get; protected set; }
-    public Sprite Icon { get; protected set; }
+    [field: SerializeField]
+    public int Price { get; protected set; }
+    public Sprite Icon { get => _spriteRenderer.sprite; }
     [field: SerializeField]
     public List<Attribute> Attributes { get; protected set; } = new List<Attribute>();
 
     protected void Awake() {
-        _collider = GetComponent<Collider2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _rigidbody = GetComponent<Rigidbody2D>();
-        Icon = _spriteRenderer.sprite;
-
         CheckDuplicateAttributes();
 
         if(Attributes == null || Attributes.Count == 0 ) {

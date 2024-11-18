@@ -47,8 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bed930a2ee30fcb48940cc94f38fb8ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider: {fileID: 3062570284460223029}
+  _rigidbody: {fileID: 3062570284460223031}
+  _spriteRenderer: {fileID: 3062570284460223179}
   <Name>k__BackingField: Axe
   <Description>k__BackingField: Good weapon for first time
+  <Price>k__BackingField: 50
   <Attributes>k__BackingField:
   - {fileID: 11400000, guid: aa994891a1cc5c1458cb10121d46b9dd, type: 2}
   - {fileID: 11400000, guid: 0c049d7562b87b949b0cfafd4c1dce06, type: 2}

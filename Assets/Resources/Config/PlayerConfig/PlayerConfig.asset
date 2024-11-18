@@ -20,3 +20,4 @@ MonoBehaviour:
   damageMax: 5
   healthRegeneration: 2
   delayHealthRegeneration: 5
+  conis: 4483

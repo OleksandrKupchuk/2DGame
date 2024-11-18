@@ -54,11 +54,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97bba5a1167158344928469379e4b3af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider: {fileID: 7974928101380017108}
+  _rigidbody: {fileID: 3101896408332089383}
+  _spriteRenderer: {fileID: 4276030464080888337}
   <Name>k__BackingField: Potion Berserk
   <Description>k__BackingField: Give you additional damage and health regeneration.
     Duration 15 second
-  <ItemType>k__BackingField: 7
-  <BodyType>k__BackingField: 0
+  <Price>k__BackingField: 15
   <Attributes>k__BackingField:
   - {fileID: 11400000, guid: 813c902204e36684b92661aed2234fc1, type: 2}
   - {fileID: 11400000, guid: f7bfab23be4ad194888938c681115434, type: 2}
