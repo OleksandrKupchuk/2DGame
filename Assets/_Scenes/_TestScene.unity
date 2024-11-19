@@ -1397,7 +1397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3668950853142534034, guid: 5586857761868f7459de89fd64c9dec2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1416,6 +1416,10 @@ PrefabInstance:
       propertyPath: _market
       value: 
       objectReference: {fileID: 1689770958}
+    - target: {fileID: 2614509727031001111, guid: d16ed841d934b0c41b770da7ff4aa3f0, type: 3}
+      propertyPath: _commission
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3657191586359921842, guid: d16ed841d934b0c41b770da7ff4aa3f0, type: 3}
       propertyPath: m_RootOrder
       value: 22
@@ -1579,7 +1583,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _openCloseInventoryInputAction: {fileID: 5439983499608541599, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
-  _inventory: {fileID: 976615823}
 --- !u!4 &435956529
 Transform:
   m_ObjectHideFlags: 0
@@ -2111,7 +2114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7168476610257152028, guid: ae115cabf71785243a14dd569ffed046, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3865,6 +3868,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Potion_Berserk
       objectReference: {fileID: 0}
+    - target: {fileID: 7168476610257152028, guid: d2e9e3ba5227c1e408a0b2e393b04690, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4528,7 +4535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7783609211246636534, guid: ba4bd23bfc3594449a81c0d12c0fe0a9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8123576408081907660, guid: ba4bd23bfc3594449a81c0d12c0fe0a9, type: 3}
       propertyPath: m_Enabled
@@ -5561,9 +5568,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1783139924}
     m_Modifications:
+    - target: {fileID: 1174630179899635974, guid: 2536fb30619a3d34ca91da1fd23204ef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4773464457031772422, guid: 2536fb30619a3d34ca91da1fd23204ef, type: 3}
       propertyPath: m_Name
       value: Market
+      objectReference: {fileID: 0}
+    - target: {fileID: 4773464457031772422, guid: 2536fb30619a3d34ca91da1fd23204ef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8666886923354598060, guid: 2536fb30619a3d34ca91da1fd23204ef, type: 3}
       propertyPath: m_Pivot.x
@@ -5651,11 +5666,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8948784556849527868, guid: 2536fb30619a3d34ca91da1fd23204ef, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8948784556849527868, guid: 2536fb30619a3d34ca91da1fd23204ef, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7152,7 +7167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4960239040758630424, guid: 0f56472ebf769ea409a04d0b40ff73b0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5495071407342441346, guid: 0f56472ebf769ea409a04d0b40ff73b0, type: 3}
       propertyPath: m_Pivot.x
@@ -9496,7 +9511,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7783609211246636534, guid: ba4bd23bfc3594449a81c0d12c0fe0a9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8123576408081907660, guid: ba4bd23bfc3594449a81c0d12c0fe0a9, type: 3}
       propertyPath: m_Enabled

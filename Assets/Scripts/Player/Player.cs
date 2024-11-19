@@ -14,6 +14,8 @@ public class Player : Character {
     private float _currentHealth;
 
     [SerializeField]
+    private InputActionReference _openCloseInventoryInputAction;
+    [SerializeField]
     private InputActionReference _movementInputAction;
     [SerializeField]
     private InputActionReference _shotInputAction;
@@ -130,6 +132,7 @@ public class Player : Character {
         IsGround();
         StateMachine.Update();
         RegenerationHealth();
+        CheckOpenCloseInventory();
     }
 
     private void FixedUpdate() {
@@ -277,5 +280,12 @@ public class Player : Character {
 
     private void DisableSwordCollider() {
         _playerSword.BoxCollider2D.enabled = false;
+    }
+
+    private void CheckOpenCloseInventory() {
+        if (_openCloseInventoryInputAction.action.triggered) {
+            //print("click I");
+            Inventory.Open();
+        }
     }
 }

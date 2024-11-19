@@ -11,10 +11,10 @@ public class CartItem : MonoBehaviour {
     [SerializeField]
     private Button _buy;
 
-    public void Init(Item item) {
+    public void Init(Item item, int commission) {
         _name.text = item.Name;
         _icon.sprite = item.Icon;
-        _price.text = "" + item.Price;
+        _price.text = "" + (item.Price + commission);
         _buy.onClick.AddListener(() => {
             EventManager.BuyItemEventHandler(item);
             print("click buy button = " + item.Name);

@@ -7,6 +7,7 @@ public class Market : MonoBehaviour {
     private Player _player;
     private UnityAction _buyAction;
     private Dictionary<Item, CartItem> _dictionaryItems = new();
+    private int _commission;
 
     [SerializeField]
     private GameObject _background;
@@ -24,10 +25,6 @@ public class Market : MonoBehaviour {
         EventManager.BuyItem += Buy;
     }
 
-    private void OnEnable() {
-        EnableCartItems();
-    }
-
     private void Start() {
         Disable();
     }
@@ -36,9 +33,11 @@ public class Market : MonoBehaviour {
         EventManager.BuyItem -= Buy;
     }
 
-    public void Init(Player player) {
-        _player = player;
+    public void Init(int tradeCommission) {
+        _commission = tradeCommission;
     }
+
+    public void SetPlayer(Player player) { _player = player; }
 
     private void GenerateCartItems() {
         if (_items.Count <= 1) {
@@ -53,20 +52,23 @@ public class Market : MonoBehaviour {
             CartItem cartItemObject = Instantiate(_cartItem);
             cartItemObject.transform.SetParent(_content);
             cartItemObject.transform.localScale = Vector3.one;
-            cartItemObject.Init(_items[i]);
-            cartItemObject.gameObject.SetActive(false);
-            _dictionaryItems.Add(_items[i], cartItemObject);
+
+            Item itemObject = Instantiate(_items[i]);
+            itemObject.Disable();
+
+            cartItemObject.Init(itemObject, _commission);
+
+            //cartItemObject.gameObject.SetActive(false);
+            _dictionaryItems.Add(itemObject, cartItemObject);
         }
     }
 
-    private void EnableCartItems() {
-        foreach (KeyValuePair<Item, CartItem> _entry in _dictionaryItems) {
-            if(!_entry.Value.gameObject.activeSelf) {
-                _entry.Value.gameObject.SetActive(true);
-            }
-        }
+    private void SetScrollBarPositionAfterDelay() {
+        Invoke(nameof(SetScrollBarPosition), 0.1f);
+    }
 
-        SetScrollBarPositionAfterDelay();
+    private void SetScrollBarPosition() {
+        _scrollbar.value = 0;
     }
 
     private void Buy(Item item) {
@@ -76,7 +78,7 @@ public class Market : MonoBehaviour {
         }
 
         if(_player.Config.conis >= item.Price) {
-            _player.Config.conis -= item.Price;
+            _player.Config.conis -= item.Price + _commission;
             _player.Inventory.AddItem(item);
             
             CartItem _cartItem = _dictionaryItems.GetValueOrDefault(item);
@@ -88,16 +90,13 @@ public class Market : MonoBehaviour {
         }
     }
 
-    public void SetScrollBarPositionAfterDelay() {
-        Invoke(nameof(SetScrollBarPosition), 0.1f);
-    }
+    private void Sell(Item item) {
 
-    public void SetScrollBarPosition() {
-        _scrollbar.value = 0;
     }
 
     public void Enable() {
         _background.SetActive(true);
+        SetScrollBarPositionAfterDelay();
     }
 
     public void Disable() {

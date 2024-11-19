@@ -5,30 +5,29 @@ public class Npc : MonoBehaviour {
     private Player _player;
 
     [SerializeField]
+    private int _commission;
+    [SerializeField]
     private Dialog _dialog;
     [SerializeField]
     private Market _market;
 
+    private void Awake() {
+        _market.Init(_commission);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.TryGetComponent(out Player player)) {
             _player = player;
-            //_dialog.Show();
             _market.Enable();
-            _market.Init(_player);
+            _market.SetPlayer(_player);
             _player.Inventory.Open();
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
-        //if (collision.gameObject.tag.Equals("Player")) {
-        //    //_dialog.Hide();
-        //    _market.Disable();
-        //    _player.Inventory.Open();
-        //}
-
         if (collision.gameObject.TryGetComponent(out Player player)) {
             _market.Disable();
-            player.Inventory.Open();
+            player.Inventory.Close();
         }
     }
 }
