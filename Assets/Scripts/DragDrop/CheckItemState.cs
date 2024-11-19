@@ -31,7 +31,7 @@ public class CheckItemState : IDragDropState {
                 _controller.ChangeState(_controller.RaisedItemState);
             }
             else {
-                Debug.Log("cell is empty");
+                Debug.Log("cell not have item");
             }
         }
     }
