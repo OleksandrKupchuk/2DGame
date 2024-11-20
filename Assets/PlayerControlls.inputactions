@@ -81,7 +81,7 @@
                     "name": "ItemUsageSlotOne",
                     "type": "Button",
                     "id": "2de4e0ec-5a5f-43ce-b3f2-9ad090ea6670",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -1008,41 +1008,41 @@
             ]
         },
         {
-            "name": "ItemUsagePanel",
+            "name": "UsagePanel",
             "id": "2a08840d-5de2-490e-8fe8-c289f561732c",
             "actions": [
                 {
-                    "name": "ItemUsageSlotOne",
+                    "name": "SlotOne",
                     "type": "Button",
                     "id": "8a374d8e-bc7b-4ed1-8226-0a517b2aa755",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ItemUsageSlotTwo",
+                    "name": "SlotTwo",
                     "type": "Button",
                     "id": "c9887d91-59bb-4bf7-99a3-e93b0b271fe6",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ItemUsageSlotThree",
+                    "name": "SlotThree",
                     "type": "Button",
                     "id": "831ad74c-4486-4358-bf18-8953b900aab1",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ItemUsageSlotFour",
+                    "name": "SlotFour",
                     "type": "Button",
                     "id": "95773fb3-ebc7-4ae7-b653-d2c06f5af7ad",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -1056,7 +1056,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "ItemUsageSlotTwo",
+                    "action": "SlotTwo",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1067,7 +1067,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "ItemUsageSlotThree",
+                    "action": "SlotThree",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1078,7 +1078,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "ItemUsageSlotFour",
+                    "action": "SlotFour",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1089,7 +1089,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "ItemUsageSlotOne",
+                    "action": "SlotOne",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

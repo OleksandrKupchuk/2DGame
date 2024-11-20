@@ -25,7 +25,7 @@ public class Market : MonoBehaviour {
         EventManager.BuyItem += Buy;
     }
 
-    private void Start() {
+    private void OnEnable() {
         Disable();
     }
 
@@ -100,6 +100,6 @@ public class Market : MonoBehaviour {
     }
 
     public void Disable() {
-        //_background.SetActive(false);
+        _background.SetActive(false);
     }
 }

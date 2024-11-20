@@ -26,6 +26,9 @@ public class Npc : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.gameObject.TryGetComponent(out Player player)) {
+            if(_market == null) {
+                return;
+            }
             _market.Disable();
             player.Inventory.Close();
         }

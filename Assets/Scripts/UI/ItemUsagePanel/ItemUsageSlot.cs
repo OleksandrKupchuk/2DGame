@@ -3,14 +3,13 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ItemUsageSlot : Cell, ICell {
-    private InputActionReference _inputAction;
+    private InputAction _inputAction;
     private ItemUsable _item;
 
     [SerializeField]
-    private Text _labelButtonIcon;
+    private Text _label;
 
     public Item Item { get => _item; }
-
     public bool HasItem => _item != null;
     public RectTransform RectTransform { get; private set; }
     public Collider2D Collider { get => _collider; }
@@ -64,7 +63,7 @@ public class ItemUsageSlot : Cell, ICell {
     private void Update() {
         if (!HasItem) { return; }
 
-        if (_inputAction.action.triggered) {
+        if (_inputAction.triggered) {
             UseItem();
         }
     }
@@ -79,12 +78,10 @@ public class ItemUsageSlot : Cell, ICell {
         DisableIcon();
     }
 
-    public void SetInputAction(InputActionReference inputAction) {
+    public void SetInputAction(InputAction inputAction) {
         _inputAction = inputAction;
-        _labelButtonIcon.text = "" + GetNameButton(_inputAction.action.GetBindingDisplayString());
-    }
-
-    private string GetNameButton(string bindingString) {
-        return bindingString.Substring(bindingString.Length - 1, 1);
+        InputBinding inputBinding = _inputAction.bindings[0];
+        string buttonLabel = InputControlPath.ToHumanReadableString(inputBinding.effectivePath, InputControlPath.HumanReadableStringOptions.OmitDevice);
+        _label.text = buttonLabel;
     }
 }

@@ -44,7 +44,7 @@ public class Inventory : MonoBehaviour {
     private void OnEnable() {
         //EventManager.InventoryOpenlyClosed += Open;
         GenerateCellsOfPlayerBag();
-        _background.SetActive(false);
+        Close();
     }
 
     private void OnDestroy() {

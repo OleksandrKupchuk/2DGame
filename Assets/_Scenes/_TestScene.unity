@@ -1968,7 +1968,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
@@ -1987,7 +1987,7 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -4759,11 +4759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _usageSlot: {fileID: 3325139768098319467, guid: a49baf5bd11118a4f98a62df1e29740d, type: 3}
-  _inputActionReferences:
-  - {fileID: 5818332631011516860, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
-  - {fileID: -8429652006861589229, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
-  - {fileID: -4078029003925907283, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
-  - {fileID: 3233601619562896587, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
+  _inputActionAsset: {fileID: -944628639613478452, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
 --- !u!114 &1220103753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4791,7 +4787,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Keyboard&Mouse
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: UsagePanel
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1001 &1229169933
@@ -6395,9 +6391,9 @@ RectTransform:
   - {fileID: 1802934939}
   - {fileID: 224425479}
   - {fileID: 1220103747}
+  - {fileID: 605315459}
   - {fileID: 1886562465}
   - {fileID: 100768631}
-  - {fileID: 605315459}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
