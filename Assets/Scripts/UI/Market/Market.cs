@@ -68,7 +68,7 @@ public class Market : MonoBehaviour {
     }
 
     private void SetScrollBarPosition() {
-        _scrollbar.value = 0;
+        //_scrollbar.value = 0;
     }
 
     private void Buy(Item item) {
@@ -100,6 +100,6 @@ public class Market : MonoBehaviour {
     }
 
     public void Disable() {
-        _background.SetActive(false);
+        //_background.SetActive(false);
     }
 }
