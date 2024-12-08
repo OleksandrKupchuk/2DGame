@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : Character {
+    private IInteracvite _interactive;
     private List<Damage> _objectsAttack = new List<Damage>();
     private RaycastHit2D _raycastHit;
     private float _deafaultGravityScale;
@@ -13,14 +14,14 @@ public class Player : Character {
     private PlayerHealthView _playerHealthView;
     private float _currentHealth;
 
+    private InputAction _jumpInputAction;
+    private InputAction _movementInputAction;
+    private InputAction _attackInputAction;
+    private InputAction _handleInventoryInputAction;
+    private InputAction _interactiveInputAction;
+
     [SerializeField]
-    private InputActionReference _openCloseInventoryInputAction;
-    [SerializeField]
-    private InputActionReference _movementInputAction;
-    [SerializeField]
-    private InputActionReference _shotInputAction;
-    [SerializeField]
-    private InputActionReference _jumpInputAction;
+    private PlayerHandleAction _playerHandleAction;
     [SerializeField]
     private InvulnerabilityAnimation _invulnerableStatus;
     [SerializeField]
@@ -45,7 +46,7 @@ public class Player : Character {
     public bool IsLookingLeft { get => transform.localScale.x > 0; }
     public bool IsAttack {
         get {
-            if (ShotInputAction.action.IsPressed()) {
+            if (AttackInputAction.IsPressed()) {
                 return true;
             }
             return false;
@@ -54,7 +55,7 @@ public class Player : Character {
     public bool IsFalling { get => Rigidbody.velocity.y < 0; }
     public bool CanJump {
         get {
-            if (JumpInputAction.action.triggered && IsGround()) {
+            if (JumpInputAction.triggered && IsGround()) {
                 //print("can jump");
                 return true;
             }
@@ -62,7 +63,6 @@ public class Player : Character {
             return false;
         }
     }
-    public Vector2 MovementInput { get; private set; }
     public List<Collider2D> CollidersForIgnored { get => _collidersForIgnored; }
     public PlayerConfig Config { get => (PlayerConfig)_config; }
     public PlayerIdleState IdleState { get; private set; }
@@ -73,11 +73,13 @@ public class Player : Character {
     public PlayerHitState HitState { get; private set; }
     public PlayerDeadState DeadState { get; private set; }
     public StateMachine<Player> StateMachine { get; private set; }
-    public InputActionReference ShotInputAction { get => _shotInputAction; }
-    public InputActionReference JumpInputAction { get => _jumpInputAction; }
+    public InputAction AttackInputAction { get => _attackInputAction; }
+    public InputAction JumpInputAction { get => _jumpInputAction; }
+    public InputAction InteractiveInputAction { get => _interactiveInputAction; }
     public InvulnerabilityAnimation InvulnerableStatus { get => _invulnerableStatus; }
     public Inventory Inventory { get; private set; }
     public PlayerAttributes PlayerAttributes { get; private set; }
+    public IInteracvite Interactive { get => _interactive; }
 
     private new void Awake() {
         base.Awake();
@@ -98,15 +100,6 @@ public class Player : Character {
     }
 
     private void CheckComponentOnNull() {
-        if (_movementInputAction == null) {
-            Debug.LogError($"Component {nameof(InputActionReference)} is null");
-        }
-        if (_shotInputAction == null) {
-            Debug.LogError($"Component {nameof(InputActionReference)} is null");
-        }
-        if (_jumpInputAction == null) {
-            Debug.LogError($"Component {nameof(InputActionReference)} is null");
-        }
         if (_invulnerableStatus == null) {
             Debug.LogError($"Component {nameof(InvulnerabilityAnimation)} is null");
         }
@@ -123,16 +116,25 @@ public class Player : Character {
     }
 
     private void Start() {
+        InitInputAction();
         StateMachine.ChangeState(IdleState);
         _playerHealthView = FindAnyObjectByType<PlayerHealthView>();
         _playerHealthView.UpdateHealthBar(null);
+    }
+
+    private void InitInputAction() {
+        _jumpInputAction = _playerHandleAction.GetAction("Jump");
+        _movementInputAction = _playerHandleAction.GetAction("Movement");
+        _attackInputAction = _playerHandleAction.GetAction("Attack");
+        _handleInventoryInputAction = _playerHandleAction.GetAction("HandleInventory");
+        _interactiveInputAction = _playerHandleAction.GetAction("Interactive");
     }
 
     private void Update() {
         IsGround();
         StateMachine.Update();
         RegenerationHealth();
-        CheckOpenCloseInventory();
+        ToggleInventory();
     }
 
     private void FixedUpdate() {
@@ -140,14 +142,14 @@ public class Player : Character {
     }
 
     public Vector2 GetMovementInput() {
-        return MovementInput = _movementInputAction.action.ReadValue<Vector2>();
+        return _movementInputAction.ReadValue<Vector2>();
     }
 
     public void Flip() {
-        if (MovementInput.x > 0) {
+        if (GetMovementInput().x > 0) {
             gameObject.transform.localScale = new Vector3(-1, 1, 1);
         }
-        else if (MovementInput.x < 0) {
+        else if (GetMovementInput().x < 0) {
             gameObject.transform.localScale = new Vector3(1, 1, 1);
         }
     }
@@ -282,10 +284,21 @@ public class Player : Character {
         _playerSword.BoxCollider2D.enabled = false;
     }
 
-    private void CheckOpenCloseInventory() {
-        if (_openCloseInventoryInputAction.action.triggered) {
-            //print("click I");
-            Inventory.Open();
+    private void ToggleInventory() {
+        if (_handleInventoryInputAction.triggered) {
+            Inventory.ActiveToggle();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.TryGetComponent<IInteracvite>(out IInteracvite interacvite)) {
+            _interactive = interacvite;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.TryGetComponent<IInteracvite>(out IInteracvite interacvite)) {
+            _interactive = null;
         }
     }
 }

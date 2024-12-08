@@ -42,13 +42,8 @@ public class Inventory : MonoBehaviour {
     }
 
     private void OnEnable() {
-        //EventManager.InventoryOpenlyClosed += Open;
         GenerateCellsOfPlayerBag();
         Close();
-    }
-
-    private void OnDestroy() {
-        //EventManager.InventoryOpenlyClosed -= Open;
     }
 
     private void CheckItemInCloseButton() {
@@ -76,18 +71,29 @@ public class Inventory : MonoBehaviour {
         }
     }
 
+    public void ActiveToggle() {
+        if (_background.activeSelf) {
+            _closeButton.gameObject.SetActive(false);
+            _background.SetActive(false);
+            EventManager.CloseInventoryEventHandler();
+        }
+        else { 
+            _closeButton.gameObject.SetActive(true);
+            _background.SetActive(true);
+        }
+    }
+
     public void Open() {
-        //print("active");
-        //_closeButton.gameObject.SetActive(!_closeButton.gameObject.activeSelf);
-        //_background.SetActive(!_background.activeSelf);
+        print("open");
         _closeButton.gameObject.SetActive(true);
         _background.SetActive(true);
     }
 
     public void Close() {
-        //print("active");
+        print("active");
         _closeButton.gameObject.SetActive(false);
         _background.SetActive(false);
+        EventManager.CloseInventoryEventHandler();
     }
 
     public void AddItem(Item item) {

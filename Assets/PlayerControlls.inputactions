@@ -27,7 +27,7 @@
                     "name": "Fire",
                     "type": "Button",
                     "id": "1eef73d2-fbfc-4c49-81c2-1049d2bf2c0f",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -42,10 +42,10 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Shot",
+                    "name": "Attack",
                     "type": "Button",
                     "id": "b9327b7c-fbb9-447e-81e9-127983c00778",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -54,61 +54,25 @@
                     "name": "Jump",
                     "type": "Value",
                     "id": "c91ae1ae-9847-4e47-9c24-697548f1e0fb",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
-                    "name": "OpenCloseInventory",
+                    "name": "HandleInventory",
                     "type": "Button",
                     "id": "b3166109-4e74-441e-afdf-0d7aaf2747f5",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "One",
-                    "type": "Button",
-                    "id": "b1b32d51-983b-4a2f-b3c8-791c73241b54",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ItemUsageSlotOne",
-                    "type": "Button",
-                    "id": "2de4e0ec-5a5f-43ce-b3f2-9ad090ea6670",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ItemUsageSlotTwo",
+                    "name": "Interactive",
                     "type": "Button",
-                    "id": "511c5a80-29bd-4e90-a6b7-ce4f715e2912",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ItemUsageSlotThree",
-                    "type": "Button",
-                    "id": "f2fb96a0-8e9f-405e-b3fc-885cc3e8de38",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ItemUsageSlotFour",
-                    "type": "Button",
-                    "id": "6f928559-7e31-4934-92a7-cd7913283b82",
-                    "expectedControlType": "Button",
+                    "id": "508e8c8b-7ae4-4be3-8021-e60dea490d32",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -408,7 +372,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Shot",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -430,62 +394,18 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "OpenCloseInventory",
+                    "action": "HandleInventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "4796841e-196d-4d28-a69a-bfe84ad1aa1e",
-                    "path": "<Keyboard>/1",
+                    "id": "eef8a15b-2c04-4d05-b638-12f12bfaf6d8",
+                    "path": "<Keyboard>/e",
                     "interactions": "Press",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "One",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "00605823-b74c-4a6e-9496-e440c894c9ec",
-                    "path": "<Keyboard>/1",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "ItemUsageSlotOne",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8b02a97d-333d-428d-a395-c56c6806bc61",
-                    "path": "<Keyboard>/2",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "ItemUsageSlotTwo",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3bed0993-3788-41ec-8f51-9d0967e618f4",
-                    "path": "<Keyboard>/3",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "ItemUsageSlotThree",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8de93593-4678-4f54-9875-c5e90827c989",
-                    "path": "<Keyboard>/4",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "ItemUsageSlotFour",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Interactive",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

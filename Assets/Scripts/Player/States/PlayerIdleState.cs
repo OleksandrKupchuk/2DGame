@@ -27,6 +27,10 @@ public class PlayerIdleState : IState<Player> {
         else if (Mathf.Abs(_player.GetMovementInput().x) > 0) {
             _player.StateMachine.ChangeState(_player.RunState);
         }
+
+        if (_player.InteractiveInputAction.triggered) {
+            _player.Interactive?.Interact();
+        }
     }
 
     public void FixedUpdate() {

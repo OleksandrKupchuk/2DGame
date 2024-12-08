@@ -8,7 +8,12 @@ public class Market : MonoBehaviour {
     private UnityAction _buyAction;
     private Dictionary<Item, CartItem> _dictionaryItems = new();
     private int _commission;
+    private int _bufferComission;
 
+    [SerializeField]
+    private bool _isDiscount;
+    [SerializeField]
+    private GameObject _discount;
     [SerializeField]
     private GameObject _background;
     [SerializeField]
@@ -20,24 +25,11 @@ public class Market : MonoBehaviour {
     [SerializeField]
     private List<Item> _items;
 
-    private void Awake() {
-        GenerateCartItems();
-        EventManager.BuyItem += Buy;
-    }
-
-    private void OnEnable() {
-        Disable();
-    }
-
-    private void OnDestroy() {
-        EventManager.BuyItem -= Buy;
-    }
-
     public void Init(int tradeCommission) {
         _commission = tradeCommission;
+        GenerateCartItems();
+        Disable();
     }
-
-    public void SetPlayer(Player player) { _player = player; }
 
     private void GenerateCartItems() {
         if (_items.Count <= 1) {
@@ -56,50 +48,73 @@ public class Market : MonoBehaviour {
             Item itemObject = Instantiate(_items[i]);
             itemObject.Disable();
 
-            cartItemObject.Init(itemObject, _commission);
+            cartItemObject.Init(itemObject, () => { Buy(itemObject); });
 
             //cartItemObject.gameObject.SetActive(false);
             _dictionaryItems.Add(itemObject, cartItemObject);
         }
     }
 
-    private void SetScrollBarPositionAfterDelay() {
-        Invoke(nameof(SetScrollBarPosition), 0.1f);
-    }
-
-    private void SetScrollBarPosition() {
-        //_scrollbar.value = 0;
+    private int GetPriceWithTraderComission(int itemPrice) {
+        return itemPrice + (itemPrice * _commission / 100);
     }
 
     private void Buy(Item item) {
         if (!_dictionaryItems.GetValueOrDefault(item).gameObject.activeSelf) {
-            print("You bought this item " +  item.Name);
+            print("You bought this item " + item.Name);
             return;
         }
 
-        if(_player.Config.conis >= item.Price) {
-            _player.Config.conis -= item.Price + _commission;
+        if (_player.Config.conis >= GetPriceWithTraderComission(item.Price)) {
+            _player.Config.conis -= GetPriceWithTraderComission(item.Price);
             _player.Inventory.AddItem(item);
-            
+
             CartItem _cartItem = _dictionaryItems.GetValueOrDefault(item);
             _cartItem.gameObject.SetActive(false);
             _dictionaryItems.Remove(item);
+            EventManager.BuyItemEventHandler(item);
         }
         else {
             print("Not enough money");
         }
     }
 
-    private void Sell(Item item) {
-
+    public void Enable() {
+        //_background.SetActive(true);
+        gameObject.SetActive(true);
+        ShowDiscount();
     }
 
-    public void Enable() {
-        _background.SetActive(true);
-        SetScrollBarPositionAfterDelay();
+    private void ShowDiscount() {
+        if (_isDiscount) {
+            _bufferComission = _commission;
+            _commission = 0;
+            _discount.SetActive(true);
+            Invoke(nameof(DelayDiscount), 10f);
+        }
+        else {
+            _commission = _bufferComission;
+            _discount.SetActive(false);
+        }
+
+        UpdatePrice();
+    }
+
+    private void DelayDiscount() {
+        _isDiscount = false;
+    }
+
+    private void UpdatePrice() {
+        foreach (KeyValuePair<Item, CartItem> item in _dictionaryItems) {
+            int price = GetPriceWithTraderComission(item.Key.Price);
+            item.Value.SetPrice(price);
+        }
     }
 
     public void Disable() {
-        _background.SetActive(false);
+        gameObject.SetActive(false);
+        //_background.SetActive(false);
     }
+
+    public void SetPlayer(Player player) { _player = player; }
 }

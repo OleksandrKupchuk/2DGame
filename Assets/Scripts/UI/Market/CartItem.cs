@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class CartItem : MonoBehaviour {
@@ -11,13 +12,13 @@ public class CartItem : MonoBehaviour {
     [SerializeField]
     private Button _buy;
 
-    public void Init(Item item, int commission) {
+    public void Init(Item item, UnityAction action) {
         _name.text = item.Name;
         _icon.sprite = item.Icon;
-        _price.text = "" + (item.Price + commission);
-        _buy.onClick.AddListener(() => {
-            EventManager.BuyItemEventHandler(item);
-            print("click buy button = " + item.Name);
-        });
+        _buy.onClick.AddListener(action);
+    }
+
+    public void SetPrice(int price) {
+        _price.text = "" + price;
     }
 }

@@ -2,12 +2,6 @@ using System;
 using UnityEngine;
 
 public class EventManager : MonoBehaviour {
-    public static event Action InventoryOpenlyClosed;
-
-    public static void InventoryOpenlyClosedEventHandler() {
-        InventoryOpenlyClosed.Invoke();
-    }
-
     public static event Action<WearableItem> PutOnItem;
 
     public static void PutOnItemEventHandler(WearableItem item) {
@@ -36,5 +30,11 @@ public class EventManager : MonoBehaviour {
 
     public static void BuyItemEventHandler(Item item) {
         BuyItem.Invoke(item);
+    }
+
+    public static event Action CloseInventory;
+
+    public static void CloseInventoryEventHandler() {
+        CloseInventory.Invoke();
     }
 }

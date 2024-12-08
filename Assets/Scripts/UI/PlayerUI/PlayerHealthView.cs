@@ -9,11 +9,12 @@ public class PlayerHealthView : MonoBehaviour {
     [SerializeField]
     private Image _healthBar;
 
-    private void OnEnable() {
+    private void Awake() {
         EventManager.PutOnItem += UpdateHealthBar;
         EventManager.TakeAwayItem += UpdateHealthBar;
         EventManager.UseItem += UpdateHealthBar;
         EventManager.ActionItemOver += UpdateHealthBar;
+        _player = FindObjectOfType<Player>();
     }
 
     private void OnDestroy() {
@@ -21,10 +22,6 @@ public class PlayerHealthView : MonoBehaviour {
         EventManager.TakeAwayItem -= UpdateHealthBar;
         EventManager.UseItem -= UpdateHealthBar;
         EventManager.ActionItemOver -= UpdateHealthBar;
-    }
-
-    private void Awake() {
-        _player = FindObjectOfType<Player>();
     }
 
     public void UpdateHealthBar(Item item) {

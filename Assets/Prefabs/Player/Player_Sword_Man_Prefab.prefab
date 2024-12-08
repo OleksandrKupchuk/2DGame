@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6843455573970313801}
   - component: {fileID: 5998367218307207105}
   - component: {fileID: 2377159792989392474}
+  - component: {fileID: 7992021253369143375}
   m_Layer: 6
   m_Name: Player_Sword_Man_Prefab
   m_TagString: Player
@@ -30,6 +31,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5238491402704463331}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -37,7 +39,6 @@ Transform:
   m_Children:
   - {fileID: 139117442233933345}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7139910950940667720
 MonoBehaviour:
@@ -52,6 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: a54ace36f66f2cb4dbac2f323babad9b, type: 2}
+  _playerHandleAction: {fileID: 7992021253369143375}
   _openCloseInventoryInputAction: {fileID: 5439983499608541599, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
   _movementInputAction: {fileID: 9055752030835066355, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
   _shotInputAction: {fileID: 8132335576314495632, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
@@ -274,6 +276,19 @@ MonoBehaviour:
   - {fileID: 499335789907353977}
   - {fileID: 234101906116879736}
   - {fileID: 5133092242694476782}
+--- !u!114 &7992021253369143375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5238491402704463331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382c1f9adf372534aaca39b0c10b2f82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputActionAsset: {fileID: -944628639613478452, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
 --- !u!1 &7328863205628577472
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,13 +315,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7328863205628577472}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.99442846, w: 0.10541402}
   m_LocalPosition: {x: 0.23327366, y: -0.00074654457, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2476247096562912975}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 149}
 --- !u!212 &8185496335760780153
 SpriteRenderer:
