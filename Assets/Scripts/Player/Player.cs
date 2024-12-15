@@ -292,12 +292,14 @@ public class Player : Character {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.TryGetComponent<IInteracvite>(out IInteracvite interacvite)) {
+            print("interactive set");
             _interactive = interacvite;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.TryGetComponent<IInteracvite>(out IInteracvite interacvite)) {
+            print("interactive null");
             _interactive = null;
         }
     }

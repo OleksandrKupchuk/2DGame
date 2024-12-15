@@ -1,6 +1,8 @@
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour {
+    [SerializeField]
+    private float _speedSmooth2;
     private Vector3 _cameraPosition;
     private Player _player;
 
@@ -24,5 +26,10 @@ public class CameraMovement : MonoBehaviour {
         }
 
         transform.position = Vector3.Lerp(transform.position, _cameraPosition, _speedSmooth * Time.deltaTime);
+
+        //just for test
+        if (_speedSmooth2 != 0) {
+            transform.position = new Vector3(transform.position.x + _speedSmooth2, transform.position.y, transform.position.z);
+        }
     }
 }
