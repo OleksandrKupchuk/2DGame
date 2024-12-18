@@ -53,15 +53,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: a54ace36f66f2cb4dbac2f323babad9b, type: 2}
-  _movementInputAction2:
-    m_Name: Movement Input Action 2
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 478d554a-b7f1-4c3a-ac28-5076a7eecf2e
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
   _invulnerableStatus: {fileID: 9206641031412101052}
   _boxCollider: {fileID: 2724809069109994693}
   _distanceRaycastHit: 0.1
@@ -85,7 +76,8 @@ MonoBehaviour:
   _frameRateInAttackAnimationForEnableCollider: 25
   _frameRateInAttackAnimationForDisableCollider: 30
   _attackAnimation: {fileID: 7400000, guid: fb30f15524b4a2d4b83dc65fe81c33fd, type: 2}
-  <Movement>k__BackingField: {fileID: 5652064171342545477}
+  <InvulnerableStatus>k__BackingField: {fileID: 9206641031412101052}
+  <PlayerMovement>k__BackingField: {fileID: 5652064171342545477}
 --- !u!114 &9206641031412101052
 MonoBehaviour:
   m_ObjectHideFlags: 0

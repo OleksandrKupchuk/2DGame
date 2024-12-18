@@ -17,7 +17,7 @@ public class CameraMovement : MonoBehaviour {
 
         _cameraPosition = new Vector3(_player.transform.position.x, _player.transform.position.y, _offset.z);
 
-        if (_player.IsLookingLeft) {
+        if (_player.PlayerMovement.IsLookingLeft) {
             _cameraPosition = new Vector3(_player.transform.position.x - _offset.x, _player.transform.position.y + _offset.y, _offset.z);
         }
         else {

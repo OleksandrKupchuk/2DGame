@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Player : Character {
     private IInteracvite _interactive;
@@ -14,16 +13,6 @@ public class Player : Character {
     private PlayerHealthView _playerHealthView;
     private float _currentHealth;
 
-    private InputAction _jumpInputAction;
-    private InputAction _movementInputAction;
-    private InputAction _attackInputAction;
-    private InputAction _handleInventoryInputAction;
-    private InputAction _interactiveInputAction;
-
-    [SerializeField]
-    private PlayerHandleAction _playerHandleAction;
-    [SerializeField]
-    private InvulnerabilityAnimation _invulnerableStatus;
     [SerializeField]
     private BoxCollider2D _boxCollider;
     [SerializeField]
@@ -43,26 +32,6 @@ public class Player : Character {
 
     public float CurrentHealth { get => _currentHealth = _currentHealth > PlayerAttributes.Health ? PlayerAttributes.Health : _currentHealth; }
     public bool IsDead { get => CurrentHealth <= 0; }
-    public bool IsLookingLeft { get => transform.localScale.x > 0; }
-    public bool IsAttack {
-        get {
-            if (AttackInputAction.IsPressed()) {
-                return true;
-            }
-            return false;
-        }
-    }
-    public bool IsFalling { get => Rigidbody.velocity.y < 0; }
-    public bool CanJump {
-        get {
-            if (JumpInputAction.triggered && IsGround()) {
-                //print("can jump");
-                return true;
-            }
-
-            return false;
-        }
-    }
     public List<Collider2D> CollidersForIgnored { get => _collidersForIgnored; }
     public PlayerConfig Config { get => (PlayerConfig)_config; }
     public PlayerIdleState IdleState { get; private set; }
@@ -73,10 +42,8 @@ public class Player : Character {
     public PlayerHitState HitState { get; private set; }
     public PlayerDeadState DeadState { get; private set; }
     public StateMachine<Player> StateMachine { get; private set; }
-    public InputAction AttackInputAction { get => _attackInputAction; }
-    public InputAction JumpInputAction { get => _jumpInputAction; }
-    public InputAction InteractiveInputAction { get => _interactiveInputAction; }
-    public InvulnerabilityAnimation InvulnerableStatus { get => _invulnerableStatus; }
+    [field: SerializeField]
+    public InvulnerabilityStatus InvulnerableStatus { get; private set; }
     public Inventory Inventory { get; private set; }
     public PlayerAttributes PlayerAttributes { get; private set; }
     public IInteracvite Interactive { get => _interactive; }
@@ -104,8 +71,8 @@ public class Player : Character {
     }
 
     private void CheckComponentOnNull() {
-        if (_invulnerableStatus == null) {
-            Debug.LogError($"Component {nameof(InvulnerabilityAnimation)} is null");
+        if (InvulnerableStatus == null) {
+            Debug.LogError($"Component {nameof(InvulnerabilityStatus)} is null");
         }
         if (_boxCollider == null) {
             Debug.LogError($"Component {nameof(BoxCollider2D)} is null");
@@ -120,50 +87,26 @@ public class Player : Character {
     }
 
     private void Start() {
-        InitInputAction();
         StateMachine.ChangeState(IdleState);
         _playerHealthView = FindAnyObjectByType<PlayerHealthView>();
         _playerHealthView.UpdateHealthBar(null);
     }
 
-    private void InitInputAction() {
-        //_jumpInputAction = _playerHandleAction.GetAction("Jump");
-        //_movementInputAction = _playerHandleAction.GetAction("Movement");
-        //_attackInputAction = _playerHandleAction.GetAction("Attack");
-        //_handleInventoryInputAction = _playerHandleAction.GetAction("HandleInventory");
-        //_interactiveInputAction = _playerHandleAction.GetAction("Interactive");
-    }
-
     private void Update() {
-        //Movement.IsGround();
         StateMachine.Update();
         RegenerationHealth();
-        //ToggleInventory();
+        ToggleInventory();
     }
 
     private void FixedUpdate() {
         StateMachine.FixedUpdate();
     }
 
-    public Vector2 GetMovementInput() {
-        //return _movementInputAction.ReadValue<Vector2>();
-        return Vector2.zero;
-    }
-
-    public void Flip() {
-        if (GetMovementInput().x > 0) {
-            gameObject.transform.localScale = new Vector3(-1, 1, 1);
-        }
-        else if (GetMovementInput().x < 0) {
-            gameObject.transform.localScale = new Vector3(1, 1, 1);
-        }
-    }
-
     public void CheckTakeDamage(float damage, Damage damageObject) {
         if (IsThisAlreadyAttacked(damageObject)) {
             StartCoroutine(ResetCurrentDamage(damageObject));
         }
-        else if (_invulnerableStatus.IsInvulnerability) {
+        else if (InvulnerableStatus.IsInvulnerability) {
             //print("player is invulnerable");
         }
         else {
@@ -214,21 +157,6 @@ public class Player : Character {
         else {
             StateMachine.ChangeState(HitState);
         }
-    }
-
-    public bool IsGround() {
-        Color _color;
-        _raycastHit = Physics2D.BoxCast(_boxCollider.bounds.center, _boxCollider.bounds.size, 0f, Vector2.down, _distanceRaycastHit, _groundLayer);
-        if (_raycastHit.transform != null) {
-            _color = Color.green;
-        }
-        else {
-            _color = Color.red;
-        }
-        Debug.DrawRay(_boxCollider.bounds.center + new Vector3(_boxCollider.bounds.extents.x, 0), Vector3.down * (_boxCollider.bounds.extents.y + _distanceRaycastHit), _color);
-        Debug.DrawRay(_boxCollider.bounds.center - new Vector3(_boxCollider.bounds.extents.x, 0), Vector3.down * (_boxCollider.bounds.extents.y + _distanceRaycastHit), _color);
-        Debug.DrawRay(_boxCollider.bounds.center - new Vector3(_boxCollider.bounds.extents.x, _boxCollider.bounds.extents.y + _distanceRaycastHit), Vector3.right * _boxCollider.bounds.size.x, _color);
-        return _raycastHit.transform != null;
     }
 
     public void SetGravityScale(float value) {
@@ -285,7 +213,7 @@ public class Player : Character {
     }
 
     private void ToggleInventory() {
-        if (_handleInventoryInputAction.triggered) {
+        if (PlayerMovement.IsOpenInventory) {
             Inventory.ActiveToggle();
         }
     }

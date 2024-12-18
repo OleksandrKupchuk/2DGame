@@ -32,11 +32,11 @@ public class PlayerRunState : IState<Player> {
     public void FixedUpdate() {
         //Debug.Log($"<color=blue>run fixed execute</color>");
 
-        //if (_player.Movement.IsAttack) {
-        //    return;
-        //}
+        if (_player.PlayerMovement.IsAttack) {
+            return;
+        }
 
-        //_player.Move(_player.GetMovementInput().x, _player.PlayerAttributes.Speed);
+        _player.Move(_player.PlayerMovement.GetMoveInput().x, _player.PlayerAttributes.Speed);
         _player.PlayerMovement.Run(_player.PlayerMovement.GetMoveInput().x);
     }
 

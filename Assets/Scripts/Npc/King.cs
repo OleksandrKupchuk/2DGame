@@ -12,7 +12,7 @@ public class King : Npc, IInteracvite {
         if (collision.gameObject.TryGetComponent(out Player player)) {
             print("king touch player");
             _player = player;
-            //_popup.SetActive(true);
+            _popup.SetActive(true);
             if (_bringItem == null) {
                 _bringItem = new QuestBringItem(_player);
             }
