@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5800932954640797202}
   - component: {fileID: 6323688263138077681}
   - component: {fileID: 603795621877991390}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Potion_Armor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

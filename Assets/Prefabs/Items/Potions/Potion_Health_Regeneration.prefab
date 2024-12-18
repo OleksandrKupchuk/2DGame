@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4923831652963888022}
   - component: {fileID: 4104275613093275573}
   - component: {fileID: 8330711117835411258}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Potion_Health_Regeneration
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

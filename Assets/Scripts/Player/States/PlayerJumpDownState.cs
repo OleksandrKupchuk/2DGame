@@ -12,19 +12,19 @@ public class PlayerJumpDownState : IState<Player> {
     }
 
     public void Update() {
-        if (_player.IsGround()) {
+        if (_player.PlayerMovement.IsGround()) {
             _player.StateMachine.ChangeState(_player.IdleState);
         }
 
-        _player.GetMovementInput();
-        _player.Flip();
+        _player.PlayerMovement.GetMoveInput();
+        _player.PlayerMovement.Flip();
     }
 
     public void FixedUpdate() {
-        if(_player.GetMovementInput() == Vector2.zero) {
+        if(_player.PlayerMovement.GetMoveInput() == Vector2.zero) {
             return;
         }
-        _player.Move(_player.GetMovementInput().x);
+        _player.PlayerMovement.Run(_player.PlayerMovement.GetMoveInput().x);
     }
 
     public void Exit() {

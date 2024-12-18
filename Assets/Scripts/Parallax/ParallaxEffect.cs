@@ -19,17 +19,16 @@ public class ParallaxEffect : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        float difference = _camera.transform.position.x - transform.position.x;
+        float distanceToCamera = _camera.transform.position.x - transform.position.x;
 
         float destination = _camera.transform.position.x * _smoothSpeed;
         transform.position = new Vector3(_startPosition + destination, transform.position.y, transform.position.z);
 
-        if (difference > 0 && difference >= _length) {
+        if (distanceToCamera > 0 && distanceToCamera >= _length) {
             _startPosition += _length;
         }
-        else if (difference < 0 && Math.Abs(difference) >= _length) {
+        else if (distanceToCamera < 0 && Math.Abs(distanceToCamera) >= _length) {
             _startPosition -= _length;
         }
-
     }
 }

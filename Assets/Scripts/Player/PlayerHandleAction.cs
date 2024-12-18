@@ -1,21 +1,19 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerHandleAction : MonoBehaviour {
-    private InputActionMap _playerMap;
-
-    [SerializeField]
+public class PlayerHandleAction {
     private InputActionAsset _inputActionAsset;
+    private InputActionMap _inputActionMap;
 
-    private void Awake() {
-        FindPlayerMap();
+    public PlayerHandleAction(InputActionAsset inputActionAsset) {
+        _inputActionAsset = inputActionAsset;
     }
 
-    public void FindPlayerMap() {
-        _playerMap = _inputActionAsset.FindActionMap("Player");
+    public void FindMap(string mapName) {
+        _inputActionMap = _inputActionAsset.FindActionMap(mapName);
 
-        if(_playerMap == null) {
-            Debug.LogError("Not found action map 'Player'");
+        if(_inputActionMap == null) {
+            Debug.LogError($"Not found action map {mapName}");
         }
     }
 
@@ -24,6 +22,6 @@ public class PlayerHandleAction : MonoBehaviour {
             Debug.LogError("Action name is empty or null");
         }
 
-        return _playerMap.FindAction(actionName);
+        return _inputActionMap.FindAction(actionName);
     }
 }

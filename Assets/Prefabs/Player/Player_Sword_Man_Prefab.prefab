@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6843455573970313801}
   - component: {fileID: 5998367218307207105}
   - component: {fileID: 2377159792989392474}
-  - component: {fileID: 7992021253369143375}
+  - component: {fileID: 5652064171342545477}
   m_Layer: 6
   m_Name: Player_Sword_Man_Prefab
   m_TagString: Player
@@ -53,11 +53,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: a54ace36f66f2cb4dbac2f323babad9b, type: 2}
-  _playerHandleAction: {fileID: 7992021253369143375}
-  _openCloseInventoryInputAction: {fileID: 5439983499608541599, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
-  _movementInputAction: {fileID: 9055752030835066355, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
-  _shotInputAction: {fileID: 8132335576314495632, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
-  _jumpInputAction: {fileID: 6671280106201752741, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
+  _movementInputAction2:
+    m_Name: Movement Input Action 2
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 478d554a-b7f1-4c3a-ac28-5076a7eecf2e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   _invulnerableStatus: {fileID: 9206641031412101052}
   _boxCollider: {fileID: 2724809069109994693}
   _distanceRaycastHit: 0.1
@@ -81,6 +85,7 @@ MonoBehaviour:
   _frameRateInAttackAnimationForEnableCollider: 25
   _frameRateInAttackAnimationForDisableCollider: 30
   _attackAnimation: {fileID: 7400000, guid: fb30f15524b4a2d4b83dc65fe81c33fd, type: 2}
+  <Movement>k__BackingField: {fileID: 5652064171342545477}
 --- !u!114 &9206641031412101052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,7 +281,7 @@ MonoBehaviour:
   - {fileID: 499335789907353977}
   - {fileID: 234101906116879736}
   - {fileID: 5133092242694476782}
---- !u!114 &7992021253369143375
+--- !u!114 &5652064171342545477
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -285,9 +290,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5238491402704463331}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 382c1f9adf372534aaca39b0c10b2f82, type: 3}
+  m_Script: {fileID: 11500000, guid: d3e0e156320d70e4f912181c0c41ae2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 2123502423263786045}
+  _boxCollider: {fileID: 2724809069109994693}
+  _distanceRaycastHit: 0.1
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
   _inputActionAsset: {fileID: -944628639613478452, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
 --- !u!1 &7328863205628577472
 GameObject:
@@ -404,7 +415,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8192
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -2362,7 +2373,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 10240
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -2824,7 +2835,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 10240
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -2892,7 +2903,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 10240
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -2965,7 +2976,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 10240
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -3232,7 +3243,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 10240
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -3300,7 +3311,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 10240
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -3353,7 +3364,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 10240
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -3411,7 +3422,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 10240
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -3529,7 +3540,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 10240
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -3582,7 +3593,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 10240
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

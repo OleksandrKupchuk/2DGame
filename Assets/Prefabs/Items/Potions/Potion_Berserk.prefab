@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7974928101380017108}
   - component: {fileID: 8765174945236822555}
   - component: {fileID: 3805747722879578798}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Potion_Berserk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

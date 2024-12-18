@@ -15,22 +15,22 @@ public class PlayerIdleState : IState<Player> {
         //Debug.Log("info = " + _player.Animator.GetCurrentAnimatorStateInfo(0).IsName(PlayerAnimationName.Attack));
         //Debug.Log($"<color=yellow>idle execute</color>");
         //Debug.Log("jump button press = " + _player.JumpInputAction.action.triggered);
-        if (!_player.IsGround()) {
+        if (!_player.PlayerMovement.IsGround()) {
             _player.StateMachine.ChangeState(_player.JumpDownState);
         }
-        else if (_player.CanJump) {
+        else if (_player.PlayerMovement.IsJump) {
             _player.StateMachine.ChangeState(_player.JumpUpState);
         }
-        else if (_player.IsAttack && !_player.Inventory.IsOpen) {
+        else if (_player.PlayerMovement.IsAttack && !_player.Inventory.IsOpen) {
             _player.StateMachine.ChangeState(_player.AttackState);
         }
-        else if (Mathf.Abs(_player.GetMovementInput().x) > 0) {
+        else if (Mathf.Abs(_player.PlayerMovement.GetMoveInput().x) > 0) {
             _player.StateMachine.ChangeState(_player.RunState);
         }
 
-        if (_player.InteractiveInputAction.triggered) {
-            _player.Interactive?.Interact();
-        }
+        //if (_player.Movement.InteractiveInputAction.triggered) {
+        //    _player.Interactive?.Interact();
+        //}
     }
 
     public void FixedUpdate() {

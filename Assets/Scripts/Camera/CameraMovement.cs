@@ -3,9 +3,9 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour {
     [SerializeField]
     private float _speedSmooth2;
+
     private Vector3 _cameraPosition;
     private Player _player;
-
     private Vector3 _offset = new Vector3(4f, 7f, -10f);
     private float _speedSmooth = 2f;
 

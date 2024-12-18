@@ -7,8 +7,6 @@ public class Trader : Npc {
     private int _commissionPercent;
     [SerializeField]
     private Market _market;
-    [SerializeField]
-    private GameObject _popup;
 
     private void Awake() {
         _market.Init(_commissionPercent);

@@ -1,6 +1,6 @@
 public class StateMachine<T> {
-    public IState<T> CurrentState { get; private set; }
     public T owner;
+    public IState<T> CurrentState { get; private set; }
 
     public StateMachine(T owner) {
         CurrentState = null;

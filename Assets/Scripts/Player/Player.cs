@@ -80,6 +80,9 @@ public class Player : Character {
     public Inventory Inventory { get; private set; }
     public PlayerAttributes PlayerAttributes { get; private set; }
     public IInteracvite Interactive { get => _interactive; }
+    public PlayerQuestSystem QuestSystem { get; private set; } = new PlayerQuestSystem();
+    [field: SerializeField]
+    public PlayerMovement PlayerMovement { get; private set; }
 
     private new void Awake() {
         base.Awake();
@@ -91,6 +94,7 @@ public class Player : Character {
         HitState = new PlayerHitState();
         DeadState = new PlayerDeadState();
         StateMachine = new StateMachine<Player>(this);
+        PlayerMovement.Init(Config);
         _deafaultGravityScale = Rigidbody.gravityScale;
         Inventory = FindObjectOfType<Inventory>();
         PlayerAttributes = FindObjectOfType<PlayerAttributes>();
@@ -123,18 +127,18 @@ public class Player : Character {
     }
 
     private void InitInputAction() {
-        _jumpInputAction = _playerHandleAction.GetAction("Jump");
-        _movementInputAction = _playerHandleAction.GetAction("Movement");
-        _attackInputAction = _playerHandleAction.GetAction("Attack");
-        _handleInventoryInputAction = _playerHandleAction.GetAction("HandleInventory");
-        _interactiveInputAction = _playerHandleAction.GetAction("Interactive");
+        //_jumpInputAction = _playerHandleAction.GetAction("Jump");
+        //_movementInputAction = _playerHandleAction.GetAction("Movement");
+        //_attackInputAction = _playerHandleAction.GetAction("Attack");
+        //_handleInventoryInputAction = _playerHandleAction.GetAction("HandleInventory");
+        //_interactiveInputAction = _playerHandleAction.GetAction("Interactive");
     }
 
     private void Update() {
-        IsGround();
+        //Movement.IsGround();
         StateMachine.Update();
         RegenerationHealth();
-        ToggleInventory();
+        //ToggleInventory();
     }
 
     private void FixedUpdate() {
@@ -142,7 +146,8 @@ public class Player : Character {
     }
 
     public Vector2 GetMovementInput() {
-        return _movementInputAction.ReadValue<Vector2>();
+        //return _movementInputAction.ReadValue<Vector2>();
+        return Vector2.zero;
     }
 
     public void Flip() {
@@ -152,11 +157,6 @@ public class Player : Character {
         else if (GetMovementInput().x < 0) {
             gameObject.transform.localScale = new Vector3(1, 1, 1);
         }
-    }
-
-    public void Jump() {
-        //print("Add Force for Jump");
-        Rigidbody.velocity = Vector2.up * Config.jumpVelocity;
     }
 
     public void CheckTakeDamage(float damage, Damage damageObject) {
@@ -291,14 +291,14 @@ public class Player : Character {
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.TryGetComponent<IInteracvite>(out IInteracvite interacvite)) {
-            print("interactive set");
+        if (collision.TryGetComponent(out IInteracvite interacvite)) {
+            print("interactive set" + interacvite.GetType().Name);
             _interactive = interacvite;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
-        if (collision.TryGetComponent<IInteracvite>(out IInteracvite interacvite)) {
+        if (collision.TryGetComponent(out IInteracvite interacvite)) {
             print("interactive null");
             _interactive = null;
         }

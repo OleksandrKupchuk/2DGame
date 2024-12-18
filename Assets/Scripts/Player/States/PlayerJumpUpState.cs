@@ -8,7 +8,7 @@ public class PlayerJumpUpState : IState<Player> {
         //Debug.Log($"<color=green>enter jumpUp state</color>");
         _player = owner;
         _player.Animator.Play(PlayerAnimationName.JumpUp);
-        _player.Jump();
+        _player.PlayerMovement.Jump();
         _timer = 0.5f;
     }
 
@@ -17,23 +17,23 @@ public class PlayerJumpUpState : IState<Player> {
         //Debug.Log("jump button press = " + _player.JumpInputAction.action.triggered);
         _timer -= Time.deltaTime;
 
-        if (_player.IsGround() && _timer <= 0) {
+        if (_player.PlayerMovement.IsGround() && _timer <= 0) {
             _player.StateMachine.ChangeState(_player.IdleState);
         }
-        else if (_player.IsFalling) {
+        else if (_player.PlayerMovement.IsFalling) {
             _player.StateMachine.ChangeState(_player.JumpDownState);
         }
 
-        _player.GetMovementInput();
-        _player.Flip();
+        _player.PlayerMovement.GetMoveInput();
+        _player.PlayerMovement.Flip();
     }
 
     public void FixedUpdate() {
 
-        if (_player.GetMovementInput() == Vector2.zero) {
+        if (_player.PlayerMovement.GetMoveInput() == Vector2.zero) {
             return;
         }
-        _player.Move(_player.GetMovementInput().x);
+        _player.PlayerMovement.Run(_player.PlayerMovement.GetMoveInput().x);
     }
 
     public void Exit() {
