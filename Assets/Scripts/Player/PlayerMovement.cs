@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour {
     public bool IsFalling { get => _rigidbody.velocity.y < 0; }
     public bool IsJump {
         get {
-            if (_playerInput.JumpInputAction.triggered && IsGround()) {
+            if (_playerInput.Jump.triggered && IsGround()) {
                 return true;
             }
 
@@ -30,13 +30,14 @@ public class PlayerMovement : MonoBehaviour {
     }
     public bool IsAttack {
         get {
-            if (_playerInput.AttackInputAction.triggered) {
+            if (_playerInput.Attack.triggered) {
                 return true;
             }
             return false;
         }
     }
     public bool IsOpenInventory { get => _playerInput.HandleInventoryInputAction.triggered; }
+    public bool IsInteraction { get => _playerInput.Interaction.triggered; }
 
     public void Init(Config playerConfig) {
         _playerInput = new PlayerInput();
@@ -79,6 +80,6 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     public Vector2 GetMoveInput() {
-        return _playerInput.MovementInputAction.ReadValue<Vector2>();
+        return _playerInput.Move.ReadValue<Vector2>();
     }
 }

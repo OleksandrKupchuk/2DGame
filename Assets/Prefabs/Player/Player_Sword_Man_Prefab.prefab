@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 5998367218307207105}
   - component: {fileID: 2377159792989392474}
   - component: {fileID: 5652064171342545477}
+  - component: {fileID: 1486704200075581308}
+  - component: {fileID: 7264231251228489834}
   m_Layer: 6
   m_Name: Player_Sword_Man_Prefab
   m_TagString: Player
@@ -53,12 +55,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: a54ace36f66f2cb4dbac2f323babad9b, type: 2}
-  _invulnerableStatus: {fileID: 9206641031412101052}
-  _boxCollider: {fileID: 2724809069109994693}
-  _distanceRaycastHit: 0.1
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 128
   _collidersForIgnored:
   - {fileID: 2724809069109994693}
   - {fileID: 550353306}
@@ -72,12 +68,11 @@ MonoBehaviour:
   - {fileID: 1686243371}
   - {fileID: 2059703570}
   - {fileID: 247315288}
-  _playerSword: {fileID: 607727161519057064}
-  _frameRateInAttackAnimationForEnableCollider: 25
-  _frameRateInAttackAnimationForDisableCollider: 30
-  _attackAnimation: {fileID: 7400000, guid: fb30f15524b4a2d4b83dc65fe81c33fd, type: 2}
   <InvulnerableStatus>k__BackingField: {fileID: 9206641031412101052}
   <PlayerMovement>k__BackingField: {fileID: 5652064171342545477}
+  <HealthController>k__BackingField: {fileID: 1486704200075581308}
+  <PlayerWeaponController>k__BackingField: {fileID: 7264231251228489834}
+  <PickUpController>k__BackingField: {fileID: 5998367218307207105}
 --- !u!114 &9206641031412101052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,22 +252,6 @@ MonoBehaviour:
   _bodyParts:
   - {fileID: 1604651409112962330}
   - {fileID: 1326965869828481468}
-  _spriteResolvers:
-  - {fileID: 8873890313770814453}
-  - {fileID: 7176322890815797042}
-  - {fileID: 6774626616875102943}
-  - {fileID: 7122270383653555328}
-  - {fileID: 645660406143118580}
-  - {fileID: 2852172029825684426}
-  - {fileID: 5799017409858349802}
-  - {fileID: 384076120153738503}
-  - {fileID: 536467744038469889}
-  - {fileID: 4844899188634805688}
-  - {fileID: 1894587230031950331}
-  - {fileID: 6930384719441787646}
-  - {fileID: 499335789907353977}
-  - {fileID: 234101906116879736}
-  - {fileID: 5133092242694476782}
 --- !u!114 &5652064171342545477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +271,36 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _inputActionAsset: {fileID: -944628639613478452, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
+--- !u!114 &1486704200075581308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5238491402704463331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 803d4ddb252d01045baeb18252e0e9d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 6843455573970313801}
+  _invulnerabilityStatus: {fileID: 9206641031412101052}
+--- !u!114 &7264231251228489834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5238491402704463331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07d635c5f95b15741b967b039595fdd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weapon: {fileID: 607727161519057064}
+  _frameRateInAttackAnimationForEnableCollider: 25
+  _frameRateInAttackAnimationForDisableCollider: 30
+  _attackAnimation: {fileID: 7400000, guid: fb30f15524b4a2d4b83dc65fe81c33fd, type: 2}
 --- !u!1 &7328863205628577472
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +314,7 @@ GameObject:
   - component: {fileID: 607727161519057064}
   - component: {fileID: 5244960924419892184}
   m_Layer: 9
-  m_Name: Weapon_Sword
+  m_Name: Weapon
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -407,7 +416,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 10240
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

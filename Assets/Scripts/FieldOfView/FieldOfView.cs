@@ -61,7 +61,7 @@ public class FieldOfView : MonoBehaviour {
                 _vertex = _raycastHit2D.point;
                 Debug.DrawRay(_startPoint, CalculationAngle.GetVector3FromAngle(angleInDegree) * _viewDistance, Color.yellow);
 
-                if (_raycastHit2D.collider.gameObject.CompareTag(Tags.Player) && !_player.IsDead) {
+                if (_raycastHit2D.collider.gameObject.CompareTag(Tags.Player) && !_player.HealthController.IsDead) {
                     Debug.DrawRay(_startPoint, CalculationAngle.GetVector3FromAngle(angleInDegree) * _viewDistance, Color.red);
                     _raysDetected[i - 1] = true;
                 }

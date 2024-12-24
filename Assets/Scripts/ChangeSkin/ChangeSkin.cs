@@ -1,24 +1,21 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.U2D.Animation;
 
 public class ChangeSkin : MonoBehaviour {
     [SerializeField]
     private List<BodyPart> _bodyParts = new List<BodyPart>();
-    [SerializeField]
-    private List<SpriteResolver> _spriteResolvers = new List<SpriteResolver>();
 
     private void Awake() {
-        EventManager.PutOnItem += Chnage;
+        EventManager.PutOnItem += Change;
         EventManager.TakeAwayItem += Reset;
     }
 
     private void OnDestroy() {
-        EventManager.PutOnItem -= Chnage;
+        EventManager.PutOnItem -= Change;
         EventManager.TakeAwayItem -= Reset;
     }
 
-    public void Chnage(Item item) {
+    public void Change(Item item) {
         if (item is WearableItem) {
             WearableItem _item = item as WearableItem;
 

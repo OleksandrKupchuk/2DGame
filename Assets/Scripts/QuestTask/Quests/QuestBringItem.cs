@@ -5,7 +5,7 @@ public class QuestBringItem : IQuestTask {
     private bool _isRewardTaken = false;
     private GameObject _target;
 
-    public QuestBringItem(Player player) {
+    public void Init(Player player) {
         _player = player;
         _target = new GameObject("Quest item king");
         _target.AddComponent<BoxCollider2D>();
@@ -16,13 +16,13 @@ public class QuestBringItem : IQuestTask {
     public bool IsRewardTaken => _isRewardTaken;
 
     public void GiveReward() {
-        if (isDone()) {
+        if (IsDone()) {
             _player.Config.conis += 50;
             _isRewardTaken = true;
         }
     }
 
-    public bool isDone() {
+    public bool IsDone() {
         return _player.QuestSystem.IsQuestItem(_target);
     }
 }

@@ -12,7 +12,7 @@ public class TakeAwayPlayerHealth : MonoBehaviour {
     private void Start() {
         _player = FindObjectOfType<Player>();
         _addHealthButton.onClick.AddListener(() => {
-            _player.TakeDamage(_health);
+            _player.HealthController.TakeDamage(_health);
         });
     }
 }

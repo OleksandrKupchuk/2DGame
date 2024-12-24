@@ -7,6 +7,10 @@ public class Trader : Npc {
     private int _commissionPercent;
     [SerializeField]
     private Market _market;
+    [SerializeField]
+    private DialogController _dialogController;
+    [SerializeField]
+    private Dialogs _dialogs;
 
     private void Awake() {
         _market.Init(_commissionPercent);
@@ -25,13 +29,12 @@ public class Trader : Npc {
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.TryGetComponent(out Player player)) {
             _player = player;
-            _popup.SetActive(true);
+            _dialogController.Show(_dialogs);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.gameObject.TryGetComponent(out Player player)) {
-            _popup.SetActive(false);
         }
     }
 

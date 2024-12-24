@@ -12,7 +12,7 @@ public class AddPlayerHealth : MonoBehaviour {
     private void Start() {
         _player = FindObjectOfType<Player>();
         _addHealthButton.onClick.AddListener(() => {
-            _player.AddHealth(_health);
+            _player.HealthController.AddHealth(_health);
         });
     }
 }

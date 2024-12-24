@@ -12,7 +12,7 @@ public class PlayerRunState : IState<Player> {
 
     public void Update() {
         //Debug.Log($"<color=blue>run execute</color>");
-        //Debug.Log("jump button = " + _player.JumpInputAction.action.ReadValue<bool>());
+        //Debug.Log("jump button = " + _player.Jump.action.ReadValue<bool>());
         if (!_player.PlayerMovement.IsGround()) {
             _player.StateMachine.ChangeState(_player.JumpDownState);
         }

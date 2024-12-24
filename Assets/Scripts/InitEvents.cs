@@ -1,9 +1,6 @@
 using UnityEngine;
 
-public class InitEvents : MonoBehaviour
-{
-    [SerializeField]
-    private Player _player;
+public class InitEvents : MonoBehaviour {
     [SerializeField]
     private EnemyDragorWarrior _enemyDragon;
     [SerializeField]
@@ -12,22 +9,13 @@ public class InitEvents : MonoBehaviour
     private EnemyRogue _enemyRogue;
 
     private void Awake() {
-        InitPlayerEvents();
         InitEnemyDragonWarriorEvents();
         InitEnemyKnightEvents();
         InitEnemyRogueEvents();
     }
 
-    private void InitPlayerEvents() {
-        if (_player == null) {
-            Debug.LogError($"Object {nameof(Player)} is null");
-        }
-        _player.AddEnableSwordColliderEventForAttackAnimation();
-        _player.AddDisableSwordColliderEventForAttackAnimation();
-    }
-
     private void InitEnemyDragonWarriorEvents() {
-        if(_enemyDragon == null) {
+        if (_enemyDragon == null) {
             Debug.LogError($"Object {nameof(EnemyDragorWarrior)} is null");
         }
         _enemyDragon.AddEnableFireBallEventForAttackAnimation();

@@ -1,5 +1,6 @@
 public interface IQuestTask {
-    bool isDone();
+    void Init(Player player);
+    bool IsDone();
     bool IsRewardTaken { get; }
     void GiveReward();
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerSword : MonoBehaviour {
+public class Weapon : MonoBehaviour {
     [field : SerializeField]
     public BoxCollider2D BoxCollider2D { get; private set; }
     [SerializeField]

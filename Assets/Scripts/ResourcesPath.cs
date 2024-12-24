@@ -14,7 +14,7 @@ public class ResourcesPath : MonoBehaviour
     public static readonly string FieldOfViewPrefabByMonkey = FolderFieldOfView + "FieldOfViewByMonkey";
 
     //Sprites
-    public static readonly string SpriteHealth = FolderTooltip + "Health";
+    public static readonly string SpriteHealth = FolderTooltip + "MaxHealth";
     public static readonly string SpriteHealthRegeneration = FolderTooltip + "HealthRegeneration";
     public static readonly string SpriteDamage = FolderTooltip + "Damage";
     public static readonly string SpriteArmor = FolderTooltip + "Armor";

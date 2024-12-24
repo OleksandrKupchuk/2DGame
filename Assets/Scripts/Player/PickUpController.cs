@@ -1,18 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUpSystem : MonoBehaviour {
+public class PickUpController : MonoBehaviour {
     private Inventory _inventory;
-    private Player _player;
+    private PlayerQuestSystem _playerQuestSystem;
     private List<Item> _items = new List<Item>();
 
-    private void Awake() {
-        _inventory = FindObjectOfType<Inventory>();
-        DropItemState.DropItem += UnregisterPickUpItem;
+    public void Init(Inventory inventory, PlayerQuestSystem playerQuestSystem) {
+        _inventory = inventory;
+        _playerQuestSystem = playerQuestSystem;
     }
 
-    private void Start() {
-        _player = FindObjectOfType<Player>();
+    private void Awake() {
+        DropItemState.DropItem += UnregisterPickUpItem;
     }
 
     private void OnDestroy() {
@@ -21,21 +21,20 @@ public class PickUpSystem : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.transform.TryGetComponent(out Item item)) {
-            if (_items.Contains(item)) {
-                return;
-            }
-
             RegisterPickUpItem(item);
             PickUpItem(item);
         }
 
         if (collision.gameObject.name.Contains("Quest item king")) {
             print("pickup quest item");
-            _player.QuestSystem.AddQuestItem(collision.gameObject);
+            _playerQuestSystem.AddQuestItem(collision.gameObject);
         }
     }
 
     private void RegisterPickUpItem(Item item) {
+        if (_items.Contains(item)) {
+            return;
+        }
         _items.Add(item);
     }
 

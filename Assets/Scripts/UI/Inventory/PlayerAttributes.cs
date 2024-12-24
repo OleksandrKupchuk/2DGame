@@ -11,7 +11,7 @@ public class PlayerAttributes : MonoBehaviour {
     private AttributeArmorController _attributeArmorController;
     private AttributeDamageController _attributeDamageController;
     private AttributeHealthRegenerationController _attributeHealthRegenerationController;
-    public float Health { get => _attributeHealthController.Value; }
+    public float MaxHealth { get => _attributeHealthController.Value; }
     public float Speed { get => _attributeSpeedController.Value; }
     public float Armor { get => _attributeArmorController.Value; }
     public float Damage { get => _attributeDamageController.Value; }
