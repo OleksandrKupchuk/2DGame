@@ -22,7 +22,6 @@ public class Player : Character {
     public Inventory Inventory { get; private set; }
     public PlayerAttributes PlayerAttributes { get; private set; }
     public IInteracvite Interactive { get => _interactive; }
-    public PlayerQuestSystem QuestSystem { get; private set; }
     [field: SerializeField]
     public InvulnerabilityStatus InvulnerableStatus { get; private set; }
     [field: SerializeField]
@@ -37,13 +36,12 @@ public class Player : Character {
     private new void Awake() {
         base.Awake();
         PlayerAttributes = FindObjectOfType<PlayerAttributes>();
-        QuestSystem = new PlayerQuestSystem(this);
         PlayerMovement.Init(Config);
         HealthController.Init(Config, PlayerAttributes);
         PlayerWeaponController.Init();
         _deafaultGravityScale = Rigidbody.gravityScale;
         Inventory = FindObjectOfType<Inventory>();
-        PickUpController.Init(Inventory, QuestSystem);
+        PickUpController.Init(Inventory, ProjectContext.Instance.QuestSystem);
         HealthController.OnDamageTaken += () => StateMachine.ChangeState(HitState);
         HealthController.OnDead += () => StateMachine.ChangeState(DeadState);
 
@@ -75,7 +73,7 @@ public class Player : Character {
     private void Start() {
         StateMachine.ChangeState(IdleState);
         _playerHealthView = FindAnyObjectByType<PlayerHealthView>();
-        _playerHealthView.UpdateHealthBar(null);
+        _playerHealthView.UpdateHealthBar();
     }
 
     private void Update() {
@@ -104,7 +102,7 @@ public class Player : Character {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.TryGetComponent(out IInteracvite interacvite)) {
-            print("interactive set" + interacvite.GetType().Name);
+            print("interactive set");
             _interactive = interacvite;
         }
     }

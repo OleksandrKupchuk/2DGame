@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class PickUpController : MonoBehaviour {
     private Inventory _inventory;
-    private PlayerQuestSystem _playerQuestSystem;
+    private QuestSystem _playerQuestSystem;
     private List<Item> _items = new List<Item>();
 
-    public void Init(Inventory inventory, PlayerQuestSystem playerQuestSystem) {
+    public void Init(Inventory inventory, QuestSystem playerQuestSystem) {
         _inventory = inventory;
         _playerQuestSystem = playerQuestSystem;
     }

@@ -82,4 +82,12 @@ public class PlayerMovement : MonoBehaviour {
     public Vector2 GetMoveInput() {
         return _playerInput.Move.ReadValue<Vector2>();
     }
+
+    public void DisableInput() {
+        _playerInput.InputActionMap.Disable();
+    }
+
+    public void EnableInput() {
+        _playerInput.InputActionMap.Enable();
+    }
 }

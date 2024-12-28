@@ -9,9 +9,11 @@ public class PlayerInput {
     public InputAction Attack { get; private set; }
     public InputAction HandleInventoryInputAction { get; private set; }
     public InputAction Interaction { get; private set; }
+    public InputActionMap InputActionMap { get; private set; }
 
     public void Init(InputActionAsset inputActionAsset) {
         _playerHandleAction = new PlayerHandleAction(inputActionAsset);
+        InputActionMap = inputActionAsset.FindActionMap(_playerMap);
         _playerHandleAction.FindMap(_playerMap);
         Jump = _playerHandleAction.GetAction("Jump");
         Move = _playerHandleAction.GetAction("Movement");

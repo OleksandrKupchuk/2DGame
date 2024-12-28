@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class QuestBringItem : IQuestTask {
+public class QuestBringItem : IQuest {
     private Player _player;
     private bool _isRewardTaken = false;
     private GameObject _target;
@@ -23,6 +23,6 @@ public class QuestBringItem : IQuestTask {
     }
 
     public bool IsDone() {
-        return _player.QuestSystem.IsQuestItem(_target);
+        return ProjectContext.Instance.QuestSystem.IsQuestItem(_target);
     }
 }

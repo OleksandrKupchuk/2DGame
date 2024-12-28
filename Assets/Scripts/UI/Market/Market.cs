@@ -1,11 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Market : MonoBehaviour {
     private Player _player;
-    private UnityAction _buyAction;
     private Dictionary<Item, CartItem> _dictionaryItems = new();
     private int _commission;
     private int _bufferComission;
@@ -28,7 +26,7 @@ public class Market : MonoBehaviour {
     public void Init(int tradeCommission) {
         _commission = tradeCommission;
         GenerateCartItems();
-        Disable();
+        Close();
     }
 
     private void GenerateCartItems() {
@@ -79,7 +77,8 @@ public class Market : MonoBehaviour {
         }
     }
 
-    public void Enable() {
+    public void Open(Player player) {
+        _player = player;
         //_background.SetActive(true);
         gameObject.SetActive(true);
         ShowDiscount();
@@ -111,10 +110,8 @@ public class Market : MonoBehaviour {
         }
     }
 
-    public void Disable() {
+    public void Close() {
         gameObject.SetActive(false);
         //_background.SetActive(false);
     }
-
-    public void SetPlayer(Player player) { _player = player; }
 }

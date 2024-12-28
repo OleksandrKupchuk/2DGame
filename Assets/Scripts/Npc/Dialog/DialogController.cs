@@ -1,68 +1,70 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class DialogController : MonoBehaviour {
-    private ObjectPool<Dialog> _dialogPool;
-    private Dictionary<string, Dialog> _dialogDictionary = new Dictionary<string, Dialog>();
-    private InputActionMap _actionMap;
+    private Player _player;
+    private ObjectPool<DialogView> _dialogViewPool;
+    private int _amountDialogsCurrentNpc;
 
-    [SerializeField]
-    private InputActionAsset _inputActionAsset;
-
-    [SerializeField]
-    private Button _next;
-    [SerializeField]
-    private Button _back;
-    [SerializeField]
-    private Button _close;
-    [SerializeField]
-    private Text _description;
     [SerializeField]
     private GameObject _background;
     [SerializeField]
     private GameObject _dialogContainer;
     [SerializeField]
-    private Dialog _dialogPrefab;
+    private DialogView _dialogViewPrefab;
+
+    [field: SerializeField]
+    public Button NextButton { get; private set; }
+    [field: SerializeField]
+    public Button BackButton { get; private set; }
+    [field: SerializeField]
+    public Button CloseButton { get; private set; }
+    [field: SerializeField]
+    public Text Description { get; private set; }
 
     private void Awake() {
-        _dialogPool = new ObjectPool<Dialog>(_dialogPrefab, _dialogContainer.transform);
+        _dialogViewPool = new ObjectPool<DialogView>(_dialogViewPrefab, _dialogContainer.transform);
     }
 
     private void Start() {
-        Hide();
-        _next.gameObject.SetActive(false);
-        _back.gameObject.SetActive(false);
-        _description.gameObject.SetActive(false);
+        CloseDialogs();
+        NextButton.gameObject.SetActive(false);
+        BackButton.gameObject.SetActive(false);
+        Description.gameObject.SetActive(false);
     }
 
-    public void Show(Dialogs dialogs) {
+    public void OpenDialogs(List<IDialog> dialogs) {
+        _player = ProjectContext.Instance.Player;
         InitDialogs(dialogs);
-        _close.onClick.AddListener(() => { _actionMap.Enable(); Hide(); });
+        CloseButton.onClick.AddListener(() => { _player.PlayerMovement.EnableInput(); CloseDialogs(); });
         _background.SetActive(true);
-        _actionMap = _inputActionAsset.FindActionMap("Player");
-        _actionMap.Disable();
+        _player.PlayerMovement.DisableInput();
     }
 
-    private void InitDialogs(Dialogs dialogs) {
-        _dialogDictionary.Clear();
+    private void InitDialogs(List<IDialog> dialogs) {
+        _amountDialogsCurrentNpc = dialogs.Count;
 
-        foreach (DialogData dialogData in dialogs.dialogsData) {
-            Dialog _dialog = _dialogPool.Get();
-            _dialog.Init(dialogData, _next, _back, _close, ref _dialogDictionary, _description);
-
-            if (!_dialogDictionary.ContainsKey(dialogData.title)) {
-                _dialogDictionary.Add(dialogData.title, _dialog);
-            }
+        foreach (IDialog dialog in dialogs) {
+            DialogView _dialogView = _dialogViewPool.Get();
+            _dialogView.Init(dialog);
         }
     }
 
-    private void Hide() {
-        foreach (Dialog dialog in _dialogDictionary.Values) {
-            _dialogPool.PutAndDisable(dialog);
-        }
-
+    public void CloseDialogs() {
+        _dialogViewPool.PutAndDisable();
         _background.SetActive(false);
+    }
+
+    public void DisableStartButtons() {
+        for (int i = 0; i < _amountDialogsCurrentNpc; i++) {
+            _dialogViewPool.Objects[i].gameObject.SetActive(false);
+        }
+    }
+
+    public void EnableStartButtons() {
+        for (int i = 0; i < _amountDialogsCurrentNpc; i++) {
+            _dialogViewPool.Objects[i].gameObject.SetActive(true);
+        }
     }
 }

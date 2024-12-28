@@ -6,7 +6,7 @@ public class CheckItemState : IDragDropState {
 
     public void Enter(DragDropController controller) {
         _controller = controller;
-        Debug.Log("check item enter");
+        //Debug.Log("check item enter");
     }
 
     public void Exit() {
@@ -21,7 +21,7 @@ public class CheckItemState : IDragDropState {
             ICell _cell = _controller.Cursor.GetCell();
 
             if (_cell == null) {
-                Debug.Log("cell component is null");
+                //Debug.Log("cell component is null");
                 return;
             }
 

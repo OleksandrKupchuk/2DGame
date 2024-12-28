@@ -74,4 +74,12 @@ public class ObjectPool<T> where T : Component{
     public void PutAndDisable(T instance) {
         instance.gameObject.SetActive(false);
     }
+
+    public void PutAndDisable() {
+        foreach (T instance in _objects) {
+            if (instance.gameObject.activeSelf) {
+                instance.gameObject.SetActive(false);
+            }
+        }
+    }
 }

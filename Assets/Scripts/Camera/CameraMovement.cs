@@ -9,11 +9,11 @@ public class CameraMovement : MonoBehaviour {
     private Vector3 _offset = new Vector3(4f, 7f, -10f);
     private float _speedSmooth = 2f;
 
-    public void Init(Player player) {
-        _player = player;
-    }
-
     void FixedUpdate() {
+        if(_player == null) {
+            _player = ProjectContext.Instance.Player;
+            return;
+        }
 
         _cameraPosition = new Vector3(_player.transform.position.x, _player.transform.position.y, _offset.z);
 

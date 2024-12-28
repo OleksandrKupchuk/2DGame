@@ -1,7 +1,8 @@
 using UnityEngine;
 
 public class Trader : Npc {
-    private Player _player;
+    private IDialog _dialogTrade;
+    private IDialog _dialogStory;
 
     [SerializeField]
     private int _commissionPercent;
@@ -10,12 +11,21 @@ public class Trader : Npc {
     [SerializeField]
     private DialogController _dialogController;
     [SerializeField]
-    private Dialogs _dialogs;
+    private DialogData _dialogTradeData;
+    [SerializeField]
+    private DialogData _dialogStoryData;
 
     private void Awake() {
         _market.Init(_commissionPercent);
-        _popup.SetActive(false);
         EventManager.CloseInventory += CloseMarket;
+
+        _dialogTrade = new DialogTrade(_dialogTradeData, _market, _dialogController);
+        _dialogStory = new DialogStory(_dialogStoryData, _dialogController);
+
+        _dialogs.Add(_dialogTrade);
+        _dialogs.Add(_dialogStory);
+
+        _interactionIcon.SetActive(false);
     }
 
     private void OnDestroy() {
@@ -23,24 +33,24 @@ public class Trader : Npc {
     }
 
     private void CloseMarket() {
-        _market.Disable();
+        _market.Close();
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.TryGetComponent(out Player player)) {
-            _player = player;
-            _dialogController.Show(_dialogs);
+            _interactionIcon.SetActive(true);
+            //print("interactive SET = " + gameObject.name);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.gameObject.TryGetComponent(out Player player)) {
+            _interactionIcon.SetActive(false);
+            //print("interactive OUT = " + gameObject.name);
         }
     }
 
     public override void Interact() {
-        _market.Enable();
-        _market.SetPlayer(_player);
-        _player.Inventory.Open();
+        _dialogController.OpenDialogs(_dialogs);
     }
 }
