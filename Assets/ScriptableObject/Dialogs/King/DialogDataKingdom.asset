@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0f3f1b1ec80df342a56743c3492487b, type: 3}
-  m_Name: QuestData
+  m_Name: DialogDataKingdom
   m_EditorClassIdentifier: 
-  title: I need some help!
+  title: How is your kingdom?
   paragraphs:
-  - Can defence our kindom?!
-  - Thanks go to cave.
+  - Now we have some problem
+  - I hope they disappear soon.

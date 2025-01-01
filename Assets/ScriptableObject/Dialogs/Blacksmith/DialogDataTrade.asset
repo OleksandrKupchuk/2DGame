@@ -10,11 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0f3f1b1ec80df342a56743c3492487b, type: 3}
-  m_Name: StoryData
+  m_Name: DialogDataTrade
   m_EditorClassIdentifier: 
-  title: I know about one think...
-  paragraphs:
-  - Its really
-  - Interest story
-  - You can get very powerfull think
-  - You need go to king
+  title: Do you have anything for sale?
+  paragraphs: []

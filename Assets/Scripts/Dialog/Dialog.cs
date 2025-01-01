@@ -1,7 +1,8 @@
 using System;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogStory : IDialog {
+public class Dialog {
     public DialogController _dialogController;
     public DialogData _dialogData;
     private Button _nextButton;
@@ -9,16 +10,15 @@ public class DialogStory : IDialog {
     private Button _closeButton;
     private Text _description;
     private int _paragraphCounter = 0;
-    private IQuest _quest;
+    private IDialogAction _dialogAction;
 
     public DialogData DialogData { get => _dialogData; }
 
-    public DialogStory(DialogData dialogData, DialogController dialogController, IQuest quest) : this (dialogData, dialogController) {
-        _dialogData = dialogData;
-        _quest = quest;
+    public Dialog(DialogData dialogData, DialogController dialogController, IDialogAction dialogAction) : this (dialogData, dialogController) {
+        _dialogAction = dialogAction;
     }
 
-    public DialogStory(DialogData dialogData, DialogController dialogController) {
+    public Dialog(DialogData dialogData, DialogController dialogController) {
         _dialogData = dialogData;
         _dialogController = dialogController;
         _nextButton = dialogController.NextButton;
@@ -27,10 +27,19 @@ public class DialogStory : IDialog {
         _description = dialogController.Description;
     }
 
-    public void Start() {
-        Console.WriteLine($"start click button title '{_dialogData.title}'");
+    public Dialog(DialogData dialogData, IDialogAction dialogAction) {
+        _dialogData = dialogData;
+        _dialogAction = dialogAction;
+    }
 
-        if (_dialogData.paragraphs != null && _dialogData.paragraphs.Length != 0) {
+    public void Start() {
+        Debug.Log($"start click button title '{_dialogData.title}'");
+
+        if (_dialogData.paragraphs.Length == 0) {
+            Debug.Log("Do some action");
+            _dialogAction.DoAction();
+        }
+        else if (_dialogData.paragraphs.Length > 0) {
             _dialogController.DisableStartButtons();
 
             _closeButton.gameObject.SetActive(false);
@@ -73,7 +82,7 @@ public class DialogStory : IDialog {
         if (_paragraphCounter == _dialogData.paragraphs.Length - 1) {
             _nextButton.gameObject.SetActive(false);
             _backButton.gameObject.SetActive(true);
-            ProjectContext.Instance.QuestSystem.AddQuest(_quest);
+            _dialogAction?.DoAction();
             _backButton.onClick.AddListener(() => { BackToDialogs(); });
         }
     }

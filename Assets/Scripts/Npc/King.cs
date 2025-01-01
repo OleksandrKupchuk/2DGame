@@ -1,28 +1,28 @@
 using UnityEngine;
 
 public class King : Npc, IInteracvite {
-    private IDialog _dialogQuest;
-    private IDialog _dialogStory;
-    private IDialog _dialogInterestStory;
-    private IQuest _questBringItem;
-
     [SerializeField]
     private DialogController _dialogController;
     [SerializeField]
-    private DialogData _dialogQuestData;
+    private DialogData _dialogDataBringCrown;
     [SerializeField]
-    private DialogData _dialogStoryData;
+    private DialogData _dialogDataKingdom;
     [SerializeField]
-    private DialogData _dialogInterestStoryData;
+    private DialogData _dialogDataIncome;
 
     private void Awake() {
-        _questBringItem = new QuestBringItem();
-        _dialogQuest = new DialogStory(_dialogQuestData, _dialogController, _questBringItem);
-        _dialogStory = new DialogStory(_dialogStoryData, _dialogController);
-        _dialogInterestStory = new DialogStory(_dialogInterestStoryData, _dialogController);
-        _dialogs.Add(_dialogQuest);
-        _dialogs.Add(_dialogStory);
-        _dialogs.Add(_dialogInterestStory);
+        IQuest _questBringItem = new QuestBringItem();
+        IDialogAction _actionAddQuestBringCrown = new AddQuest(_questBringItem);
+        Dialog _dialogBringCrown = new Dialog(_dialogDataBringCrown, _dialogController, _actionAddQuestBringCrown);
+
+        Dialog _dialogKingdom = new Dialog(_dialogDataKingdom, _dialogController);
+
+        Dialog _dialogIncome = new Dialog(_dialogDataIncome, _dialogController);
+
+        _dialogs.Add(_dialogBringCrown);
+        _dialogs.Add(_dialogKingdom);
+        _dialogs.Add(_dialogIncome);
+
         _interactionIcon.SetActive(false);
     }
 
@@ -41,6 +41,6 @@ public class King : Npc, IInteracvite {
     }
 
     public override void Interact() {
-        _dialogController.OpenDialogs(_dialogs);
+        _dialogController.OpenDialogs(gameObject.name, _dialogs);
     }
 }

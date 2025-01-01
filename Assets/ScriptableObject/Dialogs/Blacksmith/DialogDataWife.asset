@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0f3f1b1ec80df342a56743c3492487b, type: 3}
-  m_Name: InterestData
+  m_Name: DialogDataWife
   m_EditorClassIdentifier: 
-  title: Its very interest sroty...
+  title: Do you trade alone?
   paragraphs:
-  - No it is no, i lie, but its funny!
+  - Oh, no i have a wife, they help me do some items.
+  - Sometimes she trades for me, but that happens very rarely.

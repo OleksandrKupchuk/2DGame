@@ -168,9 +168,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactionIcon: {fileID: 6847276992520620925}
   _dialogController: {fileID: 0}
-  _dialogQuestData: {fileID: 0}
-  _dialogStoryData: {fileID: 0}
-  _dialogInterestStoryData: {fileID: 0}
+  _dialogDataBringCrown: {fileID: 11400000, guid: e207a1309e53e39479e9d04479327c98, type: 2}
+  _dialogDataKingdom: {fileID: 11400000, guid: b8e30705fe7ee5143aa77df6505be2a3, type: 2}
+  _dialogDataIncome: {fileID: 11400000, guid: 52a91f5099096414686ae880cfab2ca8, type: 2}
 --- !u!1001 &663452810059199300
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3811874484847273508}
   - component: {fileID: 5172714822420580143}
-  - component: {fileID: 1344019595570925329}
+  - component: {fileID: 5449742533877184648}
   m_Layer: 5
   m_Name: Dialog
   m_TagString: Untagged
@@ -125,7 +125,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2243259984975249886}
   m_CullTransparentMesh: 1
---- !u!114 &1344019595570925329
+--- !u!114 &5449742533877184648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2243259984975249886}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 487e5a302265cf04f8d849e48b69e7d0, type: 3}
+  m_Script: {fileID: 11500000, guid: fae034a431e65f041b20ca8ae780cfc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _startButton: {fileID: 7005532771485178294}
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.29411766}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}

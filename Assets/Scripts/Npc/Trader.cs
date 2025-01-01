@@ -1,8 +1,9 @@
 using UnityEngine;
 
 public class Trader : Npc {
-    private IDialog _dialogTrade;
-    private IDialog _dialogStory;
+    private Dialog _dialogTrade;
+
+    private Dialog _dialogStoryAboutWife;
 
     [SerializeField]
     private int _commissionPercent;
@@ -11,19 +12,21 @@ public class Trader : Npc {
     [SerializeField]
     private DialogController _dialogController;
     [SerializeField]
-    private DialogData _dialogTradeData;
+    private DialogData _dialogDataTrade;
     [SerializeField]
-    private DialogData _dialogStoryData;
+    private DialogData _dialogDataStoryWife;
 
     private void Awake() {
         _market.Init(_commissionPercent);
         EventManager.CloseInventory += CloseMarket;
 
-        _dialogTrade = new DialogTrade(_dialogTradeData, _market, _dialogController);
-        _dialogStory = new DialogStory(_dialogStoryData, _dialogController);
+        IDialogAction _openMarket = new OpenMarket(_market, _dialogController);
+        _dialogTrade = new Dialog(_dialogDataTrade, _openMarket);
+
+        _dialogStoryAboutWife = new Dialog(_dialogDataStoryWife, _dialogController);
 
         _dialogs.Add(_dialogTrade);
-        _dialogs.Add(_dialogStory);
+        _dialogs.Add(_dialogStoryAboutWife);
 
         _interactionIcon.SetActive(false);
     }
@@ -51,6 +54,6 @@ public class Trader : Npc {
     }
 
     public override void Interact() {
-        _dialogController.OpenDialogs(_dialogs);
+        _dialogController.OpenDialogs(gameObject.name, _dialogs);
     }
 }

@@ -21,6 +21,8 @@ public class Player : Character {
     public StateMachine<Player> StateMachine { get; private set; }
     public Inventory Inventory { get; private set; }
     public PlayerAttributes PlayerAttributes { get; private set; }
+    public QuestSystem QuestSystem { get; private set; }
+
     public IInteracvite Interactive { get => _interactive; }
     [field: SerializeField]
     public InvulnerabilityStatus InvulnerableStatus { get; private set; }
@@ -41,7 +43,8 @@ public class Player : Character {
         PlayerWeaponController.Init();
         _deafaultGravityScale = Rigidbody.gravityScale;
         Inventory = FindObjectOfType<Inventory>();
-        PickUpController.Init(Inventory, ProjectContext.Instance.QuestSystem);
+        QuestSystem = new QuestSystem();
+        PickUpController.Init(Inventory, QuestSystem);
         HealthController.OnDamageTaken += () => StateMachine.ChangeState(HitState);
         HealthController.OnDead += () => StateMachine.ChangeState(DeadState);
 

@@ -82,6 +82,7 @@ public class Market : MonoBehaviour {
         //_background.SetActive(true);
         gameObject.SetActive(true);
         ShowDiscount();
+        _player.Inventory.Open();
     }
 
     private void ShowDiscount() {

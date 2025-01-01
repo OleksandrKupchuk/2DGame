@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3657191586359921842}
   - component: {fileID: 8314125910475107488}
-  - component: {fileID: 2938844872533174942}
   - component: {fileID: 7783106782238398623}
+  - component: {fileID: 2938844872533174942}
   - component: {fileID: 320288485793297177}
   m_Layer: 13
   m_Name: Blacksmith
@@ -88,6 +88,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7783106782238398623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8448595340129345621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db91094b0804ac94787e0e874c549a71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactionIcon: {fileID: 6678889860401708685}
+  _commissionPercent: 10
+  _market: {fileID: 0}
+  _dialogController: {fileID: 0}
+  _dialogDataTrade: {fileID: 11400000, guid: 37c255072d2b0904f80643c867d5988a, type: 2}
+  _dialogDataStoryWife: {fileID: 11400000, guid: 3c2e11fc5207bc142ba5bbdacd051d13, type: 2}
 --- !u!61 &2938844872533174942
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -133,24 +151,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.2526197, y: 4.43494}
   m_EdgeRadius: 0
---- !u!114 &7783106782238398623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8448595340129345621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db91094b0804ac94787e0e874c549a71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interactionIcon: {fileID: 6678889860401708685}
-  _commissionPercent: 10
-  _market: {fileID: 0}
-  _dialogController: {fileID: 0}
-  _dialogTradeData: {fileID: 0}
-  _dialogStoryData: {fileID: 0}
 --- !u!95 &320288485793297177
 Animator:
   serializedVersion: 5

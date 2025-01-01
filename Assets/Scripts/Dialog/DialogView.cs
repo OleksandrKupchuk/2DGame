@@ -7,8 +7,17 @@ public class DialogView : MonoBehaviour {
     [SerializeField]
     private Text _title;
 
-    public void Init(IDialog dialog) {
+    //public void Init(IDialog dialog) {
+    //    _title.text = dialog.DialogData.title;
+    //    _startButton.onClick.AddListener(() => { dialog.Start(); });
+    //}
+
+    public void Init(Dialog dialog) {
         _title.text = dialog.DialogData.title;
         _startButton.onClick.AddListener(() => { dialog.Start(); });
+    }
+
+    public void Reset() {
+        _startButton.onClick.RemoveAllListeners();
     }
 }

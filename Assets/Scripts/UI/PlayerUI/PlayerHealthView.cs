@@ -10,6 +10,8 @@ public class PlayerHealthView : MonoBehaviour {
     private Image _healthBar;
 
     private void Awake() {
+        //EventManager.OnHealthChanged += UpdateHealthBar; краще мати подію що здоров'я змінилося і просто оновлювати вигляд тай все 
+        //UpdateHealthBar(float health);
         EventManager.PutOnItem += UpdateHealthBar;
         EventManager.TakeAwayItem += UpdateHealthBar;
         EventManager.UseItem += UpdateHealthBar;
