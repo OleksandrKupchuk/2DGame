@@ -12,7 +12,7 @@ public class AttributeDamageController : AttributeController {
     public float DamageMax { get => _valueIntegerMax + _valuePercentMax + _valueTemporaryMax; }
     public override float Value => Random.Range(DamageMin, DamageMax);
     public override string ValueString => $"{DamageMin}-{DamageMax}";
-    public override bool IsValueTemplorary => _valueTemporaryMin > 0 || _valueTemporaryMax > 0;
+    public override bool IsValueTemporary => _valueTemporaryMin > 0 || _valueTemporaryMax > 0;
 
     private new void Awake() {
         base.Awake();
@@ -39,7 +39,7 @@ public class AttributeDamageController : AttributeController {
         }
     }
 
-    public override void SubstractIntegerAttributes(Item item) {
+    public override void SubtractIntegerAttributes(Item item) {
         foreach (Attribute attribute in item.Attributes) {
             if (attribute.type == AttributeType && attribute.valueType == ValueType.Integer) {
                 _valueIntegerMin -= attribute.damageMin;
@@ -48,7 +48,7 @@ public class AttributeDamageController : AttributeController {
         }
     }
 
-    public override void SubstractPercentAttributes(Item item) {
+    public override void SubtractPercentAttributes(Item item) {
         foreach (Attribute attribute in item.Attributes) {
             if (attribute.type == AttributeType && attribute.valueType == ValueType.Percent) {
                 _percentOfAttribute -= attribute.value;
@@ -73,7 +73,7 @@ public class AttributeDamageController : AttributeController {
         }
     }
 
-    public override void SubstractTemporaryAttribute(Item item) {
+    public override void SubtractTemporaryAttribute(Item item) {
         foreach (Attribute attribute in item.Attributes) {
             if (attribute.type == AttributeType) {
                 _valueTemporaryMin -= attribute.damageMin;

@@ -14,7 +14,7 @@ public class AttributeView : MonoBehaviour {
     }
 
     public void UpdateAttribute(AttributeController attributeController) {
-        if (attributeController.IsValueTemplorary) {
+        if (attributeController.IsValueTemporary) {
             _value.text = $"<color=green>{attributeController.ValueString}</color>";
         }
         else {

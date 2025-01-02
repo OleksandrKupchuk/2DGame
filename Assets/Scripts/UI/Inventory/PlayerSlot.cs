@@ -47,7 +47,8 @@ public class PlayerSlot : Cell, ICell {
                 this._item = _item;
                 SetIcon(Item.Icon);
                 EnableIcon();
-                EventManager.PutOnItemEventHandler(_item);
+                EventManager.OnHealthChangedHandler();
+                EventManager.OnItemDressedHandler(_item);
             }
         }
     }

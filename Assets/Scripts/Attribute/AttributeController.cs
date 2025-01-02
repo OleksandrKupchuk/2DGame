@@ -14,21 +14,21 @@ public abstract class AttributeController : MonoBehaviour {
     public AttributeType AttributeType { get; protected set; }  
     public virtual float Value { get => _valueInteger + _valuePercent + _valueTemporary; }
     public virtual string ValueString { get => (_valueInteger + _valuePercent + _valueTemporary).ToString(); }
-    public virtual bool IsValueTemplorary { get => _valueTemporary > 0; }
+    public virtual bool IsValueTemporary { get => _valueTemporary > 0; }
 
     protected void Awake() {
-        EventManager.PutOnItem += AddItemAttributes;
-        EventManager.TakeAwayItem += SubstractItemAttributes;
+        EventManager.OnItemDressed += AddItemAttributes;
+        EventManager.TakeAwayItem += SubtractItemAttributes;
         EventManager.UseItem += AddTemporaryAttribute;
-        EventManager.ActionItemOver += SubstractTemporaryAttribute;
+        EventManager.ActionItemOver += SubtractTemporaryAttribute;
         _playerConfig = Resources.Load<PlayerConfig>(ResourcesPath.PlayerConfig);
     }
 
     protected void OnDestroy() {
-        EventManager.PutOnItem -= AddItemAttributes;
-        EventManager.TakeAwayItem -= SubstractItemAttributes;
+        EventManager.OnItemDressed -= AddItemAttributes;
+        EventManager.TakeAwayItem -= SubtractItemAttributes;
         EventManager.UseItem -= AddTemporaryAttribute;
-        EventManager.ActionItemOver -= SubstractTemporaryAttribute;
+        EventManager.ActionItemOver -= SubtractTemporaryAttribute;
     }
 
     public void AddItemAttributes(Item item) {
@@ -55,14 +55,14 @@ public abstract class AttributeController : MonoBehaviour {
         }
     }
 
-    public void SubstractItemAttributes(Item item) {
-        SubstractIntegerAttributes(item);
-        SubstractPercentAttributes(item);
+    public void SubtractItemAttributes(Item item) {
+        SubtractIntegerAttributes(item);
+        SubtractPercentAttributes(item);
 
         _attributeView.UpdateAttribute(this);
     }
 
-    public virtual void SubstractIntegerAttributes(Item item) {
+    public virtual void SubtractIntegerAttributes(Item item) {
         foreach (Attribute attribute in item.Attributes) {
             if (attribute.type == AttributeType && attribute.valueType == ValueType.Integer) {
                 _valueInteger -= attribute.value;
@@ -70,7 +70,7 @@ public abstract class AttributeController : MonoBehaviour {
         }
     }
 
-    public virtual void SubstractPercentAttributes(Item item) {
+    public virtual void SubtractPercentAttributes(Item item) {
         foreach (Attribute attribute in item.Attributes) {
             if (attribute.type == AttributeType && attribute.valueType == ValueType.Percent) {
                 _percentOfAttribute -= attribute.value;
@@ -89,7 +89,7 @@ public abstract class AttributeController : MonoBehaviour {
         }
     }
 
-    public virtual void SubstractTemporaryAttribute(Item item) {
+    public virtual void SubtractTemporaryAttribute(Item item) {
         foreach (Attribute attribute in item.Attributes) {
             if (attribute.type == AttributeType) {
                 _valueTemporary -= attribute.value;

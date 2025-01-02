@@ -18,10 +18,8 @@ public class HealthController : MonoBehaviour {
     private InvulnerabilityStatus _invulnerabilityStatus;
 
     public float CurrentHealth { get => _currentHealth > _playerAttributes.MaxHealth ? _playerAttributes.MaxHealth : _currentHealth; }
+    public float MaxHealth { get => _playerAttributes.MaxHealth; }
     public bool IsDead { get => CurrentHealth <= 0; }
-    public static event Action OnHealthChanged;
-    public static event Action OnDamageTaken;
-    public static event Action OnDead;
 
     public void Init(PlayerConfig config, PlayerAttributes playerAttributes) {
         _config = config;
@@ -46,7 +44,7 @@ public class HealthController : MonoBehaviour {
             if (_timeRegenerationHealth >= 1) {
                 _timeRegenerationHealth = 0;
                 AddHealth(_playerAttributes.HealthRegeneration);
-                Debug.Log($"regenration health + <color=green>{_playerAttributes.HealthRegeneration}</color>");
+                Debug.Log($"regeneration health + <color=green>{_playerAttributes.HealthRegeneration}</color>");
                 Debug.Log($"health after healing + <color=blue>{_playerAttributes.MaxHealth}</color>");
             }
         }
@@ -54,7 +52,7 @@ public class HealthController : MonoBehaviour {
 
     public void AddHealth(float health) {
         _currentHealth += health;
-        OnHealthChanged?.Invoke();
+        EventManager.OnHealthChangedHandler();
     }
 
     public void CheckTakeDamage(float damage, Damage damageObject) {
@@ -91,10 +89,10 @@ public class HealthController : MonoBehaviour {
 
         //print("health = " + _health);
         if (IsDead) {
-            OnDead?.Invoke();
+            EventManager.OnDeadHandler();
         }
         else {
-            OnDamageTaken?.Invoke();
+            EventManager.OnHealthChangedHandler();
         }
     }
 

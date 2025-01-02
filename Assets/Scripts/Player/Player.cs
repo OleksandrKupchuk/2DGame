@@ -9,7 +9,7 @@ public class Player : Character {
     [SerializeField]
     private List<Collider2D> _collidersForIgnored = new List<Collider2D>();
 
-    public List<Collider2D> CollidersForIgnored { get => _collidersForIgnored; }
+    public List<Collider2D> CollidesForIgnored { get => _collidersForIgnored; }
     public PlayerConfig Config { get => (PlayerConfig)_config; }
     public PlayerIdleState IdleState { get; private set; }
     public PlayerRunState RunState { get; private set; }
@@ -45,8 +45,8 @@ public class Player : Character {
         Inventory = FindObjectOfType<Inventory>();
         QuestSystem = new QuestSystem();
         PickUpController.Init(Inventory, QuestSystem);
-        HealthController.OnDamageTaken += () => StateMachine.ChangeState(HitState);
-        HealthController.OnDead += () => StateMachine.ChangeState(DeadState);
+        EventManager.OnHit += () => StateMachine.ChangeState(HitState);
+        EventManager.OnDead += () => StateMachine.ChangeState(DeadState);
 
         IdleState = new PlayerIdleState();
         RunState = new PlayerRunState();

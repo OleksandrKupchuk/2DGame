@@ -1,11 +1,10 @@
 using System;
-using UnityEngine;
 
-public class EventManager : MonoBehaviour {
-    public static event Action<WearableItem> PutOnItem;
+public class EventManager {
+    public static event Action<WearableItem> OnItemDressed;
 
-    public static void PutOnItemEventHandler(WearableItem item) {
-        PutOnItem.Invoke(item);
+    public static void OnItemDressedHandler(WearableItem item) {
+        OnItemDressed.Invoke(item);
     }
 
     public static event Action<Item> TakeAwayItem;
@@ -36,5 +35,21 @@ public class EventManager : MonoBehaviour {
 
     public static void CloseInventoryEventHandler() {
         CloseInventory.Invoke();
+    }
+
+    public static event Action OnHealthChanged;
+
+    public static void OnHealthChangedHandler() {
+        OnHealthChanged.Invoke();
+    }
+
+    public static event Action OnDead;
+    public static void OnDeadHandler() {
+        OnDead.Invoke();
+    }
+
+    public static event Action OnHit;
+    public static void OnHitHandler() {
+        OnHit.Invoke();
     }
 }
