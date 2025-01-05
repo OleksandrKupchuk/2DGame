@@ -1,10 +1,8 @@
 public class ProjectContext : Singleton<ProjectContext> {
-    public QuestSystem QuestSystem { get; private set; }
     public Player Player { get; private set; }
 
     public void Init() {
-        QuestSystem = new QuestSystem();
-        PlayerSpawner.OnPlyerSpawned += SetPlayer;
+        PlayerSpawner.OnPlayerSpawned += SetPlayer;
     }
 
     private void SetPlayer(Player player) {
@@ -12,6 +10,6 @@ public class ProjectContext : Singleton<ProjectContext> {
     }
 
     private void OnDestroy() {
-        PlayerSpawner.OnPlyerSpawned -= SetPlayer;
+        PlayerSpawner.OnPlayerSpawned -= SetPlayer;
     }
 }

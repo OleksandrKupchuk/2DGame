@@ -69,7 +69,7 @@ public class Cursor : MonoBehaviour {
             if (!cell.HasItem) {
                 return;
             }
-            ItemTooltip.ShowTooltip(cell.Item, cell.Transfom.position, cell.RectTransform.rect.height);
+            ItemTooltip.ShowTooltip(cell.Item, cell.Transform.position, cell.RectTransform.rect.height);
         }
     }
 

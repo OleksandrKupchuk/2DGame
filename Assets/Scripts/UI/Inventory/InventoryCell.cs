@@ -7,7 +7,7 @@ public class InventoryCell : Cell, ICell {
     public Item Item { get => _item; }
     public RectTransform RectTransform { get; private set; }
     public Collider2D Collider { get => _collider; }
-    public Transform Transfom => transform;
+    public Transform Transform => transform;
 
     private void Awake() {
         DisableIcon();

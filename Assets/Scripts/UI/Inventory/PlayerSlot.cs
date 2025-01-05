@@ -11,7 +11,7 @@ public class PlayerSlot : Cell, ICell {
     public Item Item { get => _item; }
     public RectTransform RectTransform { get; private set; }
     public Collider2D Collider { get => _collider; }
-    public Transform Transfom => transform;
+    public Transform Transform => transform;
 
     private void Awake() {
         DisableIcon();
@@ -47,7 +47,6 @@ public class PlayerSlot : Cell, ICell {
                 this._item = _item;
                 SetIcon(Item.Icon);
                 EnableIcon();
-                EventManager.OnHealthChangedHandler();
                 EventManager.OnItemDressedHandler(_item);
             }
         }

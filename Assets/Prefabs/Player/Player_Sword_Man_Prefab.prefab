@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fbc1aeb1ab6cf44ca4c8fdc9b201f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: a54ace36f66f2cb4dbac2f323babad9b, type: 2}
+  _config: {fileID: 11400000, guid: cc5a875545926f64b975841e0583567d, type: 2}
   _collidersForIgnored:
   - {fileID: 2724809069109994693}
   - {fileID: 550353306}
@@ -68,11 +68,13 @@ MonoBehaviour:
   - {fileID: 1686243371}
   - {fileID: 2059703570}
   - {fileID: 247315288}
+  <Config>k__BackingField: {fileID: 11400000, guid: a54ace36f66f2cb4dbac2f323babad9b, type: 2}
   <InvulnerableStatus>k__BackingField: {fileID: 9206641031412101052}
   <PlayerMovement>k__BackingField: {fileID: 5652064171342545477}
   <HealthController>k__BackingField: {fileID: 1486704200075581308}
   <PlayerWeaponController>k__BackingField: {fileID: 7264231251228489834}
   <PickUpController>k__BackingField: {fileID: 5998367218307207105}
+  <SpeedAttribute>k__BackingField: {fileID: 11400000, guid: c8ab9cbfa78a7194ba7e595ec4b484d8, type: 2}
 --- !u!114 &9206641031412101052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,6 +287,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 6843455573970313801}
   _invulnerabilityStatus: {fileID: 9206641031412101052}
+  _healthRegenerationAttribute: {fileID: 11400000, guid: 49a3a339c57fec54297891152d2643ed, type: 2}
+  _healthAttribute: {fileID: 11400000, guid: 4674c32353ebcea46bd9e5c0438ff14d, type: 2}
+  _armorAttribute: {fileID: 11400000, guid: 935f3f0490f82834085dab1f3f6005c9, type: 2}
 --- !u!114 &7264231251228489834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,6 +406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <BoxCollider2D>k__BackingField: {fileID: 5244960924419892184}
   _player: {fileID: 7139910950940667720}
+  _damageAttribute: {fileID: 11400000, guid: 5dad5dd0cdf1e8046bf5c679c5b7e5d6, type: 2}
 --- !u!61 &5244960924419892184
 BoxCollider2D:
   m_ObjectHideFlags: 0

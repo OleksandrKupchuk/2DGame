@@ -13,7 +13,7 @@ public class ItemUsageSlot : Cell, ICell {
     public bool HasItem => _item != null;
     public RectTransform RectTransform { get; private set; }
     public Collider2D Collider { get => _collider; }
-    public Transform Transfom => transform;
+    public Transform Transform => transform;
 
     private void Awake() {
         DisableIcon();

@@ -10,7 +10,8 @@ public class Player : Character {
     private List<Collider2D> _collidersForIgnored = new List<Collider2D>();
 
     public List<Collider2D> CollidesForIgnored { get => _collidersForIgnored; }
-    public PlayerConfig Config { get => (PlayerConfig)_config; }
+    [field: SerializeField]
+    public PlayerConfig Config { get; private set; }
     public PlayerIdleState IdleState { get; private set; }
     public PlayerRunState RunState { get; private set; }
     public PlayerAttackState AttackState { get; private set; }
@@ -20,9 +21,6 @@ public class Player : Character {
     public PlayerDeadState DeadState { get; private set; }
     public StateMachine<Player> StateMachine { get; private set; }
     public Inventory Inventory { get; private set; }
-    public PlayerAttributes PlayerAttributes { get; private set; }
-    public QuestSystem QuestSystem { get; private set; }
-
     public IInteracvite Interactive { get => _interactive; }
     [field: SerializeField]
     public InvulnerabilityStatus InvulnerableStatus { get; private set; }
@@ -34,17 +32,17 @@ public class Player : Character {
     public PlayerWeaponController PlayerWeaponController { get; private set; }
     [field: SerializeField]
     public PickUpController PickUpController { get; private set; }
+    [field: SerializeField]
+    public SpeedAttribute SpeedAttribute { get; private set; }
 
     private new void Awake() {
         base.Awake();
-        PlayerAttributes = FindObjectOfType<PlayerAttributes>();
         PlayerMovement.Init(Config);
-        HealthController.Init(Config, PlayerAttributes);
+        HealthController.Init(Config);
         PlayerWeaponController.Init();
         _deafaultGravityScale = Rigidbody.gravityScale;
         Inventory = FindObjectOfType<Inventory>();
-        QuestSystem = new QuestSystem();
-        PickUpController.Init(Inventory, QuestSystem);
+        PickUpController.Init(Inventory);
         EventManager.OnHit += () => StateMachine.ChangeState(HitState);
         EventManager.OnDead += () => StateMachine.ChangeState(DeadState);
 
@@ -66,10 +64,6 @@ public class Player : Character {
         }
         if (Inventory == null) {
             Debug.LogError($"Component {nameof(Inventory)} is null");
-        }
-        if (PlayerAttributes == null) {
-            Debug.LogError($"object {nameof(PlayerAttributes)} is null");
-            return;
         }
     }
 

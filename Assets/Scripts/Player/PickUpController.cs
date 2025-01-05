@@ -3,12 +3,10 @@ using UnityEngine;
 
 public class PickUpController : MonoBehaviour {
     private Inventory _inventory;
-    private QuestSystem _playerQuestSystem;
     private List<Item> _items = new List<Item>();
 
-    public void Init(Inventory inventory, QuestSystem playerQuestSystem) {
+    public void Init(Inventory inventory) {
         _inventory = inventory;
-        _playerQuestSystem = playerQuestSystem;
     }
 
     private void Awake() {
@@ -27,7 +25,7 @@ public class PickUpController : MonoBehaviour {
 
         if (collision.gameObject.name.Contains("Quest item king")) {
             print("pickup quest item");
-            _playerQuestSystem.AddQuestItem(collision.gameObject);
+            QuestSystem.Instance.AddQuestItem(collision.gameObject);
         }
     }
 

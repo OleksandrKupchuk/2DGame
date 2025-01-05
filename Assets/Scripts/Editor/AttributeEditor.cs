@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(Attribute))]
+[CustomEditor(typeof(AttributeData))]
 public class AttributeEditor : Editor {
     SerializedProperty _attributeTypeProperty;
     SerializedProperty _valueTypeProperty;
@@ -14,8 +14,8 @@ public class AttributeEditor : Editor {
         _attributeTypeProperty = serializedObject.FindProperty("type");
         _valueTypeProperty = serializedObject.FindProperty("valueType");
         _valueProperty = serializedObject.FindProperty("value");
-        _damageMinProperty = serializedObject.FindProperty("damageMin");
-        _damageMaxProperty = serializedObject.FindProperty("damageMax");
+        _damageMinProperty = serializedObject.FindProperty("DamageMin");
+        _damageMaxProperty = serializedObject.FindProperty("DamageMax");
         _iconProperty = serializedObject.FindProperty("icon");
 
         serializedObject.Update();

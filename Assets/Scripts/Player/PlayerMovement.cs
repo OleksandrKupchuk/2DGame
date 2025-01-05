@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour {
-    private Config _playerConfig;
+    private PlayerConfig _playerConfig;
     private RaycastHit2D _raycastHit;
     private PlayerInput _playerInput;
 
@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour {
     public bool IsOpenInventory { get => _playerInput.HandleInventoryInputAction.triggered; }
     public bool IsInteraction { get => _playerInput.Interaction.triggered; }
 
-    public void Init(Config playerConfig) {
+    public void Init(PlayerConfig playerConfig) {
         _playerInput = new PlayerInput();
         _playerInput.Init(_inputActionAsset);
         _playerConfig = playerConfig;
@@ -63,11 +63,11 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     public void Jump() {
-        _rigidbody.velocity = Vector2.up * _playerConfig.jumpVelocity;
+        _rigidbody.velocity = Vector2.up * _playerConfig.JumpVelocity;
     }
 
     public void Run(float inputDirection) {
-        _rigidbody.velocity = new Vector2(inputDirection * _playerConfig.speed, _rigidbody.velocity.y);
+        _rigidbody.velocity = new Vector2(inputDirection * _playerConfig.Speed, _rigidbody.velocity.y);
     }
 
     public void Flip() {

@@ -1,13 +1,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestSystem {
+[CreateAssetMenu(fileName = "QuestSystem", menuName = "QuestSystem/QuestSystem")]
+public class QuestSystem : ScriptableObject {
+    private static QuestSystem _instance;
     private List<IQuest> _quests = new List<IQuest>();
     private List<GameObject> _questItems = new List<GameObject>();
 
+    public static QuestSystem Instance { get { 
+            if(_instance == null) {
+                _instance = Resources.Load<QuestSystem>("QuestSystem/QuestSystem");
+            }
+
+            return _instance;
+        }
+    }
+
+    private QuestSystem() { }
+
     public void AddQuest(IQuest quest) {
         if(_quests.Contains(quest)) return;
-        System.Console.WriteLine("quest was added to player");
+        Debug.Log("quest was added to player");
         _quests.Add(quest);
     }
 

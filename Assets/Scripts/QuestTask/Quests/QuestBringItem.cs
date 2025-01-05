@@ -17,12 +17,12 @@ public class QuestBringItem : IQuest {
 
     public void GiveReward() {
         if (IsDone()) {
-            _player.Config.conis += 50;
+            _player.Config.coins += 50;
             _isRewardTaken = true;
         }
     }
 
     public bool IsDone() {
-        return ProjectContext.Instance.QuestSystem.IsQuestItem(_target);
+        return QuestSystem.Instance.IsQuestItem(_target);
     }
 }

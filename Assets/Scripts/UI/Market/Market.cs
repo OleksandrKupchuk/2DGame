@@ -63,8 +63,8 @@ public class Market : MonoBehaviour {
             return;
         }
 
-        if (_player.Config.conis >= GetPriceWithTraderComission(item.Price)) {
-            _player.Config.conis -= GetPriceWithTraderComission(item.Price);
+        if (_player.Config.coins >= GetPriceWithTraderComission(item.Price)) {
+            _player.Config.coins -= GetPriceWithTraderComission(item.Price);
             _player.Inventory.AddItem(item);
 
             CartItem _cartItem = _dictionaryItems.GetValueOrDefault(item);

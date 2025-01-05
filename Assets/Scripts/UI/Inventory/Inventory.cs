@@ -64,9 +64,6 @@ public class Inventory : MonoBehaviour {
     private void GenerateCellsOfPlayerBag() {
         for (int i = 0; i < _amountCells; i++) {
             InventoryCell _cellObject = Instantiate(_cellPrefab, _bag);
-            //_cellObject.transform.SetParent(_bag);
-            //_cellObject.transform.localScale = new Vector3(1, 1, 1);
-            //_cellObject.SetRectTransformPosition(new Vector3(_bag.transform.position.x, _bag.transform.position.y, _bag.transform.position.z));
             _cells.Add(_cellObject);
         }
     }

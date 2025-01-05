@@ -27,7 +27,7 @@ public abstract class Item : MonoBehaviour {
     public int Price { get; protected set; }
     public Sprite Icon { get => _spriteRenderer.sprite; }
     [field: SerializeField]
-    public List<Attribute> Attributes { get; protected set; } = new List<Attribute>();
+    public List<AttributeData> Attributes { get; protected set; } = new List<AttributeData>();
 
     protected void Awake() {
         CheckDuplicateAttributes();
@@ -37,7 +37,7 @@ public abstract class Item : MonoBehaviour {
         }
     }
 
-    public string GetAttributeValue(Attribute attribute) {
+    public string GetAttributeValue(AttributeData attribute) {
         string _value = "";
 
         if (attribute.type == AttributeType.Damage && attribute.valueType == ValueType.Integer) {
@@ -68,7 +68,7 @@ public abstract class Item : MonoBehaviour {
         }
     }
 
-    protected void CheckDuplicateValueType(Attribute first, Attribute second) {
+    protected void CheckDuplicateValueType(AttributeData first, AttributeData second) {
         if (first.valueType == second.valueType) {
             Debug.LogError($"You cannot have two same ValueType for the item '{gameObject.name}'");
         }
