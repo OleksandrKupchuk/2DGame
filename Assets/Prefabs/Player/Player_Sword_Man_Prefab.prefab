@@ -285,11 +285,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803d4ddb252d01045baeb18252e0e9d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 6843455573970313801}
   _invulnerabilityStatus: {fileID: 9206641031412101052}
   _healthRegenerationAttribute: {fileID: 11400000, guid: 49a3a339c57fec54297891152d2643ed, type: 2}
   _healthAttribute: {fileID: 11400000, guid: 4674c32353ebcea46bd9e5c0438ff14d, type: 2}
   _armorAttribute: {fileID: 11400000, guid: 935f3f0490f82834085dab1f3f6005c9, type: 2}
+  _config: {fileID: 11400000, guid: a54ace36f66f2cb4dbac2f323babad9b, type: 2}
 --- !u!114 &7264231251228489834
 MonoBehaviour:
   m_ObjectHideFlags: 0

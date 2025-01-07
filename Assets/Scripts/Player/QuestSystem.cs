@@ -1,15 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "QuestSystem", menuName = "QuestSystem/QuestSystem")]
-public class QuestSystem : ScriptableObject {
+public class QuestSystem {
     private static QuestSystem _instance;
     private List<IQuest> _quests = new List<IQuest>();
     private List<GameObject> _questItems = new List<GameObject>();
 
     public static QuestSystem Instance { get { 
             if(_instance == null) {
-                _instance = Resources.Load<QuestSystem>("QuestSystem/QuestSystem");
+                _instance = new QuestSystem();
             }
 
             return _instance;

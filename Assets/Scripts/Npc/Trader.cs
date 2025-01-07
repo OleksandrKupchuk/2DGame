@@ -10,7 +10,7 @@ public class Trader : Npc {
     [SerializeField]
     private Market _market;
     [SerializeField]
-    private DialogController _dialogController;
+    private DialogView _dialogController;
     [SerializeField]
     private DialogData _dialogDataTrade;
     [SerializeField]

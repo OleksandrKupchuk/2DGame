@@ -1,9 +1,9 @@
 public class OpenMarket : IDialogAction {
     private Player _player;
     private Market _market;
-    private DialogController _dialogController;
+    private DialogView _dialogController;
 
-    public OpenMarket(Market market, DialogController dialogController) {
+    public OpenMarket(Market market, DialogView dialogController) {
         _market = market;
         _dialogController = dialogController;
 

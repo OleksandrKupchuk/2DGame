@@ -6,7 +6,6 @@ public class PlayerHitState : IState<Player> {
         _player = owner;
         _player.Animator.Play(AnimationName.Hit);
         _player.InvulnerableStatus.PlayBlinkAnimation();
-        _player.HealthController.ResetTimerHealthRegeneration();
     }
 
     public void Update() {

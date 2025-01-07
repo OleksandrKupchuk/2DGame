@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthController : MonoBehaviour {
-    private float _timerHealthRegeneration;
+public class PlayerHealthController : MonoBehaviour {
+    private float _delayBeforeRegenerationHealth;
     private float _timeRegenerationHealth;
     private float _currentHealth;
-    private PlayerConfig _config;
     private List<Damage> _objectsAttack = new List<Damage>();
     private float _blockedDamagePerOneArmor = 0.2f;
 
@@ -18,38 +17,40 @@ public class HealthController : MonoBehaviour {
     private HealthAttribute _healthAttribute;
     [SerializeField]
     private ArmorAttribute _armorAttribute;
+    [SerializeField]
+    private PlayerConfig _config;
 
-    public float CurrentHealth { get { 
-            if(_currentHealth > _healthAttribute.MaxHealth) {
-                _currentHealth = _healthAttribute.MaxHealth;
-                return _currentHealth;
-            }
-            else {
-                return _currentHealth;
-            }
-        }
-    }
+    public float CurrentHealth { get => _currentHealth; }
     public float MaxHealth { get => _healthAttribute.MaxHealth; }
     public bool IsDead { get => CurrentHealth <= 0; }
 
+    private void Awake() {
+        EventManager.OnHealthChanged += CheckCurrentHealth;
+    }
+
+    private void OnDestroy() {
+        EventManager.OnHealthChanged -= CheckCurrentHealth;
+    }
+
     public void Init(PlayerConfig config) {
         _config = config;
-        _currentHealth = config.Health;   
+        _currentHealth = config.Health;
     }
 
     public void RegenerationHealth() {
         if (_currentHealth >= _healthAttribute.MaxHealth) {
+            _delayBeforeRegenerationHealth = 0;
             return;
         }
 
-        _timerHealthRegeneration += Time.deltaTime;
+        _delayBeforeRegenerationHealth += Time.deltaTime;
 
-        if (_timerHealthRegeneration >= _config.DelayHealthRegeneration) {
+        if (_delayBeforeRegenerationHealth >= _config.DelayHealthRegeneration) {
 
-            _timeRegenerationHealth += Time.deltaTime;
+            _timeRegenerationHealth -= Time.deltaTime;
 
-            if (_timeRegenerationHealth >= 1) {
-                _timeRegenerationHealth = 0;
+            if (_timeRegenerationHealth <= 0) {
+                _timeRegenerationHealth = 1;
                 AddHealth(_healthRegenerationAttribute.HealthRegeneration);
                 Debug.Log($"regeneration Health + <color=green>{_healthRegenerationAttribute.HealthRegeneration}</color>");
                 Debug.Log($"Health after healing + <color=blue>{_healthAttribute.MaxHealth}</color>");
@@ -59,7 +60,17 @@ public class HealthController : MonoBehaviour {
 
     public void AddHealth(float health) {
         _currentHealth += health;
+
+        CheckCurrentHealth();
+
+        Debug.Log("Health was added, value = " + health);
         EventManager.OnHealthChangedHandler();
+    }
+
+    private void CheckCurrentHealth() {
+        if (_currentHealth >= _healthAttribute.MaxHealth) {
+            _currentHealth = _healthAttribute.MaxHealth;
+        }
     }
 
     public void CheckTakeDamage(float damage, Damage damageObject) {
@@ -67,6 +78,7 @@ public class HealthController : MonoBehaviour {
             StartCoroutine(UnregisteredDamageObject(damageObject));
         }
         else if (_invulnerabilityStatus.IsInvulnerability) {
+            Debug.Log("Player IsInvulnerability");
         }
         else {
             RegisterDamageObject(damageObject);
@@ -96,6 +108,7 @@ public class HealthController : MonoBehaviour {
             EventManager.OnDeadHandler();
         }
         else {
+            _delayBeforeRegenerationHealth = 0;
             EventManager.OnHitHandler();
             EventManager.OnHealthChangedHandler();
         }
@@ -104,9 +117,5 @@ public class HealthController : MonoBehaviour {
     public float GetBlockedDamage(float armor) {
         float _blockedDamage = armor * _blockedDamagePerOneArmor;
         return _blockedDamage;
-    }
-
-    public void ResetTimerHealthRegeneration() {
-        _timerHealthRegeneration = 0;
     }
 }

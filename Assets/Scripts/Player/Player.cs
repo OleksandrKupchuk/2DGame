@@ -27,7 +27,7 @@ public class Player : Character {
     [field: SerializeField]
     public PlayerMovement PlayerMovement { get; private set; }
     [field: SerializeField]
-    public HealthController HealthController { get; private set; }
+    public PlayerHealthController HealthController { get; private set; }
     [field: SerializeField]
     public PlayerWeaponController PlayerWeaponController { get; private set; }
     [field: SerializeField]
@@ -56,6 +56,11 @@ public class Player : Character {
         StateMachine = new StateMachine<Player>(this);
 
         CheckComponentOnNull();
+    }
+
+    private void OnDestroy() {
+        EventManager.OnHit -= () => StateMachine.ChangeState(HitState);
+        EventManager.OnDead -= () => StateMachine.ChangeState(DeadState);
     }
 
     private void CheckComponentOnNull() {

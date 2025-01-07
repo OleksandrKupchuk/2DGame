@@ -12,19 +12,19 @@ public class AttributeView : MonoBehaviour {
     private Attribute _attribute;
 
     private void Awake() {
-        EventManager.OnAttributeChanged += UpdateAttributeItem;
+        EventManager.OnAttributeChanged += UpdateAttributeView;
     }
 
     private void OnDestroy() {
-        EventManager.OnAttributeChanged -= UpdateAttributeItem;
+        EventManager.OnAttributeChanged -= UpdateAttributeView;
     }
 
     private void Start() {
         _icon.sprite = _spriteAttribute;
-        UpdateAttributeItem(_attribute.AttributeType);
+        UpdateAttributeView(_attribute.AttributeType);
     }
 
-    public void UpdateAttributeItem(AttributeType attributeType) {
+    public void UpdateAttributeView(AttributeType attributeType) {
         if (_attribute.AttributeType != attributeType) {
             return;
         }

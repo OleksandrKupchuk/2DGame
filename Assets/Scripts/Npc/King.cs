@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class King : Npc, IInteracvite {
     [SerializeField]
-    private DialogController _dialogController;
+    private DialogView _dialogController;
     [SerializeField]
     private DialogData _dialogDataBringCrown;
     [SerializeField]

@@ -2278,7 +2278,7 @@ PrefabInstance:
     - target: {fileID: 7783106782238398623, guid: d16ed841d934b0c41b770da7ff4aa3f0, type: 3}
       propertyPath: _dialogController
       value: 
-      objectReference: {fileID: 1063272173}
+      objectReference: {fileID: 1063272176}
     - target: {fileID: 8314125910475107488, guid: d16ed841d934b0c41b770da7ff4aa3f0, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -5334,9 +5334,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1063272172}
   - component: {fileID: 1063272175}
-  - component: {fileID: 1063272173}
+  - component: {fileID: 1063272176}
   m_Layer: 5
-  m_Name: DialogController
+  m_Name: DialogView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5362,26 +5362,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 200}
   m_SizeDelta: {x: 1920, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1063272173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1063272171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e68d1c6fa4d85143bcbd4adddd7f116, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _background: {fileID: 2041054855}
-  _dialogContainer: {fileID: 1656566119}
-  _dialogViewPrefab: {fileID: 5449742533877184648, guid: e3435634cd30bfb43b3ced96631ccc2c, type: 3}
-  _speakerName: {fileID: 1297599846}
-  <NextButton>k__BackingField: {fileID: 907494497}
-  <BackButton>k__BackingField: {fileID: 1006331556}
-  <CloseButton>k__BackingField: {fileID: 1612566050}
-  <Description>k__BackingField: {fileID: 348543208}
 --- !u!222 &1063272175
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5390,6 +5370,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1063272171}
   m_CullTransparentMesh: 1
+--- !u!114 &1063272176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063272171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91783f27d44689d43a78bc1afb3f3d24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _background: {fileID: 2041054855}
+  _dialogContainer: {fileID: 1656566119}
+  _startDialogButtonPrefab: {fileID: 5449742533877184648, guid: e3435634cd30bfb43b3ced96631ccc2c, type: 3}
+  _speakerName: {fileID: 1297599846}
+  _closeButton: {fileID: 1612566050}
+  _nextButton: {fileID: 907494497}
+  _backButton: {fileID: 1006331556}
+  _description: {fileID: 348543208}
 --- !u!1001 &1077855886
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13028,7 +13028,7 @@ PrefabInstance:
     - target: {fileID: 7029465438335111260, guid: bb6e0f03cd904b746b8746c96eb6309c, type: 3}
       propertyPath: _dialogController
       value: 
-      objectReference: {fileID: 1063272173}
+      objectReference: {fileID: 1063272176}
     - target: {fileID: 7029465438335111260, guid: bb6e0f03cd904b746b8746c96eb6309c, type: 3}
       propertyPath: _dialogInterestStoryData
       value: 

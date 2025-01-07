@@ -1,30 +1,21 @@
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Dialog {
-    public DialogController _dialogController;
-    public DialogData _dialogData;
-    private Button _nextButton;
-    private Button _backButton;
-    private Button _closeButton;
-    private Text _description;
+    public DialogView _dialogView;
+    private DialogData _dialogData;
     private int _paragraphCounter = 0;
     private IDialogAction _dialogAction;
 
     public DialogData DialogData { get => _dialogData; }
 
-    public Dialog(DialogData dialogData, DialogController dialogController, IDialogAction dialogAction) : this (dialogData, dialogController) {
+    public Dialog(DialogData dialogData, DialogView dialogView, IDialogAction dialogAction) : this (dialogData, dialogView) {
         _dialogAction = dialogAction;
     }
 
-    public Dialog(DialogData dialogData, DialogController dialogController) {
+    public Dialog(DialogData dialogData, DialogView dialogView) {
         _dialogData = dialogData;
-        _dialogController = dialogController;
-        _nextButton = dialogController.NextButton;
-        _backButton = dialogController.BackButton;
-        _closeButton = dialogController.CloseButton;
-        _description = dialogController.Description;
+        _dialogView = dialogView;
     }
 
     public Dialog(DialogData dialogData, IDialogAction dialogAction) {
@@ -40,19 +31,19 @@ public class Dialog {
             _dialogAction.DoAction();
         }
         else if (_dialogData.paragraphs.Length > 0) {
-            _dialogController.DisableStartButtons();
+            _dialogView.DisableStartButtons();
 
-            _closeButton.gameObject.SetActive(false);
-            _description.gameObject.SetActive(true);
-            _description.text = _dialogData.paragraphs[0];
+            _dialogView.DisableCloseButton();
+            _dialogView.EnableDescription();
+            _dialogView.SetDescriptionText(_dialogData.paragraphs[0]);
 
             if (_dialogData.paragraphs.Length == 1) {
-                _backButton.gameObject.SetActive(true);
-                _backButton.onClick.AddListener(() => { BackToDialogs(); });
+                _dialogView.EnableBackButton();   
+                _dialogView.AddListenerBackButton(() => { BackToDialogs(); });
             }
             else if (_dialogData.paragraphs.Length > 1) {
-                _nextButton.gameObject.SetActive(true);
-                _nextButton.onClick.AddListener(() => { NextParagraph(); });
+                _dialogView.EnableNextButton();
+                _dialogView.AddListenerNextButton(() => { NextParagraph(); });
             }
         }
     }
@@ -60,14 +51,14 @@ public class Dialog {
     private void BackToDialogs() {
         _paragraphCounter = 0;
 
-        _description.gameObject.SetActive(false);
-        _backButton.gameObject.SetActive(false);
+        _dialogView.DisableDescription();
+        _dialogView.DisableBackButton();
 
-        _dialogController.EnableStartButtons();
+        _dialogView.EnableStartButtons();
+        _dialogView.EnableCloseButton();
 
-        _nextButton.onClick.RemoveAllListeners();
-        _backButton.onClick.RemoveAllListeners();
-        _closeButton.gameObject.SetActive(true);
+        _dialogView.RemoveAllListenersNextButton();
+        _dialogView.RemoveAllListenersBackButton();
     }
 
     private void NextParagraph() {
@@ -76,14 +67,14 @@ public class Dialog {
         _paragraphCounter++;
 
         if (_paragraphCounter < _dialogData.paragraphs.Length) {
-            _description.text = _dialogData.paragraphs[_paragraphCounter];
+            _dialogView.SetDescriptionText(_dialogData.paragraphs[_paragraphCounter]);
         }
 
         if (_paragraphCounter == _dialogData.paragraphs.Length - 1) {
-            _nextButton.gameObject.SetActive(false);
-            _backButton.gameObject.SetActive(true);
+            _dialogView.DisableNextButton();
+            _dialogView.EnableBackButton();
             _dialogAction?.DoAction();
-            _backButton.onClick.AddListener(() => { BackToDialogs(); });
+            _dialogView.AddListenerBackButton(() => { BackToDialogs(); });
         }
     }
 }
