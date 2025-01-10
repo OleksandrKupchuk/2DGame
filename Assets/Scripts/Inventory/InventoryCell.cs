@@ -24,8 +24,4 @@ public class InventoryCell : Cell, ICell {
         _item = null;
         DisableIcon();
     }
-
-    public void SetRectTransformPosition(Vector3 newPosition) {
-        RectTransform.localPosition = newPosition;
-    }
 }

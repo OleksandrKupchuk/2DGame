@@ -97,7 +97,7 @@ public class Inventory : MonoBehaviour {
         foreach (InventoryCell cell in _cells) {
             if (!cell.HasItem) {
                 cell.SetItem(item);
-                item.Disable();
+                //item.Disable();
                 return;
             }
         }

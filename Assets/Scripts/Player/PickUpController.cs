@@ -5,6 +5,9 @@ public class PickUpController : MonoBehaviour {
     private Inventory _inventory;
     private List<Item> _items = new List<Item>();
 
+    [SerializeField]
+    private InventoryController _inventoryController;
+
     public void Init(Inventory inventory) {
         _inventory = inventory;
     }
@@ -27,6 +30,12 @@ public class PickUpController : MonoBehaviour {
             print("pickup quest item");
             QuestSystem.Instance.AddQuestItem(collision.gameObject);
         }
+
+        if (collision.transform.TryGetComponent(out ItemView itemView)) {
+            if (_inventoryController.TryAddItem(itemView.ItemData)) {
+                Destroy(itemView.gameObject);
+            }
+        }
     }
 
     private void RegisterPickUpItem(Item item) {
@@ -34,6 +43,7 @@ public class PickUpController : MonoBehaviour {
             return;
         }
         _items.Add(item);
+        item.Disable();
     }
 
     private void UnregisterPickUpItem(Item item) {
@@ -41,6 +51,6 @@ public class PickUpController : MonoBehaviour {
     }
 
     private void PickUpItem(Item item) {
-        _inventory.AddItem(item);
+        _inventory?.AddItem(item);
     }
 }
