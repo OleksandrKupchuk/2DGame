@@ -1,21 +1,26 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DropZone : MonoBehaviour, IDropHandler {
-    [SerializeField]
-    private InventoryCellView _cellView;
-
-    public void OnDrop(PointerEventData eventData) {
-        if(eventData.pointerDrag == null) {
+public class DropZone : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+    public void OnPointerEnter(PointerEventData eventData) {
+        if (eventData.pointerDrag == null) {
             return;
         }
 
         if (eventData.pointerDrag.TryGetComponent(out DragAndDrop dragAndDrop)) {
-            ItemData _buffer = dragAndDrop.CellView.ItemData;
+            Debug.Log("OnPointerEnter");
+            dragAndDrop.isDropZone = true;
+        }
+    }
 
-            dragAndDrop.CellView.PutItem(_cellView.ItemData);
+    public void OnPointerExit(PointerEventData eventData) {
+        if (eventData.pointerDrag == null) {
+            return;
+        }
 
-            _cellView.PutItem(_buffer);
+        if (eventData.pointerDrag.TryGetComponent(out DragAndDrop dragAndDrop)) {
+            Debug.Log("OnPointerExit");
+            dragAndDrop.isDropZone = false;
         }
     }
 }

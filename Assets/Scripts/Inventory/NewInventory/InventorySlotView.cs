@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryCellView : MonoBehaviour {
+public class InventorySlotView : MonoBehaviour {
     private ItemData _itemData;
 
     [SerializeField]
@@ -12,17 +12,21 @@ public class InventoryCellView : MonoBehaviour {
 
     public void PutItem(ItemData itemData) {
         _itemData = itemData;
+        SetIcon(_itemData);
+    }
 
+    public void TakeItem() {
+        _itemData = null;
+        SetIcon(_itemData);
+    }
+
+    private void SetIcon(ItemData itemData) {
         if (!IsEmpty) {
-            SetIcon(itemData.Icon);
+            _icon.color = new Color(255, 255, 255, 255);
+            _icon.sprite = itemData.Icon;
         }
         else {
             _icon.color = new Color(255, 255, 255, 0);
         }
-    }
-
-    private void SetIcon(Sprite icon) {
-        _icon.color = new Color(255, 255, 255, 255);
-        _icon.sprite = icon;
     }
 }

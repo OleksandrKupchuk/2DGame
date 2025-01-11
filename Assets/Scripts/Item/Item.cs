@@ -30,8 +30,6 @@ public abstract class Item : MonoBehaviour {
     public List<AttributeData> Attributes { get; protected set; } = new List<AttributeData>();
 
     protected void Awake() {
-        CheckDuplicateAttributes();
-
         if(Attributes == null || Attributes.Count == 0 ) {
             Debug.LogError($"{nameof(Attributes)} is null or empty, {gameObject.name}");
         }
@@ -53,25 +51,6 @@ public abstract class Item : MonoBehaviour {
         }
 
         return _value;
-    }
-
-    protected void CheckDuplicateAttributes() {
-        for (int i = 0; i < Attributes.Count; i++) {
-            int _nextAttribute = i + 1;
-
-            if (_nextAttribute == Attributes.Count) {
-                return;
-            }
-            if (Attributes[i].type == Attributes[_nextAttribute].type) {
-                CheckDuplicateValueType(Attributes[i], Attributes[_nextAttribute]);
-            }
-        }
-    }
-
-    protected void CheckDuplicateValueType(AttributeData first, AttributeData second) {
-        if (first.valueType == second.valueType) {
-            Debug.LogError($"You cannot have two same ValueType for the item '{gameObject.name}'");
-        }
     }
 
     public void Disable() {

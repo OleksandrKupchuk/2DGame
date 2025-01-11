@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,9 +8,16 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
 
     [SerializeField]
     private CanvasGroup _canvasGroup;
+    [SerializeField]
+    private InventoryController _inventoryController;
 
     [field: SerializeField]
-    public InventoryCellView CellView { get; private set; }
+    public InventorySlotView SlotView { get; private set; }
+
+    public bool isDropZone = false;
+
+    public static event Action<ItemData> OnItemTaken;
+    public static event Action OnItemPutted;
 
     private void Awake() {
         _rectTransform = GetComponent<RectTransform>();
@@ -17,19 +25,32 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     }
 
     public void OnBeginDrag(PointerEventData eventData) {
-        if (CellView.IsEmpty) { return; }
+        if (SlotView.IsEmpty) { return; }
         transform.SetParent(transform.root);
         _canvasGroup.blocksRaycasts = false;
+        OnItemTaken?.Invoke(SlotView.ItemData);
     }
 
     public void OnDrag(PointerEventData eventData) {
-        if (CellView.IsEmpty) { return; }
+        if (SlotView.IsEmpty) { return; }
         _rectTransform.anchoredPosition += eventData.delta;
     }
 
     public void OnEndDrag(PointerEventData eventData) {
+        if (isDropZone) {
+            _inventoryController.RemoveItem(SlotView.ItemData);
+            ResetPowition();
+        }
+        else {
+            ResetPowition();
+        }
+
+    }
+
+    private void ResetPowition() {
         transform.SetParent(_parent);
         transform.localPosition = Vector3.zero;
         _canvasGroup.blocksRaycasts = true;
+        OnItemPutted?.Invoke();
     }
 }

@@ -13,11 +13,11 @@ public class PickUpController : MonoBehaviour {
     }
 
     private void Awake() {
-        DropItemState.DropItem += UnregisterPickUpItem;
+        //DropItemState.DropItem += UnregisterPickUpItem;
     }
 
     private void OnDestroy() {
-        DropItemState.DropItem -= UnregisterPickUpItem;
+        //DropItemState.DropItem -= UnregisterPickUpItem;
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {

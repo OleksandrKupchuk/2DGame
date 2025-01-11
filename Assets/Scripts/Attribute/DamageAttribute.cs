@@ -23,8 +23,8 @@ public class DamageAttribute : Attribute {
         _valueIntegerMax = _playerConfig.DamageMax;
     }
 
-    protected override void AddIntegerAttributes(Item item) {
-        foreach (AttributeData attribute in item.Attributes) {
+    protected override void AddIntegerAttributes(ItemData itemData) {
+        foreach (AttributeData attribute in itemData.Attributes) {
             if (attribute.type == AttributeType && attribute.valueType == ValueType.Integer) {
                 _valueIntegerMin += attribute.damageMin;
                 _valueIntegerMax += attribute.damageMax;
@@ -32,8 +32,8 @@ public class DamageAttribute : Attribute {
         }
     }
 
-    protected override void AddPercentAttributes(Item item) {
-        foreach (AttributeData attribute in item.Attributes) {
+    protected override void AddPercentAttributes(ItemData itemData) {
+        foreach (AttributeData attribute in itemData.Attributes) {
             if (attribute.type == AttributeType && attribute.valueType == ValueType.Percent) {
                 _percentOfAttribute += attribute.value;
                 CalculationPercent();
@@ -41,8 +41,8 @@ public class DamageAttribute : Attribute {
         }
     }
 
-    protected override void SubtractIntegerAttributes(Item item) {
-        foreach (AttributeData attribute in item.Attributes) {
+    protected override void SubtractIntegerAttributes(ItemData itemData) {
+        foreach (AttributeData attribute in itemData.Attributes) {
             if (attribute.type == AttributeType && attribute.valueType == ValueType.Integer) {
                 _valueIntegerMin -= attribute.damageMin;
                 _valueIntegerMax -= attribute.damageMax;
@@ -50,8 +50,8 @@ public class DamageAttribute : Attribute {
         }
     }
 
-    protected override void SubtractPercentAttributes(Item item) {
-        foreach (AttributeData attribute in item.Attributes) {
+    protected override void SubtractPercentAttributes(ItemData itemData) {
+        foreach (AttributeData attribute in itemData.Attributes) {
             if (attribute.type == AttributeType && attribute.valueType == ValueType.Percent) {
                 _percentOfAttribute -= attribute.value;
                 CalculationPercent();
@@ -64,23 +64,23 @@ public class DamageAttribute : Attribute {
         _valuePercentMax = _percentOfAttribute * _valueIntegerMax / 100;
     }
 
-    protected override void AddTemporaryAttribute(Item item) {
-        foreach (AttributeData attribute in item.Attributes) {
+    protected override void AddTemporaryAttribute(ItemData itemData) {
+        foreach (AttributeData attribute in itemData.Attributes) {
             if (attribute.type == AttributeType) {
                 _valueTemporaryMin += attribute.damageMin;
                 _valueTemporaryMax += attribute.damageMax;
-                CheckAttributeChange(item);
+                CheckAttributeChange(itemData);
                 return;
             }
         }
     }
 
-    protected override void SubtractTemporaryAttribute(Item item) {
-        foreach (AttributeData attribute in item.Attributes) {
+    protected override void SubtractTemporaryAttribute(ItemData itemData) {
+        foreach (AttributeData attribute in itemData.Attributes) {
             if (attribute.type == AttributeType) {
                 _valueTemporaryMin -= attribute.damageMin;
                 _valueTemporaryMax -= attribute.damageMax;
-                CheckAttributeChange(item);
+                CheckAttributeChange(itemData);
                 return;
             }
         }

@@ -30,23 +30,23 @@ public abstract class Attribute : ScriptableObject {
         EventManager.ActionItemOver -= SubtractTemporaryAttribute;
     }
 
-    protected virtual void AddItemAttributes(Item item) {
-        AddIntegerAttributes(item);
-        AddPercentAttributes(item);
+    protected virtual void AddItemAttributes(ItemData itemData) {
+        AddIntegerAttributes(itemData);
+        AddPercentAttributes(itemData);
 
-        CheckAttributeChange(item);
+        CheckAttributeChange(itemData);
     }
 
-    protected virtual void AddIntegerAttributes(Item item) {
-        foreach (AttributeData attribute in item.Attributes) {
+    protected virtual void AddIntegerAttributes(ItemData itemData) {
+        foreach (AttributeData attribute in itemData.Attributes) {
             if (attribute.type == AttributeType && attribute.valueType == ValueType.Integer) {
                 _valueInteger += attribute.value;
             }
         }
     }
 
-    protected virtual void AddPercentAttributes(Item item) {
-        foreach (AttributeData attribute in item.Attributes) {
+    protected virtual void AddPercentAttributes(ItemData itemData) {
+        foreach (AttributeData attribute in itemData.Attributes) {
             if (attribute.type == AttributeType && attribute.valueType == ValueType.Percent) {
                 _percentOfAttribute += attribute.value;
                 _valuePercent = _percentOfAttribute * _valueInteger / 100;
@@ -54,22 +54,22 @@ public abstract class Attribute : ScriptableObject {
         }
     }
 
-    protected virtual void SubtractItemAttributes(Item item) {
-        SubtractIntegerAttributes(item);
-        SubtractPercentAttributes(item);
+    protected virtual void SubtractItemAttributes(ItemData itemData) {
+        SubtractIntegerAttributes(itemData);
+        SubtractPercentAttributes(itemData);
 
-        CheckAttributeChange(item);
+        CheckAttributeChange(itemData);
     }
 
-    protected virtual void SubtractIntegerAttributes(Item item) {
-        foreach (AttributeData attribute in item.Attributes) {
+    protected virtual void SubtractIntegerAttributes(ItemData itemData) {
+        foreach (AttributeData attribute in itemData.Attributes) {
             if (attribute.type == AttributeType && attribute.valueType == ValueType.Integer) {
                 _valueInteger -= attribute.value;
             }
         }
     }
 
-    protected virtual void SubtractPercentAttributes(Item item) {
+    protected virtual void SubtractPercentAttributes(ItemData item) {
         foreach (AttributeData attribute in item.Attributes) {
             if (attribute.type == AttributeType && attribute.valueType == ValueType.Percent) {
                 _percentOfAttribute -= attribute.value;
@@ -78,7 +78,7 @@ public abstract class Attribute : ScriptableObject {
         }
     }
 
-    protected virtual void AddTemporaryAttribute(Item item) {
+    protected virtual void AddTemporaryAttribute(ItemData item) {
         foreach (AttributeData attribute in item.Attributes) {
             if (attribute.type == AttributeType) {
                 _valueTemporary += attribute.value;
@@ -88,7 +88,7 @@ public abstract class Attribute : ScriptableObject {
         }
     }
 
-    protected virtual void SubtractTemporaryAttribute(Item item) {
+    protected virtual void SubtractTemporaryAttribute(ItemData item) {
         foreach (AttributeData attribute in item.Attributes) {
             if (attribute.type == AttributeType) {
                 _valueTemporary -= attribute.value;
@@ -98,7 +98,7 @@ public abstract class Attribute : ScriptableObject {
         }
     }
 
-    protected void CheckAttributeChange(Item item) {
+    protected void CheckAttributeChange(ItemData item) {
         foreach (AttributeData attributeData in item.Attributes) {
             if (attributeData.type == AttributeType) {
                 EventManager.OnAttributeChangedHandler(AttributeType);

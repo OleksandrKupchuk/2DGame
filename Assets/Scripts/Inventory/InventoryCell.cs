@@ -1,10 +1,10 @@
 using UnityEngine;
 
 public class InventoryCell : Cell, ICell {
-    private Item _item;
+    private ItemData _itemData;
 
-    public bool HasItem { get => Item != null; }
-    public Item Item { get => _item; }
+    public bool HasItem { get => _itemData != null; }
+    public ItemData ItemData { get => _itemData; }
     public RectTransform RectTransform { get; private set; }
     public Collider2D Collider { get => _collider; }
     public Transform Transform => transform;
@@ -14,14 +14,14 @@ public class InventoryCell : Cell, ICell {
         RectTransform = GetComponent<RectTransform>();
     }
 
-    public void SetItem(Item item) {
-        _item = item;
-        SetIcon(Item.Icon);
+    public void SetItem(ItemData itemData) {
+        _itemData = itemData;
+        SetIcon(_itemData.Icon);
         EnableIcon();
     }
 
     public void RemoveItem() {
-        _item = null;
+        _itemData = null;
         DisableIcon();
     }
 }

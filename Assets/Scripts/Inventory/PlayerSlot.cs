@@ -2,13 +2,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSlot : Cell, ICell {
-    private WearableItem _item;
+    private WearableItemData _itemData;
 
     [SerializeField]
     private List<ItemType> _itemTypes = new List<ItemType>();
 
-    public bool HasItem => _item != null;
-    public Item Item { get => _item; }
+    public bool HasItem => _itemData != null;
+    public ItemData ItemData { get => _itemData; }
     public RectTransform RectTransform { get; private set; }
     public Collider2D Collider { get => _collider; }
     public Transform Transform => transform;
@@ -16,18 +16,18 @@ public class PlayerSlot : Cell, ICell {
     private void Awake() {
         DisableIcon();
         RectTransform = GetComponent<RectTransform>();
-        DragDropController.RaisedItemTrigger += ChageBorderColor;
-        DragDropController.DropPutItemTrigger += ResetBorderColor;
+        DragAndDrop.OnItemTaken += ChangeBorderColor;
+        DragAndDrop.OnItemPutted += ResetBorderColor;
     }
 
     private void OnDestroy() {
-        DragDropController.RaisedItemTrigger -= ChageBorderColor;
-        DragDropController.DropPutItemTrigger -= ResetBorderColor;
+        DragAndDrop.OnItemTaken -= ChangeBorderColor;
+        DragAndDrop.OnItemPutted -= ResetBorderColor;
     }
 
-    private void ChageBorderColor(Item item) {
-        if (item is WearableItem) {
-            WearableItem _item = item as WearableItem;
+    private void ChangeBorderColor(ItemData item) {
+        if (item is WearableItemData) {
+            WearableItemData _item = item as WearableItemData;
 
             if (_itemTypes.Contains(_item.ItemType)) {
                 SetBorderColor(Color.green);
@@ -39,22 +39,22 @@ public class PlayerSlot : Cell, ICell {
 
     }
 
-    public void SetItem(Item item) {
-        if (item is WearableItem) {
-            WearableItem _item = item as WearableItem;
+    public void SetItem(ItemData itemData) {
+        if (itemData is WearableItemData) {
+            WearableItemData _item = itemData as WearableItemData;
 
             if (_itemTypes.Contains(_item.ItemType)) {
-                this._item = _item;
-                SetIcon(Item.Icon);
+                _itemData = _item;
+                SetIcon(_itemData.Icon);
                 EnableIcon();
-                EventManager.OnItemDressedHandler(_item);
+                EventManager.OnItemDressedHandler(_itemData);
             }
         }
     }
 
     public void RemoveItem() {
-        EventManager.TakeAwayItemEventHandler(_item);
-        _item = null;
+        EventManager.TakeAwayItemEventHandler(_itemData);
+        _itemData = null;
         DisableIcon();
     }
 

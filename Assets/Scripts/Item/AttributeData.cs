@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Item AttributeData", menuName = "Item AttributeData/AttributeData", order = 1)]
+[CreateAssetMenu(fileName = "ItemData AttributeData", menuName = "ItemData AttributeData/AttributeData", order = 1)]
 public class AttributeData : ScriptableObject {
     public AttributeType type = new AttributeType();
     public ValueType valueType = new ValueType();

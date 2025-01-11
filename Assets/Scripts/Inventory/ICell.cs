@@ -1,11 +1,11 @@
 using UnityEngine;
 
 public interface ICell {
-    public Item Item { get; }
+    public ItemData ItemData { get; }
     public bool HasItem { get; }
     public Transform Transform { get; }
     public Collider2D Collider { get; }
     public RectTransform RectTransform { get; }
-    public void SetItem(Item item);
+    public void SetItem(ItemData itemData);
     public void RemoveItem();
 }

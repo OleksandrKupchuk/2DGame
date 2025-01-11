@@ -6,13 +6,13 @@ public class ChangeSkin : MonoBehaviour {
     private List<BodyPart> _bodyParts = new List<BodyPart>();
 
     private void Awake() {
-        EventManager.OnItemDressed += Change;
-        EventManager.TakeAwayItem += Reset;
+        //EventManager.OnItemDressed += Change;
+        //EventManager.TakeAwayItem += Reset;
     }
 
     private void OnDestroy() {
-        EventManager.OnItemDressed -= Change;
-        EventManager.TakeAwayItem -= Reset;
+        //EventManager.OnItemDressed -= Change;
+        //EventManager.TakeAwayItem -= Reset;
     }
 
     public void Change(Item item) {

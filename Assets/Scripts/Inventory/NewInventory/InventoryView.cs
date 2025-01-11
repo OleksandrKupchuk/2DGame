@@ -3,14 +3,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class InventoryView : MonoBehaviour {
-    private List<InventoryCellView> _cells = new List<InventoryCellView>();
+    private List<InventorySlotView> _slots = new List<InventorySlotView>();
 
     [SerializeField]
-    private InventoryCellView _inventoryCellPrefab;
+    private InventorySlotView _inventoryCellPrefab;
     [SerializeField]
     private InventoryController _inventoryController;
     [SerializeField]
-    private Transform _parentCell;
+    private Transform _bag;
     [SerializeField]
     private GameObject _background;
     [SerializeField]
@@ -19,25 +19,36 @@ public class InventoryView : MonoBehaviour {
     private void Awake() {
         SpawnCellView();
         _inventoryController.OnAddItem += AddItem;
+        _inventoryController.OnRemoveItem += RemoveItem;
     }
 
     private void OnDestroy() {
         _inventoryController.OnAddItem -= AddItem;
+        _inventoryController.OnRemoveItem -= RemoveItem;
     }
 
     private void SpawnCellView() {
         for (int i = 0; i < _inventoryController.AmountItems; i++) {
-            InventoryCellView _cell = Instantiate(_inventoryCellPrefab, _parentCell);
+            InventorySlotView _cell = Instantiate(_inventoryCellPrefab, _bag);
             _cell.gameObject.name = _cell.gameObject.name + " " + i;
             _cell.PutItem(null);
-            _cells.Add(_cell);
+            _slots.Add(_cell);
         }
     }
 
     private void AddItem(ItemData itemData) {
-        foreach (InventoryCellView _cell in _cells) {
-            if(_cell.IsEmpty) {
-                _cell.PutItem(itemData);
+        foreach (InventorySlotView _slot in _slots) {
+            if(_slot.IsEmpty) {
+                _slot.PutItem(itemData);
+                return;
+            }
+        }
+    }
+
+    private void RemoveItem(ItemData itemData) {
+        foreach (InventorySlotView _slot in _slots) {
+            if (!_slot.IsEmpty && _slot.ItemData == itemData) {
+                _slot.TakeItem();
                 return;
             }
         }

@@ -10,12 +10,12 @@ public class HealthAttribute : Attribute {
         AttributeType = AttributeType.Health;
     }
 
-    protected override void AddItemAttributes(Item item) {
+    protected override void AddItemAttributes(ItemData item) {
         base.AddItemAttributes(item);
         EventManager.OnHealthChangedHandler();
     }
 
-    protected override void SubtractItemAttributes(Item item) { 
+    protected override void SubtractItemAttributes(ItemData item) { 
         base.SubtractItemAttributes(item);
         EventManager.OnHealthChangedHandler();
     }

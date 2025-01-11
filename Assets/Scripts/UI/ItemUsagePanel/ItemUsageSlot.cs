@@ -4,13 +4,13 @@ using UnityEngine.UI;
 
 public class ItemUsageSlot : Cell, ICell {
     private InputAction _inputAction;
-    private ItemUsable _item;
+    private UsableItemData _itemData;
 
     [SerializeField]
     private Text _label;
 
-    public Item Item { get => _item; }
-    public bool HasItem => _item != null;
+    public ItemData ItemData { get => _itemData; }
+    public bool HasItem => _itemData != null;
     public RectTransform RectTransform { get; private set; }
     public Collider2D Collider { get => _collider; }
     public Transform Transform => transform;
@@ -18,17 +18,17 @@ public class ItemUsageSlot : Cell, ICell {
     private void Awake() {
         DisableIcon();
         RectTransform = GetComponent<RectTransform>();
-        DragDropController.RaisedItemTrigger += ChangeBorderColor;
-        DragDropController.DropPutItemTrigger += ResetBorderColor;
+        DragAndDrop.OnItemTaken += ChangeBorderColor;
+        DragAndDrop.OnItemPutted += ResetBorderColor;
     }
 
     private void OnDestroy() {
-        DragDropController.RaisedItemTrigger -= ChangeBorderColor;
-        DragDropController.DropPutItemTrigger -= ResetBorderColor;
+        DragAndDrop.OnItemTaken -= ChangeBorderColor;
+        DragAndDrop.OnItemPutted -= ResetBorderColor;
     }
 
-    private void ChangeBorderColor(Item item) {
-        if (CanUseItem(item)) {
+    private void ChangeBorderColor(ItemData itemData) {
+        if (CanUseItem(itemData)) {
             SetBorderColor(Color.green);
         }
         else {
@@ -44,16 +44,16 @@ public class ItemUsageSlot : Cell, ICell {
         _border.color = color;
     }
 
-    public void SetItem(Item item) {
-        if (CanUseItem(item)) {
-            _item = item as ItemUsable;
-            SetIcon(Item.Icon);
+    public void SetItem(ItemData itemData) {
+        if (CanUseItem(itemData)) {
+            _itemData = itemData as UsableItemData;
+            SetIcon(_itemData.Icon);
             EnableIcon();
         }
     }
 
-    private bool CanUseItem(Item item) {
-        if (item is ItemUsable) {
+    private bool CanUseItem(ItemData itemData) {
+        if (itemData is UsableItemData) {
             return true;
         }
 
@@ -69,12 +69,12 @@ public class ItemUsageSlot : Cell, ICell {
     }
 
     private void UseItem() {
-        _item.Use();
+        _itemData.Use();
         RemoveItem();
     }
 
     public void RemoveItem() {
-        _item = null;
+        _itemData = null;
         DisableIcon();
     }
 

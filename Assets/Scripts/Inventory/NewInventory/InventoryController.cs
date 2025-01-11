@@ -9,15 +9,10 @@ public class InventoryController : ScriptableObject {
     [field: SerializeField]
     public int AmountItems { get; private set; }
 
-    public List<ItemData> ItemsData => _itemsData;
     public event Action<ItemData> OnAddItem;
     public event Action<ItemData> OnRemoveItem;
 
     public bool IsEmptySlot => AmountItems > _itemsData.Count;
-
-    public void OnAddItemEventHandler(ItemData itemData) {
-        OnAddItem?.Invoke(itemData);
-    }
 
     private void OnEnable() {
         _itemsData.Clear();
@@ -29,7 +24,7 @@ public class InventoryController : ScriptableObject {
             return false;
         }
         if(_itemsData.Contains(itemData)) {
-            Debug.Log("Item already add");
+            Debug.Log("ItemData already add");
             return false;
         }
 
@@ -40,10 +35,11 @@ public class InventoryController : ScriptableObject {
     }
 
     public void RemoveItem(ItemData itemData) {
-        if(_itemsData.Contains(itemData)) {
+        if(!_itemsData.Contains(itemData)) {
             Debug.Log("Can`t remove item because it not was added");
             return;
         }
+
         _itemsData.Remove(itemData);
         OnRemoveItem?.Invoke(itemData);
     }
