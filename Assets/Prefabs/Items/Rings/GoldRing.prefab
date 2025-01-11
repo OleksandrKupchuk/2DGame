@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3547642963612654163}
-  - component: {fileID: 7007094654620362052}
+  - component: {fileID: 6234510346041587149}
   - component: {fileID: 6646070812897510850}
   - component: {fileID: 4593436920719265706}
   - component: {fileID: 3788018064164244903}
@@ -27,15 +27,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3065624761884181616}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7007094654620362052
+--- !u!114 &6234510346041587149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,20 +44,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3065624761884181616}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bed930a2ee30fcb48940cc94f38fb8ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d1b8550d3900364f8b4f3037d806c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 4593436920719265706}
-  _rigidbody: {fileID: 3788018064164244903}
-  _spriteRenderer: {fileID: 6646070812897510850}
-  <Name>k__BackingField: Gold Ring
-  <Description>k__BackingField: Long time ago, this item wore kings
-  <Price>k__BackingField: 100
-  <Attributes>k__BackingField:
-  - {fileID: 11400000, guid: ec7870a7c6b21084bacbc37064040de0, type: 2}
-  - {fileID: 11400000, guid: 2f4735d4d688609498683c5e7acd8c91, type: 2}
-  <ItemType>k__BackingField: 2
-  <BodyType>k__BackingField: 2
+  _icon: {fileID: 6646070812897510850}
+  <ItemData>k__BackingField: {fileID: 11400000, guid: d96ec701bf85dd444b43a7b830c35430, type: 2}
 --- !u!212 &6646070812897510850
 SpriteRenderer:
   m_ObjectHideFlags: 0

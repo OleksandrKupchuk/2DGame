@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2823729773788007309}
-  - component: {fileID: 5042632010536695833}
   - component: {fileID: 8531331201663793107}
   - component: {fileID: 1806466740052117435}
   - component: {fileID: 4923831652963888022}
@@ -41,27 +40,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5042632010536695833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2962317835581378506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97bba5a1167158344928469379e4b3af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _collider: {fileID: 4923831652963888022}
-  _rigidbody: {fileID: 1806466740052117435}
-  _spriteRenderer: {fileID: 8531331201663793107}
-  <Name>k__BackingField: Potion Health Regeneration
-  <Description>k__BackingField: 
-  <Price>k__BackingField: 5
-  <Attributes>k__BackingField:
-  - {fileID: 11400000, guid: c4c3987ffbf80e14a8115359a3e9810b, type: 2}
-  <Duration>k__BackingField: 10
 --- !u!212 &8531331201663793107
 SpriteRenderer:
   m_ObjectHideFlags: 0

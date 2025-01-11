@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2348688643277264028}
-  - component: {fileID: 2963407055028208311}
+  - component: {fileID: -538417558177615369}
   - component: {fileID: 7928793378388994737}
   - component: {fileID: 4139109943010451201}
   - component: {fileID: 9003306185512115778}
@@ -41,7 +41,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2963407055028208311
+--- !u!114 &-538417558177615369
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50,18 +50,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3668950853142534034}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81b12ff0b449cc441a31a35e8225d9a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d1b8550d3900364f8b4f3037d806c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 9003306185512115778}
-  _rigidbody: {fileID: 4139109943010451201}
-  _spriteRenderer: {fileID: 7928793378388994737}
-  <Name>k__BackingField: Potion Health
-  <Description>k__BackingField: 
-  <Price>k__BackingField: 5
-  <Attributes>k__BackingField:
-  - {fileID: 11400000, guid: 4a35aea78414c8a4eb5f1fcec7b14e57, type: 2}
-  <Duration>k__BackingField: 0
+  _icon: {fileID: 7928793378388994737}
+  <ItemData>k__BackingField: {fileID: 11400000, guid: 97a1dd2f967912b45aa3a6505c2701bb, type: 2}
 --- !u!212 &7928793378388994737
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -10,14 +10,14 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     [SerializeField]
     private CanvasGroup _canvasGroup;
     [SerializeField]
-    private InventoryController _inventoryController;
+    private Inventory _inventoryController;
 
     [field: SerializeField]
     public SlotView SlotView { get; private set; }
 
     public bool isDropZone = false;
 
-    public static event Action<ItemData> OnItemTaken;
+    public static event Action<Item> OnItemTaken;
     public static event Action OnItemPutted;
 
     private void Awake() {

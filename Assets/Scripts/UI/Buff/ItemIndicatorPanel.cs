@@ -26,7 +26,7 @@ public class ItemIndicatorPanel : MonoBehaviour {
         }
     }
 
-    private void ShowBuffIndacator(UsableItemData item) {
+    private void ShowBuffIndacator(UsableItem item) {
         foreach (BuffIndicator indicator in _buffIndicators) {
             if (!indicator.gameObject.activeSelf) {
                 indicator.gameObject.SetActive(true);
@@ -36,7 +36,7 @@ public class ItemIndicatorPanel : MonoBehaviour {
         }
     }
 
-    private void HideBuffIndacator(ItemData item) {
+    private void HideBuffIndacator(Item item) {
         foreach (BuffIndicator indicator in _buffIndicators) {
             if (indicator.Item == item) {
                 indicator.gameObject.SetActive(false);

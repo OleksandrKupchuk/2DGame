@@ -2,15 +2,15 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public abstract class SlotView : MonoBehaviour {
-    protected ItemData _itemData;
+    protected Item _itemData;
 
     [SerializeField]
     protected Image _itemIcon;
 
     public bool IsEmpty => _itemData == null;
-    public ItemData ItemData => _itemData;
+    public Item ItemData => _itemData;
 
-    public abstract void PutItem(ItemData itemData);
+    public abstract void PutItem(Item itemData);
 
     public abstract void TakeItem();
 

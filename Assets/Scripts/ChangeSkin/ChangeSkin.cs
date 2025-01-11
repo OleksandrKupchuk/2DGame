@@ -17,7 +17,7 @@ public class ChangeSkin : MonoBehaviour {
 
     public void Change(Item item) {
         if (item is WearableItem) {
-            WearableItem _item = item as WearableItem;
+            var _item = item as WearableItem;
 
             foreach (BodyPart bodyPart in _bodyParts) {
                 if (_item.BodyType == bodyPart.Type) {
@@ -30,7 +30,7 @@ public class ChangeSkin : MonoBehaviour {
 
     public void Reset(Item item) {
         if (item is WearableItem) {
-            WearableItem _item = item as WearableItem;
+            var _item = item as WearableItem;
 
             foreach (BodyPart bodyPart in _bodyParts) {
                 if (_item.BodyType == bodyPart.Type) {

@@ -429,6 +429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemIcon: {fileID: 8907479184134568808}
   _border: {fileID: 4464416888167888382}
+  _label: {fileID: 1438949040716573626}
 --- !u!114 &4212658585128661314
 MonoBehaviour:
   m_ObjectHideFlags: 0

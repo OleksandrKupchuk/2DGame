@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3062570284460223178}
-  - component: {fileID: 5373068779952690263}
+  - component: {fileID: -750749622094839454}
   - component: {fileID: 3062570284460223179}
   - component: {fileID: 3062570284460223029}
   - component: {fileID: 3062570284460223031}
@@ -35,7 +35,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5373068779952690263
+--- !u!114 &-750749622094839454
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,20 +44,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3062570284460223176}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bed930a2ee30fcb48940cc94f38fb8ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d1b8550d3900364f8b4f3037d806c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 3062570284460223029}
-  _rigidbody: {fileID: 3062570284460223031}
-  _spriteRenderer: {fileID: 3062570284460223179}
-  <Name>k__BackingField: Axe
-  <Description>k__BackingField: Good weapon for first time
-  <Price>k__BackingField: 50
-  <Attributes>k__BackingField:
-  - {fileID: 11400000, guid: 595e0cff869ba2c49bef6765add3f3b1, type: 2}
-  - {fileID: 11400000, guid: 0c049d7562b87b949b0cfafd4c1dce06, type: 2}
-  <ItemType>k__BackingField: 4
-  <BodyType>k__BackingField: 2
+  _icon: {fileID: 3062570284460223179}
+  <ItemData>k__BackingField: {fileID: 11400000, guid: 1a3cd54530f0b9a41ae26b7778909f81, type: 2}
 --- !u!212 &3062570284460223179
 SpriteRenderer:
   m_ObjectHideFlags: 0

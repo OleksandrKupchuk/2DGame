@@ -3,14 +3,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Market : MonoBehaviour {
-    private Dictionary<ItemData, CartItem> _dictionaryItems = new();
+    private Dictionary<Item, CartItem> _dictionaryItems = new();
     private int _commission;
     private int _bufferComission;
 
     [SerializeField]
     private PlayerConfig _playerConfig;
     [SerializeField]
-    private InventoryController _inventoryController;
+    private Inventory _inventoryController;
     [SerializeField]
     private bool _isDiscount;
     [SerializeField]
@@ -57,7 +57,7 @@ public class Market : MonoBehaviour {
         return itemPrice + (itemPrice * _commission / 100);
     }
 
-    private void Buy(ItemData item) {
+    private void Buy(Item item) {
         if (!_dictionaryItems.GetValueOrDefault(item).gameObject.activeSelf) {
             print("You bought this item " + item.Name);
             return;
@@ -104,7 +104,7 @@ public class Market : MonoBehaviour {
     }
 
     private void UpdatePrice() {
-        foreach (KeyValuePair<ItemData, CartItem> item in _dictionaryItems) {
+        foreach (KeyValuePair<Item, CartItem> item in _dictionaryItems) {
             int price = GetPriceWithTraderComission(item.Key.Price);
             item.Value.SetPrice(price);
         }

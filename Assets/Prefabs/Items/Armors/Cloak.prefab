@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7559238870879971009}
   - component: {fileID: 8296743158034841583}
-  - component: {fileID: 7084914751100563712}
   - component: {fileID: 710131268890381901}
   - component: {fileID: 8651307320350191008}
+  - component: {fileID: 4800693203187417765}
   m_Layer: 11
   m_Name: Cloak
   m_TagString: Untagged
@@ -87,28 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7084914751100563712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8920367818970851627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bed930a2ee30fcb48940cc94f38fb8ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _collider: {fileID: 8651307320350191008}
-  _rigidbody: {fileID: 710131268890381901}
-  _spriteRenderer: {fileID: 8296743158034841583}
-  <Name>k__BackingField: Cloak
-  <Description>k__BackingField: Simple armor, just start
-  <Price>k__BackingField: 0
-  <Attributes>k__BackingField:
-  - {fileID: 11400000, guid: 83cebdd649a2d9148a04ecabc5fdca4f, type: 2}
-  <ItemType>k__BackingField: 1
-  <BodyType>k__BackingField: 0
 --- !u!50 &710131268890381901
 Rigidbody2D:
   serializedVersion: 4
@@ -181,3 +159,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.05, y: 1.2}
   m_EdgeRadius: 0
+--- !u!114 &4800693203187417765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8920367818970851627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d1b8550d3900364f8b4f3037d806c0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 8296743158034841583}
+  <ItemData>k__BackingField: {fileID: 0}

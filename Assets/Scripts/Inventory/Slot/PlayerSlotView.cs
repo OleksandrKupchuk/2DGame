@@ -19,9 +19,9 @@ public class PlayerSlotView : SlotView {
         DragAndDrop.OnItemPutted -= ResetBorderColor;
     }
 
-    public override void PutItem(ItemData itemData) {
-        if (itemData is WearableItemData) {
-            var _item = itemData as WearableItemData;
+    public override void PutItem(Item itemData) {
+        if (itemData is WearableItem) {
+            var _item = itemData as WearableItem;
 
             if (_slotTypes.Contains(_item.ItemType)) {
                 _itemData = _item;
@@ -41,9 +41,9 @@ public class PlayerSlotView : SlotView {
         SetIcon();
     }
 
-    private void ChangeBorderColor(ItemData item) {
-        if (item is WearableItemData) {
-            var _item = item as WearableItemData;
+    private void ChangeBorderColor(Item item) {
+        if (item is WearableItem) {
+            var _item = item as WearableItem;
 
             if (_slotTypes.Contains(_item.ItemType)) {
                 SetBorderColor(Color.green);

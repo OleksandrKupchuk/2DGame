@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PickUpController : MonoBehaviour {
     [SerializeField]
-    private InventoryController _inventoryController;
+    private Inventory _inventoryController;
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.name.Contains("Quest item king")) {

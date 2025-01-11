@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2779285724816536027}
-  - component: {fileID: 6228153714873509561}
+  - component: {fileID: -7739704852953929580}
   - component: {fileID: 8123576408081907660}
   - component: {fileID: 2094758828844449613}
   - component: {fileID: 5800932954640797202}
@@ -41,7 +41,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6228153714873509561
+--- !u!114 &-7739704852953929580
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50,18 +50,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7783609211246636534}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97bba5a1167158344928469379e4b3af, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d1b8550d3900364f8b4f3037d806c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 5800932954640797202}
-  _rigidbody: {fileID: 2094758828844449613}
-  _spriteRenderer: {fileID: 8123576408081907660}
-  <Name>k__BackingField: Potion Armor
-  <Description>k__BackingField: Give you additional armor. Duration 5 second
-  <Price>k__BackingField: 5
-  <Attributes>k__BackingField:
-  - {fileID: 11400000, guid: 248f6e426a0f68c4e856d00e01a073d3, type: 2}
-  <Duration>k__BackingField: 10
+  _icon: {fileID: 8123576408081907660}
+  <ItemData>k__BackingField: {fileID: 11400000, guid: 7949ad8818eb83b4f8248f1bafded640, type: 2}
 --- !u!212 &8123576408081907660
 SpriteRenderer:
   m_ObjectHideFlags: 0

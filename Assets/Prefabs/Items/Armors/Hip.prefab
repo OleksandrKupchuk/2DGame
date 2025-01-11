@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3771908523360819853}
   - component: {fileID: 790467860464501866}
-  - component: {fileID: -573523087885422262}
   - component: {fileID: 7620996291159239517}
   - component: {fileID: 1713628816580942751}
   m_Layer: 11
@@ -87,29 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-573523087885422262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253122335124310123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bed930a2ee30fcb48940cc94f38fb8ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _collider: {fileID: 1713628816580942751}
-  _rigidbody: {fileID: 7620996291159239517}
-  _spriteRenderer: {fileID: 790467860464501866}
-  <Name>k__BackingField: Hip simple
-  <Description>k__BackingField: 
-  <Price>k__BackingField: 0
-  <Attributes>k__BackingField:
-  - {fileID: 11400000, guid: f10fb0e0564248f4bb2b5e29e73aa26e, type: 2}
-  - {fileID: 11400000, guid: ac0a89e218d28ef42940dfbc9f01625e, type: 2}
-  <ItemType>k__BackingField: 1
-  <BodyType>k__BackingField: 1
 --- !u!50 &7620996291159239517
 Rigidbody2D:
   serializedVersion: 4

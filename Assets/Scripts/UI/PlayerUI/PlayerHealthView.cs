@@ -19,7 +19,7 @@ public class PlayerHealthView : MonoBehaviour {
         EventManager.OnHealthChanged -= UpdateHealthBar;
     }
 
-    public void UpdateHealthBar(ItemData item) {
+    public void UpdateHealthBar(Item item) {
         float _value = _healthController.CurrentHealth / _healthController.MaxHealth;
         _healthBar.fillAmount = _value;
         _healthValue.text = string.Format("{0:0.0}", _healthController.CurrentHealth) + "/" +
