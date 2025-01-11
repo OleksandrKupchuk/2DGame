@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8921658347038681184}
   - component: {fileID: 4594570559511667850}
   - component: {fileID: 6072477859868218416}
-  - component: {fileID: 700133607315617542}
+  - component: {fileID: 7304929735555872803}
   - component: {fileID: 8466255022052087603}
   m_Layer: 5
   m_Name: InventorySlotView
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &700133607315617542
+--- !u!114 &7304929735555872803
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,10 +87,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3989569748210686094}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d45c6636c8c47a4586c8245b47772bb, type: 3}
+  m_Script: {fileID: 11500000, guid: fa610ca2aa8faf145b2dde49427e4d79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 2009860156243050292}
+  _itemIcon: {fileID: 2009860156243050292}
 --- !u!114 &8466255022052087603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8bd1be49480dcd4886bcbd91a0c5207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _slotView: {fileID: 700133607315617542}
+  _slotView: {fileID: 7304929735555872803}
 --- !u!1 &6073300785737630856
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 2475600834403829435}
   - component: {fileID: 9091089145789856485}
   m_Layer: 5
-  m_Name: ItemView
+  m_Name: ItemIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: 9091089145789856485}
   _inventoryController: {fileID: 11400000, guid: 342cc4a6cd225c541b9824678282c065, type: 2}
-  <SlotView>k__BackingField: {fileID: 700133607315617542}
+  <SlotView>k__BackingField: {fileID: 7304929735555872803}
   isDropZone: 0
 --- !u!225 &9091089145789856485
 CanvasGroup:

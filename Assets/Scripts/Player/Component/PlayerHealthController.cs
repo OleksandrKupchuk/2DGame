@@ -1,8 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class PlayerHealthController : MonoBehaviour {
+[CreateAssetMenu(fileName = "PlayerHealthController")]
+public class PlayerHealthController : ScriptableObject {
     private float _delayBeforeRegenerationHealth;
     private float _timeRegenerationHealth;
     private float _currentHealth;
@@ -24,11 +25,11 @@ public class PlayerHealthController : MonoBehaviour {
     public float MaxHealth { get => _healthAttribute.MaxHealth; }
     public bool IsDead { get => CurrentHealth <= 0; }
 
-    private void Awake() {
+    private void OnEnable() {
         EventManager.OnHealthChanged += CheckCurrentHealth;
     }
 
-    private void OnDestroy() {
+    private void OnDisable() {
         EventManager.OnHealthChanged -= CheckCurrentHealth;
     }
 
@@ -75,7 +76,7 @@ public class PlayerHealthController : MonoBehaviour {
 
     public void CheckTakeDamage(float damage, Damage damageObject) {
         if (_objectsAttack.Contains(damageObject)) {
-            StartCoroutine(UnregisteredDamageObject(damageObject));
+            Task.Delay(System.TimeSpan.FromSeconds(2d)).ContinueWith(task => UnregisteredDamageObject(damageObject));
         }
         else if (_invulnerabilityStatus.IsInvulnerability) {
             Debug.Log("Player IsInvulnerability");
@@ -86,8 +87,7 @@ public class PlayerHealthController : MonoBehaviour {
         }
     }
 
-    private IEnumerator UnregisteredDamageObject(Damage damageObject) {
-        yield return new WaitForSeconds(2);
+    private void UnregisteredDamageObject(Damage damageObject) {
         _objectsAttack.Remove(damageObject);
     }
 

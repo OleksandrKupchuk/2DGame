@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerCoinsView : MonoBehaviour {
-    private Player _player;
+    [SerializeField]
+    private PlayerConfig _playerConfig;
 
     [SerializeField]
     private Text _value;
@@ -16,11 +17,10 @@ public class PlayerCoinsView : MonoBehaviour {
     }
 
     private void Start() {
-        _player = FindObjectOfType<Player>();
         UpdateCoins(null);
     }
 
-    public void UpdateCoins(Item item) {
-        _value.text = "" + _player.Config.coins;
+    public void UpdateCoins(ItemData item) {
+        _value.text = "" + _playerConfig.coins;
     }
 }

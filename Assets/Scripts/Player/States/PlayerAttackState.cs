@@ -9,7 +9,7 @@ public class PlayerAttackState : IState<Player> {
     }
 
     public void Update() {
-        //Debug.Log("attack normalize time = " + _player.Animator.GetAnimatorTransitionInfo(AnimatorLayers.BaseLayer).normalizedTime);
+        //Debug.Log("attack normalize time = " + _playerConfig.Animator.GetAnimatorTransitionInfo(AnimatorLayers.BaseLayer).normalizedTime);
         if (_player.IsEndCurrentAnimation(_player.Animator, AnimatorLayers.BaseLayer)) {
             _player.StateMachine.ChangeState(_player.IdleState);
         }

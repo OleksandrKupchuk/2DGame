@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,10 @@ public class Player : Character {
 
     [SerializeField]
     private List<Collider2D> _collidersForIgnored = new List<Collider2D>();
+    [SerializeField]
+    private float _delayBllinkAnimationInSeconds;
+    [SerializeField]
+    private List<SpriteRenderer> _sprites = new List<SpriteRenderer>();
 
     public List<Collider2D> CollidesForIgnored { get => _collidersForIgnored; }
     [field: SerializeField]
@@ -20,7 +25,6 @@ public class Player : Character {
     public PlayerHitState HitState { get; private set; }
     public PlayerDeadState DeadState { get; private set; }
     public StateMachine<Player> StateMachine { get; private set; }
-    public Inventory Inventory { get; private set; }
     public IInteracvite Interactive { get => _interactive; }
     [field: SerializeField]
     public InvulnerabilityStatus InvulnerableStatus { get; private set; }
@@ -41,9 +45,11 @@ public class Player : Character {
         HealthController.Init(Config);
         PlayerWeaponController.Init();
         _deafaultGravityScale = Rigidbody.gravityScale;
-        Inventory = FindObjectOfType<Inventory>();
-        PickUpController.Init(Inventory);
         EventManager.OnHit += () => StateMachine.ChangeState(HitState);
+        EventManager.OnHit += () => {
+            StartCoroutine(InvulnerableStatus.ActivateInvulnerabilityStatus());
+            StartCoroutine(BlinkAnimation());
+        };
         EventManager.OnDead += () => StateMachine.ChangeState(DeadState);
 
         IdleState = new PlayerIdleState();
@@ -60,15 +66,16 @@ public class Player : Character {
 
     private void OnDestroy() {
         EventManager.OnHit -= () => StateMachine.ChangeState(HitState);
+        EventManager.OnHit -= () => {
+            StartCoroutine(InvulnerableStatus.ActivateInvulnerabilityStatus());
+            StartCoroutine(BlinkAnimation());
+        };
         EventManager.OnDead -= () => StateMachine.ChangeState(DeadState);
     }
 
     private void CheckComponentOnNull() {
         if (InvulnerableStatus == null) {
             Debug.LogError($"Component {nameof(InvulnerabilityStatus)} is null");
-        }
-        if (Inventory == null) {
-            Debug.LogError($"Component {nameof(Inventory)} is null");
         }
     }
 
@@ -98,7 +105,7 @@ public class Player : Character {
 
     private void ToggleInventory() {
         if (PlayerMovement.IsOpenInventory) {
-            Inventory.ActiveToggle();
+            Debug.Log("Inventory OPEN");
         }
     }
 
@@ -113,6 +120,21 @@ public class Player : Character {
         if (collision.TryGetComponent(out IInteracvite interacvite)) {
             print("interactive null");
             _interactive = null;
+        }
+    }
+
+    public IEnumerator BlinkAnimation() {
+        while (InvulnerableStatus.IsInvulnerability) {
+            yield return new WaitForSeconds(_delayBllinkAnimationInSeconds);
+            SetSpritesAlpha(0);
+            yield return new WaitForSeconds(_delayBllinkAnimationInSeconds);
+            SetSpritesAlpha(255);
+        }
+    }
+
+    private void SetSpritesAlpha(float alpha) {
+        foreach (var element in _sprites) {
+            element.color = new Color(255f, 255f, 255f, alpha);
         }
     }
 }

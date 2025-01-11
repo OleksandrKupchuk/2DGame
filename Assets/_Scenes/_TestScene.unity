@@ -6097,7 +6097,6 @@ GameObject:
   - component: {fileID: 1567940797}
   - component: {fileID: 1567940795}
   - component: {fileID: 1567940799}
-  - component: {fileID: 1567940800}
   m_Layer: 0
   m_Name: sword
   m_TagString: Untagged
@@ -6233,21 +6232,6 @@ MonoBehaviour:
   maxDamage: 1
   _isMove: 0
   _speed: 3
---- !u!114 &1567940800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1567940794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a920e7a6a50f4e4a9c5ce55a0e2876a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sprites: []
-  _delayBllinkAnimationInSeconds: 0.5
-  _timeAnimation: 2.3
 --- !u!1 &1591927715
 GameObject:
   m_ObjectHideFlags: 0
@@ -7019,6 +7003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c048f08fba03d5340b91e48c5180a100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerConfig: {fileID: 0}
   _value: {fileID: 1337855157}
 --- !u!1 &1783139920
 GameObject:

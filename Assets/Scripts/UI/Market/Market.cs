@@ -3,11 +3,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Market : MonoBehaviour {
-    private Player _player;
-    private Dictionary<Item, CartItem> _dictionaryItems = new();
+    private Dictionary<ItemData, CartItem> _dictionaryItems = new();
     private int _commission;
     private int _bufferComission;
 
+    [SerializeField]
+    private PlayerConfig _playerConfig;
+    [SerializeField]
+    private InventoryController _inventoryController;
     [SerializeField]
     private bool _isDiscount;
     [SerializeField]
@@ -39,17 +42,14 @@ public class Market : MonoBehaviour {
         print("range " + _range);
 
         for (int i = 0; i < _range; i++) {
-            CartItem cartItemObject = Instantiate(_cartItem);
-            cartItemObject.transform.SetParent(_content);
-            cartItemObject.transform.localScale = Vector3.one;
+            //CartItem cartItemObject = Instantiate(_cartItem, _content);
 
-            Item itemObject = Instantiate(_items[i]);
-            itemObject.Disable();
+            //Item itemObject = Instantiate(_items[i]);
+            //itemObject.Disable();
 
-            cartItemObject.Init(itemObject, () => { Buy(itemObject); });
+            //cartItemObject.Init(itemObject, () => { Buy(itemObject); });
 
-            //cartItemObject.gameObject.SetActive(false);
-            _dictionaryItems.Add(itemObject, cartItemObject);
+            //_dictionaryItems.Add(itemObject, cartItemObject);
         }
     }
 
@@ -57,15 +57,15 @@ public class Market : MonoBehaviour {
         return itemPrice + (itemPrice * _commission / 100);
     }
 
-    private void Buy(Item item) {
+    private void Buy(ItemData item) {
         if (!_dictionaryItems.GetValueOrDefault(item).gameObject.activeSelf) {
             print("You bought this item " + item.Name);
             return;
         }
 
-        if (_player.Config.coins >= GetPriceWithTraderComission(item.Price)) {
-            _player.Config.coins -= GetPriceWithTraderComission(item.Price);
-            _player.Inventory.AddItem(item);
+        if (_playerConfig.coins >= GetPriceWithTraderComission(item.Price)) {
+            _playerConfig.coins -= GetPriceWithTraderComission(item.Price);
+            _inventoryController.TryAddItem(item);
 
             CartItem _cartItem = _dictionaryItems.GetValueOrDefault(item);
             _cartItem.gameObject.SetActive(false);
@@ -78,11 +78,10 @@ public class Market : MonoBehaviour {
     }
 
     public void Open(Player player) {
-        _player = player;
         //_background.SetActive(true);
         gameObject.SetActive(true);
         ShowDiscount();
-        _player.Inventory.Open();
+        _inventoryController.OpenInventory();
     }
 
     private void ShowDiscount() {
@@ -105,7 +104,7 @@ public class Market : MonoBehaviour {
     }
 
     private void UpdatePrice() {
-        foreach (KeyValuePair<Item, CartItem> item in _dictionaryItems) {
+        foreach (KeyValuePair<ItemData, CartItem> item in _dictionaryItems) {
             int price = GetPriceWithTraderComission(item.Key.Price);
             item.Value.SetPrice(price);
         }

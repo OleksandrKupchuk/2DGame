@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 803d4ddb252d01045baeb18252e0e9d9, type: 3}
+  m_Name: PlayerHealthController
+  m_EditorClassIdentifier: 
+  _invulnerabilityStatus: {fileID: 11400000, guid: 8faea2073053f064f8a9814a6d8be089, type: 2}
+  _healthRegenerationAttribute: {fileID: 11400000, guid: 49a3a339c57fec54297891152d2643ed, type: 2}
+  _healthAttribute: {fileID: 11400000, guid: 4674c32353ebcea46bd9e5c0438ff14d, type: 2}
+  _armorAttribute: {fileID: 11400000, guid: 935f3f0490f82834085dab1f3f6005c9, type: 2}
+  _config: {fileID: 11400000, guid: a54ace36f66f2cb4dbac2f323babad9b, type: 2}

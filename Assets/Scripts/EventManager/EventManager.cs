@@ -29,9 +29,9 @@ public class EventManager {
         ActionItemOver.Invoke(item);
     }
 
-    public static event Action<Item> BuyItem;
+    public static event Action<ItemData> BuyItem;
 
-    public static void BuyItemEventHandler(Item item) {
+    public static void BuyItemEventHandler(ItemData item) {
         BuyItem.Invoke(item);
     }
 

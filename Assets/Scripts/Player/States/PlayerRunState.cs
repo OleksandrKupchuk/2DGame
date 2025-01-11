@@ -12,7 +12,7 @@ public class PlayerRunState : IState<Player> {
 
     public void Update() {
         //Debug.Log($"<color=blue>run execute</color>");
-        //Debug.Log("jump button = " + _player.Jump.action.ReadValue<bool>());
+        //Debug.Log("jump button = " + _playerConfig.Jump.action.ReadValue<bool>());
         if (!_player.PlayerMovement.IsGround()) {
             _player.StateMachine.ChangeState(_player.JumpDownState);
         }
@@ -42,7 +42,7 @@ public class PlayerRunState : IState<Player> {
 
     public void Exit() {
         //Debug.Log($"<color=red>exit</color> <color=blue>run state</color>");
-        //Debug.Log("exit run = " + _player.Rigidbody.velocity);
+        //Debug.Log("exit run = " + _playerConfig.Rigidbody.velocity);
 
         _player.ResetRigidbodyVelocity();
         _player.Animator.StopPlayback();

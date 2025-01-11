@@ -5,7 +5,6 @@ public class PlayerHitState : IState<Player> {
         //Debug.Log($"<color=white>enter hit state</color>");
         _player = owner;
         _player.Animator.Play(AnimationName.Hit);
-        _player.InvulnerableStatus.PlayBlinkAnimation();
     }
 
     public void Update() {

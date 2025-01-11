@@ -43,4 +43,8 @@ public class InventoryController : ScriptableObject {
         _itemsData.Remove(itemData);
         OnRemoveItem?.Invoke(itemData);
     }
+
+    public void OpenInventory() {
+        Debug.Log("Open inventory");
+    }
 }

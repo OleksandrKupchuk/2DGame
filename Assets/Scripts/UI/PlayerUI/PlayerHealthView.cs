@@ -2,19 +2,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHealthView : MonoBehaviour {
-    private Player _player;
-
     [SerializeField]
     private Text _healthValue;
     [SerializeField]
     private Image _healthBar;
     [SerializeField]
-    private HealthAttribute _healthAttribute;
+    private PlayerHealthController _healthController;
 
     private void Awake() {
         EventManager.ActionItemOver += UpdateHealthBar;
         EventManager.OnHealthChanged += UpdateHealthBar;
-        _player = FindObjectOfType<Player>();
     }
 
     private void OnDestroy() {
@@ -22,21 +19,17 @@ public class PlayerHealthView : MonoBehaviour {
         EventManager.OnHealthChanged -= UpdateHealthBar;
     }
 
-    public void UpdateHealthBar(Item item) {
-        float _currentHealth = _player.HealthController.CurrentHealth;
-        float _maxHealth = _healthAttribute.MaxHealth;
-        float _value = _currentHealth / _maxHealth;
+    public void UpdateHealthBar(ItemData item) {
+        float _value = _healthController.CurrentHealth / _healthController.MaxHealth;
         _healthBar.fillAmount = _value;
-        _healthValue.text = string.Format("{0:0.0}", _currentHealth) + "/" +
-            string.Format("{0:0.0}", _maxHealth);
+        _healthValue.text = string.Format("{0:0.0}", _healthController.CurrentHealth) + "/" +
+            string.Format("{0:0.0}", _healthController.MaxHealth);
     }
 
     public void UpdateHealthBar() {
-        float _currentHealth = _player.HealthController.CurrentHealth;
-        float _maxHealth = _healthAttribute.MaxHealth;
-        float _value = _currentHealth / _maxHealth;
+        float _value = _healthController.CurrentHealth / _healthController.MaxHealth;
         _healthBar.fillAmount = _value;
-        _healthValue.text = string.Format("{0:0.0}", _currentHealth) + "/" +
-            string.Format("{0:0.0}", _maxHealth);
+        _healthValue.text = string.Format("{0:0.0}", _healthController.CurrentHealth) + "/" +
+            string.Format("{0:0.0}", _healthController.MaxHealth);
     }
 }

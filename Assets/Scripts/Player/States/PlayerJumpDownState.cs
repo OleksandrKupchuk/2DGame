@@ -8,7 +8,7 @@ public class PlayerJumpDownState : IState<Player> {
         //Debug.Log($"<color=black>enter jumpDown state</color>");
         _player = owner;
         _player.Animator.Play(PlayerAnimationName.JumpDown);
-        //_player.SetGravityScale(_gravityScale);
+        //_playerConfig.SetGravityScale(_gravityScale);
     }
 
     public void Update() {

@@ -3,16 +3,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class BuffIndicator : MonoBehaviour {
-    private Item _item;
+    private ItemData _item;
 
     [SerializeField]
     private Image _icon;
     [SerializeField]
     private Image _border;
 
-    public Item Item => _item;
+    public ItemData Item => _item;
 
-    public void Display(ItemUsable item) {
+    public void Display(UsableItemData item) {
         _item = item;
         SetIcon(item.Icon);
         StartCoroutine(ShowDurationEffect(item.Duration));

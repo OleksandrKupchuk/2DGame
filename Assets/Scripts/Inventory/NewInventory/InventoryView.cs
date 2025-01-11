@@ -6,7 +6,7 @@ public class InventoryView : MonoBehaviour {
     private List<InventorySlotView> _slots = new List<InventorySlotView>();
 
     [SerializeField]
-    private InventorySlotView _inventoryCellPrefab;
+    private InventorySlotView _slotViewPrefab;
     [SerializeField]
     private InventoryController _inventoryController;
     [SerializeField]
@@ -29,7 +29,7 @@ public class InventoryView : MonoBehaviour {
 
     private void SpawnCellView() {
         for (int i = 0; i < _inventoryController.AmountItems; i++) {
-            InventorySlotView _cell = Instantiate(_inventoryCellPrefab, _bag);
+            InventorySlotView _cell = Instantiate(_slotViewPrefab, _bag);
             _cell.gameObject.name = _cell.gameObject.name + " " + i;
             _cell.PutItem(null);
             _slots.Add(_cell);
@@ -37,7 +37,7 @@ public class InventoryView : MonoBehaviour {
     }
 
     private void AddItem(ItemData itemData) {
-        foreach (InventorySlotView _slot in _slots) {
+        foreach (var _slot in _slots) {
             if(_slot.IsEmpty) {
                 _slot.PutItem(itemData);
                 return;
@@ -46,7 +46,7 @@ public class InventoryView : MonoBehaviour {
     }
 
     private void RemoveItem(ItemData itemData) {
-        foreach (InventorySlotView _slot in _slots) {
+        foreach (var _slot in _slots) {
             if (!_slot.IsEmpty && _slot.ItemData == itemData) {
                 _slot.TakeItem();
                 return;

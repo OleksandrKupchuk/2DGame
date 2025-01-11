@@ -9,14 +9,15 @@ public class ItemUsagePanel : MonoBehaviour {
     [SerializeField]
     private ItemUsageSlot _usageSlot;
     [SerializeField]
+    private UsageSlotView _usageSlotView;
+    [SerializeField]
     private InputActionAsset _inputActionAsset;
 
     private void Awake() {
         _rectTransform = GetComponent<RectTransform>();
         _actionMap = _inputActionAsset.FindActionMap("UsagePanel");
         CreateUsageSlots();
-        SetPositionToLeftBottomCorner();
-        Console.WriteLine("");
+        //SetPositionToLeftBottomCorner();
     }
 
     private void OnEnable() {
@@ -29,9 +30,9 @@ public class ItemUsagePanel : MonoBehaviour {
 
     private void CreateUsageSlots() {
         foreach (var action in _actionMap.actions) {
-            ItemUsageSlot _usageSlotObject = Instantiate(_usageSlot);
-            _usageSlotObject.transform.SetParent(transform, false);
-            _usageSlotObject.SetInputAction(action);
+            ItemUsageSlot _usageSlotObject = Instantiate(_usageSlot, transform);
+            //_usageSlotObject.transform.SetParent(transform, false);
+            //_usageSlotObject.SetInputAction(action);
         }
     }
 
