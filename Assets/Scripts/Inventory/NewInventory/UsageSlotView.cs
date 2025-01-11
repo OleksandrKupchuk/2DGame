@@ -2,8 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UsageSlotView : SlotView {
-    //private UsableItemData _itemData;
-
     [SerializeField]
     protected Image _border;
 
@@ -19,14 +17,18 @@ public class UsageSlotView : SlotView {
 
     public override void PutItem(ItemData itemData) {
         if (CanUseItem(itemData)) {
-            _itemData = itemData as UsableItemData;
-            SetIcon(_itemData);
+            _itemData = itemData;
+            SetIcon();
+        }
+        else {
+            _itemData = null;
+            SetIcon();
         }
     }
 
     public override void TakeItem() {
         _itemData = null;
-        SetIcon(_itemData);
+        SetIcon();
     }
 
     private bool CanUseItem(ItemData itemData) {

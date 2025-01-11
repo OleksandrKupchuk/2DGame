@@ -14,10 +14,10 @@ public abstract class SlotView : MonoBehaviour {
 
     public abstract void TakeItem();
 
-    protected void SetIcon(ItemData itemData) {
+    protected void SetIcon() {
         if (!IsEmpty) {
             _itemIcon.color = new Color(255, 255, 255, 255);
-            _itemIcon.sprite = itemData.Icon;
+            _itemIcon.sprite = _itemData.Icon;
         }
         else {
             _itemIcon.color = new Color(255, 255, 255, 0);

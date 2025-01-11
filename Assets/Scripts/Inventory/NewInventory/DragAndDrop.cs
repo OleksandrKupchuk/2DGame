@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[RequireComponent(typeof(CanvasGroup))]
 public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler {
     private RectTransform _rectTransform;
     private Transform _parent;
@@ -12,7 +13,7 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     private InventoryController _inventoryController;
 
     [field: SerializeField]
-    public InventorySlotView SlotView { get; private set; }
+    public SlotView SlotView { get; private set; }
 
     public bool isDropZone = false;
 

@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class SlotZone : MonoBehaviour, IDropHandler {
     [SerializeField]
-    private InventorySlotView _slotView;
+    private SlotView _slotView;
 
     public void OnDrop(PointerEventData eventData) {
         if (eventData.pointerDrag == null) {

@@ -87,8 +87,10 @@ GameObject:
   - component: {fileID: 7964937296652375023}
   - component: {fileID: 8863642987344758212}
   - component: {fileID: 8907479184134568808}
+  - component: {fileID: 4576197058235017556}
+  - component: {fileID: 4267744901108075159}
   m_Layer: 5
-  m_Name: Icon
+  m_Name: UsageItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,13 +137,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d903bd381783a7348b3ba80addb7a1eb, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -151,6 +153,34 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &4576197058235017556
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5740017284600713632}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &4267744901108075159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5740017284600713632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a38e98d628017349a186d8a6753172b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canvasGroup: {fileID: 4576197058235017556}
+  _inventoryController: {fileID: 11400000, guid: 342cc4a6cd225c541b9824678282c065, type: 2}
+  <SlotView>k__BackingField: {fileID: 2151796629151091975}
+  isDropZone: 0
 --- !u!1 &5881482881056528917
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,6 +349,7 @@ GameObject:
   - component: {fileID: 1514568817263930130}
   - component: {fileID: 5986163087034349989}
   - component: {fileID: 2151796629151091975}
+  - component: {fileID: 4212658585128661314}
   m_Layer: 5
   m_Name: UsageSlotView
   m_TagString: Untagged
@@ -398,3 +429,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemIcon: {fileID: 8907479184134568808}
   _border: {fileID: 4464416888167888382}
+--- !u!114 &4212658585128661314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9046008089879395900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8bd1be49480dcd4886bcbd91a0c5207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slotView: {fileID: 2151796629151091975}

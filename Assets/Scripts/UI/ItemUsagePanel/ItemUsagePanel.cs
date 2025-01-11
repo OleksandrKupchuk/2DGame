@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,8 +5,6 @@ public class ItemUsagePanel : MonoBehaviour {
     private InputActionMap _actionMap;
 
     private RectTransform _rectTransform;
-    [SerializeField]
-    private ItemUsageSlot _usageSlot;
     [SerializeField]
     private UsageSlotView _usageSlotView;
     [SerializeField]
@@ -30,7 +27,8 @@ public class ItemUsagePanel : MonoBehaviour {
 
     private void CreateUsageSlots() {
         foreach (var action in _actionMap.actions) {
-            ItemUsageSlot _usageSlotObject = Instantiate(_usageSlot, transform);
+            UsageSlotView _usageSlotObject = Instantiate(_usageSlotView, transform);
+            _usageSlotObject.PutItem(null);
             //_usageSlotObject.transform.SetParent(transform, false);
             //_usageSlotObject.SetInputAction(action);
         }
