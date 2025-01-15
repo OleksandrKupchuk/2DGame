@@ -47,7 +47,7 @@ public class ItemTooltip : MonoBehaviour {
         }
     }
 
-    public void ShowTooltip(Item item, Vector2 positionCell, float heightCell) {
+    public void ShowTooltip(ItemData item, Vector2 positionCell, float heightCell) {
         _name.text = item.Name;
         _description.text = item.Description;
         InitAttributes(item);
@@ -63,7 +63,7 @@ public class ItemTooltip : MonoBehaviour {
         DisableImageBackground();
     }
 
-    private void InitAttributes(Item item) {
+    private void InitAttributes(ItemData item) {
         for (int i = 0; i < item.Attributes.Count; i++) {
             //_attributeTooltips[i].Set(item.Attributes[i].icon, item.GetAttributeValue(item.Attributes[i]));
             _attributeTooltips[i].gameObject.SetActive(true);

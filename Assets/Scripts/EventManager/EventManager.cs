@@ -1,9 +1,9 @@
 using System;
 
 public class EventManager {
-    public static event Action<WearableItem> OnItemDressed;
+    public static event Action<WearableItemData> OnItemDressed;
 
-    public static void OnItemDressedHandler(WearableItem item) {
+    public static void OnItemDressedHandler(WearableItemData item) {
         OnItemDressed.Invoke(item);
     }
 
@@ -11,27 +11,27 @@ public class EventManager {
         OnItemDressed.Invoke(null);
     }
 
-    public static event Action<Item> TakeAwayItem;
+    public static event Action<ItemData> TakeAwayItem;
 
-    public static void TakeAwayItemEventHandler(Item item) {
+    public static void TakeAwayItemEventHandler(ItemData item) {
         TakeAwayItem.Invoke(item);
     }
 
-    public static event Action<UsableItem> UseItem;
+    public static event Action<UsableItemData> UseItem;
 
-    public static void UseItemEventHandler(UsableItem item) {
+    public static void UseItemEventHandler(UsableItemData item) {
         UseItem.Invoke(item);
     }
 
-    public static event Action<Item> ActionItemOver;
+    public static event Action<ItemData> ActionItemOver;
 
-    public static void ActionItemOverEventHandler(Item item) {
+    public static void ActionItemOverEventHandler(ItemData item) {
         ActionItemOver.Invoke(item);
     }
 
-    public static event Action<Item> BuyItem;
+    public static event Action<ItemData> BuyItem;
 
-    public static void BuyItemEventHandler(Item item) {
+    public static void BuyItemEventHandler(ItemData item) {
         BuyItem.Invoke(item);
     }
 

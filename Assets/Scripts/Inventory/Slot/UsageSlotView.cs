@@ -20,7 +20,7 @@ public class UsageSlotView : SlotView {
         DragAndDrop.OnItemPutted -= ResetBorderColor;
     }
 
-    public override void PutItem(Item itemData) {
+    public override void PutItem(ItemData itemData) {
         if (CanUseItem(itemData)) {
             _itemData = itemData;
             SetIcon();
@@ -36,15 +36,15 @@ public class UsageSlotView : SlotView {
         SetIcon();
     }
 
-    private bool CanUseItem(Item itemData) {
-        if (itemData is UsableItem) {
+    private bool CanUseItem(ItemData itemData) {
+        if (itemData is UsableItemData) {
             return true;
         }
 
         return false;
     }
 
-    private void ChangeBorderColor(Item itemData) {
+    private void ChangeBorderColor(ItemData itemData) {
         if (CanUseItem(itemData)) {
             SetBorderColor(Color.green);
         }

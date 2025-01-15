@@ -41,8 +41,6 @@ public class Player : Character {
 
     private new void Awake() {
         base.Awake();
-        PlayerMovement.Init(Config);
-        HealthController.Init(Config);
         PlayerWeaponController.Init();
         _deafaultGravityScale = Rigidbody.gravityScale;
         EventManager.OnHit += () => StateMachine.ChangeState(HitState);

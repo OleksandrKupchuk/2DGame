@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerHealthController")]
@@ -27,15 +28,11 @@ public class PlayerHealthController : ScriptableObject {
 
     private void OnEnable() {
         EventManager.OnHealthChanged += CheckCurrentHealth;
+        _currentHealth = _config.Health;
     }
 
     private void OnDisable() {
         EventManager.OnHealthChanged -= CheckCurrentHealth;
-    }
-
-    public void Init(PlayerConfig config) {
-        _config = config;
-        _currentHealth = config.Health;
     }
 
     public void RegenerationHealth() {

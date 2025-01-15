@@ -4518,7 +4518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 734255285939391073, guid: 2536fb30619a3d34ca91da1fd23204ef, type: 3}
       propertyPath: _items.Array.size
-      value: 11
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 734255285939391073, guid: 2536fb30619a3d34ca91da1fd23204ef, type: 3}
       propertyPath: _items.Array.data[8]
@@ -6990,7 +6990,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthValue: {fileID: 427808155}
   _healthBar: {fileID: 499673736}
-  _healthAttribute: {fileID: 11400000, guid: 4674c32353ebcea46bd9e5c0438ff14d, type: 2}
+  _healthController: {fileID: 0}
 --- !u!114 &1737287507
 MonoBehaviour:
   m_ObjectHideFlags: 0

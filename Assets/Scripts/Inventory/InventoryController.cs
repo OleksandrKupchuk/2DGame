@@ -4,13 +4,13 @@ using UnityEngine;
 
 [CreateAssetMenu]
 public class Inventory : ScriptableObject {
-    private List<Item> _itemsData = new List<Item>();
+    private List<ItemData> _itemsData = new List<ItemData>();
 
     [field: SerializeField]
     public int AmountItems { get; private set; }
 
-    public event Action<Item> OnAddItem;
-    public event Action<Item> OnRemoveItem;
+    public event Action<ItemData> OnAddItem;
+    public event Action<ItemData> OnRemoveItem;
 
     public bool IsEmptySlot => AmountItems > _itemsData.Count;
 
@@ -18,13 +18,13 @@ public class Inventory : ScriptableObject {
         _itemsData.Clear();
     }
 
-    public bool TryAddItem(Item itemData) {
+    public bool TryAddItem(ItemData itemData) {
         if(!IsEmptySlot) {
             Debug.Log("In Inventory there is not a place");
             return false;
         }
         if(_itemsData.Contains(itemData)) {
-            Debug.Log("Item already add");
+            Debug.Log("ItemData already add");
             return false;
         }
 
@@ -34,7 +34,7 @@ public class Inventory : ScriptableObject {
         return true;
     }
 
-    public void RemoveItem(Item itemData) {
+    public void RemoveItem(ItemData itemData) {
         if(!_itemsData.Contains(itemData)) {
             Debug.Log("Can`t remove item because it not was added");
             return;

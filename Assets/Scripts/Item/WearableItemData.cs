@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WearableItem", menuName = "Item/WearableItem")]
-public class WearableItem : Item {
+[CreateAssetMenu(fileName = "WearableItemData", menuName = "ItemData/WearableItemData")]
+public class WearableItemData : ItemData {
     [field: SerializeField]
     public ItemType ItemType { get; protected set; }
     [field: SerializeField]

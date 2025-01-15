@@ -208,6 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3e0e156320d70e4f912181c0c41ae2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerConfig: {fileID: 11400000, guid: a54ace36f66f2cb4dbac2f323babad9b, type: 2}
+  _playerInput: {fileID: 11400000, guid: 25426407f4cb3554bbd1e7c625672b1b, type: 2}
   _rigidbody: {fileID: 2123502423263786045}
   _boxCollider: {fileID: 2724809069109994693}
   _distanceRaycastHit: 0.1

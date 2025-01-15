@@ -1,5 +1,5 @@
 public class InventorySlotView : SlotView {
-    public override void PutItem(Item itemData) {
+    public override void PutItem(ItemData itemData) {
         _itemData = itemData;
         SetIcon();
     }

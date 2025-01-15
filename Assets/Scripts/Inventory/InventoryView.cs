@@ -36,7 +36,7 @@ public class InventoryView : MonoBehaviour {
         }
     }
 
-    private void AddItem(Item itemData) {
+    private void AddItem(ItemData itemData) {
         foreach (var _slot in _slots) {
             if(_slot.IsEmpty) {
                 _slot.PutItem(itemData);
@@ -45,7 +45,7 @@ public class InventoryView : MonoBehaviour {
         }
     }
 
-    private void RemoveItem(Item itemData) {
+    private void RemoveItem(ItemData itemData) {
         foreach (var _slot in _slots) {
             if (!_slot.IsEmpty && _slot.ItemData == itemData) {
                 _slot.TakeItem();

@@ -11,7 +11,7 @@ public class SlotZone : MonoBehaviour, IDropHandler {
         }
 
         if (eventData.pointerDrag.TryGetComponent(out DragAndDrop dragAndDrop)) {
-            Item _buffer = dragAndDrop.SlotView.ItemData;
+            ItemData _buffer = dragAndDrop.SlotView.ItemData;
 
             dragAndDrop.SlotView.PutItem(_slotView.ItemData);
 

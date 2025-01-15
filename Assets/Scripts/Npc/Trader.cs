@@ -17,7 +17,6 @@ public class Trader : Npc {
     private DialogData _dialogDataStoryWife;
 
     private void Awake() {
-        _market.Init(_commissionPercent);
         EventManager.CloseInventory += CloseMarket;
 
         IDialogAction _openMarket = new OpenMarket(_market, _dialogController);

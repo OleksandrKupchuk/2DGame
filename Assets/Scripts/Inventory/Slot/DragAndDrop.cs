@@ -17,7 +17,7 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
 
     public bool isDropZone = false;
 
-    public static event Action<Item> OnItemTaken;
+    public static event Action<ItemData> OnItemTaken;
     public static event Action OnItemPutted;
 
     private void Awake() {

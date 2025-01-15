@@ -20,7 +20,7 @@ public class PlayerCoinsView : MonoBehaviour {
         UpdateCoins(null);
     }
 
-    public void UpdateCoins(Item item) {
+    public void UpdateCoins(ItemData item) {
         _value.text = "" + _playerConfig.coins;
     }
 }

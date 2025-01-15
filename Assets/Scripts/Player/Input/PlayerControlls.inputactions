@@ -1014,6 +1014,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Market",
+            "id": "a81be325-6009-4845-bdf4-334a18cbe821",
+            "actions": [
+                {
+                    "name": "Buy",
+                    "type": "Button",
+                    "id": "fb248f31-7daa-48a8-9c99-5c110b990ec3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Sell",
+                    "type": "Button",
+                    "id": "6ca1dcbd-098c-41a7-a926-bd70b3314cb4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e3f17093-3e28-40f7-8f1a-b7c2f1ea256f",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Buy",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "28169b9e-6a24-4714-b272-2901aca2b34c",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sell",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

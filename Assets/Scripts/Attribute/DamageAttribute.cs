@@ -23,7 +23,7 @@ public class DamageAttribute : Attribute {
         _valueIntegerMax = _playerConfig.DamageMax;
     }
 
-    protected override void AddIntegerAttributes(Item itemData) {
+    protected override void AddIntegerAttributes(ItemData itemData) {
         foreach (AttributeData attribute in itemData.Attributes) {
             if (attribute.type == AttributeType && attribute.valueType == ValueType.Integer) {
                 _valueIntegerMin += attribute.damageMin;
@@ -32,7 +32,7 @@ public class DamageAttribute : Attribute {
         }
     }
 
-    protected override void AddPercentAttributes(Item itemData) {
+    protected override void AddPercentAttributes(ItemData itemData) {
         foreach (AttributeData attribute in itemData.Attributes) {
             if (attribute.type == AttributeType && attribute.valueType == ValueType.Percent) {
                 _percentOfAttribute += attribute.value;
@@ -41,7 +41,7 @@ public class DamageAttribute : Attribute {
         }
     }
 
-    protected override void SubtractIntegerAttributes(Item itemData) {
+    protected override void SubtractIntegerAttributes(ItemData itemData) {
         foreach (AttributeData attribute in itemData.Attributes) {
             if (attribute.type == AttributeType && attribute.valueType == ValueType.Integer) {
                 _valueIntegerMin -= attribute.damageMin;
@@ -50,7 +50,7 @@ public class DamageAttribute : Attribute {
         }
     }
 
-    protected override void SubtractPercentAttributes(Item itemData) {
+    protected override void SubtractPercentAttributes(ItemData itemData) {
         foreach (AttributeData attribute in itemData.Attributes) {
             if (attribute.type == AttributeType && attribute.valueType == ValueType.Percent) {
                 _percentOfAttribute -= attribute.value;
@@ -64,7 +64,7 @@ public class DamageAttribute : Attribute {
         _valuePercentMax = _percentOfAttribute * _valueIntegerMax / 100;
     }
 
-    protected override void AddTemporaryAttribute(Item itemData) {
+    protected override void AddTemporaryAttribute(ItemData itemData) {
         foreach (AttributeData attribute in itemData.Attributes) {
             if (attribute.type == AttributeType) {
                 _valueTemporaryMin += attribute.damageMin;
@@ -75,7 +75,7 @@ public class DamageAttribute : Attribute {
         }
     }
 
-    protected override void SubtractTemporaryAttribute(Item itemData) {
+    protected override void SubtractTemporaryAttribute(ItemData itemData) {
         foreach (AttributeData attribute in itemData.Attributes) {
             if (attribute.type == AttributeType) {
                 _valueTemporaryMin -= attribute.damageMin;

@@ -13,6 +13,6 @@ public class OpenMarket : IDialogAction {
         _player = ProjectContext.Instance.Player;
         _player.PlayerMovement.EnableInput();
         _dialogController.CloseDialogs();
-        _market.Open(_player);
+        _market.Open();
     }
 }

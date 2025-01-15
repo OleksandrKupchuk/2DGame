@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "UsableItem", menuName = "Item/UsableItem")]
-public class UsableItem : Item {
+[CreateAssetMenu(fileName = "UsableItemData", menuName = "ItemData/UsableItemData")]
+public class UsableItemData : ItemData {
     [field: SerializeField]
     public float Duration { get; protected set; }
 

@@ -2,10 +2,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour {
-    private PlayerConfig _playerConfig;
     private RaycastHit2D _raycastHit;
-    private PlayerInput _playerInput;
 
+    [SerializeField]
+    private PlayerConfig _playerConfig;
+    [SerializeField]
+    private PlayerInput _playerInput;
     [SerializeField]
     private Rigidbody2D _rigidbody;
     [SerializeField]
@@ -38,12 +40,6 @@ public class PlayerMovement : MonoBehaviour {
     }
     public bool IsOpenInventory { get => _playerInput.HandleInventoryInputAction.triggered; }
     public bool IsInteraction { get => _playerInput.Interaction.triggered; }
-
-    public void Init(PlayerConfig playerConfig) {
-        _playerInput = new PlayerInput();
-        _playerInput.Init(_inputActionAsset);
-        _playerConfig = playerConfig;
-    }
 
     private void Update() {
         IsGround();

@@ -5,7 +5,7 @@ public class ItemView : MonoBehaviour {
     private SpriteRenderer _icon;
 
     [field: SerializeField]
-    public Item ItemData { get; private set; }
+    public ItemData ItemData { get; private set; }
 
     private void OnEnable() {
         _icon.sprite = ItemData.Icon;
