@@ -9,9 +9,12 @@ public class CameraMovement : MonoBehaviour {
     private Vector3 _offset = new Vector3(4f, 7f, -10f);
     private float _speedSmooth = 2f;
 
+    private void Start() {
+        _player = FindFirstObjectByType<Player>();
+    }
+
     void FixedUpdate() {
         if(_player == null) {
-            _player = ProjectContext.Instance.Player;
             return;
         }
 

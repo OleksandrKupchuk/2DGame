@@ -9,6 +9,8 @@ public class Inventory : ScriptableObject {
     [field: SerializeField]
     public int AmountItems { get; private set; }
 
+    public event Action OnOpen;
+    public event Action OnClose;
     public event Action<ItemData> OnAddItem;
     public event Action<ItemData> OnRemoveItem;
 
@@ -44,7 +46,11 @@ public class Inventory : ScriptableObject {
         OnRemoveItem?.Invoke(itemData);
     }
 
-    public void OpenInventory() {
-        Debug.Log("Open inventory");
+    public void Open() {
+        OnOpen?.Invoke();
+    }
+
+    public void Close() {
+        OnClose?.Invoke();
     }
 }

@@ -6,9 +6,11 @@ public class InventoryView : MonoBehaviour {
     private List<InventorySlotView> _slots = new List<InventorySlotView>();
 
     [SerializeField]
+    private Market _market;
+    [SerializeField]
     private InventorySlotView _slotViewPrefab;
     [SerializeField]
-    private Inventory _inventoryController;
+    private Inventory _inventory;
     [SerializeField]
     private Transform _bag;
     [SerializeField]
@@ -17,18 +19,25 @@ public class InventoryView : MonoBehaviour {
     private Button _closeButton;
 
     private void Awake() {
-        SpawnCellView();
-        _inventoryController.OnAddItem += AddItem;
-        _inventoryController.OnRemoveItem += RemoveItem;
+        SpawnSlotsView();
+        _inventory.OnOpen += Open;
+        _inventory.OnClose += Close;
+        _inventory.OnAddItem += AddItem;
+        _inventory.OnRemoveItem += RemoveItem;
+        _closeButton.onClick.AddListener(() => { Close(); _market.Close(); });
+
+        Close();
     }
 
     private void OnDestroy() {
-        _inventoryController.OnAddItem -= AddItem;
-        _inventoryController.OnRemoveItem -= RemoveItem;
+        _inventory.OnOpen -= Open;
+        _inventory.OnClose -= Close;
+        _inventory.OnAddItem -= AddItem;
+        _inventory.OnRemoveItem -= RemoveItem;
     }
 
-    private void SpawnCellView() {
-        for (int i = 0; i < _inventoryController.AmountItems; i++) {
+    private void SpawnSlotsView() {
+        for (int i = 0; i < _inventory.AmountItems; i++) {
             InventorySlotView _cell = Instantiate(_slotViewPrefab, _bag);
             _cell.gameObject.name = _cell.gameObject.name + " " + i;
             _cell.PutItem(null);
@@ -52,5 +61,13 @@ public class InventoryView : MonoBehaviour {
                 return;
             }
         }
+    }
+
+    public void Open() {
+        _background.SetActive(true);
+    }
+
+    public void Close() {
+        _background.SetActive(false);
     }
 }

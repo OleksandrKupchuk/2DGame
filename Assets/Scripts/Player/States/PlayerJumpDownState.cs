@@ -16,15 +16,14 @@ public class PlayerJumpDownState : IState<Player> {
             _player.StateMachine.ChangeState(_player.IdleState);
         }
 
-        _player.PlayerMovement.GetMoveInput();
         _player.PlayerMovement.Flip();
     }
 
     public void FixedUpdate() {
-        if(_player.PlayerMovement.GetMoveInput() == Vector2.zero) {
-            return;
-        }
-        _player.PlayerMovement.Run(_player.PlayerMovement.GetMoveInput().x);
+        //if(_player.PlayerMovement.GetMoveInput() == Vector2.zero) {
+        //    return;
+        //}
+        //_player.PlayerMovement.Run(_player.PlayerMovement.GetMoveInput().x);
     }
 
     public void Exit() {

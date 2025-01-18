@@ -14,7 +14,10 @@ public class Market : ScriptableObject {
     [SerializeField]
     private List<ItemData> _items;
 
+    [field: SerializeField]
+    public int AmountSlots { get; private set; }
     public List<ItemData> RandomItemsData => _items;
+    public event Action<ItemData> OnAddItem;
     public event Action<ItemData> OnRemoveItem;
     public event Action OnOpen;
     public event Action OnClose;
@@ -42,14 +45,12 @@ public class Market : ScriptableObject {
         return _range;
     }
 
-    public void Buy(ItemData item) {
+    public void BuyItem(ItemData item) {
         int _itemPrice = GetPriceWithTraderComission(item.Price);
 
         if (_playerConfig.coins >= _itemPrice) {
             _playerConfig.coins -= _itemPrice;
             _inventory.TryAddItem(item);
-
-            RemoveItem(item);
         }
         else {
             Debug.LogWarning("Not enough money");
@@ -70,6 +71,11 @@ public class Market : ScriptableObject {
 
     public void Close() {
         OnClose?.Invoke();
+    }
+
+    public void AddItem(ItemData item) {
+        _randomItemsData.Add(item);
+        OnAddItem?.Invoke(item);
     }
 
     public void RemoveItem(ItemData item) {

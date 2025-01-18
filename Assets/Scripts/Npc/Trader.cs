@@ -10,6 +10,8 @@ public class Trader : Npc {
     [SerializeField]
     private Market _market;
     [SerializeField]
+    private Inventory _inventory;
+    [SerializeField]
     private DialogView _dialogController;
     [SerializeField]
     private DialogData _dialogDataTrade;
@@ -17,10 +19,8 @@ public class Trader : Npc {
     private DialogData _dialogDataStoryWife;
 
     private void Awake() {
-        EventManager.CloseInventory += CloseMarket;
-
-        IDialogAction _openMarket = new OpenMarket(_market, _dialogController);
-        _dialogTrade = new Dialog(_dialogDataTrade, _openMarket);
+        IDialogAction _dialogActionOpenMarket = new DialogActionOpenMarket(_inventory, _market, _dialogController);
+        _dialogTrade = new Dialog(_dialogDataTrade, _dialogActionOpenMarket);
 
         _dialogStoryAboutWife = new Dialog(_dialogDataStoryWife, _dialogController);
 
@@ -28,14 +28,6 @@ public class Trader : Npc {
         _dialogs.Add(_dialogStoryAboutWife);
 
         _interactionIcon.SetActive(false);
-    }
-
-    private void OnDestroy() {
-        EventManager.CloseInventory -= CloseMarket;
-    }
-
-    private void CloseMarket() {
-        _market.Close();
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {

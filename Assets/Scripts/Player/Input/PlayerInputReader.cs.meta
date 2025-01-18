@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: f07ceed369760f4459054e0e6fdd1a80
+guid: 8062a6e97a5b4664aa448a2bc72c11a3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - _playerHandleAction: {fileID: 11400000, guid: e71d8e3fbc7481945b233e263f7a4315, type: 2}
   - _inputActionAsset: {fileID: -944628639613478452, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}

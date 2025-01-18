@@ -35,12 +35,6 @@ public class EventManager {
         BuyItem.Invoke(item);
     }
 
-    public static event Action CloseInventory;
-
-    public static void CloseInventoryEventHandler() {
-        CloseInventory.Invoke();
-    }
-
     public static event Action OnHealthChanged;
 
     public static void OnHealthChangedHandler() {

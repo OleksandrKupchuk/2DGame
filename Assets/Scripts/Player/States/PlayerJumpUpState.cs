@@ -9,6 +9,7 @@ public class PlayerJumpUpState : IState<Player> {
         _player = owner;
         _player.Animator.Play(PlayerAnimationName.JumpUp);
         _player.PlayerMovement.Jump();
+        //_timer = 0.5f;
         _timer = 0.5f;
     }
 
@@ -24,16 +25,15 @@ public class PlayerJumpUpState : IState<Player> {
             _player.StateMachine.ChangeState(_player.JumpDownState);
         }
 
-        _player.PlayerMovement.GetMoveInput();
         _player.PlayerMovement.Flip();
     }
 
     public void FixedUpdate() {
-
-        if (_player.PlayerMovement.GetMoveInput() == Vector2.zero) {
+        if (!_player.PlayerMovement.IsMove) {
             return;
         }
-        _player.PlayerMovement.Run(_player.PlayerMovement.GetMoveInput().x);
+
+        _player.PlayerMovement.Run();
     }
 
     public void Exit() {

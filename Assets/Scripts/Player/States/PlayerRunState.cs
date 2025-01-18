@@ -22,7 +22,7 @@ public class PlayerRunState : IState<Player> {
         else if (_player.PlayerMovement.IsAttack) {
             _player.StateMachine.ChangeState(_player.AttackState);
         }
-        else if (Mathf.Abs(_player.PlayerMovement.GetMoveInput().x) == 0) {
+        else if (!_player.PlayerMovement.IsMove) {
             _player.StateMachine.ChangeState(_player.IdleState);
         }
 
@@ -36,8 +36,7 @@ public class PlayerRunState : IState<Player> {
             return;
         }
 
-        _player.Move(_player.PlayerMovement.GetMoveInput().x, _player.SpeedAttribute.Speed);
-        _player.PlayerMovement.Run(_player.PlayerMovement.GetMoveInput().x);
+        _player.PlayerMovement.Run();
     }
 
     public void Exit() {

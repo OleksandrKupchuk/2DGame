@@ -1,7 +1,7 @@
-public class AddQuest : IDialogAction {
+public class DialogActionAddQuest : IDialogAction {
     private IQuest _quest;
 
-    public AddQuest(IQuest quest) {
+    public DialogActionAddQuest(IQuest quest) {
         _quest = quest;
     }
 

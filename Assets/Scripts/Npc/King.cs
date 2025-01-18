@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class King : Npc, IInteracvite {
     [SerializeField]
+    private PlayerConfig _playerConfig;
+    [SerializeField]
     private DialogView _dialogController;
     [SerializeField]
     private DialogData _dialogDataBringCrown;
@@ -11,8 +13,8 @@ public class King : Npc, IInteracvite {
     private DialogData _dialogDataIncome;
 
     private void Awake() {
-        IQuest _questBringItem = new QuestBringItem();
-        IDialogAction _actionAddQuestBringCrown = new AddQuest(_questBringItem);
+        IQuest _questBringItem = new QuestBringItem(_playerConfig);
+        IDialogAction _actionAddQuestBringCrown = new DialogActionAddQuest(_questBringItem);
         Dialog _dialogBringCrown = new Dialog(_dialogDataBringCrown, _dialogController, _actionAddQuestBringCrown);
 
         Dialog _dialogKingdom = new Dialog(_dialogDataKingdom, _dialogController);

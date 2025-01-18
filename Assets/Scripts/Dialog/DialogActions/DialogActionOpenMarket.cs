@@ -1,17 +1,17 @@
-public class OpenMarket : IDialogAction {
-    private Player _player;
+public class DialogActionOpenMarket : IDialogAction {
+    private Inventory _inventory;
     private Market _market;
     private DialogView _dialogController;
 
-    public OpenMarket(Market market, DialogView dialogController) {
+    public DialogActionOpenMarket(Inventory inventory, Market market, DialogView dialogController) {
+        _inventory = inventory;
         _market = market;
         _dialogController = dialogController;
 
     }
 
     public void DoAction() {
-        _player = ProjectContext.Instance.Player;
-        _player.PlayerMovement.EnableInput();
+        _inventory.Open();
         _dialogController.CloseDialogs();
         _market.Open();
     }

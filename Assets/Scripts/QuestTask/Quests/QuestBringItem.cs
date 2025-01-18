@@ -1,12 +1,12 @@
 using UnityEngine;
 
 public class QuestBringItem : IQuest {
-    private Player _player;
+    private PlayerConfig _playerConfig;
     private bool _isRewardTaken = false;
     private GameObject _target;
 
-    public void Init(Player player) {
-        _player = player;
+    public QuestBringItem(PlayerConfig playerConfig) {
+        _playerConfig = playerConfig;
         _target = new GameObject("Quest item king");
         _target.AddComponent<BoxCollider2D>();
         _target.AddComponent<Rigidbody2D>();
@@ -17,7 +17,7 @@ public class QuestBringItem : IQuest {
 
     public void GiveReward() {
         if (IsDone()) {
-            _player.Config.coins += 50;
+            _playerConfig.coins += 50;
             _isRewardTaken = true;
         }
     }

@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Interactive",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "508e8c8b-7ae4-4be3-8021-e60dea490d32",
                     "expectedControlType": "",
@@ -303,7 +303,7 @@
                     "name": "AD",
                     "id": "b70839f3-bbb3-4dad-9d24-fd56091eaafd",
                     "path": "2DVector",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "",
                     "action": "Movement",
@@ -336,7 +336,7 @@
                     "name": "LeftArrowRightArrow",
                     "id": "0496f858-3174-40a5-be46-1081789f106d",
                     "path": "2DVector",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "",
                     "action": "Movement",
@@ -380,7 +380,7 @@
                     "name": "",
                     "id": "a9dd7ba3-18a4-43de-ba78-f596e66ef889",
                     "path": "<Keyboard>/space",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Jump",
@@ -405,7 +405,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Interactive",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

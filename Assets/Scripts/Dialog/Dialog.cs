@@ -9,7 +9,7 @@ public class Dialog {
 
     public DialogData DialogData { get => _dialogData; }
 
-    public Dialog(DialogData dialogData, DialogView dialogView, IDialogAction dialogAction) : this (dialogData, dialogView) {
+    public Dialog(DialogData dialogData, DialogView dialogView, IDialogAction dialogAction) : this(dialogData, dialogView) {
         _dialogAction = dialogAction;
     }
 
@@ -29,22 +29,22 @@ public class Dialog {
         if (_dialogData.paragraphs.Length == 0) {
             Debug.Log("Do some action");
             _dialogAction.DoAction();
+            return;
         }
-        else if (_dialogData.paragraphs.Length > 0) {
-            _dialogView.DisableStartButtons();
 
-            _dialogView.DisableCloseButton();
-            _dialogView.EnableDescription();
-            _dialogView.SetDescriptionText(_dialogData.paragraphs[0]);
+        _dialogView.DisableStartButtons();
 
-            if (_dialogData.paragraphs.Length == 1) {
-                _dialogView.EnableBackButton();   
-                _dialogView.AddListenerBackButton(() => { BackToDialogs(); });
-            }
-            else if (_dialogData.paragraphs.Length > 1) {
-                _dialogView.EnableNextButton();
-                _dialogView.AddListenerNextButton(() => { NextParagraph(); });
-            }
+        _dialogView.DisableCloseButton();
+        _dialogView.EnableDescription();
+        _dialogView.SetDescriptionText(_dialogData.paragraphs[0]);
+
+        if (_dialogData.paragraphs.Length == 1) {
+            _dialogView.EnableBackButton();
+            _dialogView.AddListenerBackButton(() => { BackToDialogs(); });
+        }
+        else if (_dialogData.paragraphs.Length > 1) {
+            _dialogView.EnableNextButton();
+            _dialogView.AddListenerNextButton(() => { NextParagraph(); });
         }
     }
 

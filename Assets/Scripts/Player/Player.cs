@@ -8,15 +8,17 @@ public class Player : Character {
     private PlayerHealthView _playerHealthView;
 
     [SerializeField]
+    private Inventory _inventory;
+    [SerializeField]
     private List<Collider2D> _collidersForIgnored = new List<Collider2D>();
     [SerializeField]
     private float _delayBllinkAnimationInSeconds;
     [SerializeField]
     private List<SpriteRenderer> _sprites = new List<SpriteRenderer>();
+    [SerializeField]
+    public PlayerHealthController _healthController;
 
     public List<Collider2D> CollidesForIgnored { get => _collidersForIgnored; }
-    [field: SerializeField]
-    public PlayerConfig Config { get; private set; }
     public PlayerIdleState IdleState { get; private set; }
     public PlayerRunState RunState { get; private set; }
     public PlayerAttackState AttackState { get; private set; }
@@ -25,19 +27,14 @@ public class Player : Character {
     public PlayerHitState HitState { get; private set; }
     public PlayerDeadState DeadState { get; private set; }
     public StateMachine<Player> StateMachine { get; private set; }
+
     public IInteracvite Interactive { get => _interactive; }
     [field: SerializeField]
     public InvulnerabilityStatus InvulnerableStatus { get; private set; }
     [field: SerializeField]
     public PlayerMovement PlayerMovement { get; private set; }
     [field: SerializeField]
-    public PlayerHealthController HealthController { get; private set; }
-    [field: SerializeField]
     public PlayerWeaponController PlayerWeaponController { get; private set; }
-    [field: SerializeField]
-    public PickUpController PickUpController { get; private set; }
-    [field: SerializeField]
-    public SpeedAttribute SpeedAttribute { get; private set; }
 
     private new void Awake() {
         base.Awake();
@@ -85,7 +82,7 @@ public class Player : Character {
 
     private void Update() {
         StateMachine.Update();
-        HealthController.RegenerationHealth();
+        _healthController.RegenerationHealth();
         ToggleInventory();
     }
 
@@ -102,8 +99,8 @@ public class Player : Character {
     }
 
     private void ToggleInventory() {
-        if (PlayerMovement.IsOpenInventory) {
-            Debug.Log("Inventory OPEN");
+        if (PlayerMovement.IsPressedOpenInventoryButton) {
+            _inventory.Open();
         }
     }
 

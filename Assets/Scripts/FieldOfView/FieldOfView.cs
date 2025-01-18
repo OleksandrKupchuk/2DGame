@@ -20,6 +20,8 @@ public class FieldOfView : MonoBehaviour {
     private float _viewDistance;
     [SerializeField]
     private LayerMask _layer;
+    [SerializeField]
+    private PlayerHealthController _healthController;
 
     public Player Target { get; private set; }
 
@@ -61,7 +63,7 @@ public class FieldOfView : MonoBehaviour {
                 _vertex = _raycastHit2D.point;
                 Debug.DrawRay(_startPoint, CalculationAngle.GetVector3FromAngle(angleInDegree) * _viewDistance, Color.yellow);
 
-                if (_raycastHit2D.collider.gameObject.CompareTag(Tags.Player) && !_player.HealthController.IsDead) {
+                if (_raycastHit2D.collider.gameObject.CompareTag(Tags.Player) && !_healthController.IsDead) {
                     Debug.DrawRay(_startPoint, CalculationAngle.GetVector3FromAngle(angleInDegree) * _viewDistance, Color.red);
                     _raysDetected[i - 1] = true;
                 }

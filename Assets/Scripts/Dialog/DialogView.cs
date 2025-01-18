@@ -4,7 +4,6 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class DialogView : MonoBehaviour {
-    private Player _player;
     private ObjectPool<StartDialogButton> _startDialogButtonPool;
     private int _amountDialogsCurrentNpc;
     private float _heightDialogTitle;
@@ -47,15 +46,13 @@ public class DialogView : MonoBehaviour {
     }
 
     public void OpenDialogs(string speakerName, List<Dialog> dialogs) {
-        _player = ProjectContext.Instance.Player;
         _speakerName.text = speakerName;
         _amountDialogsCurrentNpc = dialogs.Count;
         RemoveAllListenersCloseButton();
-        AddListenerCloseButton(() => { _player.PlayerMovement.EnableInput(); CloseDialogs(); });
+        AddListenerCloseButton(() => { CloseDialogs(); });
         _background.SetActive(true);
         UpdatePositionAndSizeBackground();
         InitStartDialogButtons(dialogs);
-        _player.PlayerMovement.DisableInput();
     }
 
     private void UpdatePositionAndSizeBackground() {

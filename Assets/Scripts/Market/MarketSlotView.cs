@@ -5,7 +5,7 @@ public class MarketSlotView : SlotView, IPointerClickHandler {
     [SerializeField]
     private Market _market;
     [SerializeField]
-    private PlayerInput _playerInput;
+    private PlayerInputReader _playerInput;
 
     public override void PutItem(ItemData itemData) {
         _itemData = itemData;
@@ -23,8 +23,9 @@ public class MarketSlotView : SlotView, IPointerClickHandler {
                 return;
             }
 
-            Debug.Log("Buy item");
-            _market.Buy(_itemData);
+            Debug.Log("BuyItem item");
+            _market.BuyItem(_itemData);
+            _market.RemoveItem(_itemData);
         }
     }
 }

@@ -1,13 +1,14 @@
+using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour {
     private RaycastHit2D _raycastHit;
+    private Vector2 _inputDirection;
 
     [SerializeField]
     private PlayerConfig _playerConfig;
     [SerializeField]
-    private PlayerInput _playerInput;
+    private PlayerInputReader _playerInputReader;
     [SerializeField]
     private Rigidbody2D _rigidbody;
     [SerializeField]
@@ -16,14 +17,13 @@ public class PlayerMovement : MonoBehaviour {
     private float _distanceRaycastHit;
     [SerializeField]
     private LayerMask _groundLayer;
-    [SerializeField]
-    private InputActionAsset _inputActionAsset;
 
     public bool IsLookingLeft { get => transform.localScale.x > 0; }
     public bool IsFalling { get => _rigidbody.velocity.y < 0; }
+    public bool IsMove { get => Math.Abs(_inputDirection.x) > 0; }
     public bool IsJump {
         get {
-            if (_playerInput.Jump.triggered && IsGround()) {
+            if (_playerInputReader.Jump.triggered && IsGround()) {
                 return true;
             }
 
@@ -32,17 +32,30 @@ public class PlayerMovement : MonoBehaviour {
     }
     public bool IsAttack {
         get {
-            if (_playerInput.Attack.triggered) {
+            if (_playerInputReader.Attack.triggered) {
                 return true;
             }
+
             return false;
         }
     }
-    public bool IsOpenInventory { get => _playerInput.HandleInventoryInputAction.triggered; }
-    public bool IsInteraction { get => _playerInput.Interaction.triggered; }
+    public bool IsPressedOpenInventoryButton { get => _playerInputReader.HandleInventoryInputAction.triggered; }
+    public bool IsInteraction { get => _playerInputReader.Interaction.triggered; }
+
+    private void Awake() {
+        _playerInputReader.OnMoved += Move;
+    }
+
+    private void OnDestroy() {
+        _playerInputReader.OnMoved -= Move;
+    }
 
     private void Update() {
         IsGround();
+    }
+
+    private void Move(Vector2 direction) {
+        _inputDirection = direction;
     }
 
     public bool IsGround() {
@@ -62,28 +75,16 @@ public class PlayerMovement : MonoBehaviour {
         _rigidbody.velocity = Vector2.up * _playerConfig.JumpVelocity;
     }
 
-    public void Run(float inputDirection) {
-        _rigidbody.velocity = new Vector2(inputDirection * _playerConfig.Speed, _rigidbody.velocity.y);
+    public void Run() {
+        _rigidbody.velocity = new Vector2(_inputDirection.x * _playerConfig.Speed, _rigidbody.velocity.y);
     }
 
     public void Flip() {
-        if (GetMoveInput().x > 0) {
+        if (_inputDirection.x > 0) {
             gameObject.transform.localScale = new Vector3(-1, 1, 1);
         }
-        else if (GetMoveInput().x < 0) {
+        else if (_inputDirection.x < 0) {
             gameObject.transform.localScale = new Vector3(1, 1, 1);
         }
-    }
-
-    public Vector2 GetMoveInput() {
-        return _playerInput.Move.ReadValue<Vector2>();
-    }
-
-    public void DisableInput() {
-        _playerInput.InputActionMap.Disable();
-    }
-
-    public void EnableInput() {
-        _playerInput.InputActionMap.Enable();
     }
 }

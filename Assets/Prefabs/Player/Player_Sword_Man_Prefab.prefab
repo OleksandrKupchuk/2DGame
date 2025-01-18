@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: cc5a875545926f64b975841e0583567d, type: 2}
+  _inventory: {fileID: 11400000, guid: 342cc4a6cd225c541b9824678282c065, type: 2}
   _collidersForIgnored:
   - {fileID: 2724809069109994693}
   - {fileID: 550353306}
@@ -68,13 +69,10 @@ MonoBehaviour:
   - {fileID: 247315288}
   _delayBllinkAnimationInSeconds: 0
   _sprites: []
-  <Config>k__BackingField: {fileID: 11400000, guid: a54ace36f66f2cb4dbac2f323babad9b, type: 2}
+  _healthController: {fileID: 0}
   <InvulnerableStatus>k__BackingField: {fileID: 11400000, guid: 8faea2073053f064f8a9814a6d8be089, type: 2}
   <PlayerMovement>k__BackingField: {fileID: 5652064171342545477}
-  <HealthController>k__BackingField: {fileID: 11400000, guid: 6d21bf859853ba047973e1b1ee01b548, type: 2}
   <PlayerWeaponController>k__BackingField: {fileID: 7264231251228489834}
-  <PickUpController>k__BackingField: {fileID: 5998367218307207105}
-  <SpeedAttribute>k__BackingField: {fileID: 11400000, guid: c8ab9cbfa78a7194ba7e595ec4b484d8, type: 2}
 --- !u!50 &2123502423263786045
 Rigidbody2D:
   serializedVersion: 4
@@ -209,14 +207,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerConfig: {fileID: 11400000, guid: a54ace36f66f2cb4dbac2f323babad9b, type: 2}
-  _playerInput: {fileID: 11400000, guid: 25426407f4cb3554bbd1e7c625672b1b, type: 2}
+  _playerInputReader: {fileID: 11400000, guid: 32b23d19312ac6b4c8689b0ae3ee01e7, type: 2}
   _rigidbody: {fileID: 2123502423263786045}
   _boxCollider: {fileID: 2724809069109994693}
   _distanceRaycastHit: 0.1
   _groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  _inputActionAsset: {fileID: -944628639613478452, guid: 0e58c1d2c96be034da78076f9fbcd96d, type: 3}
 --- !u!114 &7264231251228489834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2339,7 +2336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ab0f21df00d864f8a3146b61a107ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 7139910950940667720}
+  _playerHealthController: {fileID: 11400000, guid: 6d21bf859853ba047973e1b1ee01b548, type: 2}
 --- !u!4 &139117442233933345 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
@@ -2736,7 +2733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ab0f21df00d864f8a3146b61a107ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 7139910950940667720}
+  _playerHealthController: {fileID: 11400000, guid: 6d21bf859853ba047973e1b1ee01b548, type: 2}
 --- !u!1 &3354871681852424820 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5165894177687657077, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
@@ -2789,7 +2786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ab0f21df00d864f8a3146b61a107ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 7139910950940667720}
+  _playerHealthController: {fileID: 11400000, guid: 6d21bf859853ba047973e1b1ee01b548, type: 2}
 --- !u!1 &3919461976144869667 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6870996054092013860, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
@@ -2842,7 +2839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ab0f21df00d864f8a3146b61a107ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 7139910950940667720}
+  _playerHealthController: {fileID: 11400000, guid: 6d21bf859853ba047973e1b1ee01b548, type: 2}
 --- !u!1 &4161173171909936833 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5801027284602445506, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
@@ -3054,7 +3051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ab0f21df00d864f8a3146b61a107ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 7139910950940667720}
+  _playerHealthController: {fileID: 11400000, guid: 6d21bf859853ba047973e1b1ee01b548, type: 2}
 --- !u!1 &6649477418945185121 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5370077341597459102, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
@@ -3107,7 +3104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ab0f21df00d864f8a3146b61a107ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 7139910950940667720}
+  _playerHealthController: {fileID: 11400000, guid: 6d21bf859853ba047973e1b1ee01b548, type: 2}
 --- !u!1 &6793823103310581260 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3996546068344690189, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
@@ -3160,7 +3157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ab0f21df00d864f8a3146b61a107ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 7139910950940667720}
+  _playerHealthController: {fileID: 11400000, guid: 6d21bf859853ba047973e1b1ee01b548, type: 2}
 --- !u!1 &6939989923814483409 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -680566325378072018, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
@@ -3213,7 +3210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ab0f21df00d864f8a3146b61a107ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 7139910950940667720}
+  _playerHealthController: {fileID: 11400000, guid: 6d21bf859853ba047973e1b1ee01b548, type: 2}
 --- !u!1 &7822960001066032507 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -409453505244382588, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
@@ -3306,7 +3303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ab0f21df00d864f8a3146b61a107ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 7139910950940667720}
+  _playerHealthController: {fileID: 11400000, guid: 6d21bf859853ba047973e1b1ee01b548, type: 2}
 --- !u!1 &8297805514215881993 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7342647219719412470, guid: a8702b2425e86f94aa662734d7c34697, type: 3}
@@ -3359,7 +3356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ab0f21df00d864f8a3146b61a107ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 7139910950940667720}
+  _playerHealthController: {fileID: 11400000, guid: 6d21bf859853ba047973e1b1ee01b548, type: 2}
 --- !u!1 &8891630835280449928 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7900584481247131255, guid: a8702b2425e86f94aa662734d7c34697, type: 3}

@@ -14,14 +14,6 @@ public class UsageItemsPanel : MonoBehaviour {
         CreateUsageSlots();
     }
 
-    private void OnEnable() {
-        _actionMap.Enable();
-    }
-
-    private void OnDisable() {
-        _actionMap.Disable();
-    }
-
     private void CreateUsageSlots() {
         foreach (var action in _actionMap.actions) {
             UsageSlotView _usageSlotObject = Instantiate(_usageSlotView, transform);

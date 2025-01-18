@@ -17,3 +17,4 @@ MonoBehaviour:
   _items:
   - {fileID: 11400000, guid: 7949ad8818eb83b4f8248f1bafded640, type: 2}
   - {fileID: 11400000, guid: 1a3cd54530f0b9a41ae26b7778909f81, type: 2}
+  <AmountSlots>k__BackingField: 25

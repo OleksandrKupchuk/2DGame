@@ -8,7 +8,6 @@ public class PlayerIdleState : IState<Player> {
 
         _player = owner;
         _player.Animator.Play(AnimationName.Idle);
-        //_playerConfig.Animator.Play(PlayerAnimationName.Run);
     }
 
     public void Update() {
@@ -24,7 +23,7 @@ public class PlayerIdleState : IState<Player> {
         else if (_player.PlayerMovement.IsAttack) {
             _player.StateMachine.ChangeState(_player.AttackState);
         }
-        else if (Mathf.Abs(_player.PlayerMovement.GetMoveInput().x) > 0) {
+        else if (_player.PlayerMovement.IsMove) {
             _player.StateMachine.ChangeState(_player.RunState);
         }
 

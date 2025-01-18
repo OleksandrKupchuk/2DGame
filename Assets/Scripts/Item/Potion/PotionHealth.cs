@@ -6,6 +6,6 @@ public class PotionHealth : ItemView {
     }
 
     //public override void Use() {
-    //    _player.HealthController.AddHealth(Attributes[0].value);
+    //    _player._healthController.AddHealth(Attributes[0].value);
     //}
 }
