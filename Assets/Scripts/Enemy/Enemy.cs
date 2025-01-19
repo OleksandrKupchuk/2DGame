@@ -59,8 +59,8 @@ public class Enemy : Character {
         }
     }
 
-    public bool IsThereTargetInRangeOfDistance(float distancce) {
-        if(distanceToTarget <= distancce) {
+    public bool IsThereTargetInRangeOfDistance(float distance) {
+        if(distanceToTarget <= distance) {
             return true;
         }
 

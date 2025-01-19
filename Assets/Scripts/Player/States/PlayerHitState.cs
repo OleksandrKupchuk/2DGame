@@ -4,11 +4,11 @@ public class PlayerHitState : IState<Player> {
     public void Enter(Player owner) {
         //Debug.Log($"<color=white>enter hit state</color>");
         _player = owner;
-        _player.Animator.Play(AnimationName.Hit);
+        _player.AnimationController.PlayAnimation(AnimationName.Hit);
     }
 
     public void Update() {
-        if (_player.IsEndCurrentAnimation(_player.Animator, AnimatorLayers.BaseLayer, AnimationName.Hit)) {
+        if (_player.AnimationController.IsEndCurrentAnimation(AnimatorLayers.BaseLayer, AnimationName.Hit)) {
             _player.StateMachine.ChangeState(_player.IdleState);
         }
     }

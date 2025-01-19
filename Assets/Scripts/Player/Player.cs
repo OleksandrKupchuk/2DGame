@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Character {
+public class Player : MonoBehaviour {
     private IInteracvite _interactive;
-    private float _deafaultGravityScale;
     private PlayerHealthView _playerHealthView;
 
     [SerializeField]
@@ -35,11 +34,11 @@ public class Player : Character {
     public PlayerMovement PlayerMovement { get; private set; }
     [field: SerializeField]
     public PlayerWeaponController PlayerWeaponController { get; private set; }
+    [field: SerializeField]
+    public AnimationController AnimationController { get; private set; }
 
-    private new void Awake() {
-        base.Awake();
+    private void Awake() {
         PlayerWeaponController.Init();
-        _deafaultGravityScale = Rigidbody.gravityScale;
         EventManager.OnHit += () => StateMachine.ChangeState(HitState);
         EventManager.OnHit += () => {
             StartCoroutine(InvulnerableStatus.ActivateInvulnerabilityStatus());
@@ -88,14 +87,6 @@ public class Player : Character {
 
     private void FixedUpdate() {
         StateMachine.FixedUpdate();
-    }
-
-    public void SetGravityScale(float value) {
-        Rigidbody.gravityScale = value;
-    }
-
-    public void ResetGravityScaleToDefault() {
-        Rigidbody.gravityScale = _deafaultGravityScale;
     }
 
     private void ToggleInventory() {

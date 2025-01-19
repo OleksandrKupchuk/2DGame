@@ -2,23 +2,23 @@ using UnityEngine;
 
 public class PlayerJumpUpState : IState<Player> {
     private Player _player;
-    private float _timer;
+    private float _timerToFalling;
 
     public void Enter(Player owner) {
         //Debug.Log($"<color=green>enter jumpUp state</color>");
         _player = owner;
-        _player.Animator.Play(PlayerAnimationName.JumpUp);
+        _player.AnimationController.PlayAnimation(PlayerAnimationName.JumpUp);  
         _player.PlayerMovement.Jump();
-        //_timer = 0.5f;
-        _timer = 0.5f;
+        _timerToFalling = 0.5f;
+        //_timerToFalling = 0f;
     }
 
     public void Update() {
         //Debug.Log("is falling = " + _playerConfig.IsFalling);
         //Debug.Log("jump button press = " + _playerConfig.Jump.action.triggered);
-        _timer -= Time.deltaTime;
+        _timerToFalling -= Time.deltaTime;
 
-        if (_player.PlayerMovement.IsGround() && _timer <= 0) {
+        if (_player.PlayerMovement.IsGround() && _timerToFalling <= 0) {
             _player.StateMachine.ChangeState(_player.IdleState);
         }
         else if (_player.PlayerMovement.IsFalling) {

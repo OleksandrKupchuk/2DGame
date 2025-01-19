@@ -46,10 +46,6 @@ public class Character : MonoBehaviour {
         Rigidbody.velocity = new Vector2(inputDirection * _config.speed, Rigidbody.velocity.y);
     }
 
-    public void Move(float inputDirection, float speed) {
-        Rigidbody.velocity = new Vector2(inputDirection * speed, Rigidbody.velocity.y);
-    }
-
     public void MoveEaseInQuint(float inputDirection, float speed, float time) {
         Rigidbody.velocity = new Vector2(inputDirection * speed * time * time, Rigidbody.velocity.y);
     }

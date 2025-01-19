@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2377159792989392474}
   - component: {fileID: 5652064171342545477}
   - component: {fileID: 7264231251228489834}
+  - component: {fileID: 6726485751713979336}
   m_Layer: 6
   m_Name: Player_Sword_Man_Prefab
   m_TagString: Player
@@ -52,7 +53,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fbc1aeb1ab6cf44ca4c8fdc9b201f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: cc5a875545926f64b975841e0583567d, type: 2}
   _inventory: {fileID: 11400000, guid: 342cc4a6cd225c541b9824678282c065, type: 2}
   _collidersForIgnored:
   - {fileID: 2724809069109994693}
@@ -69,10 +69,11 @@ MonoBehaviour:
   - {fileID: 247315288}
   _delayBllinkAnimationInSeconds: 0
   _sprites: []
-  _healthController: {fileID: 0}
+  _healthController: {fileID: 11400000, guid: 6d21bf859853ba047973e1b1ee01b548, type: 2}
   <InvulnerableStatus>k__BackingField: {fileID: 11400000, guid: 8faea2073053f064f8a9814a6d8be089, type: 2}
   <PlayerMovement>k__BackingField: {fileID: 5652064171342545477}
   <PlayerWeaponController>k__BackingField: {fileID: 7264231251228489834}
+  <AnimationController>k__BackingField: {fileID: 6726485751713979336}
 --- !u!50 &2123502423263786045
 Rigidbody2D:
   serializedVersion: 4
@@ -230,6 +231,19 @@ MonoBehaviour:
   _frameRateInAttackAnimationForEnableCollider: 25
   _frameRateInAttackAnimationForDisableCollider: 30
   _attackAnimation: {fileID: 7400000, guid: fb30f15524b4a2d4b83dc65fe81c33fd, type: 2}
+--- !u!114 &6726485751713979336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5238491402704463331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c17355cf7e3d31469eeac198246f096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 6843455573970313801}
 --- !u!1 &7328863205628577472
 GameObject:
   m_ObjectHideFlags: 0

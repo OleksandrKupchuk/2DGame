@@ -7,7 +7,7 @@ public class PlayerRunState : IState<Player> {
         //Debug.Log($"<color=blue>enter run state</color>");
 
         _player = owner;
-        _player.Animator.Play(AnimationName.Run);
+        _player.AnimationController.PlayAnimation(AnimationName.Run);
     }
 
     public void Update() {
@@ -43,7 +43,6 @@ public class PlayerRunState : IState<Player> {
         //Debug.Log($"<color=red>exit</color> <color=blue>run state</color>");
         //Debug.Log("exit run = " + _playerConfig.Rigidbody.velocity);
 
-        _player.ResetRigidbodyVelocity();
-        _player.Animator.StopPlayback();
+        _player.PlayerMovement.ResetRigidbodyVelocity();
     }
 }
