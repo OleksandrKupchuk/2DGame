@@ -37,6 +37,7 @@ public class AttributeEditor : Editor {
 
         string _path = ResourcesPath.FolderTooltip + _attributeTypeProperty.enumNames[_attributeTypeProperty.intValue];
         Sprite _icon = Resources.Load<Sprite>(_path);
+
         if (_icon != null) {
             _iconProperty.objectReferenceValue = _icon;
             EditorGUILayout.PropertyField(_iconProperty);

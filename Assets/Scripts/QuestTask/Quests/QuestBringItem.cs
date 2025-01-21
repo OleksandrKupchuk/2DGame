@@ -7,7 +7,7 @@ public class QuestBringItem : IQuest {
 
     public QuestBringItem(PlayerConfig playerConfig) {
         _playerConfig = playerConfig;
-        _target = new GameObject("Quest item king");
+        _target = new GameObject("DialogAction item king");
         _target.AddComponent<BoxCollider2D>();
         _target.AddComponent<Rigidbody2D>();
         _target.AddComponent<SpriteRenderer>();

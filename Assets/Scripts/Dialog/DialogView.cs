@@ -66,7 +66,7 @@ public class DialogView : MonoBehaviour {
     private void InitStartDialogButtons(List<Dialog> dialogs) {
         foreach (Dialog dialog in dialogs) {
             StartDialogButton _startDialogButton = _startDialogButtonPool.Get();
-            _startDialogButton.Init(dialog.DialogData.title, dialog.Start);
+            _startDialogButton.Init(dialog.DialogData.Title, dialog.Start);
         }
     }
 
