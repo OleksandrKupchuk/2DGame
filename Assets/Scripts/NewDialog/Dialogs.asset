@@ -13,20 +13,36 @@ MonoBehaviour:
   m_Name: Dialogs
   m_EditorClassIdentifier: 
   dialogs:
-  - _isHaveConditionToUnlockDialog: 0
-    _isNeedDialogActions: 1
-    _dialogActions: []
-    _title: 
-    _paragraphs: []
-  - _isHaveConditionToUnlockDialog: 0
+  - _title: 
+    _paragraphs:
+    - _paragraph: 
+    - _paragraph: 
+    _isHaveConditionToUnlockDialog: 1
+    _conditions:
+    - _expectedResult: 0
+      _condition: {fileID: 0}
     _isNeedDialogActions: 1
     _dialogActions:
     - {fileID: 0}
-    _title: 
-    _paragraphs: []
-  dialog:
+    - {fileID: 0}
+  - _title: 
+    _paragraphs:
+    - _paragraph: ertertertertertretet
     _isHaveConditionToUnlockDialog: 0
+    _conditions: []
+    _isNeedDialogActions: 1
+    _dialogActions: []
+  - _title: 
+    _paragraphs:
+    - _paragraph: ertertertertertretet
+    _isHaveConditionToUnlockDialog: 0
+    _conditions: []
     _isNeedDialogActions: 0
     _dialogActions: []
+  dialog:
     _title: 
     _paragraphs: []
+    _isHaveConditionToUnlockDialog: 0
+    _conditions: []
+    _isNeedDialogActions: 0
+    _dialogActions: []

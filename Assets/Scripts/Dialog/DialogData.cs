@@ -7,6 +7,8 @@ public class DialogData {
     [SerializeField]
     private string _title;
     [SerializeField]
+    private bool _isNeedParagraphs;
+    [SerializeField]
     private List<Paragraph> _paragraphs;
     [SerializeField]
     public bool _isHaveConditionToUnlockDialog;
