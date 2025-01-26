@@ -1,15 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//[CreateAssetMenu(fileName = "Dialogs", menuName = "Dialogs/NewDialogData")]
 [System.Serializable]
 public class DialogData {
     [SerializeField]
-    private string _title;
+    private string _playerWords;
     [SerializeField]
-    private bool _isNeedParagraphs;
+    private bool _isNeedNpcWords;
     [SerializeField]
-    private List<Paragraph> _paragraphs;
+    private List<string> _npcWords;
+    [SerializeField]
+    private bool _isNeedQuests;
+    [SerializeField]
+    private Quest _quest;
+    [SerializeField]
+    private List<NextDialog> _nextDialogs;
     [SerializeField]
     public bool _isHaveConditionToUnlockDialog;
     [SerializeField]
@@ -19,10 +24,13 @@ public class DialogData {
     [SerializeField]
     private List<DialogAction> _dialogActions;
 
-    public string Title => _title;
-    public List<Paragraph> Paragraphs => _paragraphs;
-    public bool IsHaveToSaySomething => Paragraphs.Count > 0;
-    public bool IsHaveConditionToUnlockDialog => _isHaveConditionToUnlockDialog;
-    public bool IsNeedDialogActions => _isNeedDialogActions;
-    public List<DialogAction> DialogActions => _dialogActions;
+    //public string Title => _playerWords;
+    //public bool IsNeedParagraphs => _isNeedNpcWords;
+    //public List<string> Paragraphs => _npcWords;
+    //public bool IsHaveToSaySomething => _isNeedNpcWords;
+    //public bool IsHaveConditionToUnlockDialog => _isHaveConditionToUnlockDialog;
+    //public bool IsNeedDialogActions => _isNeedDialogActions;
+    //public List<DialogAction> DialogActions => _dialogActions;
+
+    //public string GetParagraph(int index) => _npcWords[index];
 }

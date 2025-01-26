@@ -37,7 +37,7 @@ public class InventoryView : MonoBehaviour {
     }
 
     private void SpawnSlotsView() {
-        for (int i = 0; i < _inventory.AmountItems; i++) {
+        for (int i = 0; i < _inventory.AmountSlots; i++) {
             InventorySlotView _cell = Instantiate(_slotViewPrefab, _bag);
             _cell.gameObject.name = _cell.gameObject.name + " " + i;
             _cell.PutItem(null);

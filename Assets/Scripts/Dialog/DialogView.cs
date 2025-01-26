@@ -11,7 +11,10 @@ public class DialogView : MonoBehaviour {
     private RectTransform _backgroundRectTransform;
     private RectTransform _speakerRectTransform;
     private VerticalLayoutGroup _backgroundVerticalLayoutGroup;
+    private List<DialogData> _dialoguesData;
 
+    [SerializeField]
+    private DialogController _dialogController;
     [SerializeField]
     private GameObject _background;
     [SerializeField]
@@ -36,23 +39,33 @@ public class DialogView : MonoBehaviour {
         _backgroundRectTransform = _background.GetComponent<RectTransform>();
         _speakerRectTransform = _speakerName.gameObject.GetComponent<RectTransform>();
         _backgroundVerticalLayoutGroup = _background.GetComponent<VerticalLayoutGroup>();
+
+        _dialogController.OnDialoguesOpened += OpenDialogues;
+        _dialogController.OnParagraphShowed += ShowParagraph;
+
+        AddListenerCloseButton(() => { CloseDialogs(); });
+        AddListenerBackButton(() => { DisableDescription(); ShowDialogue(_dialoguesData); EnableCloseButton(); });
+        AddListenerNextButton(() => { _dialogController.CheckLastParagraph(); });
+    }
+
+    public void OnDestroy() {
+        _dialogController.OnDialoguesOpened -= OpenDialogues;
+        _dialogController.OnParagraphShowed -= ShowParagraph;
     }
 
     private void Start() {
         CloseDialogs();
         DisableNextButton();
-        DisableBackButton();    
+        DisableBackButton();
         DisableDescription();
     }
 
-    public void OpenDialogs(string speakerName, List<Dialog> dialogs) {
+    public void OpenDialogues(string speakerName, List<DialogData> dialogues) {
         _speakerName.text = speakerName;
-        _amountDialogsCurrentNpc = dialogs.Count;
-        RemoveAllListenersCloseButton();
-        AddListenerCloseButton(() => { CloseDialogs(); });
+        _amountDialogsCurrentNpc = dialogues.Count;
         _background.SetActive(true);
         UpdatePositionAndSizeBackground();
-        InitStartDialogButtons(dialogs);
+        ShowDialogue(dialogues);
     }
 
     private void UpdatePositionAndSizeBackground() {
@@ -63,10 +76,29 @@ public class DialogView : MonoBehaviour {
         _backgroundRectTransform.anchoredPosition = new Vector2(_backgroundRectTransform.anchoredPosition.x, _heightBackground);
     }
 
-    private void InitStartDialogButtons(List<Dialog> dialogs) {
-        foreach (Dialog dialog in dialogs) {
+    private void ShowDialogue(List<DialogData> dialogues) {
+        _dialoguesData = dialogues;
+
+        foreach (var dialog in dialogues) {
             StartDialogButton _startDialogButton = _startDialogButtonPool.Get();
-            _startDialogButton.Init(dialog.DialogData.Title, dialog.Start);
+            _startDialogButton.Init(dialog);
+        }
+    }
+
+    public void ShowParagraph(string paragraph, bool isLastParagraph) {
+        DisableCloseButton();
+        DisableStartButtons();
+
+        if (isLastParagraph) {
+            EnableBackButton();
+            EnableDescription();
+            SetDescriptionText(paragraph);
+        }
+        else {
+            DisableBackButton();
+            EnableNextButton();
+            EnableDescription();
+            SetDescriptionText(paragraph);
         }
     }
 
@@ -136,10 +168,6 @@ public class DialogView : MonoBehaviour {
 
     public void AddListenerBackButton(UnityAction action) {
         _backButton.onClick.AddListener(action);
-    }
-
-    public void RemoveAllListenersBackButton() {
-        _backButton.onClick.RemoveAllListeners();
     }
 
     public void EnableDescription() {

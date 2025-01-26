@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b0b719c4447f694ebaa9666ada14c38, type: 3}
-  m_Name: Inventory
+  m_Script: {fileID: 11500000, guid: 635fd4ef5cbadae4295629327a1fee66, type: 3}
+  m_Name: DialogController
   m_EditorClassIdentifier: 
-  <AmountSlots>k__BackingField: 25

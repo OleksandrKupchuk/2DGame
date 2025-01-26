@@ -1,10 +1,10 @@
 using UnityEngine;
 
 public class Trader : Npc {
-    private Dialog _dialogTrade;
-
-    private Dialog _dialogStoryAboutWife;
-
+    [SerializeField]
+    private DialogController _dialogController;
+    [SerializeField]
+    private Dialogues _dialogues;
     [SerializeField]
     private int _commissionPercent;
     [SerializeField]
@@ -12,22 +12,17 @@ public class Trader : Npc {
     [SerializeField]
     private Inventory _inventory;
     [SerializeField]
-    private DialogView _dialogController;
-    [SerializeField]
-    private DialogData _dialogDataTrade;
-    [SerializeField]
-    private DialogData _dialogDataStoryWife;
 
     private void Awake() {
-        IDialogAction _dialogActionOpenMarket = new DialogActionOpenMarket(_inventory, _market, _dialogController);
-        _dialogTrade = new Dialog(_dialogDataTrade, _dialogActionOpenMarket);
+        //IDialogAction _dialogActionOpenMarket = new DialogActionOpenMarket(_inventory, _market, _dialogController);
+        //_dialogTrade = new DialogController(_dialogDataTrade, _dialogActionOpenMarket);
 
-        _dialogStoryAboutWife = new Dialog(_dialogDataStoryWife, _dialogController);
+        //_dialogStoryAboutWife = new DialogController(_dialogDataStoryWife, _dialogController);
 
-        _dialogs.Add(_dialogTrade);
-        _dialogs.Add(_dialogStoryAboutWife);
+        //_dialogues.Add(_dialogTrade);
+        //_dialogues.Add(_dialogStoryAboutWife);
 
-        _interactionIcon.SetActive(false);
+        //_interactionIcon.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -45,6 +40,6 @@ public class Trader : Npc {
     }
 
     public override void Interact() {
-        _dialogController.OpenDialogs(gameObject.name, _dialogs);
+        _dialogController.OpenDialogues(gameObject.name, _dialogues);
     }
 }

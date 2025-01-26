@@ -10,39 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47831a9a2b4d9324da7b39c5c01b7c66, type: 3}
-  m_Name: Dialogs
+  m_Name: TraderDialogs
   m_EditorClassIdentifier: 
-  dialogs:
-  - _title: 
-    _paragraphs:
-    - _paragraph: 
-    - _paragraph: 
-    _isHaveConditionToUnlockDialog: 1
+  <DialoguesData>k__BackingField:
+  - _title: Do you have something to sell?
+    _isNeedParagraphs: 0
+    _paragraphs: []
+    _isHaveConditionToUnlockDialog: 0
     _conditions:
     - _expectedResult: 0
       _condition: {fileID: 0}
-    _isNeedDialogActions: 1
-    _dialogActions:
-    - {fileID: 0}
-    - {fileID: 0}
-  - _title: 
-    _paragraphs:
-    - _paragraph: ertertertertertretet
-    _isHaveConditionToUnlockDialog: 0
-    _conditions: []
-    _isNeedDialogActions: 1
-    _dialogActions: []
-  - _title: 
-    _paragraphs:
-    - _paragraph: ertertertertertretet
-    _isHaveConditionToUnlockDialog: 0
-    _conditions: []
     _isNeedDialogActions: 0
     _dialogActions: []
-  dialog:
-    _title: 
-    _paragraphs: []
+  - _title: Tell me something interesting.
+    _isNeedParagraphs: 1
+    _paragraphs:
+    - 
     _isHaveConditionToUnlockDialog: 0
-    _conditions: []
+    _conditions:
+    - _expectedResult: 0
+      _condition: {fileID: 0}
+    _isNeedDialogActions: 0
+    _dialogActions: []
+  - _title: How long have you been working here?
+    _isNeedParagraphs: 1
+    _paragraphs:
+    - 
+    - 
+    _isHaveConditionToUnlockDialog: 0
+    _conditions:
+    - _expectedResult: 0
+      _condition: {fileID: 0}
     _isNeedDialogActions: 0
     _dialogActions: []

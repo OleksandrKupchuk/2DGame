@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class StartDialogButton : MonoBehaviour {
@@ -7,10 +6,12 @@ public class StartDialogButton : MonoBehaviour {
     private Button _startButton;
     [SerializeField]
     private Text _title;
+    [SerializeField]
+    private DialogController _dialogController;
 
-    public void Init(string title, UnityAction action) {
-        _title.text = title;
-        _startButton.onClick.AddListener(action);
+    public void Init(DialogData dialogData) {
+        //_playerWords.text = dialogData.Title;
+        _startButton.onClick.AddListener(() => _dialogController.StartDialog(dialogData));
     }
 
     public void RemoveListenersStartButton() {

@@ -13,19 +13,19 @@ public class King : Npc, IInteracvite {
     private DialogData _dialogDataIncome;
 
     private void Awake() {
-        IQuest _questBringItem = new QuestBringItem(_playerConfig);
-        IDialogAction _actionAddQuestBringCrown = new DialogActionAddQuest(_questBringItem);
-        Dialog _dialogBringCrown = new Dialog(_dialogDataBringCrown, _dialogController, _actionAddQuestBringCrown);
+        //IQuest _questBringItem = new QuestBringItem(_playerConfig);
+        //IDialogAction _actionAddQuestBringCrown = new DialogActionAddQuest(_questBringItem);
+        //DialogController _dialogBringCrown = new DialogController(_dialogDataBringCrown, _dialogController, _actionAddQuestBringCrown);
 
-        Dialog _dialogKingdom = new Dialog(_dialogDataKingdom, _dialogController);
+        //DialogController _dialogKingdom = new DialogController(_dialogDataKingdom, _dialogController);
 
-        Dialog _dialogIncome = new Dialog(_dialogDataIncome, _dialogController);
+        //DialogController _dialogIncome = new DialogController(_dialogDataIncome, _dialogController);
 
-        _dialogs.Add(_dialogBringCrown);
-        _dialogs.Add(_dialogKingdom);
-        _dialogs.Add(_dialogIncome);
+        //_dialogues.Add(_dialogBringCrown);
+        //_dialogues.Add(_dialogKingdom);
+        //_dialogues.Add(_dialogIncome);
 
-        _interactionIcon.SetActive(false);
+        //_interactionIcon.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -43,6 +43,6 @@ public class King : Npc, IInteracvite {
     }
 
     public override void Interact() {
-        _dialogController.OpenDialogs(gameObject.name, _dialogs);
+        //_dialogController.OpenDialogues(gameObject.name, _dialogs);
     }
 }

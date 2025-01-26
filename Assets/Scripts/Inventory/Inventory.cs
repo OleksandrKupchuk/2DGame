@@ -7,14 +7,14 @@ public class Inventory : ScriptableObject {
     private List<ItemData> _itemsData = new List<ItemData>();
 
     [field: SerializeField]
-    public int AmountItems { get; private set; }
+    public int AmountSlots { get; private set; }
 
     public event Action OnOpen;
     public event Action OnClose;
     public event Action<ItemData> OnAddItem;
     public event Action<ItemData> OnRemoveItem;
 
-    public bool IsEmptySlot => AmountItems > _itemsData.Count;
+    public bool IsEmptySlot => AmountSlots > _itemsData.Count;
 
     private void OnEnable() {
         _itemsData.Clear();

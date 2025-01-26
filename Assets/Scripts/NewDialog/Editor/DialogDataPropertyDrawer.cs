@@ -1,33 +1,20 @@
 using UnityEditor;
+using UnityEditorInternal;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(DialogData))]
+//[CustomPropertyDrawer(typeof(DialogData))]
 public class DialogDataPropertyDrawer : PropertyDrawer {
-    SerializedProperty _titleProperty;
-    SerializedProperty _isNeedParagraphsProperty;
-    SerializedProperty _paragraphsProperty;
-    SerializedProperty _isHaveConditionToUnlockProperty;
-    SerializedProperty _conditionsProperty;
-    SerializedProperty _isNeedDialogActionProperty;
-    SerializedProperty _dialogActionsProperty;
-
-    private float _foldoutHeight;
-    private float _titleHeight;
-    private float _isNeedParagraphsHeight;
-    private float _paragraphsHeight;
-    private float _isHaveConditionToUnlockHeight;
-    private float _isNeedDialogActionsHeight;
-
-    private float _paragraphsPositionY;
-    private float _isHaveConditionToUnlockPositionY;
-    private float _isNeedDialogActionsPositionY;
-
     private const float PADDING_LEFT = 15f;
 
+    private ReorderableList _paragraphsList;
+    private float _paragraphHeigh = EditorGUIUtility.singleLineHeight * 3;
+
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
+        CreateCustomParagraphList(property);
+
         EditorGUI.BeginProperty(position, label, property);
 
-        _foldoutHeight = EditorGUIUtility.singleLineHeight;
+        float _foldoutHeight = EditorGUIUtility.singleLineHeight;
         Rect _foldoutPosition = new Rect(PADDING_LEFT, 0, position.size.x, _foldoutHeight);
         property.isExpanded = EditorGUI.Foldout(_foldoutPosition, property.isExpanded, label);
 
@@ -35,97 +22,71 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
             return;
         }
 
+        SerializedProperty _titleProperty = property.FindPropertyRelative("_title");
+        SerializedProperty _isNeedParagraphsProperty = property.FindPropertyRelative("_isNeedParagraphs");
+        SerializedProperty _paragraphsProperty = property.FindPropertyRelative("_paragraphs");
+        SerializedProperty _isHaveConditionToUnlockProperty = property.FindPropertyRelative("_isHaveConditionToUnlockDialog");
+        SerializedProperty _conditionsProperty = property.FindPropertyRelative("_conditions");
+        SerializedProperty _isNeedDialogActionProperty = property.FindPropertyRelative("_isNeedDialogActions");
+        SerializedProperty _dialogActionsProperty = property.FindPropertyRelative("_dialogActions");
+
         EditorGUI.indentLevel++;
-        EditorGUILayout.BeginVertical();
 
-        _titleProperty = property.FindPropertyRelative("_title");
-        _isNeedParagraphsProperty = property.FindPropertyRelative("_isNeedParagraphs");
-        _paragraphsProperty = property.FindPropertyRelative("_paragraphs");
-        _isHaveConditionToUnlockProperty = property.FindPropertyRelative("_isHaveConditionToUnlockDialog");
-        _conditionsProperty = property.FindPropertyRelative("_conditions");
-        _isNeedDialogActionProperty = property.FindPropertyRelative("_isNeedDialogActions");
-        _dialogActionsProperty = property.FindPropertyRelative("_dialogActions");
+        float _titleHeight = EditorGUIUtility.singleLineHeight * 2;
+        EditorGUILayout.PropertyField(_titleProperty, new GUIContent("Title"), GUILayout.Height(_titleHeight));
+        EditorGUILayout.PropertyField(_isNeedParagraphsProperty, new GUIContent("Is Need Paragraphs"));
 
-        _titleHeight = EditorGUIUtility.singleLineHeight * 2;
-        float _titlePositionY = position.y + _foldoutHeight + EditorGUIUtility.standardVerticalSpacing;
-        Rect _titlePosition = new Rect(position.x, _titlePositionY, position.width, _titleHeight);
-        EditorGUI.PropertyField(_titlePosition, _titleProperty);
-
-        _isNeedParagraphsHeight = EditorGUIUtility.singleLineHeight;
-        float _isNeedParagraphsPositionY = _titlePositionY + _titleHeight + EditorGUIUtility.standardVerticalSpacing;
-        Rect _isNeedParagraphsPosition = new Rect(position.x, _isNeedParagraphsPositionY, position.width, _isNeedParagraphsHeight);
-        EditorGUI.PropertyField(_isNeedParagraphsPosition, _isNeedParagraphsProperty);
-
-        if(_isNeedParagraphsProperty.boolValue) {
-            _paragraphsHeight = EditorGUIUtility.singleLineHeight;
-            _paragraphsPositionY = _isNeedParagraphsPositionY + _isNeedParagraphsHeight + EditorGUIUtility.standardVerticalSpacing;
-            Rect _paragraphsPosition = new Rect(position.x + PADDING_LEFT, _paragraphsPositionY, position.width - PADDING_LEFT, _paragraphsHeight);
-            EditorGUI.PropertyField(_paragraphsPosition, _paragraphsProperty);
-
-            _isHaveConditionToUnlockPositionY = _paragraphsPositionY + EditorGUI.GetPropertyHeight(_paragraphsProperty) + EditorGUIUtility.standardVerticalSpacing;
-        }
-        else {
-            _isHaveConditionToUnlockPositionY = _isNeedParagraphsPositionY + _isNeedParagraphsHeight + EditorGUIUtility.standardVerticalSpacing;
+        if (_isNeedParagraphsProperty.boolValue) {
+            //EditorGUILayout.PropertyField(_paragraphsProperty, new GUIContent("Paragraphs"));
+            GUILayout.BeginHorizontal();
+            _paragraphsList.DoLayoutList();
+            GUILayout.EndHorizontal();
         }
 
-        _isHaveConditionToUnlockHeight = EditorGUIUtility.singleLineHeight;
-        Rect _isHaveConditionToUnlockPosition = new Rect(position.x, _isHaveConditionToUnlockPositionY, position.width, _isHaveConditionToUnlockHeight);
-        EditorGUI.PropertyField(_isHaveConditionToUnlockPosition, _isHaveConditionToUnlockProperty);
+        EditorGUILayout.PropertyField(_isHaveConditionToUnlockProperty, new GUIContent("Is Have Condition To Unlock"));
 
         if (_isHaveConditionToUnlockProperty.boolValue) {
-            float _conditionsHeight = EditorGUIUtility.singleLineHeight;
-            float _conditionsPositionY = _isHaveConditionToUnlockPositionY + _isHaveConditionToUnlockHeight + EditorGUIUtility.standardVerticalSpacing;
-            Rect _conditionsPosition = new Rect(position.x + PADDING_LEFT, _conditionsPositionY, position.width - PADDING_LEFT, _conditionsHeight);
-            EditorGUI.PropertyField(_conditionsPosition, _conditionsProperty);
-
-            _isNeedDialogActionsPositionY = _isHaveConditionToUnlockPositionY + _isHaveConditionToUnlockHeight + EditorGUI.GetPropertyHeight(_conditionsProperty) + EditorGUIUtility.standardVerticalSpacing;
+            EditorGUILayout.PropertyField(_conditionsProperty, new GUIContent("Conditions"));
         }
         else {
-            _isNeedDialogActionsPositionY = _isHaveConditionToUnlockPositionY + _isHaveConditionToUnlockHeight + EditorGUIUtility.standardVerticalSpacing;
+            _conditionsProperty.ClearArray();
         }
 
-        _isNeedDialogActionsHeight = EditorGUIUtility.singleLineHeight;
-        Rect _isNeedDialogActionsPosition = new Rect(position.x, _isNeedDialogActionsPositionY, position.width, _isNeedDialogActionsHeight);
-        EditorGUI.PropertyField(_isNeedDialogActionsPosition, _isNeedDialogActionProperty);
+        EditorGUILayout.PropertyField(_isNeedDialogActionProperty, new GUIContent("Is Need DialogController Action"));
 
         if (_isNeedDialogActionProperty.boolValue) {
-            float _dialogActionPositionY = _isNeedDialogActionsPositionY + _isNeedDialogActionsHeight + EditorGUIUtility.standardVerticalSpacing;
-            Rect _dialogActionPosition = new Rect(position.x + PADDING_LEFT, _dialogActionPositionY, position.width - PADDING_LEFT, EditorGUIUtility.singleLineHeight);
-            EditorGUI.PropertyField(_dialogActionPosition, _dialogActionsProperty);
+            EditorGUILayout.PropertyField(_dialogActionsProperty, new GUIContent("DialogController Actions"));
         }
 
-
-        EditorGUILayout.EndVertical();
         EditorGUI.indentLevel--;
         EditorGUI.EndProperty();
     }
 
-    public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
-        if (!property.isExpanded) {
-            return _foldoutHeight;
+    private void CreateCustomParagraphList(SerializedProperty property) {
+        if (_paragraphsList != null) {
+            return;
         }
 
-        _isNeedParagraphsProperty = property.FindPropertyRelative("_isNeedParagraphs");
-        _paragraphsProperty = property.FindPropertyRelative("_paragraphs");
-        _isHaveConditionToUnlockProperty = property.FindPropertyRelative("_isHaveConditionToUnlockDialog");
-        _conditionsProperty = property.FindPropertyRelative("_conditions");
-        _isNeedDialogActionProperty = property.FindPropertyRelative("_isNeedDialogActions");
-        _dialogActionsProperty = property.FindPropertyRelative("_dialogActions");
+        SerializedProperty _paragraphsProperty = property.FindPropertyRelative("_paragraphs");
 
-        float height = _foldoutHeight + _titleHeight + _isNeedParagraphsHeight + _isHaveConditionToUnlockHeight + _isNeedDialogActionsHeight;
+        _paragraphsList = new ReorderableList(_paragraphsProperty.serializedObject, _paragraphsProperty) {
+            displayAdd = true,
+            displayRemove = true,
+            draggable = true,
 
-        if (_isNeedParagraphsProperty.boolValue) {
-            height += EditorGUI.GetPropertyHeight(_paragraphsProperty) + EditorGUIUtility.standardVerticalSpacing;
-        }
+            drawHeaderCallback = rect => EditorGUI.LabelField(rect, _paragraphsProperty.displayName),
 
-        if (_isHaveConditionToUnlockProperty.boolValue) {
-            height += EditorGUI.GetPropertyHeight(_conditionsProperty) + EditorGUIUtility.standardVerticalSpacing;
-        }
+            drawElementCallback = (rect, index, focused, active) => {
+                var element = _paragraphsProperty.GetArrayElementAtIndex(index);
 
-        if (_isNeedDialogActionProperty.boolValue) {
-            height += EditorGUI.GetPropertyHeight(_dialogActionsProperty) + EditorGUIUtility.standardVerticalSpacing;
-        }
+                EditorGUI.PropertyField(new Rect(rect.x, rect.y, rect.width, _paragraphHeigh), element);
+            },
 
-        return height + EditorGUIUtility.singleLineHeight;
+            elementHeightCallback = index => {
+                var height = _paragraphHeigh;
+
+                return height;
+            },
+        };
     }
 }
