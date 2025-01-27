@@ -8,13 +8,11 @@ public class DialogData {
     [SerializeField]
     private bool _isNeedNpcWords;
     [SerializeField]
-    private List<string> _npcWords;
+    private string _npcWords;
     [SerializeField]
-    private bool _isNeedQuests;
+    private bool _isNeedQuest;
     [SerializeField]
     private Quest _quest;
-    [SerializeField]
-    private List<NextDialog> _nextDialogs;
     [SerializeField]
     public bool _isHaveConditionToUnlockDialog;
     [SerializeField]
