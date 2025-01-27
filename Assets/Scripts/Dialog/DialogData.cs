@@ -11,14 +11,16 @@ public class DialogData {
     private string _playerWords;
     [SerializeField]
     private bool _isNeedNpcWords;
-    //[SerializeField]
-    //private string _npcWords;
     [SerializeField]
     private List<string> _npcWords;
     [SerializeField]
     private bool _isNeedQuest;
     [SerializeField]
     private Quest _quest;
+    [SerializeField]
+    private string _playerWordsAfterQuestDone;
+    [SerializeField]
+    private List<string> _npcWordsAfterQuestDone;
     [SerializeField]
     private bool _isNeedDialogActions;
     [SerializeField]
