@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-//[CustomEditor(typeof(TestMono))]
+//[CustomEditor(typeof(TestList))]
 public class TestMonoEditor : Editor {
     //private ReorderableList mainList;
 

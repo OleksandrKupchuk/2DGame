@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class TestA {
+public class TestList : MonoBehaviour {
     [SerializeField]
-    private List<string> names;
+    private List<TestA> _nestedList;
 }

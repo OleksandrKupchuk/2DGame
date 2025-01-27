@@ -4,19 +4,21 @@ using UnityEngine;
 [System.Serializable]
 public class DialogData {
     [SerializeField]
+    public bool _isHaveConditionToUnlockDialog;
+    [SerializeField]
+    private List<ConditionUsage> _conditions;
+    [SerializeField]
     private string _playerWords;
     [SerializeField]
     private bool _isNeedNpcWords;
+    //[SerializeField]
+    //private string _npcWords;
     [SerializeField]
-    private string _npcWords;
+    private List<string> _npcWords;
     [SerializeField]
     private bool _isNeedQuest;
     [SerializeField]
     private Quest _quest;
-    [SerializeField]
-    public bool _isHaveConditionToUnlockDialog;
-    [SerializeField]
-    private List<ConditionUsage> _conditions;
     [SerializeField]
     private bool _isNeedDialogActions;
     [SerializeField]

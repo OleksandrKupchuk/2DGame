@@ -14,34 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <DialoguesData>k__BackingField:
   - _playerWords: 
-    _isNeedNpcWords: 0
+    _isNeedNpcWords: 1
     _npcWords:
     - 
-    - 
-    - 
-    _isNeedQuests: 0
-    _quest: {fileID: 0}
-    _nextDialogs:
-    - _playerWords: 
-      _npcWords:
-      - 
-      - 
-      _isNeedQuest: 1
-      _quest: {fileID: 0}
-    - _playerWords: 
-      _npcWords:
-      - 
-      - 
-      _isNeedQuest: 1
-      _quest: {fileID: 0}
-    _isHaveConditionToUnlockDialog: 0
-    _conditions: []
-    _isNeedDialogActions: 0
-    _dialogActions: []
-  _nextDialog:
-    _playerWords: 
-    _npcWords:
     - 
     - 
     _isNeedQuest: 0
     _quest: {fileID: 0}
+    _isHaveConditionToUnlockDialog: 0
+    _conditions: []
+    _isNeedDialogActions: 0
+    _dialogActions: []
+  - _playerWords: 
+    _isNeedNpcWords: 1
+    _npcWords: []
+    _isNeedQuest: 0
+    _quest: {fileID: 0}
+    _isHaveConditionToUnlockDialog: 0
+    _conditions: []
+    _isNeedDialogActions: 0
+    _dialogActions: []
+  _dialogData:
+    _playerWords: 
+    _isNeedNpcWords: 1
+    _npcWords: []
+    _isNeedQuest: 0
+    _quest: {fileID: 0}
+    _isHaveConditionToUnlockDialog: 0
+    _conditions: []
+    _isNeedDialogActions: 0
+    _dialogActions: []
