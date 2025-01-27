@@ -4,6 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 public class TestA {
+    public string name;
     [SerializeField]
-    private List<string> _names;
+    private List<string> subItems;
 }

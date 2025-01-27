@@ -13,25 +13,35 @@ MonoBehaviour:
   m_Name: NewDialogs
   m_EditorClassIdentifier: 
   <DialoguesData>k__BackingField:
-  - _titleTest: 
-    _isNeedParagraphs: 0
-    _paragraphs:
+  - _playerWords: 
+    _isNeedNpcWords: 0
+    _npcWords:
+    - 
     - 
     - 
     _isNeedQuests: 0
     _quest: {fileID: 0}
-    _continuingDialog:
-    - _title: 
-      _paragraphs: []
-      _isNeedQuests: 0
+    _nextDialogs:
+    - _playerWords: 
+      _npcWords:
+      - 
+      - 
+      _isNeedQuest: 1
       _quest: {fileID: 0}
-    - _title: 
-      _paragraphs: []
-      _isNeedQuests: 0
+    - _playerWords: 
+      _npcWords:
+      - 
+      - 
+      _isNeedQuest: 1
       _quest: {fileID: 0}
-    _isHaveConditionToUnlockDialog: 1
-    _conditions:
-    - _expectedResult: 0
-      _condition: {fileID: 0}
+    _isHaveConditionToUnlockDialog: 0
+    _conditions: []
     _isNeedDialogActions: 0
     _dialogActions: []
+  _nextDialog:
+    _playerWords: 
+    _npcWords:
+    - 
+    - 
+    _isNeedQuest: 0
+    _quest: {fileID: 0}

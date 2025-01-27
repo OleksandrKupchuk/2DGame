@@ -13,33 +13,40 @@ MonoBehaviour:
   m_Name: TraderDialogs
   m_EditorClassIdentifier: 
   <DialoguesData>k__BackingField:
-  - _title: Do you have something to sell?
-    _isNeedParagraphs: 0
-    _paragraphs: []
+  - _playerWords: 
+    _isNeedNpcWords: 0
+    _npcWords: []
+    _isNeedQuests: 0
+    _quest: {fileID: 0}
+    _nextDialogs:
+    - _playerWords: 
+      _npcWords: []
+      _isNeedQuest: 0
+      _quest: {fileID: 0}
+    - _playerWords: 
+      _npcWords: []
+      _isNeedQuest: 0
+      _quest: {fileID: 0}
     _isHaveConditionToUnlockDialog: 0
     _conditions:
     - _expectedResult: 0
       _condition: {fileID: 0}
     _isNeedDialogActions: 0
     _dialogActions: []
-  - _title: Tell me something interesting.
-    _isNeedParagraphs: 1
-    _paragraphs:
-    - 
+  - _playerWords: 
+    _isNeedNpcWords: 0
+    _npcWords: []
+    _isNeedQuests: 0
+    _quest: {fileID: 0}
+    _nextDialogs: []
     _isHaveConditionToUnlockDialog: 0
     _conditions:
     - _expectedResult: 0
       _condition: {fileID: 0}
     _isNeedDialogActions: 0
     _dialogActions: []
-  - _title: How long have you been working here?
-    _isNeedParagraphs: 1
-    _paragraphs:
-    - 
-    - 
-    _isHaveConditionToUnlockDialog: 0
-    _conditions:
-    - _expectedResult: 0
-      _condition: {fileID: 0}
-    _isNeedDialogActions: 0
-    _dialogActions: []
+  _nextDialog:
+    _playerWords: 
+    _npcWords: []
+    _isNeedQuest: 0
+    _quest: {fileID: 0}

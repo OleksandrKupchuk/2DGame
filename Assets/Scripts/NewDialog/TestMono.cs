@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TestMono : MonoBehaviour {
+    //[SerializeField]
+    //private List<TestA> _nestedList;
     [SerializeField]
-    private List<TestA> _mAList;
+    private List<DialogData> _nestedList;
 }
