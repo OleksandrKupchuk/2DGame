@@ -360,13 +360,10 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
             return _foldoutHeight + EditorGUIUtility.standardVerticalSpacing;
         }
 
-        _height += _foldoutHeight;
+        _height += _foldoutHeight + _isHaveConditionToUnlockDialogHeigh + (EditorGUIUtility.standardVerticalSpacing * 2);
 
         if (_isHaveConditionToUnlockDialogProperty.boolValue) {
-            _height += _isHaveConditionToUnlockDialogHeigh + _conditionsHeigh + (EditorGUIUtility.standardVerticalSpacing * 2);
-        }
-        else {
-            _height += _isHaveConditionToUnlockDialogHeigh + EditorGUIUtility.standardVerticalSpacing;
+            _height += _conditionsHeigh + EditorGUIUtility.standardVerticalSpacing;
         }
 
         _height += _playerWordsHeight + _isNeedNpcWordsHeight + (EditorGUIUtility.standardVerticalSpacing * 2);
@@ -374,19 +371,17 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
         if (_isNeedNpcWordsProperty.boolValue) {
             bool _foldout = GetFoldoutSatet(property, _npcWordsListsFoldoutStates);
 
+            _height += _foldoutHeight + EditorGUIUtility.standardVerticalSpacing;
+
             if (_foldout) {
-                _height += _foldoutHeight + _npcWordsHeight + (EditorGUIUtility.standardVerticalSpacing * 2);
-            }
-            else {
-                _height += _foldoutHeight + EditorGUIUtility.standardVerticalSpacing;
+                _height += _npcWordsHeight + EditorGUIUtility.standardVerticalSpacing;
             }
         }
 
+        _height += _isNeedQuestHeight + EditorGUIUtility.standardVerticalSpacing;
+
         if (_isNeedQuestProperty.boolValue) {
-            _height += _isNeedQuestHeight + _questHeight + (EditorGUIUtility.standardVerticalSpacing * 2);
-        }
-        else {
-            _height += _isNeedQuestHeight + EditorGUIUtility.standardVerticalSpacing;
+            _height += _questHeight + EditorGUIUtility.standardVerticalSpacing;
         }
 
         _height += _playerWordsHeight + _foldoutHeight + (EditorGUIUtility.standardVerticalSpacing * 2);
@@ -397,15 +392,14 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
             _height += _npcWordsAfterQuestDoneHeight + EditorGUIUtility.standardVerticalSpacing;
         }
 
+        _height += _isNeedDialogActionsHeigh + EditorGUIUtility.standardVerticalSpacing;
+
         if (_isNeedDialogActionsProperty.boolValue) {
-            _height += _isNeedDialogActionsHeigh + _dialogActionsHeigh + (EditorGUIUtility.standardVerticalSpacing * 2);
-        }
-        else {
-            _height += _isNeedDialogActionsHeigh + EditorGUIUtility.standardVerticalSpacing;
+            _height += _dialogActionsHeigh + EditorGUIUtility.standardVerticalSpacing;
         }
 
         Debug.Log("" + property.propertyPath);
         Debug.Log("Height = " + _height + EditorGUIUtility.standardVerticalSpacing);
-        return _height + _foldoutHeight + (EditorGUIUtility.standardVerticalSpacing * 2);
+        return _height + EditorGUIUtility.standardVerticalSpacing;
     }
 }
