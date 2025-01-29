@@ -5,55 +5,26 @@ using UnityEngine;
 
 [CustomPropertyDrawer(typeof(TestA))]
 public class TestAPropertyDrawer : PropertyDrawer {
-    private ReorderableList reorderableList;
     private float _height = EditorGUIUtility.singleLineHeight * 3;
     private Dictionary<string, ReorderableList> reorderableLists = new();
+    private Dictionary<string, bool> _foldoutStates = new Dictionary<string, bool>();
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
-        //if (reorderableList == null) {
-        //    SerializedProperty namesProperty = property.FindPropertyRelative("names");
+        bool _foldout = GetFoldoutState(property);
 
-        //    reorderableList = new ReorderableList(namesProperty.serializedObject, namesProperty) {
-        //        displayAdd = true,
-        //        displayRemove = true,
-        //        draggable = true,
+        _foldout = EditorGUI.Foldout(new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight), _foldout, label);
+        SetFoldoutState(property, _foldout);
 
-        //        drawHeaderCallback = rect => EditorGUI.LabelField(rect, namesProperty.displayName),
+        if (_foldout) {
+            ReorderableList _reorderableList = GetReorderableList(property);
 
-        //        drawElementCallback = (rect, index, focused, active) => {
-        //            var element = namesProperty.GetArrayElementAtIndex(index);
+            EditorGUI.BeginProperty(position, label, property);
 
-        //            EditorGUI.PropertyField(new Rect(rect.x, rect.y, rect.width, _height), element);
-        //        },
+            position.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
+            _reorderableList.DoList(position);
 
-        //        onAddCallback = list => {
-        //            var arrayProperty = list.serializedProperty;
-        //            arrayProperty.arraySize++;
-        //            var newElement = arrayProperty.GetArrayElementAtIndex(arrayProperty.arraySize - 1);
-
-        //            newElement.managedReferenceValue = new TestA();
-        //            arrayProperty.serializedObject.ApplyModifiedProperties();
-        //        },
-
-        //        elementHeightCallback = index => {
-        //            var height = _height;
-
-        //            return height;
-        //        },
-        //    };
-        //}
-
-        //EditorGUI.BeginProperty(position, label, property);
-
-        //reorderableList.DoList(new Rect(position.x, position.y, position.width, reorderableList.GetHeight()));
-
-        //EditorGUI.EndProperty();
-
-        ReorderableList reorderableList = GetReorderableList(property);
-
-        EditorGUI.BeginProperty(position, label, property);
-        reorderableList.DoList(new Rect(position.x, position.y, position.width, reorderableList.GetHeight()));
-        EditorGUI.EndProperty();
+            EditorGUI.EndProperty();
+        }
     }
 
     private ReorderableList GetReorderableList(SerializedProperty property) {
@@ -84,11 +55,29 @@ public class TestAPropertyDrawer : PropertyDrawer {
         return newList;
     }
 
+    private bool GetFoldoutState(SerializedProperty property) {
+        string propertyPath = property.propertyPath;
+
+        if (!_foldoutStates.ContainsKey(propertyPath)) {
+            _foldoutStates[propertyPath] = true;
+        }
+
+        return _foldoutStates[propertyPath];
+    }
+
+    private void SetFoldoutState(SerializedProperty property, bool state) {
+        string propertyPath = property.propertyPath;
+        _foldoutStates[propertyPath] = state;
+    }
+
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
-        //if (reorderableList == null) {
-        //    return base.GetPropertyHeight(property, label);
-        //}
-        //return reorderableList.GetHeight();
-        return GetReorderableList(property).GetHeight();
+        bool foldout = GetFoldoutState(property);
+
+        if (foldout) {
+            return GetReorderableList(property).GetHeight() + EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
+        }
+        else {
+            return EditorGUIUtility.singleLineHeight;
+        }
     }
 }
