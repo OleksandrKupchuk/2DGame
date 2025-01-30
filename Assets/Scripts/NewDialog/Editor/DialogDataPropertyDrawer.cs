@@ -22,7 +22,6 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
     private float _isHaveConditionToUnlockDialogHeigh = EditorGUIUtility.singleLineHeight;
     private float _playerWordsHeight = EditorGUIUtility.singleLineHeight * 2;
     private float _isNeedNpcWordsHeight = EditorGUIUtility.singleLineHeight;
-    private float _npcWordsAfterQuestDoneHeight;
     private float _isNeedQuestHeight = EditorGUIUtility.singleLineHeight;
     private float _questHeight;
     private float _paragraphHeigh = EditorGUIUtility.singleLineHeight * 3;
@@ -53,11 +52,11 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
         DrawPlayerWordsField(position, property);
         DrawIsNeedNpcWordsField(position);
         DrawNpcWordsField(position, property, _npcWordsList);
-        DrawIsNeedQuestField(position, property);
+        DrawIsNeedQuestField(position, property, _npcWordsList.GetHeight());
         DrawQuestField(position, property);
         DrawPlayerWordsAfterQuestDoneField(position, property);
         DrawNpcWordsAfterQuestDoneField(position, property, _npcWordsAfterQuestDoneList);
-        DrawIsNeedDialogActionsField(position);
+        DrawIsNeedDialogActionsField(position, property, _npcWordsAfterQuestDoneList.GetHeight());
         DrawDialogActionsField(position, property);
 
         EditorGUI.EndProperty();
@@ -166,11 +165,11 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
         }
     }
 
-    private void DrawIsNeedQuestField(Rect position, SerializedProperty property) {
+    private void DrawIsNeedQuestField(Rect position, SerializedProperty property, float litHeight) {
         bool _foldoutState = GetFoldoutSatet(property, _npcWordsFoldoutStates);
 
         if (_foldoutState) {
-            _positionY += GetReorderableList(property, "_npcWords", _npcWordsLists).GetHeight() + EditorGUIUtility.standardVerticalSpacing;
+            _positionY += litHeight + EditorGUIUtility.standardVerticalSpacing;
         }
         else {
             _positionY += _foldoutHeight + EditorGUIUtility.standardVerticalSpacing;
@@ -222,18 +221,22 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
         SetFoldoutSatet(property, _npcWordsAfterQuestDoneFoldoutStates, _foldoutState);
 
         if (_foldoutState) {
-            _npcWordsAfterQuestDoneHeight = reorderableList.GetHeight();
             _positionY += _foldoutHeight + EditorGUIUtility.standardVerticalSpacing;
-            Rect _position = new Rect(position.x, _positionY, position.width, _npcWordsAfterQuestDoneHeight);
+            Rect _position = new Rect(position.x, _positionY, position.width, reorderableList.GetHeight());
             reorderableList.DoList(_position);
-        }
-        else {
-            _npcWordsAfterQuestDoneHeight = EditorGUIUtility.singleLineHeight;
         }
     }
 
-    private void DrawIsNeedDialogActionsField(Rect position) {
-        _positionY += _npcWordsAfterQuestDoneHeight + EditorGUIUtility.standardVerticalSpacing;
+    private void DrawIsNeedDialogActionsField(Rect position, SerializedProperty property, float listHeight) {
+        bool _foldoutState = GetFoldoutSatet(property, _npcWordsAfterQuestDoneFoldoutStates);
+
+        if (_foldoutState) {
+            _positionY += listHeight + EditorGUIUtility.standardVerticalSpacing;
+        }
+        else {
+            _positionY += _foldoutHeight + EditorGUIUtility.standardVerticalSpacing;
+        }
+
         Rect _position = new Rect(position.x, _positionY, position.width, _isNeedDialogActionsHeigh);
         EditorGUI.PropertyField(_position, _isNeedDialogActionsProperty);
     }
