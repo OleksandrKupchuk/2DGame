@@ -147,12 +147,12 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
 
     private void DrawNpcWordsField(Rect position, SerializedProperty property, ReorderableList reorderableList) {
         if (_isNeedNpcWordsProperty.boolValue) {
-            bool _foldoutState = GetFoldoutSatet(property, _npcWordsFoldoutStates);
+            bool _foldoutState = GetFoldoutState(property, _npcWordsFoldoutStates);
 
             _positionY += _isNeedNpcWordsHeight + EditorGUIUtility.standardVerticalSpacing;
             Rect _foldoutPosition = new Rect(position.x + 12, _positionY, position.size.x, _foldoutHeight);
             _foldoutState = EditorGUI.Foldout(_foldoutPosition, _foldoutState, "Npc Words", true);
-            SetFoldoutSatet(property, _npcWordsFoldoutStates, _foldoutState);
+            SetFoldoutState(property, _npcWordsFoldoutStates, _foldoutState);
 
             if (_foldoutState) {
                 _positionY += _foldoutHeight + EditorGUIUtility.standardVerticalSpacing;
@@ -166,7 +166,7 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
     }
 
     private void DrawIsNeedQuestField(Rect position, SerializedProperty property, float litHeight) {
-        bool _foldoutState = GetFoldoutSatet(property, _npcWordsFoldoutStates);
+        bool _foldoutState = GetFoldoutState(property, _npcWordsFoldoutStates);
 
         if (_foldoutState) {
             _positionY += litHeight + EditorGUIUtility.standardVerticalSpacing;
@@ -213,12 +213,12 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
     }
 
     private void DrawNpcWordsAfterQuestDoneField(Rect position, SerializedProperty property, ReorderableList reorderableList) {
-        bool _foldoutState = GetFoldoutSatet(property, _npcWordsAfterQuestDoneFoldoutStates);
+        bool _foldoutState = GetFoldoutState(property, _npcWordsAfterQuestDoneFoldoutStates);
 
         _positionY += _playerWordsHeight + EditorGUIUtility.standardVerticalSpacing;
         Rect _foldoutPosition = new Rect(position.x + 12, _positionY, position.size.x, _foldoutHeight);
         _foldoutState = EditorGUI.Foldout(_foldoutPosition, _foldoutState, "Npc Words After Quest Done", true);
-        SetFoldoutSatet(property, _npcWordsAfterQuestDoneFoldoutStates, _foldoutState);
+        SetFoldoutState(property, _npcWordsAfterQuestDoneFoldoutStates, _foldoutState);
 
         if (_foldoutState) {
             _positionY += _foldoutHeight + EditorGUIUtility.standardVerticalSpacing;
@@ -228,7 +228,7 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
     }
 
     private void DrawIsNeedDialogActionsField(Rect position, SerializedProperty property, float listHeight) {
-        bool _foldoutState = GetFoldoutSatet(property, _npcWordsAfterQuestDoneFoldoutStates);
+        bool _foldoutState = GetFoldoutState(property, _npcWordsAfterQuestDoneFoldoutStates);
 
         if (_foldoutState) {
             _positionY += listHeight + EditorGUIUtility.standardVerticalSpacing;
@@ -254,7 +254,7 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
         }
     }
 
-    private bool GetFoldoutSatet(SerializedProperty property, Dictionary<string, bool> foldoutStates) {
+    private bool GetFoldoutState(SerializedProperty property, Dictionary<string, bool> foldoutStates) {
         if (!foldoutStates.ContainsKey(property.propertyPath)) {
             foldoutStates[property.propertyPath] = false;
         }
@@ -262,7 +262,7 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
         return foldoutStates[property.propertyPath];
     }
 
-    private void SetFoldoutSatet(SerializedProperty property, Dictionary<string, bool> foldoutStates, bool state) {
+    private void SetFoldoutState(SerializedProperty property, Dictionary<string, bool> foldoutStates, bool state) {
         string _propertyPath = property.propertyPath;
         foldoutStates[_propertyPath] = state;
     }
@@ -290,7 +290,7 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
         _height += _playerWordsHeight + _isNeedNpcWordsHeight + (EditorGUIUtility.standardVerticalSpacing * 2);
 
         if (_isNeedNpcWordsProperty.boolValue) {
-            bool _foldout = GetFoldoutSatet(property, _npcWordsFoldoutStates);
+            bool _foldout = GetFoldoutState(property, _npcWordsFoldoutStates);
 
             _height += _foldoutHeight + EditorGUIUtility.standardVerticalSpacing;
 
@@ -307,7 +307,7 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
 
         _height += _playerWordsHeight + _foldoutHeight + (EditorGUIUtility.standardVerticalSpacing * 2);
 
-        bool _foldoutNpcWordsAfterQuestDone = GetFoldoutSatet(property, _npcWordsAfterQuestDoneFoldoutStates);
+        bool _foldoutNpcWordsAfterQuestDone = GetFoldoutState(property, _npcWordsAfterQuestDoneFoldoutStates);
 
         if (_foldoutNpcWordsAfterQuestDone) {
             _height += GetReorderableList(property, "_npcWordsAfterQuestDone", _npcWordsAfterQuestDoneLists).GetHeight() + EditorGUIUtility.standardVerticalSpacing;
