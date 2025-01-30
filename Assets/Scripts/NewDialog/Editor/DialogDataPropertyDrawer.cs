@@ -22,7 +22,6 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
     private float _isHaveConditionToUnlockDialogHeigh = EditorGUIUtility.singleLineHeight;
     private float _playerWordsHeight = EditorGUIUtility.singleLineHeight * 2;
     private float _isNeedNpcWordsHeight = EditorGUIUtility.singleLineHeight;
-    private float _npcWordsHeight;
     private float _npcWordsAfterQuestDoneHeight;
     private float _isNeedQuestHeight = EditorGUIUtility.singleLineHeight;
     private float _questHeight;
@@ -54,7 +53,7 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
         DrawPlayerWordsField(position, property);
         DrawIsNeedNpcWordsField(position);
         DrawNpcWordsField(position, property, _npcWordsList);
-        DrawIsNeedQuestField(position);
+        DrawIsNeedQuestField(position, property);
         DrawQuestField(position, property);
         DrawPlayerWordsAfterQuestDoneField(position, property);
         DrawNpcWordsAfterQuestDoneField(position, property, _npcWordsAfterQuestDoneList);
@@ -127,7 +126,7 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
         SerializedProperty _property = property.FindPropertyRelative("_playerWords");
 
         _positionY += EditorGUI.GetPropertyHeight(_conditionsProperty) + EditorGUIUtility.standardVerticalSpacing;
-   
+
         float _labelWidth = EditorGUIUtility.labelWidth + EditorGUIUtility.standardVerticalSpacing;
         Rect _labelPosition = new Rect(position.x, _positionY, _labelWidth, EditorGUIUtility.singleLineHeight);
         EditorGUI.LabelField(_labelPosition, "Player Words");
@@ -157,36 +156,26 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
             SetFoldoutSatet(property, _npcWordsFoldoutStates, _foldoutState);
 
             if (_foldoutState) {
-                _npcWordsHeight = reorderableList.GetHeight();
                 _positionY += _foldoutHeight + EditorGUIUtility.standardVerticalSpacing;
-                Rect _position = new Rect(position.x, _positionY, position.width, _npcWordsHeight);
+                Rect _position = new Rect(position.x, _positionY, position.width, reorderableList.GetHeight());
                 reorderableList.DoList(_position);
-            }
-            else {
-                _npcWordsHeight = EditorGUIUtility.singleLineHeight;
             }
         }
         else {
-            _npcWordsHeight = EditorGUIUtility.singleLineHeight;
             reorderableList.serializedProperty.ClearArray();
         }
     }
 
-    private bool GetFoldoutSatet(SerializedProperty property, Dictionary<string, bool> foldoutStates) {
-        if (!foldoutStates.ContainsKey(property.propertyPath)) {
-            foldoutStates[property.propertyPath] = false;
+    private void DrawIsNeedQuestField(Rect position, SerializedProperty property) {
+        bool _foldoutState = GetFoldoutSatet(property, _npcWordsFoldoutStates);
+
+        if (_foldoutState) {
+            _positionY += GetReorderableList(property, "_npcWords", _npcWordsLists).GetHeight() + EditorGUIUtility.standardVerticalSpacing;
+        }
+        else {
+            _positionY += _foldoutHeight + EditorGUIUtility.standardVerticalSpacing;
         }
 
-        return foldoutStates[property.propertyPath];
-    }
-
-    private void SetFoldoutSatet(SerializedProperty property, Dictionary<string, bool> foldoutStates, bool state) {
-        string _propertyPath = property.propertyPath;
-        foldoutStates[_propertyPath] = state;
-    }
-
-    private void DrawIsNeedQuestField(Rect position) {
-        _positionY += _npcWordsHeight + EditorGUIUtility.standardVerticalSpacing;
         Rect _position = new Rect(position.x, _positionY, position.width, _isNeedQuestHeight);
         EditorGUI.PropertyField(_position, _isNeedQuestProperty);
     }
@@ -260,6 +249,19 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
         else {
             _dialogActionsProperty.ClearArray();
         }
+    }
+
+    private bool GetFoldoutSatet(SerializedProperty property, Dictionary<string, bool> foldoutStates) {
+        if (!foldoutStates.ContainsKey(property.propertyPath)) {
+            foldoutStates[property.propertyPath] = false;
+        }
+
+        return foldoutStates[property.propertyPath];
+    }
+
+    private void SetFoldoutSatet(SerializedProperty property, Dictionary<string, bool> foldoutStates, bool state) {
+        string _propertyPath = property.propertyPath;
+        foldoutStates[_propertyPath] = state;
     }
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
