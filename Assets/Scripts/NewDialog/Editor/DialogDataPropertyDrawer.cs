@@ -165,11 +165,11 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
         }
     }
 
-    private void DrawIsNeedQuestField(Rect position, SerializedProperty property, float litHeight) {
+    private void DrawIsNeedQuestField(Rect position, SerializedProperty property, float listHeight) {
         bool _foldoutState = GetFoldoutState(property, _npcWordsFoldoutStates);
 
         if (_foldoutState) {
-            _positionY += litHeight + EditorGUIUtility.standardVerticalSpacing;
+            _positionY += listHeight + EditorGUIUtility.standardVerticalSpacing;
         }
         else {
             _positionY += _foldoutHeight + EditorGUIUtility.standardVerticalSpacing;

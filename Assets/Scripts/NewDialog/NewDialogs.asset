@@ -19,10 +19,11 @@ MonoBehaviour:
       _condition: {fileID: 0}
     - _expectedResult: 0
       _condition: {fileID: 0}
+    - _expectedResult: 0
+      _condition: {fileID: 0}
     _playerWords: 
     _isNeedNpcWords: 1
     _npcWords:
-    - 
     - 
     _isNeedQuest: 0
     _quest: {fileID: 0}
@@ -45,8 +46,7 @@ MonoBehaviour:
     _npcWordsAfterQuestDone:
     - 
     - 
-    - 
-    - 
+    - 435345
     _isNeedDialogActions: 0
     _dialogActions: []
   _dialogData:
