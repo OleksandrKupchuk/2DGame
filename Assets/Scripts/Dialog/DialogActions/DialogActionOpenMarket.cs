@@ -1,18 +1,17 @@
-public class DialogActionOpenMarket : IDialogAction {
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "NewDialogAction", menuName = "DialogActions/OpenMarket")]
+public class DialogActionOpenMarket : DialogAction {
+    [SerializeField]
     private Inventory _inventory;
+    [SerializeField]
     private Market _market;
-    private DialogView _dialogController;
+    [SerializeField]
+    private DialogController _dialogController;
 
-    public DialogActionOpenMarket(Inventory inventory, Market market, DialogView dialogController) {
-        _inventory = inventory;
-        _market = market;
-        _dialogController = dialogController;
-
-    }
-
-    public void DoAction() {
+    public override void Execute() {
         _inventory.Open();
-        _dialogController.CloseDialogs();
+        //_dialogController.CloseDialogs();
         _market.Open();
     }
 }

@@ -5,7 +5,4 @@ using UnityEngine;
 public class Dialogues : ScriptableObject {
     [field: SerializeField]
     public List<DialogData> DialoguesData { get; private set; }
-
-    [SerializeField]
-    private DialogData _dialogData;
 }

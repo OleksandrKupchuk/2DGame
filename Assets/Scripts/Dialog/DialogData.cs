@@ -26,13 +26,13 @@ public class DialogData {
     [SerializeField]
     private List<DialogAction> _dialogActions;
 
-    //public string Title => _playerWords;
-    //public bool IsNeedParagraphs => _isNeedNpcWords;
-    //public List<string> Paragraphs => _npcWords;
-    //public bool IsHaveToSaySomething => _isNeedNpcWords;
-    //public bool IsHaveConditionToUnlockDialog => _isHaveConditionToUnlockDialog;
-    //public bool IsNeedDialogActions => _isNeedDialogActions;
-    //public List<DialogAction> DialogActions => _dialogActions;
+    public bool IsHaveConditionToUnlockDialog => _isHaveConditionToUnlockDialog;
+    public string PlayerWords => _playerWords;
+    public bool IsNeedNpcWords => _isNeedNpcWords;
+    public List<string> NpcWords => _npcWords;
+    public bool IsHaveToSaySomething => _isNeedNpcWords;
+    public bool IsNeedDialogActions => _isNeedDialogActions;
+    public List<DialogAction> DialogActions => _dialogActions;
 
-    //public string GetParagraph(int index) => _npcWords[index];
+    public string GetParagraph(int index) => _npcWords[index];
 }

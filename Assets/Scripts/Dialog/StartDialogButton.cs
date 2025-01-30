@@ -10,7 +10,7 @@ public class StartDialogButton : MonoBehaviour {
     private DialogController _dialogController;
 
     public void Init(DialogData dialogData) {
-        //_playerWords.text = dialogData.Title;
+        _title.text = dialogData.PlayerWords;
         _startButton.onClick.AddListener(() => _dialogController.StartDialog(dialogData));
     }
 
