@@ -13,6 +13,27 @@ MonoBehaviour:
   m_Name: NewDialogs
   m_EditorClassIdentifier: 
   <DialoguesData>k__BackingField:
+  - _isHaveConditionToUnlockDialog: 1
+    _conditions:
+    - _expectedResult: 0
+      _condition: {fileID: 0}
+    - _expectedResult: 0
+      _condition: {fileID: 0}
+    _playerWords: 
+    _isNeedNpcWords: 1
+    _npcWords:
+    - 
+    - 
+    _isNeedQuest: 0
+    _quest: {fileID: 0}
+    _playerWordsAfterQuestDone: 
+    _npcWordsAfterQuestDone:
+    - 
+    - 
+    _isNeedDialogActions: 1
+    _dialogActions:
+    - {fileID: 0}
+    - {fileID: 0}
   - _isHaveConditionToUnlockDialog: 0
     _conditions: []
     _playerWords: 
@@ -21,42 +42,10 @@ MonoBehaviour:
     _isNeedQuest: 0
     _quest: {fileID: 0}
     _playerWordsAfterQuestDone: 
-    _npcWordsAfterQuestDone: []
-    _isNeedDialogActions: 0
-    _dialogActions: []
-  - _isHaveConditionToUnlockDialog: 0
-    _conditions: []
-    _playerWords: 
-    _isNeedNpcWords: 0
-    _npcWords: []
-    _isNeedQuest: 0
-    _quest: {fileID: 0}
-    _playerWordsAfterQuestDone: 
     _npcWordsAfterQuestDone:
     - 
-    _isNeedDialogActions: 0
-    _dialogActions: []
-  - _isHaveConditionToUnlockDialog: 0
-    _conditions: []
-    _playerWords: 
-    _isNeedNpcWords: 0
-    _npcWords: []
-    _isNeedQuest: 0
-    _quest: {fileID: 0}
-    _playerWordsAfterQuestDone: 
-    _npcWordsAfterQuestDone:
     - 
-    _isNeedDialogActions: 0
-    _dialogActions: []
-  - _isHaveConditionToUnlockDialog: 0
-    _conditions: []
-    _playerWords: 
-    _isNeedNpcWords: 0
-    _npcWords: []
-    _isNeedQuest: 0
-    _quest: {fileID: 0}
-    _playerWordsAfterQuestDone: 
-    _npcWordsAfterQuestDone:
+    - 
     - 
     _isNeedDialogActions: 0
     _dialogActions: []

@@ -6,10 +6,12 @@ using UnityEngine;
 [CustomPropertyDrawer(typeof(DialogData))]
 public class DialogDataPropertyDrawer : PropertyDrawer {
     private const float PADDING_LEFT = 15f;
+    private SerializedProperty _isHaveConditionToUnlockDialogProperty;
+    private SerializedProperty _conditionsProperty;
     private SerializedProperty _isNeedNpcWordsProperty;
     private SerializedProperty _isNeedQuestProperty;
-    private SerializedProperty _isHaveConditionToUnlockDialogProperty;
     private SerializedProperty _isNeedDialogActionsProperty;
+    private SerializedProperty _dialogActionsProperty;
 
     private Dictionary<string, ReorderableList> _npcWordsLists = new();
     private Dictionary<string, bool> _npcWordsFoldoutStates = new();
@@ -17,6 +19,7 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
     private Dictionary<string, bool> _npcWordsAfterQuestDoneFoldoutStates = new();
 
     private float _foldoutHeight = EditorGUIUtility.singleLineHeight;
+    private float _isHaveConditionToUnlockDialogHeigh = EditorGUIUtility.singleLineHeight;
     private float _playerWordsHeight = EditorGUIUtility.singleLineHeight * 2;
     private float _isNeedNpcWordsHeight = EditorGUIUtility.singleLineHeight;
     private float _npcWordsHeight;
@@ -24,10 +27,7 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
     private float _isNeedQuestHeight = EditorGUIUtility.singleLineHeight;
     private float _questHeight;
     private float _paragraphHeigh = EditorGUIUtility.singleLineHeight * 3;
-    private float _isHaveConditionToUnlockDialogHeigh = EditorGUIUtility.singleLineHeight;
-    private float _conditionsHeigh;
     private float _isNeedDialogActionsHeigh = EditorGUIUtility.singleLineHeight;
-    private float _dialogActionsHeigh;
 
     private float _positionY;
 
@@ -111,16 +111,14 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
     }
 
     private void DrawConditionsField(Rect position, SerializedProperty property) {
-        SerializedProperty _conditionsProperty = property.FindPropertyRelative("_conditions");
+        _conditionsProperty = property.FindPropertyRelative("_conditions");
 
         if (_isHaveConditionToUnlockDialogProperty.boolValue) {
             _positionY += _isHaveConditionToUnlockDialogHeigh + EditorGUIUtility.standardVerticalSpacing;
-            _conditionsHeigh = EditorGUI.GetPropertyHeight(_conditionsProperty);
-            Rect _position = new Rect(position.x + PADDING_LEFT, _positionY, position.width - PADDING_LEFT, _conditionsHeigh);
+            Rect _position = new Rect(position.x + PADDING_LEFT, _positionY, position.width - PADDING_LEFT, EditorGUI.GetPropertyHeight(_conditionsProperty));
             EditorGUI.PropertyField(_position, _conditionsProperty);
         }
         else {
-            _conditionsHeigh = EditorGUIUtility.singleLineHeight;
             _conditionsProperty.ClearArray();
         }
     }
@@ -128,8 +126,8 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
     private void DrawPlayerWordsField(Rect position, SerializedProperty property) {
         SerializedProperty _property = property.FindPropertyRelative("_playerWords");
 
-        _positionY += _conditionsHeigh + EditorGUIUtility.standardVerticalSpacing;
-
+        _positionY += EditorGUI.GetPropertyHeight(_conditionsProperty) + EditorGUIUtility.standardVerticalSpacing;
+   
         float _labelWidth = EditorGUIUtility.labelWidth + EditorGUIUtility.standardVerticalSpacing;
         Rect _labelPosition = new Rect(position.x, _positionY, _labelWidth, EditorGUIUtility.singleLineHeight);
         EditorGUI.LabelField(_labelPosition, "Player Words");
@@ -231,13 +229,13 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
 
         _positionY += _playerWordsHeight + EditorGUIUtility.standardVerticalSpacing;
         Rect _foldoutPosition = new Rect(position.x + 12, _positionY, position.size.x, _foldoutHeight);
-        _foldoutState = EditorGUI.Foldout(_foldoutPosition, _foldoutState, "Npc Words After Done Quest", true);
+        _foldoutState = EditorGUI.Foldout(_foldoutPosition, _foldoutState, "Npc Words After Quest Done", true);
         SetFoldoutSatet(property, _npcWordsAfterQuestDoneFoldoutStates, _foldoutState);
 
         if (_foldoutState) {
             _npcWordsAfterQuestDoneHeight = reorderableList.GetHeight();
             _positionY += _foldoutHeight + EditorGUIUtility.standardVerticalSpacing;
-            Rect _position = new Rect(position.x, _positionY, position.width, _npcWordsHeight);
+            Rect _position = new Rect(position.x, _positionY, position.width, _npcWordsAfterQuestDoneHeight);
             reorderableList.DoList(_position);
         }
         else {
@@ -252,25 +250,25 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
     }
 
     private void DrawDialogActionsField(Rect position, SerializedProperty property) {
-        SerializedProperty _dialogActionsProperty = property.FindPropertyRelative("_dialogActions");
+        _dialogActionsProperty = property.FindPropertyRelative("_dialogActions");
 
         if (_isNeedDialogActionsProperty.boolValue) {
-            _dialogActionsHeigh = EditorGUI.GetPropertyHeight(_dialogActionsProperty);
             _positionY += _isNeedDialogActionsHeigh + EditorGUIUtility.standardVerticalSpacing;
-            Rect _position = new Rect(position.x + PADDING_LEFT, _positionY, position.width - PADDING_LEFT, _conditionsHeigh);
+            Rect _position = new Rect(position.x + PADDING_LEFT, _positionY, position.width - PADDING_LEFT, EditorGUI.GetPropertyHeight(_dialogActionsProperty));
             EditorGUI.PropertyField(_position, _dialogActionsProperty);
         }
         else {
-            _dialogActionsHeigh = EditorGUIUtility.singleLineHeight;
             _dialogActionsProperty.ClearArray();
         }
     }
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
+        _isHaveConditionToUnlockDialogProperty = property.FindPropertyRelative("_isHaveConditionToUnlockDialog");
+        _conditionsProperty = property.FindPropertyRelative("_conditions");
         _isNeedNpcWordsProperty = property.FindPropertyRelative("_isNeedNpcWords");
         _isNeedQuestProperty = property.FindPropertyRelative("_isNeedQuest");
-        _isHaveConditionToUnlockDialogProperty = property.FindPropertyRelative("_isHaveConditionToUnlockDialog");
         _isNeedDialogActionsProperty = property.FindPropertyRelative("_isNeedDialogActions");
+        _dialogActionsProperty = property.FindPropertyRelative("_dialogActions");
 
         float _height = 0;
 
@@ -281,7 +279,7 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
         _height += _foldoutHeight + _isHaveConditionToUnlockDialogHeigh + (EditorGUIUtility.standardVerticalSpacing * 2);
 
         if (_isHaveConditionToUnlockDialogProperty.boolValue) {
-            _height += _conditionsHeigh + EditorGUIUtility.standardVerticalSpacing;
+            _height += EditorGUI.GetPropertyHeight(_conditionsProperty) + EditorGUIUtility.standardVerticalSpacing;
         }
 
         _height += _playerWordsHeight + _isNeedNpcWordsHeight + (EditorGUIUtility.standardVerticalSpacing * 2);
@@ -292,7 +290,7 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
             _height += _foldoutHeight + EditorGUIUtility.standardVerticalSpacing;
 
             if (_foldout) {
-                _height += _npcWordsHeight + EditorGUIUtility.standardVerticalSpacing;
+                _height += GetReorderableList(property, "_npcWords", _npcWordsLists).GetHeight() + EditorGUIUtility.standardVerticalSpacing;
             }
         }
 
@@ -307,17 +305,15 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
         bool _foldoutNpcWordsAfterQuestDone = GetFoldoutSatet(property, _npcWordsAfterQuestDoneFoldoutStates);
 
         if (_foldoutNpcWordsAfterQuestDone) {
-            _height += _npcWordsAfterQuestDoneHeight + EditorGUIUtility.standardVerticalSpacing;
+            _height += GetReorderableList(property, "_npcWordsAfterQuestDone", _npcWordsAfterQuestDoneLists).GetHeight() + EditorGUIUtility.standardVerticalSpacing;
         }
 
         _height += _isNeedDialogActionsHeigh + EditorGUIUtility.standardVerticalSpacing;
 
         if (_isNeedDialogActionsProperty.boolValue) {
-            _height += _dialogActionsHeigh + EditorGUIUtility.standardVerticalSpacing;
+            _height += EditorGUI.GetPropertyHeight(_dialogActionsProperty) + EditorGUIUtility.standardVerticalSpacing;
         }
 
-        Debug.Log("" + property.propertyPath);
-        Debug.Log("Height = " + _height + EditorGUIUtility.standardVerticalSpacing);
         return _height + EditorGUIUtility.standardVerticalSpacing;
     }
 }
