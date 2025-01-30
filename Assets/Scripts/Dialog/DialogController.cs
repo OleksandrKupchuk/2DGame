@@ -9,6 +9,7 @@ public class DialogController : ScriptableObject {
     private int _paragraphCounter;
 
     public event Action<string, List<DialogData>> OnDialoguesOpened;
+    public event Action OnDialoguesClosed;
     public event Action<DialogData> OnDialogStarted;
     public event Action<string, bool> OnParagraphShowed;
     public DialogData DialogData { get => _dialogData; }
@@ -16,6 +17,10 @@ public class DialogController : ScriptableObject {
     public void OpenDialogues(string speakerName, Dialogues dialogues) {
         List<DialogData> _sortedDialogues = dialogues.DialoguesData.OrderBy(dialog => !dialog.IsHaveConditionToUnlockDialog).ToList();
         OnDialoguesOpened?.Invoke(speakerName, _sortedDialogues);
+    }
+
+    public void CloseDialogues() {
+        OnDialoguesClosed?.Invoke();
     }
 
     public void StartDialog(DialogData dialogData) {

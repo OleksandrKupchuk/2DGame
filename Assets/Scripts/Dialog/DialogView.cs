@@ -41,20 +41,22 @@ public class DialogView : MonoBehaviour {
         _backgroundVerticalLayoutGroup = _background.GetComponent<VerticalLayoutGroup>();
 
         _dialogController.OnDialoguesOpened += OpenDialogues;
+        _dialogController.OnDialoguesClosed += CloseDialogues;
         _dialogController.OnParagraphShowed += ShowParagraph;
 
-        AddListenerCloseButton(() => { CloseDialogs(); });
+        AddListenerCloseButton(() => { CloseDialogues(); });
         AddListenerBackButton(() => { DisableDescription(); ShowDialogue(_dialoguesData); EnableCloseButton(); });
         AddListenerNextButton(() => { _dialogController.CheckLastParagraph(); });
     }
 
     public void OnDestroy() {
         _dialogController.OnDialoguesOpened -= OpenDialogues;
+        _dialogController.OnDialoguesClosed -= CloseDialogues;
         _dialogController.OnParagraphShowed -= ShowParagraph;
     }
 
     private void Start() {
-        CloseDialogs();
+        CloseDialogues();
         DisableNextButton();
         DisableBackButton();
         DisableDescription();
@@ -102,7 +104,7 @@ public class DialogView : MonoBehaviour {
         }
     }
 
-    public void CloseDialogs() {
+    private void CloseDialogues() {
         ResetStartButtons();
         DisableStartButtons();
         _background.SetActive(false);

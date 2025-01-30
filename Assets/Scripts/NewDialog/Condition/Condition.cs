@@ -5,5 +5,5 @@ public abstract class Condition : ScriptableObject {
     [SerializeField]
     private bool _expectedResult;
 
-    public abstract bool IsDone();
+    public abstract bool IsTrue();
 }

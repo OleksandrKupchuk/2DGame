@@ -4,7 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class DialogData {
     [SerializeField]
-    public bool _isHaveConditionToUnlockDialog;
+    public bool _isHaveConditionsToUnlockDialog;
     [SerializeField]
     private List<ConditionUsage> _conditions;
     [SerializeField]
@@ -18,15 +18,15 @@ public class DialogData {
     [SerializeField]
     private Quest _quest;
     [SerializeField]
-    private string _playerWordsAfterQuestDone;
+    private string _playerWordsAfterQuestComplete;
     [SerializeField]
-    private List<string> _npcWordsAfterQuestDone;
+    private List<string> _npcWordsAfterQuestComplete;
     [SerializeField]
     private bool _isNeedDialogActions;
     [SerializeField]
     private List<DialogAction> _dialogActions;
 
-    public bool IsHaveConditionToUnlockDialog => _isHaveConditionToUnlockDialog;
+    public bool IsHaveConditionToUnlockDialog => _isHaveConditionsToUnlockDialog;
     public string PlayerWords => _playerWords;
     public bool IsNeedNpcWords => _isNeedNpcWords;
     public List<string> NpcWords => _npcWords;

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5f5e65babcfa804f93b167c775c4a00, type: 3}
   m_Name: OpenMarket
   m_EditorClassIdentifier: 
-  _inventory: {fileID: 0}
-  _market: {fileID: 0}
-  _dialogController: {fileID: 0}
+  _inventory: {fileID: 11400000, guid: 342cc4a6cd225c541b9824678282c065, type: 2}
+  _market: {fileID: 11400000, guid: 1d704f51d47a56f4b8127bfa342ef29e, type: 2}
+  _dialogController: {fileID: 11400000, guid: 0a0a980b7c1b0ad4995bfa837ee02194, type: 2}

@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47831a9a2b4d9324da7b39c5c01b7c66, type: 3}
   m_Name: TraderDialogs
   m_EditorClassIdentifier: 
-  <DialoguesData>k__BackingField: []
-  _dialogData:
-    _playerWords: 
+  <DialoguesData>k__BackingField:
+  - _isHaveConditionToUnlockDialog: 0
+    _conditions: []
+    _playerWords: Do you have something to sell?
     _isNeedNpcWords: 0
-    _npcWords: 
+    _npcWords: []
     _isNeedQuest: 0
     _quest: {fileID: 0}
-    _isHaveConditionToUnlockDialog: 0
-    _conditions: []
-    _isNeedDialogActions: 0
-    _dialogActions: []
+    _playerWordsAfterQuestDone: 
+    _npcWordsAfterQuestDone: []
+    _isNeedDialogActions: 1
+    _dialogActions:
+    - {fileID: 11400000, guid: 7810a25c1cb4f9d439e728d6cac3c0e8, type: 2}

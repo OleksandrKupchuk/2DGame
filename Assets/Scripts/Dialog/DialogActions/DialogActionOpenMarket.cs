@@ -11,7 +11,7 @@ public class DialogActionOpenMarket : DialogAction {
 
     public override void Execute() {
         _inventory.Open();
-        //_dialogController.CloseDialogs();
+        _dialogController.CloseDialogues();
         _market.Open();
     }
 }
