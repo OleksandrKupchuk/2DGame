@@ -4,14 +4,14 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class DialogView : MonoBehaviour {
-    private ObjectPool<StartDialogButton> _startDialogButtonPool;
-    private int _amountDialogsCurrentNpc;
+    private ObjectPool<StartDialogButton> _startDialogButtonsPool;
+    private int _amountDialoguesCurrentNpc;
     private float _heightDialogTitle;
     private LayoutElement _dialogContainerLayoutElement;
     private RectTransform _backgroundRectTransform;
     private RectTransform _speakerRectTransform;
     private VerticalLayoutGroup _backgroundVerticalLayoutGroup;
-    private List<DialogData> _dialoguesData;
+    private List<DialogData> _dialogues;
 
     [SerializeField]
     private DialogController _dialogController;
@@ -33,7 +33,7 @@ public class DialogView : MonoBehaviour {
     private Text _description;
 
     private void Awake() {
-        _startDialogButtonPool = new ObjectPool<StartDialogButton>(_startDialogButtonPrefab, _dialogContainer.transform);
+        _startDialogButtonsPool = new ObjectPool<StartDialogButton>(_startDialogButtonPrefab, _dialogContainer.transform);
         _dialogContainerLayoutElement = _dialogContainer.GetComponent<LayoutElement>();
         _heightDialogTitle = _dialogContainer.GetComponent<GridLayoutGroup>().cellSize.y;
         _backgroundRectTransform = _background.GetComponent<RectTransform>();
@@ -45,7 +45,15 @@ public class DialogView : MonoBehaviour {
         _dialogController.OnParagraphShowed += ShowParagraph;
 
         AddListenerCloseButton(() => { CloseDialogues(); });
-        AddListenerBackButton(() => { DisableDescription(); ShowDialogue(_dialoguesData); EnableCloseButton(); });
+        AddListenerBackButton(() => { 
+            DisableDescription();
+            var _updatedDialogues = _dialogController.GetUpdatedDialogues();
+            UpdatePositionAndSizeBackground(_updatedDialogues.Count);
+            ShowDialogues(_updatedDialogues);
+            EnableCloseButton(); 
+            DisableBackButton(); 
+            DisableNextButton();
+        });
         AddListenerNextButton(() => { _dialogController.CheckLastParagraph(); });
     }
 
@@ -63,26 +71,25 @@ public class DialogView : MonoBehaviour {
     }
 
     public void OpenDialogues(string speakerName, List<DialogData> dialogues) {
+        _dialogues = dialogues;
         _speakerName.text = speakerName;
-        _amountDialogsCurrentNpc = dialogues.Count;
+        _amountDialoguesCurrentNpc = _dialogues.Count;
         _background.SetActive(true);
-        UpdatePositionAndSizeBackground();
-        ShowDialogue(dialogues);
+        UpdatePositionAndSizeBackground(_dialogues.Count);
+        ShowDialogues(dialogues);
     }
 
-    private void UpdatePositionAndSizeBackground() {
-        _dialogContainerLayoutElement.minHeight = _amountDialogsCurrentNpc * _heightDialogTitle;
+    private void UpdatePositionAndSizeBackground(int amountDialoguesCurrentNpc) {
+        _dialogContainerLayoutElement.minHeight = amountDialoguesCurrentNpc * _heightDialogTitle;
         LayoutRebuilder.ForceRebuildLayoutImmediate(_backgroundRectTransform);
         float _heightBackground = _speakerRectTransform.rect.height + _backgroundVerticalLayoutGroup.spacing + _backgroundVerticalLayoutGroup.padding.top +
             _backgroundVerticalLayoutGroup.padding.bottom + _dialogContainerLayoutElement.minHeight;
         _backgroundRectTransform.anchoredPosition = new Vector2(_backgroundRectTransform.anchoredPosition.x, _heightBackground);
     }
 
-    private void ShowDialogue(List<DialogData> dialogues) {
-        _dialoguesData = dialogues;
-
+    private void ShowDialogues(List<DialogData> dialogues) {
         foreach (var dialog in dialogues) {
-            StartDialogButton _startDialogButton = _startDialogButtonPool.Get();
+            StartDialogButton _startDialogButton = _startDialogButtonsPool.GetEnabled();
             _startDialogButton.Init(dialog);
         }
     }
@@ -111,20 +118,20 @@ public class DialogView : MonoBehaviour {
     }
 
     public void ResetStartButtons() {
-        for (int i = 0; i < _amountDialogsCurrentNpc; i++) {
-            _startDialogButtonPool.Objects[i].RemoveListenersStartButton();
+        for (int i = 0; i < _amountDialoguesCurrentNpc; i++) {
+            _startDialogButtonsPool.Objects[i].RemoveListenersStartButton();
         }
     }
 
     public void DisableStartButtons() {
-        for (int i = 0; i < _amountDialogsCurrentNpc; i++) {
-            _startDialogButtonPool.Objects[i].gameObject.SetActive(false);
+        for (int i = 0; i < _amountDialoguesCurrentNpc; i++) {
+            _startDialogButtonsPool.Objects[i].gameObject.SetActive(false);
         }
     }
 
     public void EnableStartButtons() {
-        for (int i = 0; i < _amountDialogsCurrentNpc; i++) {
-            _startDialogButtonPool.Objects[i].gameObject.SetActive(true);
+        for (int i = 0; i < _amountDialoguesCurrentNpc; i++) {
+            _startDialogButtonsPool.Objects[i].gameObject.SetActive(true);
         }
     }
 

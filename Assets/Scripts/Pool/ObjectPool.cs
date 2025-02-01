@@ -46,7 +46,7 @@ public class ObjectPool<T> where T : Component{
         return _instance;
     }
 
-    public T Get() {
+    public T GetEnabled() {
         T _instance = null;
 
         foreach (T newObject in _objects) {

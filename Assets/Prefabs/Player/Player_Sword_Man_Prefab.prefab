@@ -67,7 +67,7 @@ MonoBehaviour:
   - {fileID: 1686243371}
   - {fileID: 2059703570}
   - {fileID: 247315288}
-  _delayBllinkAnimationInSeconds: 0
+  _delayBllinkAnimationInSeconds: 2
   _sprites: []
   _healthController: {fileID: 11400000, guid: 6d21bf859853ba047973e1b1ee01b548, type: 2}
   <InvulnerableStatus>k__BackingField: {fileID: 11400000, guid: 8faea2073053f064f8a9814a6d8be089, type: 2}
@@ -179,7 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b443d7a29afd094c88e8806744da99b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventoryController: {fileID: 11400000, guid: 342cc4a6cd225c541b9824678282c065, type: 2}
+  _inventory: {fileID: 11400000, guid: 342cc4a6cd225c541b9824678282c065, type: 2}
+  _questSystem: {fileID: 11400000, guid: 103abdf9ad0489b4cafeed509210c50f, type: 2}
 --- !u!114 &2377159792989392474
 MonoBehaviour:
   m_ObjectHideFlags: 0

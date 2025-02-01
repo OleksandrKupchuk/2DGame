@@ -20,6 +20,7 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
 
     private float _paragraphHeigh = EditorGUIUtility.singleLineHeight * 3;
     private float _foldoutHeight = EditorGUIUtility.singleLineHeight;
+    private float _isDialogExpiredHeigh = EditorGUIUtility.singleLineHeight;
     private float _isHaveConditionsToUnlockDialogHeigh = EditorGUIUtility.singleLineHeight;
     private float _conditionsToUnlockDialogHeigh;
     private float _playerWordsHeight = EditorGUIUtility.singleLineHeight * 2;
@@ -50,6 +51,7 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
         _isNeedQuestProperty = property.FindPropertyRelative("_isNeedQuest");
         _isNeedDialogActionsProperty = property.FindPropertyRelative("_isNeedDialogActions");
 
+        DrawIsDialogExpiredField(position, property);
         DrawIsHaveConditionToUnlockDialogField(position, property);
         DrawConditionsField(position, property);
         DrawPlayerWordsField(position, property);
@@ -105,8 +107,17 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
         return _npcWordsList;
     }
 
-    private void DrawIsHaveConditionToUnlockDialogField(Rect position, SerializedProperty property) {
+    private void DrawIsDialogExpiredField(Rect position, SerializedProperty property) {
+        SerializedProperty _isDialogExpiderProperty = property.FindPropertyRelative("_isDialogExpired");
         _positionY = position.y + _foldoutHeight + EditorGUIUtility.standardVerticalSpacing;
+        Rect _position = new Rect(position.x, _positionY, position.width, _isDialogExpiredHeigh);
+        GUI.enabled = false;
+        EditorGUI.PropertyField(_position, _isDialogExpiderProperty);
+        GUI.enabled = true;
+    }
+
+    private void DrawIsHaveConditionToUnlockDialogField(Rect position, SerializedProperty property) {
+        _positionY += _isDialogExpiredHeigh + EditorGUIUtility.standardVerticalSpacing;
         Rect _position = new Rect(position.x, _positionY, position.width, _isHaveConditionsToUnlockDialogHeigh);
         EditorGUI.PropertyField(_position, _isHaveConditionToUnlockDialogProperty);
     }
@@ -297,7 +308,7 @@ public class DialogDataPropertyDrawer : PropertyDrawer {
             return _foldoutHeight + EditorGUIUtility.standardVerticalSpacing;
         }
 
-        _height += _foldoutHeight + _isHaveConditionsToUnlockDialogHeigh + (EditorGUIUtility.standardVerticalSpacing * 2);
+        _height += _foldoutHeight + _isDialogExpiredHeigh + _isHaveConditionsToUnlockDialogHeigh + (EditorGUIUtility.standardVerticalSpacing * 3);
 
         if (_isHaveConditionToUnlockDialogProperty.boolValue) {
             _height += EditorGUI.GetPropertyHeight(_conditionsProperty) + EditorGUIUtility.standardVerticalSpacing;

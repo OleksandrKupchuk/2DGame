@@ -10,46 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47831a9a2b4d9324da7b39c5c01b7c66, type: 3}
-  m_Name: TraderDialogs
+  m_Name: DialogTest
   m_EditorClassIdentifier: 
   <DialoguesData>k__BackingField:
   - _isDialogExpired: 0
     _isHaveConditionsToUnlockDialog: 0
     _conditions: []
-    _playerWords: Do you have something to sell?
-    _isNeedNpcWords: 0
+    _playerWords: 
+    _isNeedNpcWords: 1
     _npcWords: []
     _isNeedQuest: 0
     _quest: {fileID: 0}
     _playerWordsAfterQuestComplete: 
     _npcWordsAfterQuestComplete: []
-    _isNeedDialogActions: 1
-    _dialogActions:
-    - {fileID: 11400000, guid: 7810a25c1cb4f9d439e728d6cac3c0e8, type: 2}
-  - _isDialogExpired: 0
-    _isHaveConditionsToUnlockDialog: 0
-    _conditions: []
-    _playerWords: Do you have any job?
-    _isNeedNpcWords: 1
-    _npcWords:
-    - 'Yes, '
-    - Bring me one thing
-    _isNeedQuest: 1
-    _quest: {fileID: 11400000, guid: 8f30c360abb6d254c80be470b5eda00b, type: 2}
-    _playerWordsAfterQuestComplete: I completed you quest
-    _npcWordsAfterQuestComplete:
-    - Great
-    - Take it
     _isNeedDialogActions: 0
     _dialogActions: []
   - _isDialogExpired: 0
-    _isHaveConditionsToUnlockDialog: 1
-    _conditions:
-    - {fileID: 11400000, guid: 591d9861de50dca4b9a147a9f1e8ba28, type: 2}
-    _playerWords: Its quest after unlock
-    _isNeedNpcWords: 1
-    _npcWords:
-    - Its interest story
+    _isHaveConditionsToUnlockDialog: 0
+    _conditions: []
+    _playerWords: 
+    _isNeedNpcWords: 0
+    _npcWords: []
     _isNeedQuest: 0
     _quest: {fileID: 0}
     _playerWordsAfterQuestComplete: 

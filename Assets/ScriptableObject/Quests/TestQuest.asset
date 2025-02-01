@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a480e7ad4e274444baa89ba2a02a63b1, type: 3}
   m_Name: TestQuest
   m_EditorClassIdentifier: 
+  _isDone: 1

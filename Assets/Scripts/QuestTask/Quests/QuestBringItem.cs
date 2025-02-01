@@ -23,6 +23,7 @@ public class QuestBringItem : IQuest {
     }
 
     public bool IsDone() {
-        return QuestSystem.Instance.IsQuestItem(_target);
+        //return QuestSystem.Instance.IsQuestItem(_target);
+        return false;
     }
 }

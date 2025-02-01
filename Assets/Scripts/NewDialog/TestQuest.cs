@@ -9,6 +9,14 @@ public class TestQuest : Quest {
     }
 
     public override bool IsComplete() {
+        if (!IsFailed()) {
+            return true;
+        }
+
+        return _isDone;
+    }
+
+    public override bool IsFailed() {
         return _isDone;
     }
 }

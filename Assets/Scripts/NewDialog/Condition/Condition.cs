@@ -3,7 +3,8 @@ using UnityEngine;
 [System.Serializable]
 public abstract class Condition : ScriptableObject {
     [SerializeField]
-    private bool _expectedResult;
+    protected bool _expectedResult;
+    public bool IsTrue => _expectedResult == GetActualResult();
 
-    public abstract bool IsTrue();
+    protected abstract bool GetActualResult();
 }
