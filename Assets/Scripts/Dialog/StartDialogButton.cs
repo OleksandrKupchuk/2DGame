@@ -10,17 +10,9 @@ public class StartDialogButton : MonoBehaviour {
     private DialogController _dialogController;
 
     public void Init(DialogData dialogData) {
-        if (dialogData.IsNeedQuest && dialogData.Quest.IsComplete()) {
-            _title.text = dialogData.PlayerWordsAfterQuestComplete;
-        }
-        else {
-            _title.text = dialogData.PlayerWords;
-        }
-
-        _startButton.onClick.AddListener(() => _dialogController.StartDialog(dialogData));
-    }
-
-    public void RemoveListenersStartButton() {
         _startButton.onClick.RemoveAllListeners();
+
+        _title.text = _dialogController.GetDialogTitle(dialogData);
+        _startButton.onClick.AddListener(() => _dialogController.StartDialog(dialogData));
     }
 }
